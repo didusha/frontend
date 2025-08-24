@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { useState } from 'react'
+import { StayGallery } from '../cmps/StayGallery.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -28,7 +29,9 @@ export function StayDetails() {
 
   return (
     <section className='stay-details'>
-      <Link to='/stay'>Back to list</Link>
+
+      <StayGallery/>
+      {/* <Link to='/stay'>Back to list</Link>
       <h1>Stay Details</h1>
       {stay && (
         <div>
@@ -43,7 +46,7 @@ export function StayDetails() {
         }}
       >
         Add stay msg
-      </button>
+      </button> */}
     </section>
   )
 }
