@@ -1,0 +1,22 @@
+.slick-prev {
+    display: none;
+}
+
+.slick-next {
+    display: none;
+}
+
+li:hover .slick-next {
+    z-index: 1;
+    right: 10px !important;
+}
+
+li:hover .slick-prev {
+    z-index: 1;
+    left: 10px !important;
+}
+
+.slick-dots li {
+    margin-inline: -3px !important;
+}
+

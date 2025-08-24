@@ -1,7 +1,6 @@
 import { stayService } from "../../services/stay"
 
 export const SET_STAYS = 'SET_STAYS'
-export const SET_STAY = 'SET_STAY'
 export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
@@ -20,9 +19,6 @@ export function stayReducer(state = initialState, action) {
     switch (action.type) {
         case SET_STAYS:
             newState = { ...state, stays: action.stays }
-            break
-        case SET_STAY:
-            newState = { ...state, stay: action.stay }
             break
         case REMOVE_STAY:
             const lastRemovedStay = state.stays.find(stay => stay._id === action.stayId)

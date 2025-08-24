@@ -20,6 +20,10 @@
     }
 }
 
+.bold{
+    font-family: AirbnbCereal-Bold;
+}
+
 /* Simple and useful CSS Debugging Technique */
 .debug * {
     outline: 1px solid gold

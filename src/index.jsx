@@ -10,6 +10,8 @@ import { store } from './store/store'
 import { RootCmp } from './RootCmp'
 
 import './assets/styles/main.css'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
