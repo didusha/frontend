@@ -30,6 +30,11 @@
         & button {
             margin-inline-end: 0;
         }
+
+        .logo-img{
+            height: 40px;
+            width: 50
+        }
     }
 
     .user-info {
