@@ -11,42 +11,30 @@ export function StayDetails() {
   const { stayId } = useParams()
   const [stay, setStay] = useState()
 
-
   useEffect(() => {
     loadStay(stayId)
   }, [stayId])
 
-    async function loadStay(stayId) {
-      try {
-        const stay = await stayService.getById(stayId)
-        setStay(stay)
-      } catch (err) {
-        console.log('Cannot load stay', err)
-        showErrorMsg ('Cannot load stay')
-      }
+  async function loadStay(stayId) {
+    try {
+      const stay = await stayService.getById(stayId)
+      setStay(stay)
+    } catch (err) {
+      console.log('Cannot load stay', err)
+      showErrorMsg('Cannot load stay')
     }
-  
+  }
 
   return (
     <section className='stay-details'>
+      <StayGallery />
+      <Link to='/stay'>Back to list</Link>
 
-      <StayGallery/>
-      {/* <Link to='/stay'>Back to list</Link>
-      <h1>Stay Details</h1>
-      {stay && (
+      {/* {stay && (
         <div>
-          <h3>{stay.name}</h3>
-          <h4>{stay.price} KMH</h4>
           <pre> {JSON.stringify(stay, null, 2)} </pre>
         </div>
-      )}
-      <button
-        onClick={() => {
-          onAddStayMsg(stay._id)
-        }}
-      >
-        Add stay msg
-      </button> */}
+      )} */}
     </section>
   )
 }
