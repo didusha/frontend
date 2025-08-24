@@ -7,7 +7,7 @@ export function StayPreview({ stay }) {
         </header>
 
         <p>Price: <span>{stay.price.toLocaleString()} Km/h</span></p>
-        {stay.owner && <p>Owner: <span>{stay.owner.fullname}</span></p>}
+        {stay.host && <p>Host: <span>{stay.host.fullname}</span></p>}
         
     </article>
 }

@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
+import { stayService } from '../services/stay/'
+import { StayFilter } from '../cmps/StayFilter'
+import { useState, useEffect } from 'react'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
+	const [isFocus, setIsFocus] = useState(true)
+	const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
 
 	async function onLogout() {
 		try {
@@ -21,15 +26,18 @@ export function AppHeader() {
 	return (
 		<header className="app-header full">
 			<nav>
-				<NavLink to="/" className="logo">
-					E2E Demo
-				</NavLink>
-				<NavLink to="about">About</NavLink>
-				<NavLink to="stay">Stays</NavLink>
-				<NavLink to="chat">Chat</NavLink>
-				<NavLink to="review">Review</NavLink>
-
-                {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+				<section className="logo">
+					<img className="logo-img" src="../../public/img/logo.png" alt="logo" />
+					<span>rarebnb</span>
+				</section>
+				{isFocus &&
+					<section className="navigation-links">
+						<a>Homes</a>
+						<a>Experiences</a>
+						<a>Services</a>
+					</section>
+				}
+				{user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
 
 				{!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
 				{user && (
@@ -42,7 +50,9 @@ export function AppHeader() {
 						<button onClick={onLogout}>logout</button>
 					</div>
 				)}
+				
 			</nav>
+				{isFocus && <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />}
 		</header>
 	)
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 export function StayFilter({ filterBy, setFilterBy }) {
-    const [ filterToEdit, setFilterToEdit ] = useState(structuredClone(filterBy))
+    const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
 
     useEffect(() => {
         setFilterBy(filterToEdit)
@@ -14,10 +14,6 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
         switch (type) {
             case 'text':
-            case 'radio':
-                value = field === 'sortDir' ? +ev.target.value : ev.target.value
-                if(!filterToEdit.sortDir) filterToEdit.sortDir = 1
-                break
             case 'number':
                 value = +ev.target.value || ''
                 break
@@ -25,83 +21,22 @@ export function StayFilter({ filterBy, setFilterBy }) {
         setFilterToEdit({ ...filterToEdit, [field]: value })
     }
 
-    function clearFilter() {
-        setFilterToEdit({ ...filterToEdit, txt: '', minPrice: '', maxPrice: '' })
-    }
-    
-    function clearSort() {
-        setFilterToEdit({ ...filterToEdit, sortField: '', sortDir: '' })
-    }
-
     return <section className="stay-filter">
-            <h3>Filter:</h3>
+        <section className="search">
+            <h5>Where</h5>
             <input
                 type="text"
                 name="txt"
                 value={filterToEdit.txt}
-                placeholder="Free text"
-                onChange={handleChange}
-                required
+                placeholder="Search destinations"
             />
-            <input
-                type="number"
-                min="0"
-                name="minPrice"
-                value={filterToEdit.minPrice}
-                placeholder="min. price"
-                onChange={handleChange}
-                required
-            />
-            <button 
-                className="btn-clear" 
-                onClick={clearFilter}>Clear</button>
-            <h3>Sort:</h3>
-            <div className="sort-field">
-                <label>
-                    <span>Price</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="price"
-                        checked={filterToEdit.sortField === 'price'}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Name</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="name"
-                        checked={filterToEdit.sortField === 'name'}            
-                        onChange={handleChange}
-                    />
-                </label>
-            </div>
-            <div className="sort-dir">
-                <label>
-                    <span>Asce</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="1"
-                        checked={filterToEdit.sortDir === 1}                        
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Desc</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="-1"
-                        onChange={handleChange}
-                        checked={filterToEdit.sortDir === -1}                        
-                    />
-                </label>
-            </div>
-            <button 
-                className="btn-clear" 
-                onClick={clearSort}>Clear</button>
+        </section>
+        <section className="check-in"> <h5>check in</h5></section>
+        <section className="check-out"> <h5>check out</h5></section>
+        <section className="guests"> <h5>who</h5></section>
+        <button
+            className="btn-clear"
+            onClick={handleChange}>search
+        </button>
     </section>
 }

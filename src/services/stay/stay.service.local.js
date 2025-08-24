@@ -1,9 +1,10 @@
 
-import { storageService } from '../async-storage.service'
-import { makeId } from '../util.service'
+import { storageService } from '../async-storage.service.js'
+import { makeId, makeLorem, loadFromStorage } from '../util.service.js'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'stay'
+
 
 export const stayService = {
     query,
@@ -26,16 +27,16 @@ async function query(filterBy = { txt: '', minPrice: 0 }) {
     if (minPrice) {
         stays = stays.filter(stay => stay.price >= minPrice)
     }
-    if(sortField === 'name'){
-        stays.sort((stay1, stay2) => 
+    if (sortField === 'name') {
+        stays.sort((stay1, stay2) =>
             stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
     }
-    if(sortField === 'price'){
-        stays.sort((stay1, stay2) => 
+    if (sortField === 'price') {
+        stays.sort((stay1, stay2) =>
             (stay1[sortField] - stay2[sortField]) * +sortDir)
     }
-    
-    stays = stays.map(({ _id, name, price, owner }) => ({ _id, name, price, owner }))
+
+    stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))
     return stays
 }
 
@@ -53,15 +54,31 @@ async function save(stay) {
     if (stay._id) {
         const stayToSave = {
             _id: stay._id,
-            price: stay.price
+            name: stay.name,
+            type: stay.type,
+            imgUrls: stay.imgUrls,
+            summary: stay.summary,
+            price: stay.price,
+            capacity: stay.capacity,
+            amenities: stay.amenities,
+            host: stay.host,
+            loc: stay.loc,
+            msgs: stay.msgs,
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
         const stayToSave = {
             name: stay.name,
             price: stay.price,
-            // Later, owner is set by the backend
-            owner: userService.getLoggedinUser(),
+            type: stay.type,
+            imgUrls: stay.imgUrls,
+            summary: stay.summary,
+            price: stay.price,
+            capacity: stay.capacity,
+            amenities: stay.amenities,
+            loc: stay.loc,
+            // Later, host is set by the backend
+            host: userService.getLoggedinUser(),
             msgs: []
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
@@ -83,3 +100,36 @@ async function addStayMsg(stayId, txt) {
 
     return msg
 }
+
+
+// function getRandomStay(_id = '',) {
+//     const amenitiesList = ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics']
+
+//     const amenities = amenitiesList[Math.floor(Math.random() * names.length)]
+
+//     return {
+//         _id,
+//         name: makeLorem(3),
+//         price: utilService.getRandomIntInclusive(20, 200),
+//         amenities: amenities,
+//         type: 'House',
+//         summary: makeLorem(20),
+//         imgUrl: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
+//         capacity: utilService.getRandomIntInclusive(1, 8),
+//         loc: {
+//             country: 'Portugal',
+//             countryCode: 'PT',
+//             city: 'Lisbon',
+//             address: '17 Kombo st',
+//             lat: -8.61308,
+//             lng: 41.1413,
+//         },
+//         host: {
+//             _id: 'PH2sA',
+//             fullname: 'admin',
+//             imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
+//         },
+
+
+//     }
+// }
