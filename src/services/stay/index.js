@@ -10,7 +10,7 @@ function getEmptyStay() {
         _id: '',
 		name: makeLorem(3),
         type: '',
-        imgUrls: [],
+        imgUrls: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
         summary: '',
         capacity: getRandomIntInclusive(0, 8),
 		price: getRandomIntInclusive(80, 240),

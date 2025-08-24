@@ -10,7 +10,7 @@
   --gray-btn: #f1f1f1;
   --gray-filter: #eaeaea;
   --gray-footer: #f6f6f6;
-  --gray4: #333;
+  --gray-text-color: rgb(106, 106, 106);
   --gray-icon:#747474;
   --black-btn:#222222;
   --white-bg-btn:#ffffff;
@@ -21,4 +21,15 @@
 
   --success: rgb(41, 189, 73);
   --error: rgb(216, 59, 59);
+
+   --bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --chip: #f3f4f6;
+  --chip-text: #374151;
+  --accent: #ef4444;          /* like the wishlist heart */
+  --brand: #222222;           /* dark header text */
+  --shadow: 0 6px 16px rgba(0,0,0,.12);
+  --radius: 16px;
 }
