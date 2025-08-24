@@ -4,8 +4,10 @@
 
 @import "basics/helpers";
 @import "basics/layout";
-@import "basics/base";
 @import "basics/forms";
+@import "basics/base";
+@import "basics/mq";
+
 
 @import "RootCmp";
 
@@ -23,6 +25,7 @@
 @import "cmps/stay/StayList";
 @import "cmps/stay/StayPreview";
 @import "cmps/stay/StayFilter";
+@import "cmps/stay/ImgCarousel";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

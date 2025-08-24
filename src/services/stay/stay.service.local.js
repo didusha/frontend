@@ -36,7 +36,7 @@ async function query(filterBy = { txt: '', minPrice: 0 }) {
             (stay1[sortField] - stay2[sortField]) * +sortDir)
     }
 
-    stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))
+    // stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))
     return stays
 }
 
@@ -50,6 +50,7 @@ async function remove(stayId) {
 }
 
 async function save(stay) {
+    // console.log("🚀 ~ save ~ stay:", stay)
     var savedStay
     if (stay._id) {
         const stayToSave = {
