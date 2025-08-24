@@ -1,16 +1,21 @@
 * {
     box-sizing: border-box;
 }
-   
+
 body {
     margin: 0 auto;
-    
     font-family: AirbnbCereal;
     color: --var(clr2);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0 0 0.6em;
+    font-weight: normal;
 }
 
 p {
@@ -39,6 +44,6 @@ img,
 embed,
 video,
 object {
-  max-width: 100%;
-  display: block;
+    max-width: 100%;
+    display: block;
 }
