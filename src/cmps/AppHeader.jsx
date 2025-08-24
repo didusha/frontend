@@ -3,15 +3,13 @@ import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
-import { stayService } from '../services/stay/'
 import { StayFilter } from '../cmps/StayFilter'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const [isFocus, setIsFocus] = useState(true)
-	const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
 
 	async function onLogout() {
 		try {
@@ -50,9 +48,9 @@ export function AppHeader() {
 						<button onClick={onLogout}>logout</button>
 					</div>
 				)}
-				
+
 			</nav>
-				{isFocus && <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />}
+			{isFocus && <StayFilter />}
 		</header>
 	)
 }

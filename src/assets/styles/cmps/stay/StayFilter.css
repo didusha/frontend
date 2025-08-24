@@ -1,17 +1,65 @@
 .stay-filter {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0 .5em;
     background-color: white;
-    padding: .5em;
-    border-radius: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+    font-family: AirbnbCereal;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.stay-filter section{
+.stay-filter form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.stay-filter section {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    padding: 0.8em 1em;
+    background-color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.stay-filter button{
+.stay-filter section:hover {
+    background-color: #f7f7f7;
+}
+
+.stay-filter h5 {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 0.2em 0;
+}
+
+.stay-filter input {
+    border: none;
+    outline: none;
+    font-size: 0.87rem;
+    padding: 0.3em 0;
+    width: 100%;
+}
+
+.stay-filter button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr1);
+    border: none;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    margin-right: 0.6em;
+    transition: background-color 0.2s ease;
+}
+
+.stay-filter button:hover {
+    background-color: #e63250;
 }

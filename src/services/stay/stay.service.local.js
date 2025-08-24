@@ -16,24 +16,16 @@ export const stayService = {
 window.cs = stayService
 
 
-async function query(filterBy = { txt: '', minPrice: 0 }) {
+async function query(filterBy = { txt: '', capacity: 1 }) {
     var stays = await storageService.query(STORAGE_KEY)
-    const { txt, minPrice, sortField, sortDir } = filterBy
+    const { txt, capacity } = filterBy
 
     if (txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.name) || regex.test(stay.description))
+        stays = stays.filter(stay => regex.test(stay.loc.city))
     }
-    if (minPrice) {
-        stays = stays.filter(stay => stay.price >= minPrice)
-    }
-    if (sortField === 'name') {
-        stays.sort((stay1, stay2) =>
-            stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
-    }
-    if (sortField === 'price') {
-        stays.sort((stay1, stay2) =>
-            (stay1[sortField] - stay2[sortField]) * +sortDir)
+    if (capacity && capacity > 1) {
+        stays = stays.filter(stay => stay.capacity >= capacity)
     }
 
     stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))

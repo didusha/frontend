@@ -4,7 +4,8 @@
   --clr3: #574f7d; */
   --clr4: #f1f1f1;
   --clr5: #fefefe;
-
+  --clr6:  #e63250;
+  
   --clr1-light: color-mix(in lab, var(--clr1), white 15%);
 
   --gray-btn: #f1f1f1;

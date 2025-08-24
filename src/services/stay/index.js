@@ -25,9 +25,7 @@ function getEmptyStay() {
 function getDefaultFilter() {
     return {
         txt: '',
-        minPrice: '',
-        sortField: '',
-        sortDir: '',
+        capacity: 1,
     }
 }
 

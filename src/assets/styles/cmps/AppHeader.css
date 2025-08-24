@@ -9,6 +9,7 @@
         width: 100%;
         align-items: center;
         gap: 1em;
+        justify-content: space-between;
         
         font-size: .8em;
 
@@ -20,11 +21,8 @@
             display: flex;
             align-items: center;
             font-size: 1.7em;
-            font-weight: bold;
-        }
-
-        .login-link {
-            margin-inline-start: auto;
+            font-family: AirbnbCereal-Bold;
+            color: var(--clr1);
         }
 
         & button {

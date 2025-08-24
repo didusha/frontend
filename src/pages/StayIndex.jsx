@@ -7,12 +7,12 @@ import { userService } from '../services/user'
 import { StayList } from '../cmps/StayList'
 
 export function StayIndex() {
-
     const stays = useSelector(storeState => storeState.stayModule.stays)
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
 
     useEffect(() => {
         loadStays()
-    }, [])
+    }, [filterBy])
 
     async function onRemoveStay(stayId) {
         try {

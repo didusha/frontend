@@ -1,13 +1,17 @@
+import { stayService } from "../../services/stay"
+
 export const SET_STAYS = 'SET_STAYS'
 export const SET_STAY = 'SET_STAY'
 export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const ADD_STAY_MSG = 'ADD_STAY_MSG'
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 const initialState = {
     stays: [],
-    stay: null
+    stay: null,
+    filterBy: stayService.getDefaultFilter()
 }
 
 export function stayReducer(state = initialState, action) {
@@ -37,6 +41,13 @@ export function stayReducer(state = initialState, action) {
                 newState = { ...state, stay: { ...state.stay, msgs: [...state.stay.msgs || [], action.msg] } }
                 break
             }
+        // Filter
+        case SET_FILTER_BY:
+            return {
+                ...state,
+                filterBy: { ...state.filterBy, ...action.filterBy },
+            }
+
         default:
     }
     return newState
