@@ -65,3 +65,30 @@
         }
     }
 }
+
+.homes-imgs {
+    height: 45px;
+    width: 40px;
+}
+
+.experiences-imgs {
+    height: 40px;
+    width: 33px;
+}
+
+.services-imgs {
+    height: 40px;
+    width: 55px;
+}
+
+.navigation-links{
+    display: flex;
+    gap: 30px;
+    margin: 20px;
+}
+
+.navigation-links section{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}

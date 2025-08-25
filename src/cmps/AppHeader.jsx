@@ -18,31 +18,31 @@ export function AppHeader() {
 	const SCROLL_THRESHOLD = 10
 
 	const openFocusComponent = () => {
-		setForceOpen(true)   // סימון פתיחה ידנית
+		setForceOpen(true) 
 		setIsFocus(true)
 	}
 
-useEffect(() => {
-  const handleScroll = throttle(() => {
-    const currentScrollY = window.scrollY
+	useEffect(() => {
+		const handleScroll = throttle(() => {
+			const currentScrollY = window.scrollY
 
-    if (forceOpen) {
-      if (currentScrollY === 0) {
-        setForceOpen(false)
-      }
-      return
-    }
+			if (forceOpen) {
+				if (currentScrollY === 0) {
+					setForceOpen(false)
+				}
+				return
+			}
 
-    if (currentScrollY === 0) {
-      setIsFocus(true)
-    } else {
-      setIsFocus(false)
-    }
-  }, 100) // 100ms delay
+			if (currentScrollY === 0) {
+				setIsFocus(true)
+			} else {
+				setIsFocus(false)
+			}
+		}, 100) // 100ms delay
 
-  window.addEventListener('scroll', handleScroll)
-  return () => window.removeEventListener('scroll', handleScroll)
-}, [forceOpen])
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [forceOpen])
 
 	async function onLogout() {
 		try {
@@ -64,9 +64,18 @@ useEffect(() => {
 				{!isFocus && <StaySmallFilter openFocusComponent={openFocusComponent} />}
 				{isFocus &&
 					<section className="navigation-links">
-						<a>Homes</a>
-						<a>Experiences</a>
-						<a>Services</a>
+						<section>
+							<img className="homes-imgs" src="../../public/img/homes.png" alt="homes" />
+							<a>Homes</a>
+						</section>
+						<section>
+							<img className="experiences-imgs" src="../../public/img/experiences.png" alt="experiences" />
+							<a>Experiences</a>
+						</section>
+						<section>
+							<img className="services-imgs" src="../../public/img/services.png" alt="services" />
+							<a>Services</a>
+						</section>
 					</section>
 				}
 				{user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
