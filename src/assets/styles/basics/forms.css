@@ -1,15 +1,17 @@
 
 button {
-	padding: .5em .8em;
+	padding:14px  24px ;
 	border: 0;
 	margin: .5em;
 	cursor: pointer;
-	background-color: var(--gray-btn);
-	color: whitesmoke;
-	font-family: AirbnbCereal;
+	background-color: rgb(242, 242, 242);
+	border-radius: 12px;
+	color: rgb(34, 34, 34);
+	font-family: AirbnbCereal-bold;
 }
 
 button:hover {
 	transition: 0.3s;
-	background-color: var(--clr1-light)
+	background-color: rgb(235, 235, 235);
 }
+

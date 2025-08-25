@@ -34,6 +34,16 @@ export function StayIndex() {
         }
     }
 
+    async function onAddRandStay() {
+        const stay = stayService.getRandomStay()
+        try {
+            const savedStay = await addStay(stay)
+            showSuccessMsg(`Stay added (id: ${savedStay._id})`)
+        } catch (err) {
+            showErrorMsg('Cannot add stay')
+        }
+    }
+
     async function onUpdateStay(stay) {
         const price = +prompt('New price?', stay.price) || 0
         if (price === 0 || price === stay.price) return
@@ -50,6 +60,7 @@ export function StayIndex() {
     return (
         <section className="stay-index">
             {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
+            {userService.getLoggedinUser() && <button onClick={onAddRandStay}>Add rand Stay</button>}
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}
