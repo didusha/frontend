@@ -9,7 +9,7 @@
     margin-top: 16px;
     margin-bottom: 40px;
 
-    li {
+    li:hover {
         position: relative;
 
         .actions {

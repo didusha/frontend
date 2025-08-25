@@ -2,10 +2,9 @@
     margin-inline: -3px !important;
 }
 
-/* default dots */
 .slick-dots li button:before {
     font-size: 8px !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.699) !important;
     opacity: 1;
 }
 
@@ -18,17 +17,12 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%) scale(0.9) translateX(0);
-    z-index: 2;
-    background: f5f5rgba(255, 255, 255, 0.9)f5;
-    border: none;
     border-radius: 50%;
     width: 32px;
-    /* button size */
     height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     opacity: 0;
     pointer-events: none;
@@ -62,8 +56,8 @@
 
 .heart-btn{
     position: absolute;
-    top:0;
-    right: 0;
+    top:-8px;
+    right: -8px;
     background-color: transparent;
 }
 
