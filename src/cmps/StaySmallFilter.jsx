@@ -2,9 +2,9 @@
 
 
 
-export function StaySmallFilter({setIsFocus}) {
+export function StaySmallFilter({openFocusComponent}) {
     return (
-        <section className="small-filter" onClick={() => setIsFocus(true)}>
+        <section className="small-filter" onClick={openFocusComponent}>
             <section>Anywhere</section>
             <section>Anytime</section>
             <section>Add guests</section>

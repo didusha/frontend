@@ -38,3 +38,8 @@
 .rdrStartEdge.rdrEndEdge:active{
     border-radius: 50% !important; 
 }
+
+.ReactModalPortal{
+    position: absolute;
+    z-index: 3;
+}

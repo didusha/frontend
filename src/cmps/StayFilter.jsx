@@ -7,6 +7,8 @@ export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [checkInDate, setCheckInDate] = useState('Add dates')
+    const [checkOutDate, setCheckOutDate] = useState('Add dates')
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -18,6 +20,17 @@ export function StayFilter() {
     function onSubmit(ev) {
         ev.preventDefault()
         setFilterBy(filterToEdit)
+    }
+
+    const checkIn = formatDate(checkInDate)
+    const checkOut = formatDate(checkOutDate)
+
+    function formatDate(date) {
+        if (!date) return 'Add dates'
+        const d = new Date(date)
+        if (isNaN(d.getTime())) return 'Add dates'
+        const options = { day: 'numeric', month: 'short' }
+        return new Date(date).toLocaleDateString('en-US', options)
     }
 
     return (
@@ -36,12 +49,14 @@ export function StayFilter() {
 
                 <section className="check-in" onClick={() => setIsModalOpen(true)}>
                     <h5>Check in</h5>
-                    Add dates
+                    {!checkIn && 'Add dates'}
+                    {checkIn}
                 </section>
 
                 <section className="check-out" onClick={() => setIsModalOpen(true)}>
                     <h5>Check out</h5>
-                    Add dates
+                    {!checkOut && 'Add dates'}
+                    {checkOut}
                 </section>
 
                 <section className="guests">
@@ -49,10 +64,15 @@ export function StayFilter() {
                         <h5>Who</h5>
                         Add guests
                     </div>
+                    <button className="btn-clear">Search</button>
                 </section>
-                <button className="btn-clear">Search</button>
             </form>
-            <DateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <DateModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                setCheckInDate={setCheckInDate}
+                setCheckOutDate={setCheckOutDate}
+            />
         </section>
     )
 }

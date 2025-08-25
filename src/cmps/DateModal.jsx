@@ -6,7 +6,7 @@ import 'react-date-range/dist/theme/default.css'
 
 Modal.setAppElement('#root')
 
-export function DateModal({ isOpen, onClose }) {
+export function DateModal({ isOpen, onClose, setCheckInDate, setCheckOutDate }) {
     const [range, setRange] = useState([
         {
             startDate: new Date(),
@@ -16,36 +16,41 @@ export function DateModal({ isOpen, onClose }) {
     ])
 
     return (
-            <Modal
-                isOpen={isOpen}
-                onRequestClose={onClose}
-                contentLabel="Select Date"
-                style={{
-                    overlay: {
-                        backgroundColor: 'transparent',
-                    },
-                    content: {
-                        maxWidth: '750px',
-                        margin: 'auto',
-                        padding: '1em',
-                        borderRadius: '12px',
-                        height: '550px'
-                    },
-                }}
-            >
-                <div className="airbnb-calendar">
-                    <DateRange
-                        editableDateInputs={true}
-                        onChange={item => setRange([item.selection])}
-                        moveRangeOnFirstSelection={false}
-                        ranges={range}
-                        months={2}
-                        direction="horizontal"
-                        rangeColors={['#000']}
-                        showMonthAndYearPickers={false}
-                        weekdayDisplayFormat="EEEEE"
-                    />
-                </div>
-            </Modal>
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onClose}
+            contentLabel="Select Date"
+            style={{
+                overlay: {
+                    backgroundColor: 'transparent',
+                },
+                content: {
+                    maxWidth: '750px',
+                    margin: 'auto',
+                    padding: '1em',
+                    borderRadius: '12px',
+                    height: '550px'
+                },
+            }}
+        >
+            <div className="airbnb-calendar">
+                <DateRange
+                    editableDateInputs={true}
+                    onChange={item => {
+                        const newRange = [item.selection]
+                        setRange(newRange)
+                        setCheckInDate(newRange[0].startDate)
+                        setCheckOutDate(newRange[0].endDate)
+                    }}
+                    moveRangeOnFirstSelection={false}
+                    ranges={range}
+                    months={2}
+                    direction="horizontal"
+                    rangeColors={['#000']}
+                    showMonthAndYearPickers={false}
+                    weekdayDisplayFormat="EEEEE"
+                />
+            </div>
+        </Modal>
     )
 }
