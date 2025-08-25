@@ -7,6 +7,7 @@ import { stayService } from '../services/stay'
 import { useState } from 'react'
 import { StayGallery } from '../cmps/StayGallery.jsx'
 import { StayDescription } from '../cmps/StayDescription.jsx'
+import { StayReservation } from '../cmps/StayReservation.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -25,15 +26,16 @@ export function StayDetails() {
       showErrorMsg('Cannot load stay')
     }
   }
-  
+
   return (
     <section className='stay-details details-layout'>
+      <Link to='/'> ← </Link>
       <div className='photos'>
-      <StayGallery />
+        <StayGallery />
       </div>
       <div className='main-details'>
-     < StayDescription/>
-
+        <StayDescription />
+        <StayReservation stay={stay}/>
       </div>
 
 

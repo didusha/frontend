@@ -69,3 +69,16 @@ export function formatDateRange(startDateStr, endDateStr) {
 export function getRandomFloat(min = 3, max = 5) {
     return Math.random() * (max - min) + min
 }
+
+export function getDayDiff(startDateStr, endDateStr) {
+    const start = new Date(startDateStr);
+    const end = new Date(endDateStr);
+
+    // Difference in milliseconds
+    const diffTime = end.getTime() - start.getTime();
+
+    // Convert to days
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+    return diffDays;
+}
