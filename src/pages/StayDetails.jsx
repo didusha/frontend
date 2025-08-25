@@ -25,18 +25,16 @@ export function StayDetails() {
       showErrorMsg('Cannot load stay')
     }
   }
-  
+
+  if (!stay) return <div>loading</div>
   return (
     <section className='stay-details details-layout'>
       <div className='photos'>
-      <StayGallery />
+        <StayGallery images={stay.imgUrls} />
       </div>
       <div className='main-details'>
-     < StayDescription/>
-
+        <StayDescription stay={stay} />
       </div>
-
-
     </section>
   )
 }

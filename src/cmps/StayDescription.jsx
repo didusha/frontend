@@ -1,35 +1,10 @@
 import { LongTxt } from './LongTxt.jsx'
+import doorUrl from '../assets/images/door.svg'
+import locationUrl from '../assets/images/location.svg'
+import chatUrl from '../assets/images/chat.svg'
 
-export function StayDescription() {
-  const host = {
-    _id: 'u101',
-    fullname: 'Davit Pok',
-    imgUrl: 'https://robohash.org/0?set=set5',
-  }
-  const type = 'House'
-  const loc = {
-    country: 'Portugal',
-    countryCode: 'PT',
-    city: 'Lisbon',
-    address: '17 Kombo st',
-    lat: -8.61308,
-    lng: 41.1413,
-  }
-  const summary = 'Fantastic duplex apartment...'
-
-  const reviews = [
-    {
-      id: 'madeId',
-      txt: 'Very helpful hosts. Cooked traditional...',
-      rate: 4,
-      by: {
-        _id: 'u102',
-        fullname: 'user2',
-        imgUrl: '/img/img2.jpg',
-      },
-    },
-  ]   
-
+export function StayDescription({ stay }) {
+  const { host, type, loc, summary, reviews } = stay
   return (
     <section className='stay-description'>
       <div className='stay-info'>
@@ -43,31 +18,54 @@ export function StayDescription() {
           ) : (
             <div>
               ⭐4.77 ·
-               <a href=''> {reviews.length} {reviews.length < 2 ? 'review':'reviews'}</a>
+              <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
             </div>
           )}
         </div>
-        
       </div>
+
       <div className='host flex align-center'>
-        <div>
+        <div className='profile'>
           <img src={host.imgUrl} alt='host profile' />
         </div>
         <div> Hosted by {host.fullname}</div>
       </div>
 
       <div className='check-in flex'>
-        <article>
-          <h3> Self check-in</h3>
-          <p>Check yourself in with the lockbox.</p>
+        <article className='flex'>
+          <span>
+            <img src={doorUrl} alt='door icon' style={{ width: 24 }} />
+          </span>
+
+          <div>
+            <h3>Great check-in experience</h3>
+            <p>Check yourself in with the lockbox.</p>
+          </div>
         </article>
-        <article>
-          <h3> City view</h3>
-          <p>Soak up the view during your stay</p>
+
+        <article className='flex'>
+          <span>
+            <img src={locationUrl} alt='location icon' />
+          </span>
+
+          <div>
+            <h3>Great location</h3>
+            <p>90% of recent guests gave the location a 5-star rating.</p>
+          </div>
         </article>
-        <article>
-          <h3>EZ Team is a Superhost</h3>
-          <p>highly rated Hosts.</p>
+
+        <article className='flex'>
+          <span>
+            <img src={chatUrl} alt='location icon' />
+          </span>
+
+          <div>
+            <h3>Great communication</h3>
+            <p>
+              100% of recent guests rated Patrícia Sousa Casimiro 5-star in
+              communicatio{' '}
+            </p>
+          </div>
         </article>
       </div>
 

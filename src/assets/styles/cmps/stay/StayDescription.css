@@ -21,6 +21,7 @@
 
   .host {
     padding-block: 24px;
+    gap: 24px;
     img {
       border-radius: 50%;
       width: 40px;
@@ -33,11 +34,15 @@
     padding-block: 32px;
 
     p {
-      color: #6a6a6a;
+      color:var(--gray-p);
+    }
+
+    article{
+      gap:24px
     }
   }
-
   .summary {
     padding-block: 32px;
+    text-transform:capitalize;
   }
 }

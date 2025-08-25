@@ -6,39 +6,46 @@ import { stayService as local } from './stay.service.local'
 import { stayService as remote } from './stay.service.remote'
 
 function getEmptyStay() {
-    return {
-        _id: '',
-        name: makeLorem(3),
-        type: '',
-        imgUrls: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
-        summary: '',
-        capacity: getRandomIntInclusive(0, 8),
-        price: getRandomIntInclusive(80, 240),
-        amenities: [],
-        host: {},
-        loc: {
-            country: '',
-            countryCode: '',
-            city: '',
-            address: '',
-            lat: 0,
-            lng: 0
-        },
-        msgs: [],
-        startDate: null,
-        endDate: null,
-        // likedByUsers: [],
-    }
+  return {
+    _id: '',
+    name: makeLorem(3),
+    type: '',
+    imgUrls: [
+      'https://robohash.org/0?set=set5',
+      'https://robohash.org/1?set=set5',
+      'https://robohash.org/2?set=set5',
+      'https://robohash.org/3?set=set5',
+      'https://robohash.org/4?set=set5',
+    ],
+    summary: '',
+    capacity: getRandomIntInclusive(0, 8),
+    price: getRandomIntInclusive(80, 240),
+    amenities: [],
+    host: {},
+    loc: {
+      country: '',
+      countryCode: '',
+      city: '',
+      address: '',
+      lat: 0,
+      lng: 0,
+    },
+    msgs: [],
+    startDate: null,
+    endDate: null,
+    reviews: [],
+    // likedByUsers: [],
+  }
 }
 
 function getDefaultFilter() {
-    return {
-        txt: '',
-        capacity: 1,
-    }
+  return {
+    txt: '',
+    capacity: 1,
+  }
 }
 
-const service = (VITE_LOCAL === 'true') ? local : remote
+const service = VITE_LOCAL === 'true' ? local : remote
 export const stayService = { getEmptyStay, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console

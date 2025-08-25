@@ -1,7 +1,7 @@
 
 import { useState } from "react"
 
-export function LongTxt({ txt, length = 10}) {
+export function LongTxt({ txt, length = 50}) {
 
     const [isShowFullTxt, setIsShowFullTxt] = useState(false)
 
