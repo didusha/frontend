@@ -20,8 +20,8 @@ export function StayGallery() {
       <div className='photo-header'>
         <h1> Image Title</h1>
         <div className='btn-container flex'>        
-        <button className='btn flex'> <img src={shareUrl} alt='share button'/>share</button>
-        <button className='btn flex'> <img src={favoriteUrl} alt='share button'/>save</button>
+        <button className='btn bold flex'> <img src={shareUrl} alt='share button'/>share</button>
+        <button className='btn bold flex'> <img src={favoriteUrl} alt='share button'/>save</button>
         </div>
       </div>
       <div className='gallery'>

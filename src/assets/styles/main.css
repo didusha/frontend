@@ -27,6 +27,7 @@
 @import "cmps/stay/StayFilter";
 @import "cmps/stay/ImgCarousel";
 @import "cmps/stay/StayGallery";
+@import "cmps/stay/stayDetails";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";
