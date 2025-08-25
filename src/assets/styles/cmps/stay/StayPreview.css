@@ -9,7 +9,6 @@
     box-sizing: border-box;
     font-size: .9375rem;
     margin: 0;
-    background-color: rgba(211, 211, 211, 0.281);
 
     .stay-img {
         object-fit: cover;
@@ -18,7 +17,7 @@
         height: auto;
         vertical-align: bottom;
         box-sizing: border-box;
-        border-radius: 5%;
+        border-radius: 20px;
         background-color: pink;
     }
 
@@ -26,10 +25,37 @@
         margin-top: 12px;
         display: grid;
         grid-template-columns: auto auto;
+        grid-template-areas:
+            "name rating"
+            "host host"
+            "dates dates"
+            "price price";
         gap: 2px 8px;
-    }
+        padding-inline: 4px;
 
-    .preview-stay-with {
-        color: var(--gray-text-color);
+        .preview-name {
+            grid-area: name;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .preview-stay-with {
+            grid-area: host;
+        }
+
+        .preview-rate {
+            grid-area: rating;
+            place-self: end;
+        }
+
+        .preview-dates {
+            grid-area: dates;
+        }
+
+        .preview-price {
+            grid-area: price;
+        }
+
     }
 }

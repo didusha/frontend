@@ -1,16 +1,21 @@
 .app-header {
     min-height: 3.5rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
 
     background-color: var(--clr4);
     padding: .8rem 1rem;
-    
+
     & nav {
         display: flex;
         width: 100%;
         align-items: center;
         gap: 1em;
         justify-content: space-between;
-        
+
         font-size: .8em;
 
         .active {
@@ -29,12 +34,12 @@
             margin-inline-end: 0;
         }
 
-        .logo-img{
+        .logo-img {
             height: 40px;
             width: 50
         }
 
-        .navigation-links a{
+        .navigation-links a {
             padding: 7px;
         }
     }
@@ -42,8 +47,6 @@
     .user-info {
         display: flex;
         align-items: center;
-        margin-inline-start: auto;
-
         color: var(--clr1);
 
         .score {

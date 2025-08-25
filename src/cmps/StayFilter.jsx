@@ -1,4 +1,3 @@
-// StayFilter.jsx
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
@@ -46,13 +45,13 @@ export function StayFilter() {
                 </section>
 
                 <section className="guests">
-                    <h5>Who</h5>
-                    Add guests
+                    <div className="guests-text">
+                        <h5>Who</h5>
+                        Add guests
+                    </div>
                 </section>
-
                 <button className="btn-clear">Search</button>
             </form>
-
             <DateModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </section>
     )

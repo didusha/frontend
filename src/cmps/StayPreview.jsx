@@ -2,31 +2,30 @@ import { Link } from 'react-router-dom'
 import { ImgCarousel } from './ImgCarousel.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { formatDateRange } from '../services/util.service.js';
 
 
 export function StayPreview({ stay }) {
 
+    return <Link to={`/stay/${stay._id}`}>
+        <article className="stay-preview">
+            <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} />
 
-    return <article className="stay-preview">
-        {/* <img className="stay-img" src={stay.imgUrls?.[0]} alt="" /> */}
-        <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} />
-        <Link to={`/stay/${stay._id}`}>{stay.name}</Link>
+            <div className="preview-info">
+                <div className="preview-name ">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
 
-        <div class="preview-info">
-            <div class="preview-name bold">{stay.name}</div>
-            <span class="preview-data-info flex">
-                <span class="preview-rate-icon">
-                    <FontAwesomeIcon icon={faStar} />
-                </span>
-                <span class="preview-rate">{stay.rating}</span>
-            </span>
-            <div class="preview-stay-with">Stay with {stay.host.fullname}</div>
-            <div class="preview-dates"></div>
-            <div class="preview-price">
-                <span>$</span><span class="bold">{stay.price}</span> night
+                    <span className="preview-rate">
+                        <span><FontAwesomeIcon icon={faStar} /></span>
+                        {stay.rating} 4.88(15)
+                        </span>
+
+                <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {9} years</div>
+                {/* <div className=""></div> */}
+                <div className="preview-dates grey">{formatDateRange(stay.startDate, stay.endDate)}</div>
+                <div className="preview-price">
+                    <span className="">$ {stay.price}</span><span className="grey"> night</span>
+                </div>
             </div>
-        </div>
-
-
-    </article>
+        </article>
+    </Link>
 }

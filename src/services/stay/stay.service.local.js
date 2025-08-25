@@ -11,7 +11,8 @@ export const stayService = {
     getById,
     save,
     remove,
-    addStayMsg
+    addStayMsg,
+    getRandomStay
 }
 window.cs = stayService
 
@@ -57,6 +58,8 @@ async function save(stay) {
             host: stay.host,
             loc: stay.loc,
             msgs: stay.msgs,
+            startDate: stay.startDate,
+            endDate: stay.endDate,
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
@@ -72,7 +75,9 @@ async function save(stay) {
             loc: stay.loc,
             // Later, host is set by the backend
             host: userService.getLoggedinUser(),
-            msgs: []
+            msgs: [],
+            startDate: stay.startDate,
+            endDate: stay.endDate,
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
     }
@@ -95,35 +100,63 @@ async function addStayMsg(stayId, txt) {
 }
 
 
-// function getRandomStay(_id = '',) {
-//     const amenitiesList = ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics']
+function getRandomStay(_id = '') {
+    const amenitiesList = ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'];
 
-//     const amenities = amenitiesList[Math.floor(Math.random() * names.length)]
+    // Pick 2-4 random amenities
+    const amenities = [];
+    const numAmenities = Math.floor(Math.random() * 3) + 2; // 2 to 4
+    for (let i = 0; i < numAmenities; i++) {
+        const randomAmenity = amenitiesList[Math.floor(Math.random() * amenitiesList.length)];
+        if (!amenities.includes(randomAmenity)) amenities.push(randomAmenity);
+    }
 
-//     return {
-//         _id,
-//         name: makeLorem(3),
-//         price: utilService.getRandomIntInclusive(20, 200),
-//         amenities: amenities,
-//         type: 'House',
-//  
-//         summary: makeLorem(20),
-//         imgUrl: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
-//         capacity: utilService.getRandomIntInclusive(1, 8),
-//         loc: {
-//             country: 'Portugal',
-//             countryCode: 'PT',
-//             city: 'Lisbon',
-//             address: '17 Kombo st',
-//             lat: -8.61308,
-//             lng: 41.1413,
-//         },
-//         host: {
-//             _id: 'PH2sA',
-//             fullname: 'admin',
-//             imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
-//         },
+    // Random price and capacity
+    const price = Math.floor(Math.random() * (200 - 20 + 1)) + 20; // 20–200
+    const capacity = Math.floor(Math.random() * 8) + 1; // 1–8
 
+    const today = new Date();
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() + 7); // 1 week from today
+    startDate.setHours(0, 0, 0, 0); // reset time
 
-//     }
-// }
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 3); // 3 days later
+    endDate.setHours(0, 0, 0, 0);
+
+    const startDateStr = startDate.toISOString().split('T')[0]; // "YYYY-MM-DD"
+    console.log("🚀 ~ getRandomStay ~ startDateStr:", startDateStr)
+    const endDateStr = endDate.toISOString().split('T')[0];
+
+    return {
+        name: makeLorem(3),
+        price,
+        amenities,
+        type: 'House',
+        summary: makeLorem(20),
+        imgUrls: [
+            'https://robohash.org/0?set=set5',
+            'https://robohash.org/1?set=set5',
+            'https://robohash.org/2?set=set5',
+            'https://robohash.org/3?set=set5',
+            'https://robohash.org/4?set=set5'
+        ],
+        capacity,
+        loc: {
+            country: 'Portugal',
+            countryCode: 'PT',
+            city: 'Lisbon',
+            address: '17 Kombo st',
+            lat: -8.61308,
+            lng: 41.1413
+        },
+        host: {
+            _id: 'PH2sA',
+            fullname: 'admin',
+            imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+        },
+        msgs: [],
+        startDate: startDateStr,
+        endDate: endDateStr,
+    }
+}

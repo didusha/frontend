@@ -19,8 +19,12 @@
   }
 }
 
-.bold {
+.bold  {
   font-family: AirbnbCereal-Bold;
+}
+
+.grey {
+    color: var(--gray-text-color);
 }
 
 /* Simple and useful CSS Debugging Technique */

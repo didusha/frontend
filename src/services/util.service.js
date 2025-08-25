@@ -51,3 +51,21 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function formatDateRange(startDateStr, endDateStr) {
+    const start = new Date(startDateStr)
+    const end = new Date(endDateStr)
+
+    const options = { month: 'short', day: 'numeric' }
+
+    // If the month is the same, only show month once
+    if (start.getMonth() === end.getMonth()) {
+        return `${start.toLocaleDateString('en-US', { month: 'short' })} ${start.getDate()}-${end.getDate()}`
+    } else {
+        return `${start.toLocaleDateString('en-US', options)} - ${end.toLocaleDateString('en-US', options)}`
+    }
+}
+
+export function getRandomFloat(min = 3, max = 5) {
+    return Math.random() * (max - min) + min
+}

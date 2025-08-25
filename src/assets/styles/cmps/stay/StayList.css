@@ -1,30 +1,32 @@
 .stay-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     /* grid-auto-flow: dense; */
     row-gap: 40px;
     column-gap: 24px;
     padding: 0;
     margin-top: 16px;
-    margin-bottom: 40px
+    margin-bottom: 40px;
 
- 
-    /* & li {
-        display: grid;
-        grid-template-columns: max-content auto;
-        padding: .5em;
-        background-color: var(--clr2);
+    .actions {
+        position: absolute;
+        top: 10px;
+        margin-left: 5px;
+        opacity: 0;
+    }
+
+    li:hover {
+        position: relative;
 
         .actions {
-            justify-self: end;
-
-            & button {
-                padding: .3em .5em;
-            }
+            opacity: 1;
         }
-    } */
+
+        .stay-action {
+            background-color: transparent;
+            padding: 0;
+        }
+    }
+
 }
-
-
-
