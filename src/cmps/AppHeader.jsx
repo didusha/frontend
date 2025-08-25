@@ -4,12 +4,27 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { StayFilter } from '../cmps/StayFilter'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { StaySmallFilter } from './StaySmallFilter'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const [isFocus, setIsFocus] = useState(true)
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY === 0) {
+				setIsFocus(true)
+			} else {
+				setIsFocus(false)
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll)
+		return () => window.removeEventListener('scroll', handleScroll)
+	}, [])
+
 
 	async function onLogout() {
 		try {
@@ -28,6 +43,7 @@ export function AppHeader() {
 					<img className="logo-img" src="../../public/img/logo.png" alt="logo" />
 					<span>rarebnb</span>
 				</section>
+				{!isFocus && <StaySmallFilter setIsFocus={setIsFocus} />}
 				{isFocus &&
 					<section className="navigation-links">
 						<a>Homes</a>
