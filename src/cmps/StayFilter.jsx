@@ -1,14 +1,15 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
+import { OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
-    const [isModalOpen, setIsModalOpen] = useState(false)
     const [checkInDate, setCheckInDate] = useState('Add dates')
     const [checkOutDate, setCheckOutDate] = useState('Add dates')
+    const dispatch = useDispatch()
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -47,13 +48,13 @@ export function StayFilter() {
                     />
                 </section>
 
-                <section className="check-in" onClick={() => setIsModalOpen(true)}>
+                <section className="check-in" onClick={() => dispatch({type:OPEN_DATE_MODAL})}>
                     <h5>Check in</h5>
                     {!checkIn && 'Add dates'}
                     {checkIn}
                 </section>
 
-                <section className="check-out" onClick={() => setIsModalOpen(true)}>
+                <section className="check-out" onClick={() => dispatch({type:OPEN_DATE_MODAL})}>
                     <h5>Check out</h5>
                     {!checkOut && 'Add dates'}
                     {checkOut}
@@ -68,8 +69,6 @@ export function StayFilter() {
                 </section>
             </form>
             <DateModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
                 setCheckInDate={setCheckInDate}
                 setCheckOutDate={setCheckOutDate}
             />

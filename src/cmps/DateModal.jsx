@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import Modal from 'react-modal'
+import { useSelector, useDispatch } from 'react-redux'
+import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
 
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 
 Modal.setAppElement('#root')
 
-export function DateModal({ isOpen, onClose, setCheckInDate, setCheckOutDate }) {
+export function DateModal({ setCheckInDate, setCheckOutDate }) {
+    const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
+    const dispatch = useDispatch()
+
     const [range, setRange] = useState({ from: null, to: null })
     // [
     // {
@@ -19,8 +24,8 @@ export function DateModal({ isOpen, onClose, setCheckInDate, setCheckOutDate }) 
     return (
         <div className="modal-calendar">
             <Modal
-                isOpen={isOpen}
-                onRequestClose={onClose}
+                isOpen={isDateModalOpen}
+                onRequestClose={() => dispatch({type:CLOSE_DATE_MODAL})}
                 contentLabel="Select Date"
                 style={{
                     overlay: {

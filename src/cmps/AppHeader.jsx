@@ -13,9 +13,6 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isFocus, setIsFocus] = useState(true)
 	const [forceOpen, setForceOpen] = useState(false)
-	const prevScrollY = useRef(0)
-
-	const SCROLL_THRESHOLD = 10
 
 	const openFocusComponent = () => {
 		setForceOpen(true) 
@@ -61,7 +58,9 @@ export function AppHeader() {
 					<img className="logo-img" src="../../public/img/logo.png" alt="logo" />
 					<span>rarebnb</span>
 				</section>
-				{!isFocus && <StaySmallFilter openFocusComponent={openFocusComponent} />}
+				{!isFocus && <StaySmallFilter 
+				openFocusComponent={openFocusComponent} 
+				/>}
 				{isFocus &&
 					<section className="navigation-links">
 						<section>
@@ -93,7 +92,7 @@ export function AppHeader() {
 				)}
 
 			</nav>
-			{isFocus && <StayFilter />}
+			{isFocus && <StayFilter/>}
 		</header>
 	)
 }
