@@ -91,4 +91,16 @@
     display: flex;
     flex-direction: row;
     align-items: end;
+    font-size: 15px;
+    font-family: AirbnbCereal;
+    color: var(--gray-text-color);
+}
+
+.navigation-links section:hover{
+    cursor: pointer;
+    color: rgb(20, 20, 53);
+}
+
+.navigation-links section a:hover{
+    text-decoration: none;
 }
