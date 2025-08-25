@@ -9,7 +9,6 @@
     box-sizing: border-box;
     font-size: .9375rem;
     margin: 0;
-    background-color: rgba(211, 211, 211, 0.281);
 
     .stay-img {
         object-fit: cover;
@@ -26,10 +25,29 @@
         margin-top: 12px;
         display: grid;
         grid-template-columns: auto auto;
+        grid-template-areas:
+            "name rating"
+            "host host"
+            "dates dates"
+            "price price";
         gap: 2px 8px;
     }
 
     .preview-stay-with {
-        color: var(--gray-text-color);
+        grid-area: host;
     }
+
+    .preview-rate {
+        grid-area: rating;
+    }
+
+    .preview-dates {
+        grid-area: dates;
+    }
+
+    .preview-price {
+        grid-area: price;
+    }
+
+
 }

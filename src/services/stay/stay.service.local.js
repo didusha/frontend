@@ -58,6 +58,8 @@ async function save(stay) {
             host: stay.host,
             loc: stay.loc,
             msgs: stay.msgs,
+            startDate: stay.startDate,
+            endDate: stay.endDate,
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
@@ -73,7 +75,9 @@ async function save(stay) {
             loc: stay.loc,
             // Later, host is set by the backend
             host: userService.getLoggedinUser(),
-            msgs: []
+            msgs: [],
+            startDate: stay.startDate,
+            endDate: stay.endDate,
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
     }
@@ -111,6 +115,19 @@ function getRandomStay(_id = '') {
     const price = Math.floor(Math.random() * (200 - 20 + 1)) + 20; // 20–200
     const capacity = Math.floor(Math.random() * 8) + 1; // 1–8
 
+    const today = new Date();
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() + 7); // 1 week from today
+    startDate.setHours(0, 0, 0, 0); // reset time
+
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 3); // 3 days later
+    endDate.setHours(0, 0, 0, 0);
+
+    const startDateStr = startDate.toISOString().split('T')[0]; // "YYYY-MM-DD"
+    console.log("🚀 ~ getRandomStay ~ startDateStr:", startDateStr)
+    const endDateStr = endDate.toISOString().split('T')[0];
+
     return {
         name: makeLorem(3),
         price,
@@ -138,6 +155,8 @@ function getRandomStay(_id = '') {
             fullname: 'admin',
             imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
         },
-        msgs: []
+        msgs: [],
+        startDate: startDateStr,
+        endDate: endDateStr,
     }
 }

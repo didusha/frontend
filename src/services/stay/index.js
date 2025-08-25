@@ -25,6 +25,8 @@ function getEmptyStay() {
             lng: 0
         },
         msgs: [],
+        startDate: null,
+        endDate: null,
         // likedByUsers: [],
     }
 }
