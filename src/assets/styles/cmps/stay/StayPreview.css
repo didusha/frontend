@@ -31,30 +31,31 @@
             "dates dates"
             "price price";
         gap: 2px 8px;
+        padding-inline: 4px;
+
+        .preview-name {
+            grid-area: name;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .preview-stay-with {
+            grid-area: host;
+        }
+
+        .preview-rate {
+            grid-area: rating;
+            place-self: end;
+        }
+
+        .preview-dates {
+            grid-area: dates;
+        }
+
+        .preview-price {
+            grid-area: price;
+        }
+
     }
-
-    .preview-name {
-        grid-area: name;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    .preview-stay-with {
-        grid-area: host;
-    }
-
-    .preview-rate {
-        grid-area: rating;
-    }
-
-    .preview-dates {
-        grid-area: dates;
-    }
-
-    .preview-price {
-        grid-area: price;
-    }
-
-
 }

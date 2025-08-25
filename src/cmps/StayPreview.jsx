@@ -13,12 +13,12 @@ export function StayPreview({ stay }) {
 
             <div className="preview-info">
                 <div className="preview-name ">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
-                <span className="preview-data-info">
+
                     <span className="preview-rate">
                         <span><FontAwesomeIcon icon={faStar} /></span>
                         {stay.rating} 4.88(15)
                         </span>
-                </span>
+
                 <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {9} years</div>
                 {/* <div className=""></div> */}
                 <div className="preview-dates grey">{formatDateRange(stay.startDate, stay.endDate)}</div>
