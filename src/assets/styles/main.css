@@ -28,6 +28,7 @@
 @import "cmps/stay/ImgCarousel";
 @import "cmps/stay/StayGallery";
 @import "cmps/stay/stayDetails";
+@import "cmps/stay/StayDescription";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";

@@ -1,0 +1,43 @@
+.stay-description {
+  margin-top: 32px;
+
+  > * {
+    border-block-end: 1px solid #dddddd;
+    font-size: 14px;
+  }
+
+  .stay-info {
+    font-size: 16px;
+    padding-block-end: 32px;
+
+    .reviews {
+      margin-block-start: 8px;
+    }
+
+    h2 {
+      font-size: 1.571428em;
+    }
+  }
+
+  .host {
+    padding-block: 24px;
+    img {
+      border-radius: 50%;
+      width: 40px;
+    }
+  }
+
+  .check-in {
+    flex-direction: column;
+    gap: 16px;
+    padding-block: 32px;
+
+    p {
+      color: #6a6a6a;
+    }
+  }
+
+  .summary {
+    padding-block: 32px;
+  }
+}

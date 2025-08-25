@@ -1,30 +1,34 @@
-
 /* Flex helpers */
 .flex {
-    display: flex;
+  display: flex;
 
-    >.full {
-        flex: 1;
-    }
+  > .full {
+    flex: 1;
+  }
 
-    &.column {
-        flex-direction: column;
-    }
+  &.column {
+    flex-direction: column;
+  }
 
-    &.justify-center {
-        justify-content: center;
-    }
+  &.justify-center {
+    justify-content: center;
+  }
 
-    &.align-center {
-        align-items: center;
-    }
+  &.align-center {
+    align-items: center;
+  }
 }
 
-.bold{
-    font-family: AirbnbCereal-Bold;
+.bold {
+  font-family: AirbnbCereal-Bold;
 }
 
 /* Simple and useful CSS Debugging Technique */
 .debug * {
-    outline: 1px solid gold
+  outline: 1px solid gold;
 }
+
+/* .details-layout {
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) minmax(auto, 1120px) minmax(40px, 1fr);
+} */

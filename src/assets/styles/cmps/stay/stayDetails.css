@@ -1,6 +1,7 @@
 .stay-details{
     display: grid;
-    grid-template-columns: 1fr max(1120px) 1fr;
+    grid-template-columns: minmax(80px, 1fr) minmax(auto, 1120px) minmax(80px, 1fr);
+
     >*{
         grid-column: 2;
     }

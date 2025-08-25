@@ -106,6 +106,7 @@ async function addStayMsg(stayId, txt) {
 //         price: utilService.getRandomIntInclusive(20, 200),
 //         amenities: amenities,
 //         type: 'House',
+//  
 //         summary: makeLorem(20),
 //         imgUrl: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
 //         capacity: utilService.getRandomIntInclusive(1, 8),

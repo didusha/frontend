@@ -6,6 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { useState } from 'react'
 import { StayGallery } from '../cmps/StayGallery.jsx'
+import { StayDescription } from '../cmps/StayDescription.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -24,11 +25,16 @@ export function StayDetails() {
       showErrorMsg('Cannot load stay')
     }
   }
-
+  
   return (
-    <section className='stay-details'>
+    <section className='stay-details details-layout'>
+      <div className='photos'>
       <StayGallery />
-      <Link to='/stay'>Back to list</Link>
+      </div>
+      <div>
+     < StayDescription/>
+
+      </div>
 
       {/* {stay && (
         <div>
