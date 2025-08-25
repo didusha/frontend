@@ -9,13 +9,18 @@
     margin-top: 16px;
     margin-bottom: 40px;
 
+    .actions {
+        position: absolute;
+        top: 10px;
+        margin-left: 5px;
+        opacity: 0;
+    }
+
     li:hover {
         position: relative;
 
         .actions {
-            position: absolute;
-            top: 10px;
-            margin-left: 5px;
+            opacity: 1;
         }
 
         .stay-action {
