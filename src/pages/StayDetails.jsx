@@ -31,16 +31,12 @@ export function StayDetails() {
       <div className='photos'>
       <StayGallery />
       </div>
-      <div>
+      <div className='main-details'>
      < StayDescription/>
 
       </div>
 
-      {/* {stay && (
-        <div>
-          <pre> {JSON.stringify(stay, null, 2)} </pre>
-        </div>
-      )} */}
+
     </section>
   )
 }
