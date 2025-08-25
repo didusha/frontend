@@ -48,22 +48,28 @@ export function StayFilter() {
                     />
                 </section>
 
-                <section className="check-in" onClick={() => dispatch({type:OPEN_DATE_MODAL})}>
+                <section className="check-in" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check in</h5>
-                    {!checkIn && 'Add dates'}
-                    {checkIn}
+                    <span>
+                        {!checkIn && 'Add dates'}
+                        {checkIn}
+                    </span>
                 </section>
 
-                <section className="check-out" onClick={() => dispatch({type:OPEN_DATE_MODAL})}>
+                <section className="check-out" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check out</h5>
-                    {!checkOut && 'Add dates'}
-                    {checkOut}
+                    <span>
+                        {!checkOut && 'Add dates'}
+                        {checkOut}
+                    </span>
                 </section>
 
                 <section className="guests">
                     <div className="guests-text">
                         <h5>Who</h5>
-                        Add guests
+                        <span>
+                            Add guests
+                        </span>
                     </div>
                     <button className="btn-clear">Search</button>
                 </section>

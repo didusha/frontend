@@ -25,8 +25,10 @@
         .logo {
             display: flex;
             align-items: center;
-            font-size: 1.7em;
-            font-family: AirbnbCereal-Bold;
+            margin-inline-start: 32px;
+            font-size: 1.65em;
+            font-family: AirbnbCereal;
+            font-weight: 900;
             color: var(--clr1);
         }
 
@@ -35,8 +37,9 @@
         }
 
         .logo-img {
-            height: 40px;
-            width: 50
+            height: 33px;
+            width: 50;
+            margin-inline-end: 4px;
         }
 
         .navigation-links a {
@@ -73,7 +76,7 @@
 
 .experiences-imgs {
     height: 40px;
-    width: 33px;
+    width: 27px;
 }
 
 .services-imgs {
@@ -83,15 +86,18 @@
 
 .navigation-links{
     display: flex;
-    gap: 30px;
-    margin: 20px;
+    gap: 25px;
+    margin: 10px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    padding-right: 90px;
 }
 
 .navigation-links section{
     display: flex;
     flex-direction: row;
     align-items: end;
-    font-size: 15px;
+    font-size: 14px;
     font-family: AirbnbCereal;
     color: var(--gray-text-color);
 }
@@ -103,4 +109,8 @@
 
 .navigation-links section a:hover{
     text-decoration: none;
+}
+
+.experiences-section{
+    padding-left: 13px;
 }

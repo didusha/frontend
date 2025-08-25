@@ -32,11 +32,14 @@ export function DateModal({ setCheckInDate, setCheckOutDate }) {
                         backgroundColor: 'transparent',
                     },
                     content: {
-                        maxWidth: '750px',
+                        maxWidth: '850px',
                         margin: 'auto',
-                        padding: '1em',
+                        padding: '2.5em',
                         borderRadius: '12px',
                         height: '400px',
+                        position: 'absolute',
+                        bottom: '-10px',
+                        borderRadius: '40px',
                     },
                 }}
             >

@@ -55,7 +55,7 @@ export function AppHeader() {
 		<header className="app-header full">
 			<nav>
 				<section className="logo">
-					<img className="logo-img" src="../../public/img/logo.png" alt="logo" />
+					<img className="logo-img" src="../../public/img/rarebnb.webp" alt="logo" />
 					<span>rarebnb</span>
 				</section>
 				{!isFocus && <StaySmallFilter 
@@ -63,11 +63,11 @@ export function AppHeader() {
 				/>}
 				{isFocus &&
 					<section className="navigation-links">
-						<section>
+						<section className="homes-section">
 							<img className="homes-imgs" src="../../public/img/homes.png" alt="homes" />
 							<a>Homes</a>
 						</section>
-						<section>
+						<section className="experiences-section">
 							<img className="experiences-imgs" src="../../public/img/experiences.png" alt="experiences" />
 							<a>Experiences</a>
 						</section>
