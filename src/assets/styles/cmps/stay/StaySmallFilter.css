@@ -1,4 +1,5 @@
 .small-filter {
+    cursor: pointer;
     display: flex;
     background-color: white;
     border-radius: 50px;
@@ -7,11 +8,27 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.09);
     font-family: AirbnbCereal;
     width: 360px;
-    gap: 30px;
     margin: 0 auto;
 }
 
-.small-filter button{
+.small-filter section {
+    position: relative;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.small-filter section:not(:nth-last-child(-n+2))::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    right: 0;
+    width: 1px;
+    background-color: #ccc;
+}
+
+.small-filter button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,5 +38,5 @@
     width: 50px;
     height: 50px;
     cursor: pointer;
-    margin-right: 0.6em;
+    margin-left: 15px;
 }

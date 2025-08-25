@@ -22,11 +22,19 @@
     flex-direction: column;
     justify-content: center;
     flex: 1;
-    padding: 0.8em 1em;
+    padding: 0.8em 1.4em;
     background-color: white;
     border-radius: 50px;
     cursor: pointer;
     height: 100%;
+}
+
+.check-in{
+    flex: .45 !important;
+}
+
+.check-out{
+    flex: .45 !important;
 }
 
 .guests{

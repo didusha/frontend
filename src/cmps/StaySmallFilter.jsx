@@ -2,13 +2,15 @@
 
 
 
-export function StaySmallFilter({openFocusComponent}) {
+export function StaySmallFilter({ openFocusComponent }) {
     return (
         <section className="small-filter" onClick={openFocusComponent}>
-            <section>Anywhere</section>
+            <section className="anywhere">Anywhere</section>
             <section>Anytime</section>
-            <section>Add guests</section>
-            <button className="btn-clear">Search</button>
+            <section>
+                Add guests
+            </section>
+                <button className="btn-clear">Search</button>
         </section>
     )
 }
