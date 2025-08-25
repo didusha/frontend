@@ -1,14 +1,16 @@
 .review-list {
-    --min-column-size: 220px;
+  padding-block-start: 48px;
+  border-block-start: 1px solid #dddddd;
 
+  .list-title{
+    font-size: 1.625rem;
+  }
+
+  .list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-column-size), 1fr));
-    gap: .5em;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px 30px;
+  }
 
-    .actions {
-        & button {
-            padding: .3em .5em;
-            float: right;
-        }
-    }
+
 }

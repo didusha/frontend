@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
 import { useState } from 'react'
 import { StayGallery } from '../cmps/StayGallery.jsx'
 import { StayDescription } from '../cmps/StayDescription.jsx'
+import { ReviewList } from '../cmps/ReviewList.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -35,6 +35,8 @@ export function StayDetails() {
       <div className='main-details'>
         <StayDescription stay={stay} />
       </div>
+
+     < ReviewList reviews={stay.reviews}/>
     </section>
   )
 }

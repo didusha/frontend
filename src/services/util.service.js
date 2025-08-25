@@ -69,3 +69,11 @@ export function formatDateRange(startDateStr, endDateStr) {
 export function getRandomFloat(min = 3, max = 5) {
     return Math.random() * (max - min) + min
 }
+
+
+
+export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
+  const start = new Date(startYear, 0, 1).getTime();
+  const end = new Date(endYear, 11, 31, 23, 59, 59).getTime(); 
+  return Math.floor(Math.random() * (end - start) + start);
+}

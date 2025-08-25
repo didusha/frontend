@@ -14,11 +14,10 @@ export function StayDescription({ stay }) {
 
         <div className='reviews'>
           {!reviews.length ? (
-            <div>⭐ New</div>
+            <div>★ New</div>
           ) : (
             <div>
-              ⭐4.77 ·
-              <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
+               ★ 4.77 · <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
 import { storageService } from '../async-storage.service.js'
-import { makeId, makeLorem, loadFromStorage } from '../util.service.js'
+import { makeId, makeLorem, loadFromStorage, getRandomTimestampMillis} from '../util.service.js'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'stay'
@@ -165,17 +165,41 @@ function getRandomStay(_id = '') {
     msgs: [],
     startDate: startDateStr,
     endDate: endDateStr,
-    reviews: [
-      {
-        id: 'madeId',
-        txt: 'Very helpful hosts. Cooked traditional...',
-        rate: 4,
-        by: {
-          _id: 'u102',
-          fullname: 'user2',
-          imgUrl: '/img/img2.jpg',
-        },
-      },
-    ],
+    reviews:getFakeReviews(4)
   }
+}
+
+
+function getFakeReviews(count = 5) {
+  const names = ['Alice', 'Bob', 'Charlie', 'Dana', 'Eli', 'Fiona', 'George']
+  const texts = [
+    'Amazing place, highly recommended!',
+    'Very helpful hosts. Cooked traditional...',
+    'Great view and peaceful stay.',
+    'Would definitely come back again!',
+    'Cozy and clean, loved the vibes.',
+  ]
+
+  const reviews = []
+
+  for (let i = 0; i < count; i++) {
+    const rate = Math.floor(Math.random() * 5) + 1
+    const name = names[i % names.length]
+    const imgUrl = `https://robohash.org/${i}?set=set5`
+    const txt = makeLorem(30)//texts[i % texts.length]
+
+    reviews.push({
+      id: `r${i + 1}`,
+      txt,
+      rate,
+      date:getRandomTimestampMillis(),
+      by: {
+        _id: makeId(),
+        fullname: name,
+        imgUrl,
+      },
+    })
+  }
+
+  return reviews
 }
