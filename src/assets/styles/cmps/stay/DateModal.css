@@ -1,3 +1,4 @@
+
 .rdrDay:hover {
     background-color: white;
 }
@@ -37,4 +38,3 @@
 .rdrStartEdge.rdrEndEdge:active{
     border-radius: 50% !important; 
 }
-
