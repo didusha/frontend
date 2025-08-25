@@ -1,0 +1,40 @@
+.rdrDay:hover {
+    background-color: white;
+}
+
+.rdrDay {
+    height: 4em;
+    width: 3.65em;
+    margin: 0;
+}
+
+.rdrCalendarWrapper {
+    font-family: 'AirbnbCereal-Bold';
+}
+
+.airbnb-calendar .rdrDays {
+    display: grid !important;
+    grid-template-columns: repeat(7, 1fr) !important;
+}
+
+.rdrDayNumber{
+    font-size: 14px;
+}
+
+.airbnb-calendar{
+    display: flex;
+    justify-content: center;
+}
+
+.rdrStartEdge.rdrEndEdge{
+    border-radius: 50% !important; 
+}
+
+.rdrStartEdge.rdrEndEdge:hover{
+    border-radius: 50% !important; 
+}
+
+.rdrStartEdge.rdrEndEdge:active{
+    border-radius: 50% !important; 
+}
+

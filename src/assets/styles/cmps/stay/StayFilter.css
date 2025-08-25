@@ -25,6 +25,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    height: 100%;
 }
 
 .stay-filter section:hover {

@@ -1,41 +1,51 @@
-// DateModal.jsx
+import { useState } from 'react'
 import Modal from 'react-modal'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import { DateRange } from 'react-date-range'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
 
 Modal.setAppElement('#root')
 
 export function DateModal({ isOpen, onClose }) {
-  return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      contentLabel="Select Date"
-      style={{
-        content: {
-          maxWidth: '600px',
-          margin: 'auto',
-          padding: '1em',
-          borderRadius: '10px',
-          height: '350px'
-        },
-      }}
-    >
-      <DatePicker inline monthsShown={2} />
-      <button
-        onClick={onClose}
-        style={{
-          marginTop: '10px',
-          padding: '0.5em 1em',
-          border: 'none',
-          borderRadius: '5px',
-          backgroundColor: '#ff385c',
-          color: 'white',
-          cursor: 'pointer',
-        }}
-      >
-        Close
-      </button>
-    </Modal>
-  )
+    const [range, setRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: null,
+            key: 'selection'
+        }
+    ])
+
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={onClose}
+            contentLabel="Select Date"
+            style={{
+                overlay: {
+                    backgroundColor: 'transparent', 
+                },
+                content: {
+                    maxWidth: '750px',
+                    margin: 'auto',
+                    padding: '1em',
+                    borderRadius: '12px',
+                    height: '550px'
+                },
+            }}
+        >
+            <div className="airbnb-calendar">
+                <DateRange
+                    editableDateInputs={true}
+                    onChange={item => setRange([item.selection])}
+                    moveRangeOnFirstSelection={false}
+                    ranges={range}
+                    months={2}
+                    direction="horizontal"
+                    rangeColors={['#000']}
+                    showMonthAndYearPickers={false}
+                    weekdayDisplayFormat="EEEEE"
+                />
+            </div>
+        </Modal>
+    )
 }
