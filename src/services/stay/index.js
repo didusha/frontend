@@ -6,20 +6,27 @@ import { stayService as local } from './stay.service.local'
 import { stayService as remote } from './stay.service.remote'
 
 function getEmptyStay() {
-	return {
+    return {
         _id: '',
-		name: makeLorem(3),
+        name: makeLorem(3),
         type: '',
         imgUrls: ['https://robohash.org/0?set=set5', 'https://robohash.org/1?set=set5', 'https://robohash.org/2?set=set5', 'https://robohash.org/3?set=set5', 'https://robohash.org/4?set=set5'],
         summary: '',
         capacity: getRandomIntInclusive(0, 8),
-		price: getRandomIntInclusive(80, 240),
+        price: getRandomIntInclusive(80, 240),
         amenities: [],
-        host:{},
-        loc:{},
-		msgs: [],
+        host: {},
+        loc: {
+            country: '',
+            countryCode: '',
+            city: '',
+            address: '',
+            lat: 0,
+            lng: 0
+        },
+        msgs: [],
         // likedByUsers: [],
-	}
+    }
 }
 
 function getDefaultFilter() {

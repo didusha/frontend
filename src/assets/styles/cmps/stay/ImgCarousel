@@ -1,22 +1,79 @@
-.slick-prev {
-    display: none;
-}
-
-.slick-next {
-    display: none;
-}
-
-li:hover .slick-next {
-    z-index: 1;
-    right: 10px !important;
-}
-
-li:hover .slick-prev {
-    z-index: 1;
-    left: 10px !important;
-}
-
 .slick-dots li {
     margin-inline: -3px !important;
 }
 
+/* default dots */
+.slick-dots li button:before {
+    font-size: 8px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1;
+}
+
+/* active dot */
+.slick-dots li.slick-active button:before {
+    color: #fff !important;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(0.9) translateX(0);
+    z-index: 2;
+    background: f5f5rgba(255, 255, 255, 0.9)f5;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    /* button size */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    padding: .5em .8em;
+    transition: background 0.2s, opacity 0.2s ease, transform 0.25s ease;
+}
+
+.carousel-arrow:hover {
+    background: rgba(255, 255, 255, 0.938);
+}
+
+.carousel-arrow.left {
+    left: 10px;
+    transform: translateY(-50%) scale(0.9) translateX(-10px);
+}
+
+.carousel-arrow.right {
+    right: 10px;
+    transform: translateY(-50%) scale(0.9) translateX(10px);
+}
+
+.slider-container:hover .carousel-arrow {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) scale(1);
+}
+
+.stay-img-wrapper{
+    position: relative;
+}
+
+.heart-btn{
+    position: absolute;
+    top:0;
+    right: 0;
+    background-color: transparent;
+}
+
+.heart-btn svg {
+    transition: fill 0.2s ease, transform 0.2s ease;
+    fill: rgba(0, 0, 0, 0.5); 
+    stroke: #FFFFFF
+}
+
+.heart-btn:hover {
+    transform: scale(1.1);
+    background: transparent;
+}
