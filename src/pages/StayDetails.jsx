@@ -6,6 +6,7 @@ import { stayService } from '../services/stay'
 import { useState } from 'react'
 import { StayGallery } from '../cmps/StayGallery.jsx'
 import { StayDescription } from '../cmps/StayDescription.jsx'
+import { StayReservation } from '../cmps/StayReservation.jsx'
 import { ReviewList } from '../cmps/ReviewList.jsx'
 
 export function StayDetails() {
@@ -26,14 +27,15 @@ export function StayDetails() {
     }
   }
 
-  if (!stay) return <div>loading</div>
   return (
     <section className='stay-details details-layout'>
+      <Link to='/'> ← </Link>
       <div className='photos'>
-        <StayGallery images={stay.imgUrls} />
+        <StayGallery />
       </div>
       <div className='main-details'>
-        <StayDescription stay={stay} />
+        <StayDescription />
+        <StayReservation stay={stay}/>
       </div>
 
      < ReviewList reviews={stay.reviews}/>

@@ -31,6 +31,7 @@
 @import "cmps/stay/StaySmallFilter";
 @import "cmps/stay/stayDetails";
 @import "cmps/stay/StayDescription";
+@import "cmps/stay/StayReservation";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";
