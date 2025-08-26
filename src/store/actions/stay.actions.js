@@ -58,7 +58,10 @@ export async function addStayMsg(stayId, txt) {
 }
 
 export function setFilterBy(filterBy) {
-    store.dispatch({ type: SET_FILTER_BY, filterBy })
+    return {
+        type: 'SET_FILTER_BY',
+        filterBy
+    }
 }
 
 // Command Creators:
