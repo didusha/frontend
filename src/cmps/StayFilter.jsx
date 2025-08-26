@@ -88,9 +88,9 @@ export function StayFilter() {
 
     return (
         <section className="stay-filter" ref={wrapperRef}>
-            <form 
-            onSubmit={onSubmit}
-            className={selectedSection ? "form-active" : ""}
+            <form
+                onSubmit={onSubmit}
+                className={selectedSection ? "form-active" : ""}
             >
                 <section
                     className={`search ${getSectionClass("search")}`}
@@ -139,9 +139,17 @@ export function StayFilter() {
                         <h5>Who</h5>
                         <span>{getGuestsLabel(localFilter.capacity)}</span>
                     </div>
-                    <button className="btn-search" type="submit">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                    </button>
+                    {!selectedSection ?
+                        <button className="btn-search" type="submit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                        </button>
+                        :
+                        <button className="btn-search-selected" type="submit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", paddingRight: '5px' }} />
+                            search
+                        </button>
+
+                    }
                 </section>
             </form>
             <DateModal

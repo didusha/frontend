@@ -32,7 +32,7 @@
 
 .check-in {
     flex: .45 !important;
-    margin-left:0 3px;
+    margin-left: 0 3px;
     padding-right: 35px !important;
 }
 
@@ -48,11 +48,11 @@
 
 .check-out {
     flex: .45 !important;
-    margin-left:0 3px;
+    margin-left: 0 3px;
     padding-right: 40px !important;
 }
 
-.search{
+.search {
     margin-right: 3px;
     padding-right: 65px !important;
 }
@@ -133,7 +133,7 @@
 }
 
 .stay-filter button:hover {
-    background-color: #e63250;
+    background-image: linear-gradient(to right, #ff385c, #bd1e59);
 }
 
 .btn-clear img {
@@ -141,18 +141,24 @@
     width: 50px !important;
 }
 
-.selected{
+.selected {
     background-color: white !important;
 }
 
-.not-selected{
+.not-selected {
     background-color: #ebebeb !important;
 }
 
-.not-selected:hover{
+.not-selected:hover {
     background-color: #d7d7d7 !important;
 }
 
-.form-active{
+.form-active {
     background-color: #ebebeb !important;
+}
+
+.btn-search-selected {
+    border-radius: 50px;
+    color: white;
+    background-image: linear-gradient(to right, #ff385c, #bd1e59);
 }
