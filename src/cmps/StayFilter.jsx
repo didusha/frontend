@@ -12,8 +12,6 @@ export function StayFilter() {
     const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
     const checkIn = useSelector(storeState => storeState.systemModule.checkIn)
     const checkOut = useSelector(storeState => storeState.systemModule.checkOut)
-    // const [checkInDate, setCheckInDate] = useState('Add dates')
-    // const [checkOutDate, setCheckOutDate] = useState('Add dates')
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -34,8 +32,7 @@ export function StayFilter() {
     function onSubmit(ev) {
         ev.preventDefault()
         dispatch(setFilterBy(filterToEdit))
-        console.log(filterToEdit);
-
+        //להכניס לקוורי
     }
 
     function formatDate(date) {

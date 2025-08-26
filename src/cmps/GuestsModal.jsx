@@ -24,6 +24,13 @@ export function GuestsModal() {
         setGuests(prev => ({ ...prev, [type]: prev[type] > 0 ? prev[type] - 1 : 0 }))
     }
 
+    const descriptions = {
+        adults: 'Ages 13 or above',
+        children: 'Ages 2-12',
+        infants: 'Under 2',
+        pets: 'Bringing a service animal'
+    }
+
     return (
         <div className="modal-guests">
             <Modal
@@ -35,25 +42,34 @@ export function GuestsModal() {
                         backgroundColor: 'transparent',
                     },
                     content: {
-                        maxWidth: '500px',
+                        maxWidth: '470px',
                         margin: 'auto',
                         padding: '2em',
                         borderRadius: '20px',
-                        height: 'auto',
+                        height: '380px',
                         display: 'flex',
                         flexDirection: 'column',
                         gap: '1.5em',
-                        position: 'relative',
+                        position: 'absolute',
+                        top: '100px',
+                        right: '-400px',
                     },
                 }}
             >
                 {['adults', 'children', 'infants', 'pets'].map(type => (
-                    <div key={type} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ textTransform: 'capitalize', fontWeight: '500' }}>{type}</div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <button onClick={() => handleDecrement(type)} >-</button>
+                    <div key={type} className="guest-row" >
+                        <div>
+                            <div className="type-guests">
+                                {type}
+                            </div>
+                            <div className="desc-guests">
+                                {descriptions[type]}
+                            </div>
+                        </div>
+                        <div className="btns-guests">
+                            <button className="btn-count" onClick={() => handleDecrement(type)}>-</button>
                             <span>{guests[type]}</span>
-                            <button onClick={() => handleIncrement(type)} >+</button>
+                            <button className="btn-count" onClick={() => handleIncrement(type)}>+</button>
                         </div>
                     </div>
                 ))}

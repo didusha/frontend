@@ -1,16 +1,16 @@
 .rdp-range_end .rdp-day_button {
-    background-color: black;
-    border: none;
+  background-color: black;
+  border: none;
 }
 
 .rdp-range_start .rdp-day_button {
-    background-color: black;
-    border: none;
+  background-color: black;
+  border: none;
 }
 
 .rdp-day_button:hover {
-    border: 1px solid black;
-    background-color: transparent;
+  border: 1px solid black;
+  background-color: transparent;
 }
 
 .ReactModal__Overlay {
@@ -24,7 +24,7 @@
 
 .rdp-caption {
   width: 100%;
-  text-align: center !important; 
+  text-align: center !important;
   justify-content: center !important;
 }
 
@@ -46,6 +46,6 @@
   box-sizing: border-box;
 }
 
-.rdp-chevron{
-    fill: black;
+.rdp-chevron {
+  fill: black;
 }
