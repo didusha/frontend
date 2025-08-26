@@ -15,7 +15,7 @@ export function AppHeader() {
 	const [forceOpen, setForceOpen] = useState(false)
 
 	const openFocusComponent = () => {
-		setForceOpen(true) 
+		setForceOpen(true)
 		setIsFocus(true)
 	}
 
@@ -58,8 +58,8 @@ export function AppHeader() {
 					<img className="logo-img" src="../../public/img/rarebnb.webp" alt="logo" />
 					<span>rarebnb</span>
 				</section>
-				{!isFocus && <StaySmallFilter 
-				openFocusComponent={openFocusComponent} 
+				{!isFocus && <StaySmallFilter
+					openFocusComponent={openFocusComponent}
 				/>}
 				{isFocus &&
 					<section className="navigation-links">
@@ -92,7 +92,7 @@ export function AppHeader() {
 				)}
 
 			</nav>
-			{isFocus && <StayFilter/>}
+			{isFocus && <StayFilter />}
 		</header>
 	)
 }

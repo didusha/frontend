@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
+import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { GuestsModal } from './GuestsModal'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -77,7 +78,7 @@ export function StayFilter() {
                 </section>
 
                 <section className="guests">
-                    <div className="guests-text">
+                    <div className="guests-text" onClick={() => dispatch({ type: OPEN_GUESTS_MODAL })}>
                         <h5>Who</h5>
                         <span>
                             Add guests
@@ -92,6 +93,7 @@ export function StayFilter() {
                 setCheckInDate={setCheckInDate}
                 setCheckOutDate={setCheckOutDate}
             />
+            <GuestsModal/>
         </section>
     )
 }
