@@ -11,7 +11,11 @@ export function StayAmenities({ labels }) {
       <h2>What this place offers</h2>
       <ul className='amenities-list'>
         {labels.map((label, idx) => {
+          
+           if (!icons[label]) return ''
+
           return (
+
             <li key={idx} className='icon flex'>
               <img src={icons[label]} alt="" />  
               {label}

@@ -93,6 +93,6 @@ export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
  export function getAverageRating(reviews) {
   if (!reviews.length) return 0;
 
-  const total = reviews.reduce((sum, review) => sum + review.rate, 0);
+  const total = reviews.reduce((sum, review) => sum + (+review.rate), 0);
   return (total / reviews.length).toFixed(1)
 }
