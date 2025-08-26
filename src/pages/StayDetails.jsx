@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
@@ -12,6 +12,8 @@ import { StayAmenities } from '../cmps/StayAmenities.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
+  const [searchParams] = useSearchParams()
+  const params = Object.fromEntries([...searchParams])
   const [stay, setStay] = useState()
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export function StayDetails() {
           <a href='#photos'>Photos</a>
           <a href='#amenities'>Amenities</a>
           <a href='#reviews'>Reviews</a>
-        <a href="#location">Location</a>
+          <a href="#location">Location</a>
         </section>
       </nav>
       <Link to='/'> ← </Link>
