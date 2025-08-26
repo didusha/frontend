@@ -1,4 +1,4 @@
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
+import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL} from '../store/reducers/system.reducer'
 import { GuestsModal } from './GuestsModal'
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

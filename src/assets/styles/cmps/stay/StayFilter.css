@@ -8,26 +8,26 @@
     max-width: 850px;
     margin: 22px auto;
     position: relative;
-}
 
-.stay-filter form {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    border-radius: 50px;
-}
+    form {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        border-radius: 50px;
+    }
 
-.stay-filter section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    padding: 0.8em 1.4em;
-    background-color: white;
-    border-radius: 50px;
-    cursor: pointer;
-    height: 100%;
+    section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        padding: 0.8em 1.4em;
+        background-color: white;
+        border-radius: 50px;
+        cursor: pointer;
+        height: 100%;
+    }
 }
 
 .check-in {
@@ -35,7 +35,7 @@
     margin-left: 40px;
 }
 
-.check-in::before{
+.check-in::before {
     content: "";
     position: absolute;
     top: 25%;
@@ -50,7 +50,7 @@
     margin-left: 12px;
 }
 
-.check-out::before{
+.check-out::before {
     content: "";
     position: absolute;
     top: 25%;
@@ -70,7 +70,7 @@
     margin-left: 20px;
 }
 
-.guests::before{
+.guests::before {
     content: "";
     position: absolute;
     top: 25%;
@@ -89,7 +89,7 @@
 }
 
 .stay-filter section:hover {
-    background-color: #f7f7f7;
+    background-color: #ebebeb;
 }
 
 .stay-filter h5 {
@@ -108,11 +108,11 @@
     width: 100%;
 }
 
-.search h5{
+.search h5 {
     padding-left: 14px;
 }
 
-.stay-filter button {
+.btn-search {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,7 +129,7 @@
     background-color: #e63250;
 }
 
-.btn-clear img{
+.btn-clear img {
     height: 10px !important;
     width: 50px !important;
 }

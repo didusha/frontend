@@ -6,7 +6,7 @@ import { SET_FILTER_BY } from '../store/reducers/stay.reducer'
 
 Modal.setAppElement('#root')
 
-export function GuestsModal() {
+export function GuestsModal({ handleGuestChange }) {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ export function GuestsModal() {
     })
 
     useEffect(() => {
-        dispatch({ type: SET_FILTER_BY, ...filterBy, capacity: guests })
+        handleGuestChange(guests)
     }, [guests])
 
     const handleIncrement = (type) => {
