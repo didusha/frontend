@@ -7,6 +7,7 @@
     font-family: AirbnbCereal;
     max-width: 850px;
     margin: 22px auto;
+    position: relative;
 }
 
 .stay-filter form {

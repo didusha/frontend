@@ -28,8 +28,6 @@ export function StayDetails() {
     }
   }
 
-
-
   if (!stay) return <div>loading...</div>
   return (
     <section className='stay-details details-layout '>
