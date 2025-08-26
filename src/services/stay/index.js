@@ -41,7 +41,14 @@ function getEmptyStay() {
 function getDefaultFilter() {
   return {
     txt: '',
-    capacity: 1,
+    capacity: {
+            adults: 0,
+            children: 0,
+            infants: 0,
+            pets: 0,
+        },
+        checkIn: null,
+        checkOut: null
   }
 }
 

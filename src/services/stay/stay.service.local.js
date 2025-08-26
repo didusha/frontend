@@ -40,47 +40,45 @@ async function remove(stayId) {
 }
 
 async function save(stay) {
-  // console.log("🚀 ~ save ~ stay:", stay)
-  var savedStay
-  if (stay._id) {
-    const stayToSave = {
-      _id: stay._id,
-      name: stay.name,
-      type: stay.type,
-      imgUrls: stay.imgUrls,
-      summary: stay.summary,
-      price: stay.price,
-      capacity: stay.capacity,
-      amenities: stay.amenities,
-      host: stay.host,
-      loc: stay.loc,
-      msgs: stay.msgs,
-      startDate: stay.startDate,
-      endDate: stay.endDate,
-      reviews: stay.reviews,
+    // console.log("🚀 ~ save ~ stay:", stay)
+    var savedStay
+    if (stay._id) {
+        const stayToSave = {
+            _id: stay._id,
+            name: stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
+            type: stay.type,
+            imgUrls: stay.imgUrls,
+            summary: stay.summary,
+            price: stay.price,
+            capacity: stay.capacity,
+            amenities: stay.amenities,
+            host: stay.host,
+            loc: stay.loc,
+            msgs: stay.msgs,
+            startDate: stay.startDate,
+            endDate: stay.endDate,
+        }
+        savedStay = await storageService.put(STORAGE_KEY, stayToSave)
+    } else {
+        const stayToSave = {
+            name: stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
+            price: stay.price,
+            type: stay.type,
+            imgUrls: stay.imgUrls,
+            summary: stay.summary,
+            price: stay.price,
+            capacity: stay.capacity,
+            amenities: stay.amenities,
+            loc: stay.loc,
+            // Later, host is set by the backend
+            host: userService.getLoggedinUser(),
+            msgs: [],
+            startDate: stay.startDate,
+            endDate: stay.endDate,
+        }
+        savedStay = await storageService.post(STORAGE_KEY, stayToSave)
     }
-    savedStay = await storageService.put(STORAGE_KEY, stayToSave)
-  } else {
-    const stayToSave = {
-      name: stay.name,
-      price: stay.price,
-      type: stay.type,
-      imgUrls: stay.imgUrls,
-      summary: stay.summary,
-      price: stay.price,
-      capacity: stay.capacity,
-      amenities: stay.amenities,
-      loc: stay.loc,
-      // Later, host is set by the backend
-      host: userService.getLoggedinUser(),
-      msgs: [],
-      startDate: stay.startDate,
-      endDate: stay.endDate,
-      reviews: stay.reviews,
-    }
-    savedStay = await storageService.post(STORAGE_KEY, stayToSave)
-  }
-  return savedStay
+    return savedStay
 }
 
 async function addStayMsg(stayId, txt) {
