@@ -2,9 +2,12 @@ import { LongTxt } from './LongTxt.jsx'
 import doorUrl from '../assets/images/door.svg'
 import locationUrl from '../assets/images/location.svg'
 import chatUrl from '../assets/images/chat.svg'
+import { getRandomIntInclusive } from '../services/util.service.js'
 
 export function StayDescription({ stay }) {
   const { host, type, loc, summary, reviews } = stay
+
+  const years = getRandomIntInclusive(1, 15)
   return (
     <section className='stay-description'>
       <div className='stay-info'>
@@ -17,7 +20,7 @@ export function StayDescription({ stay }) {
             <div>★ New</div>
           ) : (
             <div>
-               ★ 4.77 · <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
+              ★ 4.77 · <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
             </div>
           )}
         </div>
@@ -27,14 +30,17 @@ export function StayDescription({ stay }) {
         <div className='profile'>
           <img src={host.imgUrl} alt='host profile' />
         </div>
-        <div> Hosted by {host.fullname}</div>
+        <div>
+          Hosted by {host.fullname}
+          <p>Superhost · {years} {years>1?'years':'year'} hosting</p>
+        </div>
       </div>
 
-      <div className='check-in flex'>
+      <div className='gest-check-in flex'>
         <article className='flex'>
-          <span>
-            <img src={doorUrl} alt='door icon' style={{ width: 24 }} />
-          </span>
+          <section className='icon'>
+            <img src={doorUrl} alt='door icon'  />
+          </section>
 
           <div>
             <h3>Great check-in experience</h3>
@@ -43,9 +49,9 @@ export function StayDescription({ stay }) {
         </article>
 
         <article className='flex'>
-          <span>
+          <section className='icon'>
             <img src={locationUrl} alt='location icon' />
-          </span>
+          </section>
 
           <div>
             <h3>Great location</h3>
@@ -54,9 +60,9 @@ export function StayDescription({ stay }) {
         </article>
 
         <article className='flex'>
-          <span>
+          <section className='icon'>
             <img src={chatUrl} alt='location icon' />
-          </span>
+          </section>
 
           <div>
             <h3>Great communication</h3>

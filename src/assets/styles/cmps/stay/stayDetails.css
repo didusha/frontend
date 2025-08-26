@@ -1,5 +1,6 @@
 .stay-details {
-  position: relative;
+  /* position: relative; */
+  justify-content: center;
   > * {
     grid-column: 2;
   }
@@ -16,14 +17,20 @@
     position: fixed;
     left: 0;
     right: 0;
+    top: 0;
     z-index: 2;
-    /* padding-inline: 80px; */
 
     background-color: var(--white-bg-btn);
     border-block-end: 1px solid #dddddd;
+
+    > * {
+      grid-column: 2;
+    }
+
     .nav-list {
-      font-size: 14px;
-      gap: 10px;
+      font-size: 15px;
+      font-weight: 500px;
+      gap: 15px;
       align-items: center;
 
       > * {
@@ -38,10 +45,9 @@
   }
 }
 
-.stay-details {
-  scroll-behavior: smooth;
+.active {
+  display: block;
 }
-
-/* html{
-    scroll-behavior: smooth;
-} */
+.non-active {
+  display: none;
+}

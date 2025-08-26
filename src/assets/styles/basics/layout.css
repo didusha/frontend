@@ -69,5 +69,5 @@
 
 .details-layout {
   display: grid;
-  grid-template-columns: minmax(80px, 1fr) minmax(auto, 1120px) minmax( 80px,1fr);
+  grid-template-columns: 80px minmax(auto, 1120px) 80px;
 }

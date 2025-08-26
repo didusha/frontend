@@ -28,21 +28,18 @@ export function StayDetails() {
     }
   }
 
-  console.log(stay)
+
 
   if (!stay) return <div>loading...</div>
   return (
-    <section className='stay-details details-layout'>
-      <nav className='nav details-layout'>
+    <section className='stay-details details-layout '>
+      <nav className='nav details-layout non-active'>
         <section className='nav-list flex'>
           <a href='#photos'>Photos</a>
           <a href='#amenities'>Amenities</a>
           <a href='#reviews'>Reviews</a>
+        <a href="#location">Location</a>
         </section>
-        {/* <ul className='nav-list flex'> */}
-
-        {/* <li><a href="#location">Location</a></li> */}
-        {/* </ul> */}
       </nav>
       <Link to='/'> ← </Link>
       <div className='photos' id='photos'>

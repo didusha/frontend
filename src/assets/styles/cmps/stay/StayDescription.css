@@ -26,23 +26,39 @@
       border-radius: 50%;
       width: 40px;
     }
+    p {
+      color: var(--gray-p);
+    }
   }
 
-  .check-in {
+  .gest-check-in {
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
     padding-block: 32px;
 
     p {
-      color:var(--gray-p);
+      color: var(--gray-p);
     }
 
-    article{
-      gap:24px
+    article {
+      gap: 20px;
+      padding-inline-start: 6px;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .icon {
+        width: 40px;
+        height: 24px;
+
+        img {
+          width: 24px;
+          height: 40px;
+        }
+      }
     }
   }
   .summary {
     padding-block: 32px;
-    text-transform:capitalize;
+    text-transform: capitalize;
   }
 }
