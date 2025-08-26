@@ -13,7 +13,7 @@ export function StayDescription({ stay }) {
         </h2>
 
         <div className='reviews'>
-          {!reviews.length ? (
+          {!reviews?.length ? (
             <div>★ New</div>
           ) : (
             <div>

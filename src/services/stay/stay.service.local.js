@@ -57,6 +57,7 @@ async function save(stay) {
             msgs: stay.msgs,
             startDate: stay.startDate,
             endDate: stay.endDate,
+            reviews:stay.reviews
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
@@ -75,6 +76,7 @@ async function save(stay) {
             msgs: [],
             startDate: stay.startDate,
             endDate: stay.endDate,
+            reviews:stay.reviews
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
     }
