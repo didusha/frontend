@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
 import { OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -10,6 +12,14 @@ export function StayFilter() {
     const [checkInDate, setCheckInDate] = useState('Add dates')
     const [checkOutDate, setCheckOutDate] = useState('Add dates')
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        setFilterToEdit(prev => ({
+            ...prev,
+            checkIn: checkInDate,
+            checkOut: checkOutDate
+        }))
+    }, [checkInDate, checkOutDate])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -20,7 +30,9 @@ export function StayFilter() {
 
     function onSubmit(ev) {
         ev.preventDefault()
-        setFilterBy(filterToEdit)
+        dispatch(setFilterBy(filterToEdit))
+        console.log(filterToEdit);
+        
     }
 
     const checkIn = formatDate(checkInDate)
@@ -72,7 +84,7 @@ export function StayFilter() {
                         </span>
                     </div>
                     <button className="btn-clear">
-                        {/* <i className="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> */}
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", }} />
                     </button>
                 </section>
             </form>
