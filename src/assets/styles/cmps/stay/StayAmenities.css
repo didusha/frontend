@@ -7,11 +7,15 @@
 
   .amenities-list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill,minmax(234px, 1fr));
   }
   .icon {
     padding-block-end: 24px;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
+
+    img{
+      width: 24px;
+    }
   }
 }
