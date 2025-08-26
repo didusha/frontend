@@ -4,6 +4,7 @@
 
   .list-title{
     font-size: 1.625rem;
+    padding-block-end: 40px;
   }
 
   .list {
@@ -13,4 +14,9 @@
   }
 
 
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }

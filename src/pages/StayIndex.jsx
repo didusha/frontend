@@ -37,7 +37,7 @@ export function StayIndex() {
     async function onAddRandStay() {
         const stay = stayService.getRandomStay()
         try {
-            const savedStay = await addStay(stay)
+            const savedStay = await addStay(stay)            
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
             showErrorMsg('Cannot add stay')

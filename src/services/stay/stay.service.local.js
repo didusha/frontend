@@ -110,7 +110,7 @@ function getRandomStay(_id = '') {
 
   // Pick 2-4 random amenities
   const amenities = []
-  const numAmenities = Math.floor(Math.random() * 3) + 2 // 2 to 4
+  const numAmenities = Math.floor(Math.random() * 5) + 2 // 2 to 4
   for (let i = 0; i < numAmenities; i++) {
     const randomAmenity =
       amenitiesList[Math.floor(Math.random() * amenitiesList.length)]
@@ -165,11 +165,10 @@ function getRandomStay(_id = '') {
     msgs: [],
     startDate: startDateStr,
     endDate: endDateStr,
-    reviews:getFakeReviews(4)
+    reviews:getFakeReviews(5)
   }
 }
-
-
+  
 function getFakeReviews(count = 5) {
   const names = ['Alice', 'Bob', 'Charlie', 'Dana', 'Eli', 'Fiona', 'George']
   const texts = [

@@ -8,7 +8,7 @@ export function ReviewList({ reviews }) {
   return (
     <section className='review-list'>
         <div className='list-title bold'>
-         <span> ★ 4.77 </span>  {reviews.length} {reviews.length > 1 ? 'reviews' : 'review'}
+         <span> ★ 4.77 · </span>  {reviews.length} {reviews.length > 1 ? 'reviews' : 'review'}
         </div>
 
       <ul className='list'>

@@ -5,7 +5,7 @@ import appsUrl from'../assets/images/apps.svg'
 export function StayGallery({images}) {
 
   return (
-    <section className='stay-gallery'>
+    <section className='stay-gallery' id='photos'>
       <div className='photo-header'>
         <h1> Image Title</h1>
         <div className='btn-container flex'>        

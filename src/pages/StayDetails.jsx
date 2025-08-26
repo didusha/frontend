@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { stayService } from '../services/stay'
@@ -8,6 +8,7 @@ import { StayGallery } from '../cmps/StayGallery.jsx'
 import { StayDescription } from '../cmps/StayDescription.jsx'
 import { StayReservation } from '../cmps/StayReservation.jsx'
 import { ReviewList } from '../cmps/ReviewList.jsx'
+import { StayAmenities } from '../cmps/StayAmenities.jsx'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -27,18 +28,32 @@ export function StayDetails() {
     }
   }
 
+  if (!stay) return <div>loading...</div>
   return (
     <section className='stay-details details-layout'>
+      <nav className='nav details-layout'>
+        <section className='nav-list flex'>
+          <a href='#photos'>Photos</a>
+          <a href='#amenities'>Amenities</a>
+          <a href='#reviews'>Reviews</a>
+        </section>
+        {/* <ul className='nav-list flex'> */}
+
+        {/* <li><a href="#location">Location</a></li> */}
+        {/* </ul> */}
+      </nav>
       <Link to='/'> ← </Link>
-      <div className='photos'>
-        <StayGallery />
+      <div className='photos' id='photos'>
+        <StayGallery images={stay.imgUrls} />
       </div>
       <div className='main-details'>
-        <StayDescription />
-        <StayReservation stay={stay}/>
+        <StayDescription stay={stay} />
+        <StayReservation stay={stay} />
+        <StayAmenities labels={stay.amenities} />
       </div>
-
-     < ReviewList reviews={stay.reviews}/>
+      <div id='reviews'>
+        <ReviewList reviews={stay.reviews} />
+      </div>
     </section>
   )
 }

@@ -1,0 +1,17 @@
+.stay-amenities {
+  padding: 48px 0;
+  h2 {
+    font-size: 1.375em;
+    padding-block-end: 24px;
+  }
+
+  .amenities-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .icon {
+    padding-block-end: 24px;
+    gap: 10px;
+    align-items: center;
+  }
+}
