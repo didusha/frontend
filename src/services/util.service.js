@@ -83,9 +83,30 @@ export function getDayDiff(startDateStr, endDateStr) {
     return diffDays;
 }
 
+export function formatDateCalendar(dateStr) {
+  if (!dateStr || dateStr === "null" || dateStr === "undefined") return "Add date"
+
+  const d = new Date(dateStr)
+  if (isNaN(d.getTime())) return "Add date"
+
+  // dd/mm/yyyy format
+  const day = String(d.getDate()).padStart(2, "0")
+  const month = String(d.getMonth() + 1).padStart(2, "0")
+  const year = d.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
+
 
 export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
   const start = new Date(startYear, 0, 1).getTime();
   const end = new Date(endYear, 11, 31, 23, 59, 59).getTime(); 
   return Math.floor(Math.random() * (end - start) + start);
+}
+
+ export function getAverageRating(reviews) {
+  if (!reviews.length) return 0;
+
+  const total = reviews.reduce((sum, review) => sum + (+review.rate), 0);
+  return (total / reviews.length).toFixed(1)
 }

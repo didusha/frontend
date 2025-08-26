@@ -34,6 +34,7 @@
 @import "cmps/stay/StayDescription";
 @import "cmps/stay/StayReservation";
 @import "cmps/stay/ConfirmReservation.css";
+@import "cmps/stay/StayEdit.css";
 
 @import "cmps/stay/StayAmenities";
 

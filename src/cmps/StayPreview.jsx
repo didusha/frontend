@@ -5,9 +5,11 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { formatDateRange } from '../services/util.service.js';
 
 
-export function StayPreview({ stay }) {
+export function StayPreview({ stay, params }) {
 
-    return <Link to={`/stay/${stay._id}`}>
+    const paramsString = new URLSearchParams(params).toString()
+
+    return <Link to={`/stay/${stay._id}?${paramsString}`}>
         <article className="stay-preview">
             <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} />
 

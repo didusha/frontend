@@ -6,6 +6,7 @@ import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODA
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
+import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -14,6 +15,7 @@ export function StayFilter() {
     const dispatch = useDispatch()
     const [selectedSection, setSelectedSection] = useState(null)
     const [localFilter, setLocalFilter] = useState(filterBy)
+    const [searchParams, setSearchParams] = useSearchParams()
     const wrapperRef = useRef(null)
 
     useEffect(() => {
@@ -51,7 +53,7 @@ export function StayFilter() {
     }
 
     function setParams() {
-        const params = new URLSearchParams({
+        const params = {
             checkIn: localFilter.checkIn,
             checkOut: localFilter.checkOut,
             where: localFilter.txt,
@@ -59,8 +61,9 @@ export function StayFilter() {
             children: localFilter.capacity.children,
             infants: localFilter.capacity.infants,
             pets: localFilter.capacity.pets,
-        })
-        window.history.replaceState(null, '', `?${params.toString()}`)
+        }
+        // window.history.replaceState(null, '', `?${params.toString()}`)
+        setSearchParams(params)
     }
 
     function formatDate(date) {

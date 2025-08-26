@@ -1,20 +1,24 @@
-
 /* MOBILE */
 @media (max-width: 375px) {
+        .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* SMALL */
 @media (min-width: 375px) {
+        .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* MEDIUM */
-@media (min-width: 740px) {
-}
+@media (min-width: 740px) {}
 
 /* LARGE */
 @media (min-width: 950px) {
+
 }
 
 /* XLARGE */
-@media (min-width: 1128px) {
-}
+@media (min-width: 1128px) {}
