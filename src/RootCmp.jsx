@@ -15,6 +15,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
+import { ConfirmReservation } from './cmps/ConfirmReservation.jsx'
 
 
 export function RootCmp() {
@@ -29,6 +30,7 @@ export function RootCmp() {
                     <Route path="about" element={<AboutUs />} />
                     {/* <Route path="stay" element={<StayIndex />} /> */}
                     <Route path="stay/:stayId" element={<StayDetails />} />
+                    <Route path="stay/:stayId/order" element={<ConfirmReservation />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />

@@ -31,6 +31,10 @@
     color: var(--gray-text-color);
 }
 
+.underline{
+  text-decoration: underline;
+}
+
 /* Simple and useful CSS Debugging Technique */
 .debug * {
   outline: 1px solid gold;

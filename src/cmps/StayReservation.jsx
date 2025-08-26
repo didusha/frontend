@@ -2,15 +2,26 @@ import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { getDayDiff } from '../services/util.service.js'
-// import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { useNavigate } from "react-router-dom"
+
 
 export function StayReservation({ stay }) {
-  // console.log("🚀 ~ StayReservation ~ stay:", stay)
 
   const [arrow, setArrow] = useState(false)
+  const navigate = useNavigate()
+
+
+  function onResrve() {
+    const params = new URLSearchParams({
+      checkIn: stay.startDate,
+      checkOut: stay.endDate,
+      guests: stay.capacity,
+    })
+
+    navigate(`/stay/${stay._id}/order?${params.toString()}`)
+  }
 
   if (!stay) return <div>Loading..</div>
-
   const nights = getDayDiff(stay.startDate, stay.endDate)
   const totalPrice = nights * stay.price + 5
   return (
@@ -38,7 +49,7 @@ export function StayReservation({ stay }) {
         </span>
       </div>
 
-      <button className="reserve-btn">Reserve</button>
+      <button className="reserve-btn" onClick={onResrve}>Reserve</button>
       <p className="note">You won’t be charged yet</p>
 
       <div className="reservation-prices">
@@ -62,15 +73,3 @@ export function StayReservation({ stay }) {
   )
 }
 
-{/* <input type="date" value={3}  />  
-             onChange={e => setCheckOut(e.target.value)} 
-
-          <input type="date" value={3}  />  
-           onChange={e => setCheckOut(e.target.value)} 
-
-          <input
-            type="number"
-            min="1"
-            value={4}
-            onChange={e => setGuests(e.target.value)}
-          /> */}

@@ -48,7 +48,7 @@ async function save(stay) {
     if (stay._id) {
         const stayToSave = {
             _id: stay._id,
-            name: stay.name,
+            name: stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
             type: stay.type,
             imgUrls: stay.imgUrls,
             summary: stay.summary,
@@ -64,7 +64,7 @@ async function save(stay) {
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
         const stayToSave = {
-            name: stay.name,
+            name: stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
             price: stay.price,
             type: stay.type,
             imgUrls: stay.imgUrls,
