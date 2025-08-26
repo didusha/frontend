@@ -139,7 +139,7 @@ function getRandomStay(_id = '') {
     price,
     amenities,
     type: 'House',
-    summary: makeLorem(20),
+    summary: makeLorem(200),
     imgUrls: [
       'https://robohash.org/0?set=set5',
       'https://robohash.org/1?set=set5',

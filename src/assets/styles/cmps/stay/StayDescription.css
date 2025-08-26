@@ -36,29 +36,38 @@
     gap: 20px;
     padding-block: 32px;
 
+    h3 {
+      font-size: 14px;
+    }
+
     p {
       color: var(--gray-p);
     }
 
     article {
-      gap: 20px;
+      gap: 13px;
       padding-inline-start: 6px;
-      justify-content: flex-start;
-      align-items: flex-start;
 
       .icon {
         width: 40px;
-        height: 24px;
 
         img {
           width: 24px;
-          height: 40px;
         }
       }
     }
   }
+
   .summary {
-    padding-block: 32px;
-    text-transform: capitalize;
+    padding-block-start: 32px;
+    padding-block-end: 48px;
+    /* text-transform: capitalize; */
+
+    button {
+      margin: 16px 0 0;
+      padding: 14px 24px;
+      font-size: 1rem;
+      font-family:AirbnbCereal ;
+    }
   }
 }

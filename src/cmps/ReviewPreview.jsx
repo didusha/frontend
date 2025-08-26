@@ -1,6 +1,7 @@
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LongTxt } from './LongTxt'
+import { getRandomIntInclusive } from '../services/util.service'
 
 export function ReviewPreview({ review }) {
   const { by, txt, rate, date } = review
@@ -35,19 +36,26 @@ export function ReviewPreview({ review }) {
   }
 
   const newDate = dateFromTimestamp(date)
+  const years = getRandomIntInclusive(1, 10)
 
   return (
     <article className='review-preview'>
       <div className='profile flex'>
-        <img src={by.imgUrl} alt='user profile' />
-        <p>{by.fullname}</p>
+        <section>
+          <img src={by.imgUrl} alt='user profile' />
+        </section>
+        <section>
+          <p>{by.fullname}</p>
+          <p className='time'>{years} years on Airbnb</p>
+        </section>
       </div>
 
       <p className='rate'>
-        <span>{rating(rate)}</span> · <span>{newDate.monthName}</span> <span>{newDate.year}</span>
+        <span>{rating(rate)}</span> · <span>{newDate.monthName}</span>{' '}
+        <span>{newDate.year}</span>
       </p>
       <div className='review-txt'>
-        <LongTxt txt={txt} length={150} />
+        <LongTxt txt={txt} length={100} />
       </div>
     </article>
   )

@@ -1,19 +1,25 @@
 .review-list {
-  padding-block-start: 48px;
+  padding-block: 48px;
   border-block-start: 1px solid #dddddd;
 
-  .list-title{
+  .list-title {
     font-size: 1.625rem;
     padding-block-end: 40px;
+    /* font-family: AirbnbCereal; */
   }
 
   .list {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(445px, 1fr));
     grid-gap: 40px 30px;
   }
 
-
+  .review-btn {
+    width: fit-content;
+    padding: 14px 24px;
+    font-size: 1rem;
+    margin: 8px 0 0;
+  }
 }
 
 ul {

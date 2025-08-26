@@ -89,3 +89,10 @@ export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
   const end = new Date(endYear, 11, 31, 23, 59, 59).getTime(); 
   return Math.floor(Math.random() * (end - start) + start);
 }
+
+ export function getAverageRating(reviews) {
+  if (!reviews.length) return 0;
+
+  const total = reviews.reduce((sum, review) => sum + review.rate, 0);
+  return (total / reviews.length).toFixed(1)
+}

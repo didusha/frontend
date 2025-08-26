@@ -2,12 +2,14 @@ import { LongTxt } from './LongTxt.jsx'
 import doorUrl from '../assets/images/door.svg'
 import locationUrl from '../assets/images/location.svg'
 import chatUrl from '../assets/images/chat.svg'
-import { getRandomIntInclusive } from '../services/util.service.js'
+import { getAverageRating, getRandomIntInclusive } from '../services/util.service.js'
 
 export function StayDescription({ stay }) {
   const { host, type, loc, summary, reviews } = stay
 
   const years = getRandomIntInclusive(1, 15)
+  const avg = getAverageRating(reviews)
+
   return (
     <section className='stay-description'>
       <div className='stay-info'>
@@ -20,7 +22,10 @@ export function StayDescription({ stay }) {
             <div>★ New</div>
           ) : (
             <div>
-              ★ 4.77 · <a href=''>{reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}</a>
+              <span> ★ {avg} · </span>
+              <a href=''>
+                {reviews.length} {reviews.length < 2 ? 'review' : 'reviews'}
+              </a>
             </div>
           )}
         </div>
@@ -32,14 +37,16 @@ export function StayDescription({ stay }) {
         </div>
         <div>
           Hosted by {host.fullname}
-          <p>Superhost · {years} {years>1?'years':'year'} hosting</p>
+          <p>
+            Superhost · {years} {years > 1 ? 'years' : 'year'} hosting
+          </p>
         </div>
       </div>
 
       <div className='gest-check-in flex'>
         <article className='flex'>
           <section className='icon'>
-            <img src={doorUrl} alt='door icon'  />
+            <img src={doorUrl} alt='door icon' />
           </section>
 
           <div>
@@ -54,8 +61,8 @@ export function StayDescription({ stay }) {
           </section>
 
           <div>
-            <h3>Great location</h3>
-            <p>90% of recent guests gave the location a 5-star rating.</p>
+            <h3>Beautiful area</h3>
+            <p>This home is in a scenic location.</p>
           </div>
         </article>
 
@@ -66,16 +73,13 @@ export function StayDescription({ stay }) {
 
           <div>
             <h3>Great communication</h3>
-            <p>
-              100% of recent guests rated Patrícia Sousa Casimiro 5-star in
-              communicatio{' '}
-            </p>
+            <p>Recent guests loved {host.fullname}'s communication</p>
           </div>
         </article>
       </div>
 
       <div className='summary'>
-        <LongTxt txt={summary} />
+        <LongTxt txt={summary} length={200} />
       </div>
     </section>
   )
