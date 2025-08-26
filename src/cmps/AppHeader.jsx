@@ -54,7 +54,7 @@ export function AppHeader() {
 	return (
 		<header className="app-header full">
 			<nav>
-				<section className="logo">
+				<section className="logo" onClick={() => navigate('/')} >
 					<img className="logo-img" src="../../public/img/rarebnb.webp" alt="logo" />
 					<span>rarebnb</span>
 				</section>
