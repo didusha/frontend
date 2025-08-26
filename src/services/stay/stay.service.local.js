@@ -211,6 +211,10 @@ function getFakeReviews(count = 5) {
 
   return reviews
 }
+
+
+
+
 function createStays() {
   const stays = [
     {
