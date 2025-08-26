@@ -32,7 +32,8 @@
 
 .check-in {
     flex: .45 !important;
-    margin-left: 40px;
+    margin-left:0 3px;
+    padding-right: 35px !important;
 }
 
 .check-in::before {
@@ -47,7 +48,13 @@
 
 .check-out {
     flex: .45 !important;
-    margin-left: 12px;
+    margin-left:0 3px;
+    padding-right: 40px !important;
+}
+
+.search{
+    margin-right: 3px;
+    padding-right: 65px !important;
 }
 
 .check-out::before {
@@ -67,7 +74,7 @@
     padding-left: 1em !important;
     justify-content: space-between !important;
     flex-direction: row !important;
-    margin-left: 20px;
+    margin-left: 3px;
 }
 
 .guests::before {
@@ -132,4 +139,20 @@
 .btn-clear img {
     height: 10px !important;
     width: 50px !important;
+}
+
+.selected{
+    background-color: white !important;
+}
+
+.not-selected{
+    background-color: #ebebeb !important;
+}
+
+.not-selected:hover{
+    background-color: #d7d7d7 !important;
+}
+
+.form-active{
+    background-color: #ebebeb !important;
 }
