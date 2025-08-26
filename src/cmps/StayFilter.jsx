@@ -2,37 +2,47 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
+import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
-    const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
-    const checkIn = useSelector(storeState => storeState.systemModule.checkIn)
-    const checkOut = useSelector(storeState => storeState.systemModule.checkOut)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setFilterToEdit(prev => ({
+        setFilterBy(prev => ({
             ...prev,
-            checkIn,
-            checkOut
+            checkIn: filterBy.checkIn,
+            checkOut: filterBy.checkOut
         }))
-    }, [checkIn, checkOut])
+    }, [filterBy.checkIn, filterBy.checkOut])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
         let val = value
         if (type === 'number') val = +value || ''
-        setFilterToEdit({ ...filterToEdit, [name]: val })
+        setFilterBy({ ...filterBy, [name]: val })
     }
 
     function onSubmit(ev) {
         ev.preventDefault()
-        dispatch(setFilterBy(filterToEdit))
-        //להכניס לקוורי
+        setParams()
+        dispatch(setFilterBy(filterBy))
+    }
+
+    function setParams() {
+        const params = new URLSearchParams({
+            checkIn: filterBy.checkIn,
+            checkOut: filterBy.checkOut,
+            where: filterBy.txt,
+            adults: filterBy.capacity.adults,
+            children: filterBy.capacity.children,
+            infants: filterBy.capacity.infants,
+            pets: filterBy.capacity.pets,
+        })
+        window.history.replaceState(null, '', `?${params.toString()}`)
     }
 
     function formatDate(date) {
@@ -51,7 +61,7 @@ export function StayFilter() {
                     <input
                         type="text"
                         name="txt"
-                        value={filterToEdit.txt}
+                        value={filterBy.txt}
                         onChange={handleChange}
                         placeholder="Search destinations"
                     />
@@ -59,12 +69,12 @@ export function StayFilter() {
 
                 <section className="check-in" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check in</h5>
-                    <span>{checkIn ? formatDate(checkIn) : 'Add dates'}</span>
+                    <span>{filterBy.checkIn ? formatDate(filterBy.checkIn) : 'Add dates'}</span>
                 </section>
 
                 <section className="check-out" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check out</h5>
-                    <span>{checkOut ? formatDate(checkOut) : 'Add dates'}</span>
+                    <span>{filterBy.checkOut ? formatDate(filterBy.checkOut) : 'Add dates'}</span>
                 </section>
 
                 <section className="guests">

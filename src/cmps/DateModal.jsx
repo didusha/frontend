@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
-import { CLOSE_DATE_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
 
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
+import { SET_FILTER_BY } from '../store/reducers/stay.reducer'
 
 Modal.setAppElement('#root')
 
@@ -14,8 +15,18 @@ export function DateModal() {
 
     const [range, setRange] = useState({ from: null, to: null })
     useEffect(() => {
-        if (range?.from) dispatch({ type: SET_CHECK_IN, checkIn: range.from})
-        if (range?.to) dispatch({ type: SET_CHECK_OUT, checkOut: range.to})
+        if (range?.from) {
+            dispatch({
+                type: SET_FILTER_BY,
+                filterBy: { checkIn: range.from }
+            })
+        }
+        if (range?.to) {
+            dispatch({
+                type: SET_FILTER_BY,
+                filterBy: { checkOut: range.to }
+            })
+        }
     }, [range])
 
     return (
