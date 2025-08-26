@@ -30,6 +30,7 @@
             font-family: AirbnbCereal;
             font-weight: 900;
             color: var(--clr1);
+            cursor: pointer;
         }
 
         & button {
