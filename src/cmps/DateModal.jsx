@@ -1,55 +1,46 @@
-import { useState, useEffect } from 'react'
-import Modal from 'react-modal'
-import { useSelector, useDispatch } from 'react-redux'
-import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
-import { DayPicker } from 'react-day-picker'
-import 'react-day-picker/dist/style.css'
-import { SET_FILTER_BY } from '../store/reducers/stay.reducer'
-// Modal.setAppElement('#root')
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
 
-export function DateModal() {
-    const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
-    const dispatch = useDispatch()
+export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
+  const isDateModalOpen = useSelector(
+    (storeState) => storeState.systemModule.isDateModalOpen
+  );
+  const dispatch = useDispatch();
 
-    const [range, setRange] = useState({ from: null, to: null })
-    useEffect(() => {
-        if (range?.from) dispatch({ type: SET_FILTER_BY, filterBy: { checkIn: range.from } })
-        if (range?.to) dispatch({ type: SET_FILTER_BY, filterBy: { checkOut: range.to } })
-    }, [range])
+  const [range, setRange] = useState({ from: null, to: null });
 
-    return (
-        <div className="modal-calendar">
-            <Modal
-                isOpen={isDateModalOpen}
-                onRequestClose={() => dispatch({ type: CLOSE_DATE_MODAL })}
-                contentLabel="Select Date"
-                style={{
-                    overlay: {
-                        backgroundColor: 'transparent',
-                        zIndex: '3',
-                    },
-                    content: {
-                        maxWidth: '850px',
-                        margin: 'auto',
-                        padding: '2.5em',
-                        borderRadius: '12px',
-                        height: '400px',
-                        position: 'absolute',
-                        bottom: '-10px',
-                        borderRadius: '40px',
-                    },
-                }}
-            >
-                <div className="airbnb-calendar">
-                    <DayPicker
-                        mode="range"
-                        selected={range}
-                        onSelect={setRange}
-                        numberOfMonths={2}
-                        pagedNavigation
-                    />
-                </div>
-            </Modal>
-        </div>
-    )
+  useEffect(() => {
+    handleCheckInChange(range?.from);
+  }, [range?.from]);
+
+  useEffect(() => {
+    handleCheckOutChange(range?.to);
+  }, [range?.to]);
+
+  return (
+    <>
+      {isDateModalOpen && (
+        <>
+          <div className="modal-overlay" onClick={() => dispatch({ type: CLOSE_DATE_MODAL })}></div>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="airbnb-calendar">
+              <DayPicker
+                mode="range"
+                selected={range}
+                onSelect={setRange}
+                numberOfMonths={2}
+                pagedNavigation
+              />
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
 }

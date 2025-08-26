@@ -54,11 +54,11 @@ export function StayReservation({ stay }) {
         <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
           <p>{(params.checkIn === "null") ? "Add date" : params.checkIn}</p>
-          <DateModal />
+          {/* <DateModal /> */}
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
-          <p>{(params.checkIn === "null") ? 'Add date' : params.checkOut}</p>
+          <p>{(params.checkOut === "null") ? 'Add date' : params.checkOut}</p>
         </div>
         <div className="guests-amount">
           <label>GUESTS</label>
@@ -88,8 +88,8 @@ export function StayReservation({ stay }) {
         </p>
 
       </div>
-
-      <GuestsModal />
+     
+      {/* <GuestsModal /> */}
     </section>
   )
 }

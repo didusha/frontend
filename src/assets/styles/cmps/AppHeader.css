@@ -6,8 +6,9 @@
     width: 100%;
     z-index: 2;
 
-    background-color: var(--clr4);
+    background-color: #fefefe;
     padding: .8rem 1rem;
+    border-bottom: 1px solid #eae9e9b4;
 
     & nav {
         display: flex;

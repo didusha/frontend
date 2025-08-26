@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
@@ -17,9 +17,20 @@ export function StayFilter() {
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
-        let val = value
-        if (type === 'number') val = +value || ''
+        const val = (type === 'number') ? +value : value
         setLocalFilter(prev => ({ ...prev, [name]: val }))
+    }
+    
+    function handleGuestChange(val){
+        setLocalFilter(prev => ({ ...prev, capacity: val }))
+    }
+
+    function handleCheckInChange(val){
+        setLocalFilter(prev => ({ ...prev, checkIn: val }))
+    }
+
+    function handleCheckOutChange(val){
+        setLocalFilter(prev => ({ ...prev, checkOut: val }))
     }
 
     function onSubmit(ev) {
@@ -94,13 +105,19 @@ export function StayFilter() {
                             {getGuestsLabel(localFilter.capacity)}
                         </span>
                     </div>
-                    <button className="btn-clear" type="submit">
+                    <button className="btn-search" type="submit">
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
                     </button>
                 </section>
             </form>
-            <DateModal />
-            <GuestsModal />
+            <DateModal
+            handleCheckOutChange={handleCheckOutChange}
+            handleCheckInChange={handleCheckInChange}
+            />
+            <GuestsModal 
+            localFilter={localFilter}
+            handleGuestChange={handleGuestChange}
+            />
         </section>
     )
 }
