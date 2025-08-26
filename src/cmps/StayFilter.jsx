@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
@@ -6,18 +6,31 @@ import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.red
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
+import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const dispatch = useDispatch()
 
     const [localFilter, setLocalFilter] = useState(filterBy)
+    const [searchParams, setSearchParams] = useSearchParams()
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
-        let val = value
-        if (type === 'number') val = +value || ''
+        const val = (type === 'number') ? +value : value
         setLocalFilter(prev => ({ ...prev, [name]: val }))
+    }
+    
+    function handleGuestChange(val){
+        setLocalFilter(prev => ({ ...prev, capacity: val }))
+    }
+
+    function handleCheckInChange(val){
+        setLocalFilter(prev => ({ ...prev, checkIn: val }))
+    }
+
+    function handleCheckOutChange(val){
+        setLocalFilter(prev => ({ ...prev, checkOut: val }))
     }
 
     function onSubmit(ev) {
@@ -27,7 +40,7 @@ export function StayFilter() {
     }
 
     function setParams() {
-        const params = new URLSearchParams({
+        const params = {
             checkIn: localFilter.checkIn,
             checkOut: localFilter.checkOut,
             where: localFilter.txt,
@@ -35,8 +48,9 @@ export function StayFilter() {
             children: localFilter.capacity.children,
             infants: localFilter.capacity.infants,
             pets: localFilter.capacity.pets,
-        })
-        window.history.replaceState(null, '', `?${params.toString()}`)
+        }
+        // window.history.replaceState(null, '', `?${params.toString()}`)
+        setSearchParams(params)
     }
 
     function formatDate(date) {
@@ -91,13 +105,19 @@ export function StayFilter() {
                             {getGuestsLabel(localFilter.capacity)}
                         </span>
                     </div>
-                    <button className="btn-clear" type="submit">
+                    <button className="btn-search" type="submit">
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
                     </button>
                 </section>
             </form>
-            <DateModal />
-            <GuestsModal />
+            <DateModal
+            handleCheckOutChange={handleCheckOutChange}
+            handleCheckInChange={handleCheckInChange}
+            />
+            <GuestsModal 
+            localFilter={localFilter}
+            handleGuestChange={handleGuestChange}
+            />
         </section>
     )
 }

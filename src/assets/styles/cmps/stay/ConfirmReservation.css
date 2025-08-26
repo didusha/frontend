@@ -1,6 +1,6 @@
 .confirm-reservation {
     display: flex;
-    gap: 3rem;
+    gap: 6rem;
     align-items: center;
     justify-content: center;
 
@@ -10,8 +10,8 @@
         border-top: 1px solid #e9e5e5;
     }
 
-
     .order-details {
+        padding: 30px;
 
         .btn-back,
         h1 {
@@ -26,7 +26,6 @@
 
         .date-details,
         .guests-details {
-
             h3,
             p {
                 margin-bottom: 1.5rem;
@@ -36,7 +35,6 @@
         .trip-details {
             margin-bottom: 1.5rem;
         }
-
 
         .rare-find {
             border: 1px solid #dedede;
@@ -72,10 +70,11 @@
     .order-summary {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
-        padding: 20px;
+        padding: 30px 40px;
+        margin-top: 45px;
 
         .stay-summary img {
-            width: 124px;
+            width: 150px;
         }
 
         .rating img {
@@ -90,8 +89,5 @@
         .reservation-prices p {
             margin-bottom: 1.5rem;
         }
-
-
     }
-
 }

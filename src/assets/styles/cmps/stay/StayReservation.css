@@ -7,7 +7,8 @@
     height: max-content;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     background: white;
-    margin: 2rem 0 0 2rem;
+    margin: 2rem 0 0 0;
+    min-width: 250px;
 
     .reservation-header {
         margin-bottom: 16px;
@@ -71,7 +72,9 @@
 
     .reserve-btn {
         width: 100%;
-        background: #ff385c;
+        background-image: radial-gradient(circle, #ff385c 0, #e61e4d 27.5%, #e31c5f 40%, #d70466 57.5%, #bd1e59 75%, #bd1e59 100%);
+        background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+        background-size: 200% 200%;
         color: white;
         border: none;
         padding: 14px;
@@ -82,7 +85,9 @@
         transition: background 0.2s ease;
 
         &:hover {
-            background: #e03150;
+            background-image: radial-gradient(circle, #ff385c 0, #e61e4d 27.5%, #e31c5f 40%, #d70466 57.5%, #bd1e59 75%, #bd1e59 100%);
+            background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+            background-size: 100% 100%;
         }
     }
 

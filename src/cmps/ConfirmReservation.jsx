@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { formatDateCalendar } from '../services/util.service.js'
 import { stayService } from '../services/stay'
 import daimond from '../assets/images/daimond.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,6 +14,9 @@ export function ConfirmReservation() {
   const { stayId } = useParams()
   const [stay, setStay] = useState()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const params = Object.fromEntries([...searchParams])
+
 
   useEffect(() => {
     loadStay(stayId)
@@ -30,6 +34,7 @@ export function ConfirmReservation() {
   if (!stay) return <div>Loading...</div>
   const nights = getDayDiff(stay.startDate, stay.endDate)
   const totalPrice = nights * stay.price + 5
+  const totalGuest = +params.adults + +params.children + +params.infants
   return (
     <section className='confirm-reservation'>
       <section className="order-details">
@@ -49,11 +54,11 @@ export function ConfirmReservation() {
         <h3 className="trip-details bold">Your trip</h3>
         <div className="date-details flex space-between">
           <p className="bold">Dates</p>
-          <p>{stay.startDate} - {stay.endDate}</p>
+          <p>{formatDateCalendar(params.checkIn)} - {formatDateCalendar(params.checkOut)}</p>
         </div>
         <div className="guests-details flex space-between">
           <p className="bold">Guests</p>
-          <p>{stay.capacity}</p>
+          <p>{totalGuest}</p>
         </div>
 
         <button className="btn-confirm">Confirm</button>
@@ -62,13 +67,11 @@ export function ConfirmReservation() {
 
       <section className="order-summary">
         <div className="stay-summary flex">
-          
           <img src={stay.imgUrls[0]} alt="" />
-
           <div className="stay-desc flex column space-between">
             <div>
-              <p className="grey">{stay.type}</p>
               <h4 className="">{stay.name}</h4>
+              <p className="grey">{stay.type}</p>
             </div>
             <div className="rating flex">
               <img src={star} alt="Star" />
@@ -77,7 +80,7 @@ export function ConfirmReservation() {
             </div>
           </div>
         </div>
-        <hr/>
+        <hr />
 
         <div className="reservation-prices">
           <p className="flex space-between">
