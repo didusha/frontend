@@ -117,8 +117,14 @@
     padding-left: 13px;
 }
 
+.hamburger{
+    width: 15px;
+}
 
-
+.hamburger-menu{
+    padding: 12px;
+    border-radius: 50%;
+}
 
 
 

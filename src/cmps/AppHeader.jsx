@@ -79,7 +79,11 @@ export function AppHeader() {
 				}
 				{user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
 
-				{!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
+
+				<button className="hamburger-menu">
+					<img className="hamburger" src="../../public/img/Hamburger.png" alt="menu" />
+				</button>
+				{/* {!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
 				{user && (
 					<div className="user-info">
 						<Link to={`user/${user._id}`}>
@@ -89,7 +93,7 @@ export function AppHeader() {
 						<span className="score">{user.score?.toLocaleString()}</span>
 						<button onClick={onLogout}>logout</button>
 					</div>
-				)}
+				)} */}
 
 			</nav>
 			{isFocus && <StayFilter />}
