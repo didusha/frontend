@@ -1,14 +1,19 @@
+import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
+import { GuestsModal } from './GuestsModal'
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { getDayDiff } from '../services/util.service.js'
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from 'react-redux'
+import { DateModal } from './DateModal.jsx'
 
 
 export function StayReservation({ stay }) {
 
   const [arrow, setArrow] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   function onResrve() {
@@ -19,6 +24,15 @@ export function StayReservation({ stay }) {
     })
 
     navigate(`/stay/${stay._id}/order?${params.toString()}`)
+  }
+
+  function onGuestModal() {
+    setArrow(!arrow)
+    dispatch({ type: OPEN_GUESTS_MODAL })
+  }
+
+  function onDateModal() {
+    dispatch({ type: OPEN_DATE_MODAL })
   }
 
   if (!stay) return <div>Loading..</div>
@@ -32,19 +46,20 @@ export function StayReservation({ stay }) {
       </div>
 
       <div className="reservation-form">
-        <div className="check-in-date">
+        <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
           <p>{(stay.startDate) ? stay.startDate : 'Add date'}</p>
+           <DateModal />
         </div>
-        <div className="check-out-date">
+        <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
           <p>{(stay.endDate) ? stay.endDate : 'Add date'}</p>
         </div>
-        <div className="check-out-date">
+        <div className="guests-amount">
           <label>GUESTS</label>
           <p>{stay.capacity} {stay.capacity > 1 ? 'guests' : 'guest'}</p>
         </div>
-        <span className="chevron-arrow" onClick={() => setArrow(!arrow)}>
+        <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
       </div>
@@ -68,7 +83,8 @@ export function StayReservation({ stay }) {
         </p>
 
       </div>
-
+     
+      <GuestsModal />
     </section>
   )
 }
