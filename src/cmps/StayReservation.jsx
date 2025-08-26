@@ -49,7 +49,7 @@ export function StayReservation({ stay }) {
         <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
           <p>{(stay.startDate) ? stay.startDate : 'Add date'}</p>
-           <DateModal />
+           {/* <DateModal /> */}
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
@@ -84,7 +84,7 @@ export function StayReservation({ stay }) {
 
       </div>
      
-      <GuestsModal />
+      {/* <GuestsModal /> */}
     </section>
   )
 }
