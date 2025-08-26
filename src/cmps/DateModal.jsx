@@ -15,18 +15,8 @@ export function DateModal() {
 
     const [range, setRange] = useState({ from: null, to: null })
     useEffect(() => {
-        if (range?.from) {
-            dispatch({
-                type: SET_FILTER_BY,
-                filterBy: { checkIn: range.from }
-            })
-        }
-        if (range?.to) {
-            dispatch({
-                type: SET_FILTER_BY,
-                filterBy: { checkOut: range.to }
-            })
-        }
+        if (range?.from) dispatch({ type: SET_FILTER_BY, filterBy: { checkIn: range.from } })
+        if (range?.to) dispatch({ type: SET_FILTER_BY, filterBy: { checkOut: range.to } })
     }, [range])
 
     return (

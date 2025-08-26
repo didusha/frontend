@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { CLOSE_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { SET_FILTER_BY } from '../store/reducers/stay.reducer'
 
 Modal.setAppElement('#root')
 
 export function GuestsModal() {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
+    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const dispatch = useDispatch()
 
     const [guests, setGuests] = useState({
@@ -15,6 +17,10 @@ export function GuestsModal() {
         infants: 0,
         pets: 0,
     })
+
+    useEffect(() => {
+        dispatch({ type: SET_FILTER_BY, ...filterBy, capacity: guests })
+    }, [guests])
 
     const handleIncrement = (type) => {
         setGuests(prev => ({ ...prev, [type]: prev[type] + 1 }))
