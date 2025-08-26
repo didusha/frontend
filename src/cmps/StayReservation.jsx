@@ -7,7 +7,7 @@ import { getDayDiff } from '../services/util.service.js'
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useDispatch } from 'react-redux'
 import { DateModal } from './DateModal.jsx'
-
+import { formatDateCalendar } from '../services/util.service.js'
 
 export function StayReservation({ stay }) {
 
@@ -16,17 +16,17 @@ export function StayReservation({ stay }) {
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
-  console.log("🚀 ~ StayReservation ~ params:", params)
-
 
   function onResrve() {
-    const params = new URLSearchParams({
-      checkIn: stay.startDate,
-      checkOut: stay.endDate,
-      guests: stay.capacity,
+    const orderParams = new URLSearchParams({
+      checkIn: params.checkIn,
+      checkOut: params.checkOut,
+      adults: params.adults,
+      children: params.children,
+      infants: params.infants,
+      pets: params.pets,
     })
-
-    navigate(`/stay/${stay._id}/params?${params.toString()}`)
+    navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
   }
 
   function onGuestModal() {
@@ -42,7 +42,7 @@ export function StayReservation({ stay }) {
   const nights = getDayDiff(stay.startDate, stay.endDate)
   const totalPrice = nights * stay.price + 5
   const totalGuest = +params.adults + +params.children + +params.infants
-  // console.log("🚀 ~ StayReservation ~ totalGuest:", totalGuest)
+
   return (
     <section className='stay-reservation'>
       <div className="reservation-header">
@@ -53,20 +53,21 @@ export function StayReservation({ stay }) {
       <div className="reservation-form">
         <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
-          <p>{(params.checkIn === "null") ? "Add date" : params.checkIn}</p>
+          <p>{(params.checkIn === "null") ? "Add date" : formatDateCalendar(params.checkIn)}</p>
           {/* <DateModal /> */}
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
-          <p>{(params.checkOut === "null") ? 'Add date' : params.checkOut}</p>
+          <p>{(params.checkOut === "null") ? 'Add date' : formatDateCalendar(params.checkOut)}</p>
         </div>
         <div className="guests-amount">
           <label>GUESTS</label>
-          <p>{totalGuest} {totalGuest > 1 ? 'guests' : 'guest'}</p>
+          <p>{(totalGuest) ? totalGuest : 1} {totalGuest > 1 ? 'guests' : 'guest'}</p>
         </div>
         <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
+        {/* <GuestsModal /> */}
       </div>
 
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
@@ -88,8 +89,6 @@ export function StayReservation({ stay }) {
         </p>
 
       </div>
-     
-      {/* <GuestsModal /> */}
     </section>
   )
 }

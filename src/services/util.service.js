@@ -83,6 +83,20 @@ export function getDayDiff(startDateStr, endDateStr) {
     return diffDays;
 }
 
+export function formatDateCalendar(dateStr) {
+  if (!dateStr || dateStr === "null" || dateStr === "undefined") return "Add date"
+
+  const d = new Date(dateStr)
+  if (isNaN(d.getTime())) return "Add date"
+
+  // dd/mm/yyyy format
+  const day = String(d.getDate()).padStart(2, "0")
+  const month = String(d.getMonth() + 1).padStart(2, "0")
+  const year = d.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
+
 
 export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
   const start = new Date(startYear, 0, 1).getTime();
