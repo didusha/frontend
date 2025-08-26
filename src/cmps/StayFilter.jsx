@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
@@ -10,17 +10,19 @@ import { GuestsModal } from './GuestsModal'
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
-    const [checkInDate, setCheckInDate] = useState('Add dates')
-    const [checkOutDate, setCheckOutDate] = useState('Add dates')
+    const checkIn = useSelector(storeState => storeState.systemModule.checkIn)
+    const checkOut = useSelector(storeState => storeState.systemModule.checkOut)
+    // const [checkInDate, setCheckInDate] = useState('Add dates')
+    // const [checkOutDate, setCheckOutDate] = useState('Add dates')
     const dispatch = useDispatch()
 
     useEffect(() => {
         setFilterToEdit(prev => ({
             ...prev,
-            checkIn: checkInDate,
-            checkOut: checkOutDate
+            checkIn,
+            checkOut
         }))
-    }, [checkInDate, checkOutDate])
+    }, [checkIn, checkOut])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -33,18 +35,15 @@ export function StayFilter() {
         ev.preventDefault()
         dispatch(setFilterBy(filterToEdit))
         console.log(filterToEdit);
-        
-    }
 
-    const checkIn = formatDate(checkInDate)
-    const checkOut = formatDate(checkOutDate)
+    }
 
     function formatDate(date) {
         if (!date) return 'Add dates'
         const d = new Date(date)
         if (isNaN(d.getTime())) return 'Add dates'
         const options = { day: 'numeric', month: 'short' }
-        return new Date(date).toLocaleDateString('en-US', options)
+        return d.toLocaleDateString('en-US', options)
     }
 
     return (
@@ -63,18 +62,12 @@ export function StayFilter() {
 
                 <section className="check-in" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check in</h5>
-                    <span>
-                        {!checkIn && 'Add dates'}
-                        {checkIn}
-                    </span>
+                    <span>{checkIn ? formatDate(checkIn) : 'Add dates'}</span>
                 </section>
 
                 <section className="check-out" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
                     <h5>Check out</h5>
-                    <span>
-                        {!checkOut && 'Add dates'}
-                        {checkOut}
-                    </span>
+                    <span>{checkOut ? formatDate(checkOut) : 'Add dates'}</span>
                 </section>
 
                 <section className="guests">
@@ -89,11 +82,8 @@ export function StayFilter() {
                     </button>
                 </section>
             </form>
-            <DateModal
-                setCheckInDate={setCheckInDate}
-                setCheckOutDate={setCheckOutDate}
-            />
-            <GuestsModal/>
+            <DateModal />
+            <GuestsModal />
         </section>
     )
 }

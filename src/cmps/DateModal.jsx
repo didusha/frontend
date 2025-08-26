@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
-import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, SET_CHECK_IN, SET_CHECK_OUT } from '../store/reducers/system.reducer'
 
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 
 Modal.setAppElement('#root')
 
-export function DateModal({ setCheckInDate, setCheckOutDate }) {
+export function DateModal() {
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
     const dispatch = useDispatch()
 
     const [range, setRange] = useState({ from: null, to: null })
     useEffect(() => {
-        if (range?.from) setCheckInDate(range.from)
-        if (range?.to) setCheckOutDate(range.to)
-    }, [range, setCheckInDate, setCheckOutDate])
+        if (range?.from) dispatch({ type: SET_CHECK_IN, checkIn: range.from})
+        if (range?.to) dispatch({ type: SET_CHECK_OUT, checkOut: range.to})
+    }, [range])
 
     return (
         <div className="modal-calendar">

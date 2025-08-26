@@ -47,28 +47,17 @@ export function GuestsModal() {
                     },
                 }}
             >
-                <h2>Select Guests</h2>
                 {['adults', 'children', 'infants', 'pets'].map(type => (
                     <div key={type} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <div style={{ textTransform: 'capitalize', fontWeight: '500' }}>{type}</div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                            <button onClick={() => handleDecrement(type)} style={buttonStyle}>-</button>
+                            <button onClick={() => handleDecrement(type)} >-</button>
                             <span>{guests[type]}</span>
-                            <button onClick={() => handleIncrement(type)} style={buttonStyle}>+</button>
+                            <button onClick={() => handleIncrement(type)} >+</button>
                         </div>
                     </div>
                 ))}
             </Modal>
         </div>
     )
-}
-
-const buttonStyle = {
-    width: '30px',
-    height: '30px',
-    borderRadius: '50%',
-    border: '1px solid #ccc',
-    backgroundColor: 'white',
-    cursor: 'pointer',
-    fontSize: '18px',
 }
