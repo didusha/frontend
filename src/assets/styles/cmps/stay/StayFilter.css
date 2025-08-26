@@ -3,7 +3,7 @@
     border-radius: 50px;
     display: flex;
     justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     font-family: AirbnbCereal;
     max-width: 850px;
     margin: 22px auto;
@@ -132,7 +132,7 @@
     margin-right: 0.6em;
 }
 
-.stay-filter button:hover {
+.btn-search:hover {
     background-image: linear-gradient(to right, #ff385c, #bd1e59);
 }
 

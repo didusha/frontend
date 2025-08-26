@@ -2,13 +2,15 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
+    const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const dispatch = useDispatch()
     const [selectedSection, setSelectedSection] = useState(null)
     const [localFilter, setLocalFilter] = useState(filterBy)
@@ -86,6 +88,11 @@ export function StayFilter() {
         return selectedSection === sectionName ? "selected" : "not-selected"
     }
 
+    function closeModals(){
+        if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
+        if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
+    }
+
     return (
         <section className="stay-filter" ref={wrapperRef}>
             <form
@@ -144,7 +151,11 @@ export function StayFilter() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
                         </button>
                         :
-                        <button className="btn-search-selected" type="submit">
+                        <button 
+                        className="btn-search-selected" 
+                        type="submit" 
+                        onClick={closeModals}
+                        >
                             <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", paddingRight: '5px' }} />
                             search
                         </button>
