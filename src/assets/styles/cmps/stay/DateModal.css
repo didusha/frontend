@@ -13,9 +13,9 @@
   background-color: transparent;
 }
 
-.ReactModal__Overlay {
+/* .ReactModal__Overlay {
   z-index: 3 !important;
-}
+} */
 
 .airbnb-calendar {
   display: flex;

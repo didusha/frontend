@@ -8,6 +8,7 @@
   .main-details {
     display: grid;
     grid-template-columns: minmax(300px, 2fr) minmax(250px, 1fr);
+    gap: 3rem;
 
     &:first-child {
       grid-column: 1;

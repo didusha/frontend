@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
-
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/dist/style.css'
 import { SET_FILTER_BY } from '../store/reducers/stay.reducer'
-
-Modal.setAppElement('#root')
+// Modal.setAppElement('#root')
 
 export function DateModal() {
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
@@ -28,6 +26,7 @@ export function DateModal() {
                 style={{
                     overlay: {
                         backgroundColor: 'transparent',
+                        zIndex: '3',
                     },
                     content: {
                         maxWidth: '850px',
