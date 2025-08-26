@@ -46,7 +46,7 @@
 
     article {
       gap: 13px;
-      padding-inline-start: 6px;
+      padding-inline-start: 8px;
 
       .icon {
         width: 40px;
@@ -61,7 +61,6 @@
   .summary {
     padding-block-start: 32px;
     padding-block-end: 48px;
-    /* text-transform: capitalize; */
 
     button {
       margin: 16px 0 0;

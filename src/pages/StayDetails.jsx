@@ -27,6 +27,7 @@ export function StayDetails() {
       showErrorMsg('Cannot load stay')
     }
   }
+  
 
   if (!stay) return <div>loading...</div>
   return (
@@ -41,7 +42,7 @@ export function StayDetails() {
       </nav>
       <Link to='/'> ← </Link>
       <div className='photos' id='photos'>
-        <StayGallery images={stay.imgUrls} />
+        <StayGallery images={stay.imgUrls} name={stay.name} />
       </div>
       <div className='main-details'>
         <StayDescription stay={stay} />
