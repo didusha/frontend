@@ -16,3 +16,36 @@
 .ReactModal__Overlay {
   z-index: 3 !important;
 }
+
+.airbnb-calendar {
+  display: flex;
+  justify-content: center;
+}
+
+.rdp-caption {
+  width: 100%;
+  text-align: center !important; 
+  justify-content: center !important;
+}
+
+.rdp-caption_label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.rdp-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  padding: 0 1em;
+  box-sizing: border-box;
+}
+
+.rdp-chevron{
+    fill: black;
+}

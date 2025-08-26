@@ -71,7 +71,9 @@ export function StayFilter() {
                             Add guests
                         </span>
                     </div>
-                    <button className="btn-clear">Search</button>
+                    <button className="btn-clear">
+                        {/* <i className="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i> */}
+                    </button>
                 </section>
             </form>
             <DateModal

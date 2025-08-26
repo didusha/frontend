@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { CLOSE_DATE_MODAL } from '../store/reducers/system.reducer'
@@ -13,19 +13,16 @@ export function DateModal({ setCheckInDate, setCheckOutDate }) {
     const dispatch = useDispatch()
 
     const [range, setRange] = useState({ from: null, to: null })
-    // [
-    // {
-    //     startDate: new Date(),
-    //     endDate: null,
-    //     key: 'selection'
-    // }
-    // ])
+    useEffect(() => {
+        if (range?.from) setCheckInDate(range.from)
+        if (range?.to) setCheckOutDate(range.to)
+    }, [range, setCheckInDate, setCheckOutDate])
 
     return (
         <div className="modal-calendar">
             <Modal
                 isOpen={isDateModalOpen}
-                onRequestClose={() => dispatch({type:CLOSE_DATE_MODAL})}
+                onRequestClose={() => dispatch({ type: CLOSE_DATE_MODAL })}
                 contentLabel="Select Date"
                 style={{
                     overlay: {
