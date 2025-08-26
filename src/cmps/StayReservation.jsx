@@ -16,6 +16,12 @@ export function StayReservation({ stay }) {
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
+  console.log("🚀 ~ StayReservation ~ params:", params)
+
+  if (!stay) return <div>Loading..</div>
+  const nights = getDayDiff(stay.startDate, stay.endDate)
+  const totalPrice = nights * stay.price + 5
+  const totalGuest = +params.adults + +params.children + +params.infants
 
   function onResrve() {
     const orderParams = new URLSearchParams({
@@ -25,6 +31,7 @@ export function StayReservation({ stay }) {
       children: params.children,
       infants: params.infants,
       pets: params.pets,
+      totalPrice: totalPrice,
     })
     navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
   }
@@ -37,11 +44,6 @@ export function StayReservation({ stay }) {
   function onDateModal() {
     dispatch({ type: OPEN_DATE_MODAL })
   }
-
-  if (!stay) return <div>Loading..</div>
-  const nights = getDayDiff(stay.startDate, stay.endDate)
-  const totalPrice = nights * stay.price + 5
-  const totalGuest = +params.adults + +params.children + +params.infants
 
   return (
     <section className='stay-reservation'>

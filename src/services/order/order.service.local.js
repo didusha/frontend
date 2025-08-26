@@ -1,3 +1,4 @@
+import { makeId, makeLorem, loadFromStorage, getRandomTimestampMillis } from '../util.service.js'
 import { storageService } from '../async-storage.service'
 import { userService } from '../user'
 
@@ -15,21 +16,29 @@ async function remove(orderId) {
 	await storageService.remove('order', orderId)
 }
 
-async function add({ txt, aboutUserId }) {
-	const aboutUser = await userService.getById(aboutUserId)
+async function add(stay, order) {
+
 	const orderToAdd = {
-		txt,
-		byUser: userService.getLoggedinUser(),
-		aboutUser: {
-			_id: aboutUser._id,
-			fullname: aboutUser.fullname,
-			imgUrl: aboutUser.imgUrl,
+		_id: makeId(),
+		host: stay.host,
+		guest: userService.getLoggedinUser(),
+		totalPrice: order.totalPrice,
+		startDate: new Date(order.checkIn),
+		endDate: new Date(order.checkOut),
+		guests: {
+			adults: order.adults,
+			children: order.children,
+			infants: order.infants,
+			pets: order.pets,
 		},
+		stay: {
+			_id: stay._id,
+			name: stay.name,
+			price: stay.price,
+		},
+		msgs: stay.msgs,
+		status: 'pending',
 	}
-
-	orderToAdd.byUser.score += 10
-	await userService.update(orderToAdd.byUser)
-
 	const addedOrder = await storageService.post('order', orderToAdd)
 	return addedOrder
 }
