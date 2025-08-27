@@ -51,7 +51,6 @@ export function ConfirmReservation() {
     }
     catch (error) {
       console.log('Cannot confirm order', error)
-      // showErrorMsg('Cannot confirm order')
     }
   }
 
@@ -78,7 +77,6 @@ export function ConfirmReservation() {
           <div>
             <img src={daimond} alt="Diamond" />
           </div>
-
         </div>
 
         <h3 className="trip-details bold">Your trip</h3>
@@ -91,16 +89,14 @@ export function ConfirmReservation() {
           <p>{totalGuest}</p>
         </div>
         <div className="order-confirm">
-          {isOrderComplete && <h3 className="bold"> We look forward to hosting you!</h3>}
+          {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
-          {(isOrderComplete) ?
-            <>
-              <button className="btn-confirm" onClick={() => navigate('/')}>Review Trips</button>
-              <h3 className="flex align-center bold">
-                <img className="svg-image" src={greenCheck} alt="Success" />
-                <span>Reservation success!</span>
-              </h3>
-            </> :
+          {(isOrderComplete) ? <>
+            <button className="btn-confirm" onClick={() => navigate('/')}>Review Trips</button>
+            <h3 className="flex align-center bold justify-center">
+              <img className="svg-image" src={greenCheck} alt="Success" />
+              <span>Reservation success!</span>
+            </h3></> :
             <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>
           }
         </div>
@@ -110,8 +106,8 @@ export function ConfirmReservation() {
         <div className="stay-summary flex">
           <img src={stay.imgUrls[0]} alt="" />
           <div className="stay-desc flex column space-between">
-              <h4 className="">{stay.name}</h4>
-              <p className="grey">{stay.type}</p>
+            <h4 className="">{stay.name}</h4>
+            <p className="grey">{stay.type}</p>
             <div className="rating flex">
               <img src={star} alt="Star" />
               <span className="avg-rating">4.88</span>
@@ -123,17 +119,17 @@ export function ConfirmReservation() {
 
         <div className="reservation-prices">
           <p className="flex space-between">
-            <span className="nights-info underline">{nights} nights x ${stay.price}</span>
-            <span>$ {nights * stay.price}</span>
+            <span className="nights-info underline">{nights} nights x ${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
           </p>
           <p className="flex space-between">
             <span className="cleaning-fee underline">Cleaning fee</span>
-            <span>$ 5</span>
+            <span>$5</span>
           </p>
           <hr />
           <p className="flex space-between">
             <span>Total</span>
-            <span>$ {totalPrice}</span>
+            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
           </p>
 
         </div>

@@ -22,7 +22,10 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
     <>
       {isDateModalOpen && (
         <>
-          <div className="modal-overlay" onClick={() => dispatch({ type: CLOSE_DATE_MODAL })}></div>
+          <div className="modal-overlay" onClick={() => {
+            dispatch({ type: CLOSE_DATE_MODAL })
+            setSelectedSection(null)
+            }}></div>
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CLOSE_WHERE_MODAL } from '../store/reducers/system.reducer'
 
-export function WhereModal({handleWhereChange}) {
+export function WhereModal({handleWhereChange, setSelectedSection}) {
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
 
@@ -79,7 +79,10 @@ export function WhereModal({handleWhereChange}) {
                 <>
                     <div
                         className="where-modal-overlay"
-                        onClick={() => dispatch({ type: CLOSE_WHERE_MODAL })}
+                        onClick={() => {
+                            dispatch({ type: CLOSE_WHERE_MODAL })
+                            setSelectedSection(null)
+                        }}
                     />
                     <div
                         className="where-modal-content"

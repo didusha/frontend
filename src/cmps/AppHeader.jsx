@@ -68,15 +68,15 @@ export function AppHeader() {
 					<span>rarebnb</span>
 				</section>
 
-				{(!isHomePage || (isHomePage && !isFocus)) && (
+				{((!isHomePage && !isOpenFromDetails) || (isHomePage && !isFocus)) && (
 					<StaySmallFilter
 						openFocusComponent={openFocusComponent}
-						setIOpenFromDetails={setIsOpenFromDetails}
+						setIsOpenFromDetails={setIsOpenFromDetails}
 						isHomePage={isHomePage}
 					/>
 				)}
 
-				{isHomePage && isFocus && (
+				{(isOpenFromDetails || (isHomePage && isFocus)) && (
 					<section className="navigation-links">
 						<section className="homes-section">
 							<img className="homes-imgs" src={homes} alt="homes" />

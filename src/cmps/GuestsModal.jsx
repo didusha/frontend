@@ -7,7 +7,7 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function GuestsModal({ handleGuestChange }) {
+export function GuestsModal({ handleGuestChange, setSelectedSection }) {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const dispatch = useDispatch()
 
@@ -41,7 +41,10 @@ export function GuestsModal({ handleGuestChange }) {
         <>
             {isGuestsModalOpen && (
                 <>
-                    <div className="guests-modal-overlay" onClick={() => dispatch({ type: CLOSE_GUESTS_MODAL })}></div>
+                    <div className="guests-modal-overlay" onClick={() => {
+                        dispatch({ type: CLOSE_GUESTS_MODAL })
+                        setSelectedSection(null)
+                    }}></div>
                     <div
                         className="guests-modal-content"
                         onClick={(e) => e.stopPropagation()}
