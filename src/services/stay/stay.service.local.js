@@ -210,7 +210,6 @@ function getFakeReviews(count = 5) {
 }
 
 function createStays() {
-
   const stays = [
     {
       _id: '6738ca4cae769d402b653c7c',
@@ -298,7 +297,8 @@ function createStays() {
         responseTime: 'within 2 hours',
         isSuperhost: false,
         imgUrl:
-          'https://img.freepik.com/free-photo/portrait-young-woman-blue-denim-jacket-listening-music-earphone-through-mobile-phone_23-2148148191.jpg?t=st=1732053341~exp=1732056941~hmac=905d994e317d752feea2e5f658bda82a6a3df861cf786a476cca0a127cb2835b&w=740',
+          // 'https://img.freepik.com/free-photo/portrait-young-woman-blue-denim-jacket-listening-music-earphone-through-mobile-phone_23-2148148191.jpg?t=st=1732053341~exp=1732056941~hmac=905d994e317d752feea2e5f658bda82a6a3df861cf786a476cca0a127cb2835b&w=740',
+          'https://img.freepik.com/free-photo/portrait-young-woman-white-shirt_1303-24912.jpg?uid=R108235284&ga=GA1.1.1545684031.1710792691',
       },
       loc: {
         country: 'Costa Rica',
@@ -308,8 +308,8 @@ function createStays() {
         lat: 9.2672,
         lng: -83.8614,
       },
-      startDate:'2025-09-03T22:00:00.000Z',
-      endDate:'2025-09-11T22:00:00.000Z',
+      startDate: '2025-09-03T22:00:00.000Z',
+      endDate: '2025-09-11T22:00:00.000Z',
       reviews: [
         {
           date: '2017-04-28T04:00:00.000Z',
@@ -444,8 +444,8 @@ function createStays() {
       ],
       bathrooms: 2,
       bedrooms: 4,
-      startDate:'2025-09-03T22:00:00.000Z',
-      endDate:'2025-09-11T22:00:00.000Z',
+      startDate: '2025-09-03T22:00:00.000Z',
+      endDate: '2025-09-11T22:00:00.000Z',
       roomType: 'Entire home/apt',
       host: {
         _id: '673f1b4250b320833d20ea99',
@@ -632,8 +632,8 @@ function createStays() {
       ],
       bathrooms: 2,
       bedrooms: 3,
-      startDate:'2025-09-03T22:00:00.000Z',
-      endDate:'2025-09-11T22:00:00.000Z',
+      startDate: '2025-09-03T22:00:00.000Z',
+      endDate: '2025-09-11T22:00:00.000Z',
       roomType: 'Entire home/apt',
       host: {
         _id: '673f1b4250b320833d20ea99',
@@ -712,7 +712,7 @@ function createStays() {
           },
           txt: "We had such a great time at Cynthia's condo.  Everything was sparkling clean. The check in and check out were seamless.  We loved that the condo came with some beach gear for our use (snorkels, boogie boards, water shoes...).  The views from the balconies are outstanding.  There is a nice and swimmable beach right downstairs, as well as a volleyball court and a casual restaurant. Great location with easy access to beach rentals, groceries, and anything else you might need during your stay.  Cynthia was very quick to respond to any questions we had. Loved the place! Would definitely stay again.",
           _id: '6738kd7776b53ebe35369b26',
-          rate:2,
+          rate: 2,
         },
         {
           date: '2018-04-14T04:00:00.000Z',

@@ -7,7 +7,7 @@ export function StayAmenities({ labels }) {
       <ul className='amenities-list'>
         {labels.map((label, idx) => {
           if (!icons[label]) return ''
-
+          if (idx < 11)
           return (
             <li key={idx} className='icon flex'>
               <img src={icons[label]} alt='' />
