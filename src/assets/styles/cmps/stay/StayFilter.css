@@ -132,6 +132,15 @@
     margin-right: 0.6em;
 }
 
+.btn-search .search-span{
+    display: none;
+}
+
+.search-span{
+    color: white !important;
+    padding-left: 6px;
+}
+
 .btn-search:hover {
     background-image: linear-gradient(to right, #ff385c, #bd1e59);
 }
