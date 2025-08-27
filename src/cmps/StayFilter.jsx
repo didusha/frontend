@@ -182,7 +182,6 @@ export function StayFilter() {
                 handleCheckInChange={handleCheckInChange}
             />
             <GuestsModal
-                localFilter={localFilter}
                 handleGuestChange={handleGuestChange}
             />
         </section >
