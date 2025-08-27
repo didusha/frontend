@@ -59,8 +59,8 @@ export function StayIndex() {
 
     return (
         <section className="stay-index">
-            {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
-            {userService.getLoggedinUser() && <button onClick={onAddRandStay}>Add rand Stay</button>}
+            {/* {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
+            {userService.getLoggedinUser() && <button onClick={onAddRandStay}>Add rand Stay</button>} */}
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}
