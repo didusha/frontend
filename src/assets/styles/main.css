@@ -29,7 +29,7 @@
 @import "cmps/stay/StayGallery";
 @import "cmps/stay/DateModal";
 @import "cmps/stay/GuestsModal";
-@import "cmps/stay/WhereModal";
+@import "cmps/stay/whereModal";
 @import "cmps/stay/StaySmallFilter";
 @import "cmps/stay/StayDetails";
 @import "cmps/stay/StayDescription";

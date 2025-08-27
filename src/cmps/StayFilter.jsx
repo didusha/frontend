@@ -52,6 +52,11 @@ export function StayFilter() {
         setLocalFilter(prev => ({ ...prev, checkOut: val }))
     }
 
+    function handleWhereChange(val) {
+        const txt = val.city
+        setLocalFilter(prev => ({ ...prev, txt: txt }))
+    }
+
     function onSubmit(ev) {
         ev.preventDefault()
         setParams()
@@ -170,7 +175,7 @@ export function StayFilter() {
                 </section>
             </form >
             <WhereModal
-
+                handleWhereChange={handleWhereChange}
             />
             <DateModal
                 handleCheckOutChange={handleCheckOutChange}
