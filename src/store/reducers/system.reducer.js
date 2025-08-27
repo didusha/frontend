@@ -18,11 +18,11 @@ export function systemReducer (state = initialState, action = {}) {
     case LOADING_DONE:
       return { ...state, isLoading: false }
     case OPEN_DATE_MODAL:
-      return { ...state, isDateModalOpen: true }
+      return { ...state, isDateModalOpen: true, isGuestsModalOpen: false }
     case CLOSE_DATE_MODAL:
       return { ...state, isDateModalOpen: false }
     case OPEN_GUESTS_MODAL:
-      return { ...state, isGuestsModalOpen: true }
+      return { ...state, isGuestsModalOpen: true, isDateModalOpen: false }
     case CLOSE_GUESTS_MODAL:
       return { ...state, isGuestsModalOpen: false }
     default: return state
