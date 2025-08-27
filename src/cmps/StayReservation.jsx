@@ -16,10 +16,10 @@ export function StayReservation({ stay }) {
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
-  console.log("🚀 ~ StayReservation ~ params:", params)
+  // console.log("🚀 ~ StayReservation ~ params:", params)
 
   if (!stay) return <div>Loading..</div>
-  const nights = getDayDiff(stay.startDate, stay.endDate)
+  const nights = getDayDiff(params.checkIn, params.checkOut)
   const totalPrice = nights * stay.price + 5
   const totalGuest = +params.adults + +params.children + +params.infants
 
@@ -48,8 +48,8 @@ export function StayReservation({ stay }) {
   return (
     <section className='stay-reservation'>
       <div className="reservation-header">
-        <span className="price">$ {stay.price} </span>
-        <span className="per-night"> night</span>
+        <span className="price underline">${stay.price*nights} </span>
+        <span className="per-night"> for {nights} {nights>1? 'nights': 'night'}</span>
       </div>
 
       <div className="reservation-form">
@@ -74,23 +74,24 @@ export function StayReservation({ stay }) {
 
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
       <p className="note">You won’t be charged yet</p>
+      {/* {params.checkIn && params.checkOut && <>
 
-      <div className="reservation-prices">
-        <p className="flex space-between">
-          <span className="nights-info">{nights} nights x $ {stay.price}</span>
-          <span>$ {nights * stay.price}</span>
-        </p>
-        <p className="flex space-between">
-          <span className="cleaning-fee">Cleaning fee</span>
-          <span>$ 5</span>
-        </p>
-        <hr />
-        <p className="flex space-between">
-          <span>Total</span>
-          <span>$ {totalPrice}</span>
-        </p>
-
-      </div>
+        <div className="reservation-prices">
+          <p className="flex space-between">
+            <span className="nights-info">{nights} nights x ${stay.price}</span>
+            <span>${nights * stay.price}</span>
+          </p>
+          <p className="flex space-between">
+            <span className="cleaning-fee">Cleaning fee</span>
+            <span>$5</span>
+          </p>
+          <hr />
+          <p className="flex space-between">
+            <span>Total</span>
+            <span>${totalPrice}</span>
+          </p>
+        </div>
+      </>} */}
     </section>
   )
 }
