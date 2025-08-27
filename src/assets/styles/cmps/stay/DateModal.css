@@ -78,3 +78,11 @@
 .rdp-months {
   flex-wrap: nowrap;
 }
+
+.rdp-nav{
+  z-index: 9;
+}
+
+.rdp-range_end .rdp-day_button, .rdp-range_start .rdp-day_button:hover{
+  background-color: black !important;
+}

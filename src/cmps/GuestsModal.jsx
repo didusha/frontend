@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { CLOSE_GUESTS_MODAL } from '../store/reducers/system.reducer'
-
+import minus from '../assets/images/svg/minus-btn.svg'
+import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
@@ -56,9 +57,13 @@ export function GuestsModal({ handleGuestChange }) {
                                     </div>
                                 </div>
                                 <div className="btns-guests">
-                                    <button className="btn-count" onClick={() => handleDecrement(type)}>-</button>
+                                    <button className="btn-count" onClick={() => handleDecrement(type)}>
+                                        <img className="svg-image" src={minus} alt="minus" />
+                                    </button>
                                     <span>{guests[type]}</span>
-                                    <button className="btn-count" onClick={() => handleIncrement(type)}>+</button>
+                                    <button className="btn-count" onClick={() => handleIncrement(type)}>
+                                        <img className="svg-image" src={plus} alt="plus" />
+                                    </button>
                                 </div>
                             </div>
                         ))}

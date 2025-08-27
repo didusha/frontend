@@ -1,23 +1,23 @@
 .guests-modal-overlay {
-   position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
 }
 
 .guests-modal-content {
-  background-color: white;
-  padding: 2.5em;
-  border-radius: 40px;
-  width: 430px;
-  height: 400px;
-  position: absolute;
-  top: 80px;
-  left: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 4;
+    background-color: white;
+    padding: 2em 2.5em;
+    border-radius: 30px;
+    width: 425px;
+    height: 400px;
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 4;
 }
 
 
@@ -42,7 +42,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 49px;
+    padding-right: 10px;
 }
 
 .btn-count {
@@ -50,7 +51,7 @@
     border: 1px solid gray;
     color: gray;
     border-radius: 50%;
-    padding: 14px 19px;
+    padding: 10px;
 }
 
 .btn-count:hover {
@@ -68,8 +69,13 @@
     height: .3px;
     width: 340px;
     background-color: #ccc;
+    top: 65px;
 }
 
 .guest-row:last-child::after {
     display: none;
+}
+
+.svg-image {
+    width: .6rem;
 }

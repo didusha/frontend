@@ -2,16 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, CLOSE_WHERE_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
+import { WhereModal } from './WhereModal'
 import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
+    const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
     const [selectedSection, setSelectedSection] = useState(null)
     const [localFilter, setLocalFilter] = useState(filterBy)
@@ -27,6 +29,10 @@ export function StayFilter() {
         document.addEventListener("mousedown", handleClickOutside)
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [wrapperRef])
+
+    useEffect(() => {
+        getSectionClass(null)
+    }, [isDateModalOpen, isGuestsModalOpen, isWhereModalOpen])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -44,6 +50,11 @@ export function StayFilter() {
 
     function handleCheckOutChange(val) {
         setLocalFilter(prev => ({ ...prev, checkOut: val }))
+    }
+
+    function handleWhereChange(val) {
+        const txt = val.city
+        setLocalFilter(prev => ({ ...prev, txt: txt }))
     }
 
     function onSubmit(ev) {
@@ -94,6 +105,7 @@ export function StayFilter() {
     function closeModals() {
         if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
         if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
+        if (isWhereModalOpen) dispatch({ type: CLOSE_WHERE_MODAL })
     }
 
     return (
@@ -104,7 +116,11 @@ export function StayFilter() {
             >
                 <section
                     className={`search ${getSectionClass("search")}`}
-                    onClick={() => setSelectedSection(selectedSection === "search" ? null : "search")}
+                    onClick={() => {
+                        dispatch({ type: OPEN_WHERE_MODAL })
+                        setSelectedSection(selectedSection === "search" ? null : "search")
+                        closeModals()
+                    }}
                 >
                     <h5>Where</h5>
                     <input
@@ -121,6 +137,7 @@ export function StayFilter() {
                     onClick={() => {
                         dispatch({ type: OPEN_DATE_MODAL })
                         setSelectedSection(selectedSection === "checkIn" ? null : "checkIn")
+                        closeModals()
                     }}
                 >
                     <h5>Check in</h5>
@@ -132,6 +149,7 @@ export function StayFilter() {
                     onClick={() => {
                         dispatch({ type: OPEN_DATE_MODAL })
                         setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
+                        closeModals()
                     }}
                 >
                     <h5>Check out</h5>
@@ -144,6 +162,7 @@ export function StayFilter() {
                         onClick={() => {
                             dispatch({ type: OPEN_GUESTS_MODAL })
                             setSelectedSection(selectedSection === "guests" ? null : "guests")
+                            closeModals()
                         }}
                     >
                         <h5>Who</h5>
@@ -154,15 +173,17 @@ export function StayFilter() {
                         <span className="search-span">search</span>
                     </button>
                 </section>
-            </form>
+            </form >
+            <WhereModal
+                handleWhereChange={handleWhereChange}
+            />
             <DateModal
                 handleCheckOutChange={handleCheckOutChange}
                 handleCheckInChange={handleCheckInChange}
             />
             <GuestsModal
-                localFilter={localFilter}
                 handleGuestChange={handleGuestChange}
             />
-        </section>
+        </section >
     )
 }
