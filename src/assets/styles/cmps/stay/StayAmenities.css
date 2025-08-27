@@ -7,15 +7,28 @@
 
   .amenities-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(234px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(287px, 1fr));
   }
   .icon {
     padding-block-end: 24px;
     gap: 15px;
     align-items: center;
+    /* padding-inline-end: 90px; */
 
-    img{
+    img {
       width: 24px;
     }
+
+    .label {
+      padding-inline-end: 50px;
+    }
+
+  }
+  .labels-btn {
+    grid-column: 1;
+    width: fit-content;
+    padding: 14px 24px;
+    font-size: 1rem;
+    margin: 8px 0 0;
   }
 }
