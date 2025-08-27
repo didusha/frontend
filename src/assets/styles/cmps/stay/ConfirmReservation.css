@@ -1,6 +1,6 @@
 .confirm-reservation {
     display: flex;
-    gap: 6rem;
+    gap: 4rem;
     align-items: center;
     justify-content: center;
 
@@ -13,7 +13,7 @@
     .order-details {
         padding: 30px;
 
-        .svg-image{
+        .svg-image {
             width: 24px;
             display: inline-block;
         }
@@ -32,13 +32,15 @@
         .date-details,
         .guests-details,
         .order-confirm {
+
             h3,
             p {
                 margin-block: 1rem;
             }
 
-            span{
-                margin-left: 7px;;
+            span {
+                margin-left: 7px;
+                ;
             }
         }
 
@@ -81,10 +83,14 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
         padding: 30px 40px;
-        margin-top: 45px;
 
-        .stay-summary img {
-            width: 150px;
+        .stay-summary {
+            gap: 10px;
+
+            img {
+                width: 150px;
+                object-fit: contain;
+            }
         }
 
         .rating img {

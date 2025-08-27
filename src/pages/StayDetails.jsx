@@ -51,12 +51,6 @@ export function StayDetails() {
     }
   }
 
-  
-  
-
-
-
-
   if (!stay) return <div>loading...</div>
 
   return (
@@ -69,7 +63,7 @@ export function StayDetails() {
           {/* <a href="#location">Location</a> */}
         </section>
       </nav>}
-      <Link to='/'> ← </Link>
+      {/* <Link to='/'> ← </Link> */}
       <div className='photos' id='photos'   ref={photoRef} >
         <StayGallery images={stay.imgUrls} name={stay.name} />
       </div>
