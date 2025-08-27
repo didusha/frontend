@@ -56,7 +56,7 @@ export function ConfirmReservation() {
   }
 
   if (!stay) return <div>Loading...</div>
-  const nights = getDayDiff(stay.startDate, stay.endDate)
+  const nights = getDayDiff(params.checkIn, params.checkOut)
   const totalPrice = nights * stay.price + 5
   const totalGuest = +params.adults + +params.children + +params.infants
 
