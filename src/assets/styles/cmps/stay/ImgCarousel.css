@@ -27,6 +27,7 @@
     opacity: 0;
     pointer-events: none;
     padding: .5em .8em;
+    z-index: 1;
     transition: background 0.2s, opacity 0.2s ease, transform 0.25s ease;
 }
 
