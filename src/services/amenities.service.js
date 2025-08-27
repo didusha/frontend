@@ -3,7 +3,7 @@ import wifiicon from '../assets/images/svg/wifi.svg'
 import kitchenicon from '../assets/images/svg/kitchen.svg'
 import smokingallowedicon from '../assets/images/svg/smokingallowed.svg' 
 import petsallowedicon from '../assets/images/svg/petsallowed.svg'
-import cookingbasicsicon from '../assets/images/svg/kitchen.svg'// like kitchen
+import cookingbasicsicon from '../assets/images/svg/kitchen.svg'
 import airconditioningicon from '../assets/images/svg/air-conditioning.svg'
 import bbqgrillicon from '../assets/images/svg/bbq-grill.svg' 
 import beachareaicon from '../assets/images/svg/beach-area.svg'
@@ -36,7 +36,7 @@ import dryericon from '../assets/images/svg/dryer.svg'
 // import lockboxicon from '/svg/lockbox.svg'
 // import mountainicon from '/svg/mountain.svg'
 // import privatehottubicon from '/svg/private-hot-tub.svg'
-// import shampooicon from '/svg/shampoo.svg'
+import shampooicon from '../assets/images/svg/shampoo.svg'
 
 export const icons = {
     TV: tvicon,
@@ -77,6 +77,6 @@ export const icons = {
     // Lockbox: lockboxicon,
     // Mountain: mountainicon,
     // 'Private hot tub': privatehottubicon,
-    // Shampoo: shampooicon,
+    Shampoo: shampooicon,
 }
 

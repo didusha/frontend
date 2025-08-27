@@ -9,6 +9,7 @@ import { StayDescription } from '../cmps/StayDescription.jsx'
 import { StayReservation } from '../cmps/StayReservation.jsx'
 import { ReviewList } from '../cmps/ReviewList.jsx'
 import { StayAmenities } from '../cmps/StayAmenities.jsx'
+import { useRef } from "react"
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -20,6 +21,27 @@ export function StayDetails() {
     loadStay(stayId)
   }, [stayId])
 
+  const [showHeader, setShowHeader] = useState(false)
+  const photoRef = useRef(null) 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!photoRef.current) return
+      const rect = photoRef.current.getBoundingClientRect()
+      if (rect.bottom <= 0) {
+        setShowHeader(true)
+      } else {
+        setShowHeader(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+ 
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
+
+
   async function loadStay(stayId) {
     try {
       const stay = await stayService.getById(stayId)
@@ -29,22 +51,27 @@ export function StayDetails() {
       showErrorMsg('Cannot load stay')
     }
   }
+
   
-console.log(stay);
+  
+
+
+
 
   if (!stay) return <div>loading...</div>
+
   return (
     <section className='stay-details details-layout '>
-      <nav className='nav details-layout non-active'>
+     {showHeader && <nav className='nav details-layout '>
         <section className='nav-list flex'>
           <a href='#photos'>Photos</a>
           <a href='#amenities'>Amenities</a>
           <a href='#reviews'>Reviews</a>
-          <a href="#location">Location</a>
+          {/* <a href="#location">Location</a> */}
         </section>
-      </nav>
+      </nav>}
       <Link to='/'> ← </Link>
-      <div className='photos' id='photos'>
+      <div className='photos' id='photos'   ref={photoRef} >
         <StayGallery images={stay.imgUrls} name={stay.name} />
       </div>
       <div className='main-details'>

@@ -2,10 +2,22 @@ import { LongTxt } from './LongTxt.jsx'
 import doorUrl from '../assets/images/door.svg'
 import locationUrl from '../assets/images/location.svg'
 import chatUrl from '../assets/images/chat.svg'
-import { getAverageRating, getRandomIntInclusive } from '../services/util.service.js'
+import {
+  getAverageRating,
+  getRandomIntInclusive,
+} from '../services/util.service.js'
 
 export function StayDescription({ stay }) {
-  const { host, type, loc, summary, reviews } = stay
+  const {
+    host,
+    roomType,
+    loc,
+    summary,
+    reviews,
+    bathrooms,
+    bedrooms,
+    capacity,
+  } = stay
 
   const years = getRandomIntInclusive(1, 15)
   const avg = getAverageRating(reviews)
@@ -14,9 +26,13 @@ export function StayDescription({ stay }) {
     <section className='stay-description'>
       <div className='stay-info'>
         <h2>
-          {type} in {loc.city}, {loc.country}
+          {roomType} in {loc.city}, {loc.country}
         </h2>
-
+        <p>
+          {capacity} guests · {bedrooms}{' '}
+          {bedrooms > 1 ? 'bedrooms' : 'bedrooms'} · {bathrooms}{' '}
+          {bathrooms > 1 ? 'bathrooms' : 'bathroom'}{' '}
+        </p>
         <div className='reviews'>
           {!reviews?.length ? (
             <div>★ New</div>
@@ -42,13 +58,11 @@ export function StayDescription({ stay }) {
           </p>
         </div>
       </div>
-
       <div className='gest-check-in flex'>
         <article className='flex'>
           <section className='icon'>
             <img src={doorUrl} alt='door icon' />
           </section>
-
           <div>
             <h3>Great check-in experience</h3>
             <p>Check yourself in with the lockbox.</p>

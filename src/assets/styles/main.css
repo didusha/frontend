@@ -30,7 +30,7 @@
 @import "cmps/stay/DateModal";
 @import "cmps/stay/GuestsModal";
 @import "cmps/stay/StaySmallFilter";
-@import "cmps/stay/stayDetails";
+@import "cmps/stay/StayDetails";
 @import "cmps/stay/StayDescription";
 @import "cmps/stay/StayReservation";
 @import "cmps/stay/ConfirmReservation.css";
