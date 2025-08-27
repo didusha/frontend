@@ -42,7 +42,7 @@
     top: 25%;
     bottom: 25%;
     left: -5px;
-    width: 2px;
+    width: 3px;
     background-color: #ccc;
 }
 
@@ -85,6 +85,14 @@
     left: -13px;
     width: 2px;
     background-color: #ccc;
+}
+
+.stay-filter section:hover::before{
+    opacity: 0;
+}
+
+.stay-filter section:hover + *::before{
+    opacity: 0;
 }
 
 .check-in span,
@@ -132,6 +140,15 @@
     margin-right: 0.6em;
 }
 
+.btn-search .search-span{
+    display: none;
+}
+
+.search-span{
+    color: white !important;
+    padding-left: 6px;
+}
+
 .btn-search:hover {
     background-image: linear-gradient(to right, #ff385c, #bd1e59);
 }
@@ -143,6 +160,7 @@
 
 .selected {
     background-color: white !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .not-selected {

@@ -91,7 +91,7 @@ export function StayFilter() {
         return selectedSection === sectionName ? "selected" : "not-selected"
     }
 
-    function closeModals(){
+    function closeModals() {
         if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
         if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
     }
@@ -149,21 +149,10 @@ export function StayFilter() {
                         <h5>Who</h5>
                         <span>{getGuestsLabel(localFilter.capacity)}</span>
                     </div>
-                    {!selectedSection ?
-                        <button className="btn-search" type="submit">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                        </button>
-                        :
-                        <button 
-                        className="btn-search-selected" 
-                        type="submit" 
-                        onClick={closeModals}
-                        >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", paddingRight: '5px' }} />
-                            search
-                        </button>
-
-                    }
+                    <button className={!selectedSection ? "btn-search" : "btn-search-selected"} type="submit">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                        <span className="search-span">search</span>
+                    </button>
                 </section>
             </form>
             <DateModal

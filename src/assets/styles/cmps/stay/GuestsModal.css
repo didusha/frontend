@@ -1,7 +1,5 @@
-
-
 .guests-modal-overlay {
-  position: fixed;
+   position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
@@ -16,9 +14,10 @@
   width: 430px;
   height: 400px;
   position: absolute;
-  top: 200px;
+  top: 80px;
   left: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 4;
 }
 
 
