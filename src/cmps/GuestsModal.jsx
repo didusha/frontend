@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { CLOSE_GUESTS_MODAL } from '../store/reducers/system.reducer'
 
+
 Modal.setAppElement('#root')
 
 export function GuestsModal({ handleGuestChange }) {
@@ -38,7 +39,8 @@ export function GuestsModal({ handleGuestChange }) {
     return (
         <>
             {isGuestsModalOpen && (
-                <div className="guests-modal-overlay" onClick={() => dispatch({ type: CLOSE_GUESTS_MODAL })}>
+                <>
+                    <div className="guests-modal-overlay" onClick={() => dispatch({ type: CLOSE_GUESTS_MODAL })}></div>
                     <div
                         className="guests-modal-content"
                         onClick={(e) => e.stopPropagation()}
@@ -61,7 +63,7 @@ export function GuestsModal({ handleGuestChange }) {
                             </div>
                         ))}
                     </div>
-                </div>
+                </>
             )}
         </>
     )

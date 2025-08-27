@@ -153,20 +153,6 @@ export function StayFilter() {
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
                         <span className="search-span">search</span>
                     </button>
-                    {/* {!selectedSection ?
-                        <button className="btn-search" type="submit">
-                        </button>
-                        :
-                        <button 
-                        className="btn-search-selected" 
-                        type="submit" 
-                        onClick={closeModals}
-                        >
-                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", paddingRight: '5px' }} />
-                            search
-                        </button>
-
-                    } */}
                 </section>
             </form>
             <DateModal
