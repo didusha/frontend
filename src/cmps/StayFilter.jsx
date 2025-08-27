@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, CLOSE_WHERE_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
@@ -100,6 +100,7 @@ export function StayFilter() {
     function closeModals() {
         if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
         if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
+        if (isWhereModalOpen) dispatch({ type: CLOSE_WHERE_MODAL })
     }
 
     return (

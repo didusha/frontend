@@ -8,16 +8,16 @@
 }
 
 .where-modal-content {
-    background-color: white;
-    padding: 2em 2.5em;
-    border-radius: 30px;
-    width: 425px;
-    height: 400px;
-    position: absolute;
-    top: 80px;
-    right: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 4;
+  background-color: white;
+  padding: 2em 2.5em;
+  border-radius: 30px;
+  width: 425px;
+  height: 400px;
+  position: absolute;
+  top: 80px;
+  right: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 4;
 }
 
 .where-modal-title {

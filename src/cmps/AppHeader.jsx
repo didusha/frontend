@@ -8,6 +8,13 @@ import { useState, useEffect } from 'react'
 import { StaySmallFilter } from './StaySmallFilter'
 import { throttle } from 'lodash'
 
+import homes from '../assets/images/png/homes.png'
+import experiences from '../assets/images/png/experiences.png'
+import services from '../assets/images/png/services.png'
+import Hamburger from '../assets/images/png/Hamburger.png'
+import question from '../assets/images/png/circle-question.png'
+import rarebnb from '../assets/images/png/rarebnb.webp'
+
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
@@ -57,7 +64,7 @@ export function AppHeader() {
 		<header className={`app-header full ${isHomePage ? 'sticky' : ''}`}>
 			<nav>
 				<section className="logo" onClick={() => navigate('/')}>
-					<img className="logo-img" src="../../public/img/rarebnb.webp" alt="logo" />
+					<img className="logo-img" src={rarebnb} alt="logo" />
 					<span>rarebnb</span>
 				</section>
 
@@ -72,15 +79,15 @@ export function AppHeader() {
 				{isHomePage && isFocus && (
 					<section className="navigation-links">
 						<section className="homes-section">
-							<img className="homes-imgs" src="../../public/img/homes.png" alt="homes" />
+							<img className="homes-imgs" src={homes} alt="homes" />
 							<a>Homes</a>
 						</section>
 						<section className="experiences-section">
-							<img className="experiences-imgs" src="../../public/img/experiences.png" alt="experiences" />
+							<img className="experiences-imgs" src={experiences} alt="experiences" />
 							<a>Experiences</a>
 						</section>
 						<section>
-							<img className="services-imgs" src="../../public/img/services.png" alt="services" />
+							<img className="services-imgs" src={services} alt="services" />
 							<a>Services</a>
 						</section>
 					</section>
@@ -102,12 +109,12 @@ export function AppHeader() {
 				)} */}
 				<section className="hamburger-menu-section">
 					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
-						<img className="hamburger" src="../../public/img/Hamburger.png" alt="menu" />
+						<img className="hamburger" src={Hamburger} alt="menu" />
 					</button>
 					{isHamburgerOpen && !user &&
 						<div className="logged-out-hamburger">
 							<section className="help-center">
-								<img className="circle-question" src="../../public/img/circle-question.png" alt="" />
+								<img className="circle-question" src={question} alt="" />
 								Help Center
 							</section>
 							<section className="become-host">
@@ -116,7 +123,7 @@ export function AppHeader() {
 									<p className="become-host-p" >It's easy to start hosting and</p>
 									<p className="become-host-p" >earn extra income</p>
 								</div>
-								<img className="homes-hamburger" src="../../public/img/homes.png" alt="" />
+								<img className="homes-hamburger" src={homes} alt="" />
 							</section>
 							<section>
 								<div className="hamburger-options">Refer a Host</div>
