@@ -99,5 +99,8 @@ export const icons = {
     Communication: communicationIcon,
     Map: mapIcon,
     value: valueIcon,
+    star: starIcon,
+    greenCheck: greenCheckIcon,
+    daimond: daimondIcon,
 }
 
