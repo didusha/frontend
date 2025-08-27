@@ -13,6 +13,11 @@
     .order-details {
         padding: 30px;
 
+        .svg-image{
+            width: 24px;
+            display: inline-block;
+        }
+
         .btn-back,
         h1 {
             display: inline-block;
@@ -25,10 +30,15 @@
         }
 
         .date-details,
-        .guests-details {
+        .guests-details,
+        .order-confirm {
             h3,
             p {
-                margin-bottom: 1.5rem;
+                margin-block: 1rem;
+            }
+
+            span{
+                margin-left: 7px;;
             }
         }
 

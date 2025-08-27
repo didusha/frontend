@@ -42,5 +42,5 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
         </>
       )}
     </>
-  );
+  )
 }

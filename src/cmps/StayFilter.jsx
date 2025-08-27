@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
@@ -10,26 +10,39 @@ import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
+    const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const dispatch = useDispatch()
-
+    const [selectedSection, setSelectedSection] = useState(null)
     const [localFilter, setLocalFilter] = useState(filterBy)
     const [searchParams, setSearchParams] = useSearchParams()
+    const wrapperRef = useRef(null)
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setSelectedSection(null)
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => document.removeEventListener("mousedown", handleClickOutside)
+    }, [wrapperRef])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
         const val = (type === 'number') ? +value : value
         setLocalFilter(prev => ({ ...prev, [name]: val }))
     }
-    
-    function handleGuestChange(val){
+
+    function handleGuestChange(val) {
         setLocalFilter(prev => ({ ...prev, capacity: val }))
     }
 
-    function handleCheckInChange(val){
+    function handleCheckInChange(val) {
         setLocalFilter(prev => ({ ...prev, checkIn: val }))
     }
 
-    function handleCheckOutChange(val){
+    function handleCheckOutChange(val) {
         setLocalFilter(prev => ({ ...prev, checkOut: val }))
     }
 
@@ -73,11 +86,26 @@ export function StayFilter() {
         return parts.join(', ')
     }
 
+    function getSectionClass(sectionName) {
+        if (selectedSection === null) return ""
+        return selectedSection === sectionName ? "selected" : "not-selected"
+    }
+
+    function closeModals(){
+        if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
+        if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
+    }
 
     return (
-        <section className="stay-filter">
-            <form onSubmit={onSubmit}>
-                <section className="search">
+        <section className="stay-filter" ref={wrapperRef}>
+            <form
+                onSubmit={onSubmit}
+                className={selectedSection ? "form-active" : ""}
+            >
+                <section
+                    className={`search ${getSectionClass("search")}`}
+                    onClick={() => setSelectedSection(selectedSection === "search" ? null : "search")}
+                >
                     <h5>Where</h5>
                     <input
                         type="text"
@@ -88,35 +116,63 @@ export function StayFilter() {
                     />
                 </section>
 
-                <section className="check-in" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
+                <section
+                    className={`check-in ${getSectionClass("checkIn")}`}
+                    onClick={() => {
+                        dispatch({ type: OPEN_DATE_MODAL })
+                        setSelectedSection(selectedSection === "checkIn" ? null : "checkIn")
+                    }}
+                >
                     <h5>Check in</h5>
                     <span>{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
                 </section>
 
-                <section className="check-out" onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>
+                <section
+                    className={`check-out ${getSectionClass("checkOut")}`}
+                    onClick={() => {
+                        dispatch({ type: OPEN_DATE_MODAL })
+                        setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
+                    }}
+                >
                     <h5>Check out</h5>
                     <span>{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
                 </section>
 
-                <section className="guests">
-                    <div className="guests-text" onClick={() => dispatch({ type: OPEN_GUESTS_MODAL })}>
+                <section className={`guests ${getSectionClass("guests")}`}>
+                    <div
+                        className="guests-text"
+                        onClick={() => {
+                            dispatch({ type: OPEN_GUESTS_MODAL })
+                            setSelectedSection(selectedSection === "guests" ? null : "guests")
+                        }}
+                    >
                         <h5>Who</h5>
-                        <span>
-                            {getGuestsLabel(localFilter.capacity)}
-                        </span>
+                        <span>{getGuestsLabel(localFilter.capacity)}</span>
                     </div>
-                    <button className="btn-search" type="submit">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                    </button>
+                    {!selectedSection ?
+                        <button className="btn-search" type="submit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                        </button>
+                        :
+                        <button 
+                        className="btn-search-selected" 
+                        type="submit" 
+                        onClick={closeModals}
+                        >
+                            <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff", paddingRight: '5px' }} />
+                            search
+                        </button>
+
+                    }
                 </section>
             </form>
             <DateModal
-            handleCheckOutChange={handleCheckOutChange}
-            handleCheckInChange={handleCheckInChange}
+                handleCheckOutChange={handleCheckOutChange}
+                handleCheckInChange={handleCheckInChange}
             />
-            <GuestsModal 
-            localFilter={localFilter}
-            handleGuestChange={handleGuestChange}
+            <GuestsModal
+                localFilter={localFilter}
+                handleGuestChange={handleGuestChange}
             />
         </section>
     )
