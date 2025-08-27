@@ -12,6 +12,7 @@ export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const navigate = useNavigate()
 	const location = useLocation()
+	const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
 	const isHomePage = location.pathname === '/'
 
 	const [isFocus, setIsFocus] = useState(isHomePage ? true : false)
@@ -79,7 +80,7 @@ export function AppHeader() {
 					</section>
 				)}
 
-				{user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
+				{/* {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
 
 
 				{!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
@@ -92,11 +93,37 @@ export function AppHeader() {
 						
 						<button onClick={onLogout}>logout</button>
 					</div>
-				)}
+				)} */}
+				<section className="hamburger-menu-section">
+					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
+						<img className="hamburger" src="../../public/img/Hamburger.png" alt="menu" />
+					</button>
+					{isHamburgerOpen && !user &&
+						<div className="logged-out-hamburger">
+							<section className="help-center">
+								<img className="circle-question" src="../../public/img/circle-question.png" alt="" />
+								Help Center
+							</section>
+							<section className="become-host">
+								<div>
+									<span className="host-span">Become a host</span>
+									<p className="become-host-p" >It's easy to start hosting and</p>
+									<p className="become-host-p" >earn extra income</p>
+								</div>
+								<img className="homes-hamburger" src="../../public/img/homes.png" alt="" />
+							</section>
+							<section>
+								<div className="hamburger-options">Refer a Host</div>
+								<div className="hamburger-options">Find a co-host</div>
+								<div className="hamburger-options">Gift cards</div>
+							</section >
+							<div className="log-in-link">
+								<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink>
+							</div>
+						</div>
+					}
+				</section>
 			</nav>
-				{/* <button className="hamburger-menu">
-					<img className="hamburger" src="../../public/img/Hamburger.png" alt="menu" />
-				</button> */}
 
 			{isHomePage && isFocus && <StayFilter />}
 		</header>
