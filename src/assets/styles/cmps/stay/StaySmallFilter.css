@@ -28,7 +28,7 @@
     background-color: #ccc;
 }
 
-.small-filter button {
+.btn-search-small {
     display: flex;
     align-items: center;
     justify-content: center;

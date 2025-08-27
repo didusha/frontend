@@ -11,7 +11,7 @@ export function StaySmallFilter({ openFocusComponent }) {
             <section className="anywhere">Anywhere</section>
             <section onClick={() => dispatch({ type: OPEN_DATE_MODAL })}>Anytime</section>
             <section onClick={() => dispatch({ type: OPEN_GUESTS_MODAL })}>Add guests</section>
-            <button className="btn-clear">
+            <button className="btn-search-small">
                 <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
             </button>
         </section>
