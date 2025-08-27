@@ -30,10 +30,6 @@ export function StayFilter() {
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [wrapperRef])
 
-    useEffect(() => {
-        getSectionClass(null)
-    }, [isDateModalOpen, isGuestsModalOpen, isWhereModalOpen])
-
     function handleChange(ev) {
         const { type, name, value } = ev.target
         const val = (type === 'number') ? +value : value
@@ -148,7 +144,7 @@ export function StayFilter() {
                     onClick={() => {
                         dispatch({ type: OPEN_DATE_MODAL })
                         setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
-                        closeModals()
+                        // closeModals()
                     }}
                 >
                     <h5>Check out</h5>
@@ -174,13 +170,16 @@ export function StayFilter() {
                 </section>
             </form >
             <WhereModal
+                setSelectedSection={setSelectedSection}
                 handleWhereChange={handleWhereChange}
             />
             <DateModal
+                setSelectedSection={setSelectedSection}
                 handleCheckOutChange={handleCheckOutChange}
                 handleCheckInChange={handleCheckInChange}
             />
             <GuestsModal
+                setSelectedSection={setSelectedSection}
                 handleGuestChange={handleGuestChange}
             />
         </section >
