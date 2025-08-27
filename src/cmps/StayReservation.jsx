@@ -16,7 +16,7 @@ export function StayReservation({ stay }) {
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
-  console.log("🚀 ~ StayReservation ~ params:", params)
+
 
   if (!stay) return <div>Loading..</div>
   const nights = getDayDiff(stay.startDate, stay.endDate)
@@ -46,7 +46,7 @@ export function StayReservation({ stay }) {
   }
 
   return (
-    <section className='stay-reservation'>
+    <section className='stay-reservation' id='reservation'>
       <div className="reservation-header">
         <span className="price">$ {stay.price} </span>
         <span className="per-night"> night</span>
