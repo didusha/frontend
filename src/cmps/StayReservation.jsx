@@ -1,13 +1,12 @@
-import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
-import { GuestsModal } from './GuestsModal'
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { getDayDiff } from '../services/util.service.js'
 import { useNavigate, useSearchParams } from "react-router-dom"
-import { useDispatch } from 'react-redux'
-import { DateModal } from './DateModal.jsx'
+import { useDispatch, useSelector } from 'react-redux'
 import { formatDateCalendar } from '../services/util.service.js'
+import { DetailsDateModal } from './DetailsDateModal.jsx'
+import { DetailsGuestsModal } from './DetailsGuestsModal.jsx'
 
 export function StayReservation({ stay }) {
 
@@ -16,6 +15,8 @@ export function StayReservation({ stay }) {
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
+  const [isDateModalOpen, setIsDateModalOpen] = useState(false)
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
   // console.log("🚀 ~ StayReservation ~ params:", params)
 
   if (!stay) return <div>Loading..</div>
@@ -38,17 +39,17 @@ export function StayReservation({ stay }) {
 
   function onGuestModal() {
     setArrow(!arrow)
-    dispatch({ type: OPEN_GUESTS_MODAL })
+    setIsGuestsModalOpen(true)
   }
 
   function onDateModal() {
-    dispatch({ type: OPEN_DATE_MODAL })
+    setIsDateModalOpen(true)
   }
 
   return (
     <section className='stay-reservation'>
       <div className="reservation-header">
-        <span className="price underline">{(params.checkIn && params.checkOut) ? `$${stay.price *nights}` : `$${stay.price}`}</span>
+        <span className="price underline">{(params.checkIn && params.checkOut) ? `$${stay.price * nights}` : `$${stay.price}`}</span>
         <span className="per-night"> for {(params.checkIn && params.checkOut && nights > 1) ? `${nights} nights` : `1 night`}</span>
       </div>
 
@@ -56,7 +57,7 @@ export function StayReservation({ stay }) {
         <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
           <p>{(params.checkIn === "null") ? formatDateCalendar(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)) : formatDateCalendar(params.checkIn)}</p>
-          {/* <DateModal /> */}
+          <DetailsDateModal isDateModalOpen={isDateModalOpen} setIsDateModalOpen={setIsDateModalOpen}/>
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
@@ -69,7 +70,7 @@ export function StayReservation({ stay }) {
         <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
-        {/* <GuestsModal /> */}
+        <DetailsGuestsModal setIsGuestsModalOpen={setIsGuestsModalOpen} isGuestsModalOpen={isGuestsModalOpen}/>
       </div>
 
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>

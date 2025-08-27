@@ -1,0 +1,81 @@
+.details-guests-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.details-guests-modal-content {
+    background-color: white;
+    padding: 2em 2.5em;
+    border-radius: 30px;
+    width: 425px;
+    height: 400px;
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+}
+
+
+.btns-guests {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.details-desc-guests {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.details-type-guests {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.details-guest-row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 49px;
+    padding-right: 10px;
+}
+
+.btn-count {
+    background-color: transparent;
+    border: 1px solid gray;
+    color: gray;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.btn-count:hover {
+    background-color: transparent !important;
+    border: 1px solid black;
+    color: black;
+}
+
+.details-guest-row::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 20px;
+    height: .3px;
+    width: 340px;
+    background-color: #ccc;
+    top: 65px;
+}
+
+.details-guest-row:last-child::after {
+    display: none;
+}
+
+.svg-image {
+    width: .6rem;
+}
