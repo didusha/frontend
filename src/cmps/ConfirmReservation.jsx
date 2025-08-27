@@ -110,10 +110,8 @@ export function ConfirmReservation() {
         <div className="stay-summary flex">
           <img src={stay.imgUrls[0]} alt="" />
           <div className="stay-desc flex column space-between">
-            <div>
               <h4 className="">{stay.name}</h4>
               <p className="grey">{stay.type}</p>
-            </div>
             <div className="rating flex">
               <img src={star} alt="Star" />
               <span className="avg-rating">4.88</span>
@@ -125,7 +123,7 @@ export function ConfirmReservation() {
 
         <div className="reservation-prices">
           <p className="flex space-between">
-            <span className="nights-info underline">{nights} nights x $ {stay.price}</span>
+            <span className="nights-info underline">{nights} nights x ${stay.price}</span>
             <span>$ {nights * stay.price}</span>
           </p>
           <p className="flex space-between">

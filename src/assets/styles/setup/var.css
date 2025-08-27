@@ -1,13 +1,7 @@
 :root {
   --clr1: #fe385c;
-  /* --clr2: #4f3a65;
-  --clr3: #574f7d; */
-  --clr4: #f1f1f1;
-  --clr5: #fefefe;
-  --clr6:  #e63250;
+   --clr2: rgb(34, 34, 34);
   
-  --clr1-light: color-mix(in lab, var(--clr1), white 15%);
-
   --gray-btn: #f1f1f1;
   --gray-filter: #eaeaea;
   --gray-footer: #f6f6f6;
@@ -16,23 +10,6 @@
   --white-bg-btn:#ffffff;
   --black-btn:#222222;
   --gray-p: #6a6a6a;;
-  /* --gray1: #ddd;
-  --gray2: #aaa;
-  --gray3: #777;
-  --gray4: #333; */
-
-  --success: rgb(41, 189, 73);
-  --error: rgb(216, 59, 59);
-
-   --bg: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --chip: #f3f4f6;
-  --chip-text: #374151;
-  --accent: #ef4444;          /* like the wishlist heart */
-  --brand: #222222;           /* dark header text */
-  --shadow: 0 6px 16px rgba(0,0,0,.12);
-  --radius: 16px;
-
+  
 }
+

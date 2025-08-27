@@ -48,14 +48,14 @@ export function StayReservation({ stay }) {
   return (
     <section className='stay-reservation'>
       <div className="reservation-header">
-        <span className="price underline">${stay.price*nights} </span>
-        <span className="per-night"> for {nights} {nights>1? 'nights': 'night'}</span>
+        <span className="price underline">{(params.checkIn && params.checkOut) ? `$${stay.price *nights}` : `$${stay.price}`}</span>
+        <span className="per-night"> for {(params.checkIn && params.checkOut && nights > 1) ? `${nights} nights` : `1 night`}</span>
       </div>
 
       <div className="reservation-form">
         <div className="check-in-date" onClick={onDateModal}>
           <label>CHECK-IN</label>
-          <p>{(params.checkIn === "null") ? "Add date" : formatDateCalendar(params.checkIn)}</p>
+          <p>{(params.checkIn === "null") ? formatDateCalendar(new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)) : formatDateCalendar(params.checkIn)}</p>
           {/* <DateModal /> */}
         </div>
         <div className="check-out-date" onClick={onDateModal}>
