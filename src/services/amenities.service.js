@@ -102,5 +102,11 @@ export const icons = {
     star: starIcon,
     greenCheck: greenCheckIcon,
     daimond: daimondIcon,
+    share:shareIcon,
+    favorite:favoriteIcon,
+    apps:appsIcon,
+    door:doorIcon,
+    chat:chatIcon, 
+    pin:pinIcon,
 }
 
