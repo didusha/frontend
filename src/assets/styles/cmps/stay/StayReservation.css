@@ -53,6 +53,10 @@
             cursor: pointer;
         }
 
+        .check-in-date {
+            position: relative;
+        }
+
     }
 
     .reservation-prices {

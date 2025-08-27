@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 5;
 }
 
 .details-date-modal-content {
@@ -13,7 +13,8 @@
   border-radius: 40px;
   max-width: 850px;
   position: absolute;
-  top: 80px;
+  top: 65px;
+  right: -120px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 4;
   /* width: 100%; */
@@ -79,10 +80,11 @@
   flex-wrap: nowrap;
 }
 
-.rdp-nav{
+.rdp-nav {
   z-index: 9;
 }
 
-.rdp-range_end .rdp-day_button, .rdp-range_start .rdp-day_button:hover{
+.rdp-range_end .rdp-day_button,
+.rdp-range_start .rdp-day_button:hover {
   background-color: black !important;
 }

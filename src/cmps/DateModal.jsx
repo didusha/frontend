@@ -4,7 +4,7 @@ import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
-export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
+export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection }) {
   const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
   const dispatch = useDispatch()
 
