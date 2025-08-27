@@ -15,10 +15,10 @@ export function StayPreview({ stay, params }) {
 
             <div className="preview-info">
                 <div className="preview-name">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
-                <span className="preview-rate">
+                {stay.reviews && <span className="preview-rate">
                     <span><FontAwesomeIcon icon={faStar} /></span>
                     {stay.rating} ({stay.reviews?.length})
-                </span>
+                </span>}
 
                 <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {getRandomIntInclusive(1, 10)} years</div>
                 <div className="preview-dates grey">{formatDateRange(stay.startDate, stay.endDate)}</div>

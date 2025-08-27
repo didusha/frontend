@@ -51,6 +51,7 @@
 
         .preview-rate {
             grid-area: rating;
+            justify-self: end;
         }
 
         .preview-dates {
