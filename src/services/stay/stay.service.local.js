@@ -116,8 +116,6 @@ function getRandomStay(_id = '') {
     'Pets allowed',
     'Cooking basics',
   ]
-
-  // Pick 2-4 random amenities
   const amenities = []
   const numAmenities = Math.floor(Math.random() * 5) + 2 // 2 to 4
   for (let i = 0; i < numAmenities; i++) {
@@ -126,7 +124,6 @@ function getRandomStay(_id = '') {
     if (!amenities.includes(randomAmenity)) amenities.push(randomAmenity)
   }
 
-  // Random price and capacity
   const price = Math.floor(Math.random() * (200 - 20 + 1)) + 20 // 20–200
   const capacity = Math.floor(Math.random() * 8) + 1 // 1–8
 
@@ -212,10 +209,8 @@ function getFakeReviews(count = 5) {
   return reviews
 }
 
-
-
-
 function createStays() {
+
   const stays = [
     {
       _id: '6738ca4cae769d402b653c7c',
@@ -313,6 +308,8 @@ function createStays() {
         lat: 9.2672,
         lng: -83.8614,
       },
+      startDate:'2025-09-03T22:00:00.000Z',
+      endDate:'2025-09-11T22:00:00.000Z',
       reviews: [
         {
           date: '2017-04-28T04:00:00.000Z',
@@ -447,6 +444,8 @@ function createStays() {
       ],
       bathrooms: 2,
       bedrooms: 4,
+      startDate:'2025-09-03T22:00:00.000Z',
+      endDate:'2025-09-11T22:00:00.000Z',
       roomType: 'Entire home/apt',
       host: {
         _id: '673f1b4250b320833d20ea99',
@@ -633,6 +632,8 @@ function createStays() {
       ],
       bathrooms: 2,
       bedrooms: 3,
+      startDate:'2025-09-03T22:00:00.000Z',
+      endDate:'2025-09-11T22:00:00.000Z',
       roomType: 'Entire home/apt',
       host: {
         _id: '673f1b4250b320833d20ea99',
