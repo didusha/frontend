@@ -1,12 +1,10 @@
 import { OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
-import { GuestsModal } from './GuestsModal'
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { getDayDiff } from '../services/util.service.js'
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { useDispatch } from 'react-redux'
-import { DateModal } from './DateModal.jsx'
 import { formatDateCalendar } from '../services/util.service.js'
 
 export function StayReservation({ stay }) {
