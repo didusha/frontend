@@ -7,7 +7,7 @@
   .main-details {
     display: grid;
     grid-template-columns: minmax(300px, 2fr) minmax(250px, 1fr);
-    column-gap: 40px;
+    column-gap: 60px;
 
     &:first-child {
       grid-column: 1;
@@ -19,6 +19,7 @@
     right: 0;
     top: 0;
     z-index: 2;
+    transition: 0.3s;
 
     background-color: var(--white-bg-btn);
     border-block-end: 1px solid #dddddd;

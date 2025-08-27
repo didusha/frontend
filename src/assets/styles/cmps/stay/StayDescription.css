@@ -7,7 +7,7 @@
   }
 
   .stay-info {
-    font-size: 16px;
+    font-size: 1rem;
     padding-block-end: 32px;
 
     .reviews {
@@ -22,10 +22,14 @@
   .host {
     padding-block: 24px;
     gap: 24px;
+
     img {
       border-radius: 50%;
       width: 40px;
+      height: 40px;
+      object-fit: cover;
     }
+
     p {
       color: var(--gray-p);
     }
@@ -61,12 +65,14 @@
   .summary {
     padding-block-start: 32px;
     padding-block-end: 48px;
+    font-size: 1rem;
+    line-height: 1.375rem;
 
     button {
       margin: 16px 0 0;
       padding: 14px 24px;
       font-size: 1rem;
-      font-family:AirbnbCereal ;
+      font-family: AirbnbCereal;
     }
   }
 }

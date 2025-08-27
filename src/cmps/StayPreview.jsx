@@ -18,7 +18,7 @@ export function StayPreview({ stay, params }) {
 
                     <span className="preview-rate">
                         <span><FontAwesomeIcon icon={faStar} /></span>
-                        {stay.rating} 4.88(15)
+                        {stay.rating} ({stay.reviews?.length})
                         </span>
 
                 <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {9} years</div>
