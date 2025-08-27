@@ -42,8 +42,8 @@
     top: 25%;
     bottom: 25%;
     left: -5px;
-    width: 3px;
-    background-color: #ccc;
+    width: 1px;
+    background-color: #dfdfdf;
 }
 
 .check-out {
@@ -63,8 +63,8 @@
     top: 25%;
     bottom: 25%;
     left: -6px;
-    width: 2px;
-    background-color: #ccc;
+    width: 1px;
+    background-color: #dfdfdf;
 }
 
 .guests {
@@ -83,8 +83,8 @@
     top: 25%;
     bottom: 25%;
     left: -13px;
-    width: 2px;
-    background-color: #ccc;
+    width: 1px;
+    background-color: #dfdfdf;
 }
 
 .stay-filter section:hover::before{
@@ -147,6 +147,7 @@
 .search-span{
     color: white !important;
     padding-left: 6px;
+    font-size: 18px !important;
 }
 
 .btn-search:hover {
@@ -179,4 +180,7 @@
     border-radius: 50px;
     color: white;
     background-image: linear-gradient(to right, #ff385c, #bd1e59);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-block: 11px;
 }
