@@ -35,6 +35,10 @@
   text-decoration: underline;
 }
 
+.text-center{
+  text-align: center;
+}
+
 /* Simple and useful CSS Debugging Technique */
 .debug * {
   outline: 1px solid gold;
