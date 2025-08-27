@@ -1,4 +1,4 @@
-import { icons } from '../services/amenities.service.js'
+import {icons } from '../services/amenities.service.js'
 
 export function StayAmenities({ labels }) {
   return (

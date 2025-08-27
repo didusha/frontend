@@ -44,7 +44,7 @@ import communicationIcon from '../assets/images/svg/Communication.svg'
 import mapIcon from '../assets/images/svg/map.svg'
 import valueIcon from '../assets/images/svg/value.svg'
 
-export const Icons = {
+export const icons = {
     TV: tvIcon,
     Wifi: wifiIcon,
     Kitchen: kitchenIcon,
