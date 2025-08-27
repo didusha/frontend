@@ -7,7 +7,7 @@
     height: max-content;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     background: white;
-    margin: 2rem 0 0 0;
+    margin: 2rem 0 3rem 0;
     min-width: 250px;
 
     .reservation-header {
