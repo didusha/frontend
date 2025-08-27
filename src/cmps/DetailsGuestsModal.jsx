@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react'
 import Modal from 'react-modal'
-import { useSelector, useDispatch } from 'react-redux'
-import { CLOSE_GUESTS_MODAL } from '../store/reducers/system.reducer'
 import minus from '../assets/images/svg/minus-btn.svg'
 import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function GuestsModal({ handleGuestChange, setSelectedSection }) {
-    const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
-    const dispatch = useDispatch()
-
+export function DetailsGuestsModal({isGuestsModalOpen, setIsGuestsModalOpen}) {
     const [guests, setGuests] = useState({
         adults: 0,
         children: 0,
@@ -18,9 +13,9 @@ export function GuestsModal({ handleGuestChange, setSelectedSection }) {
         pets: 0,
     })
 
-    useEffect(() => {
-        handleGuestChange(guests)
-    }, [guests])
+    // useEffect(() => {
+    //     handleGuestChange(guests)
+    // }, [guests])
 
     const handleIncrement = (type) => {
         setGuests(prev => ({ ...prev, [type]: prev[type] + 1 }))
@@ -41,21 +36,18 @@ export function GuestsModal({ handleGuestChange, setSelectedSection }) {
         <>
             {isGuestsModalOpen && (
                 <>
-                    <div className="guests-modal-overlay" onClick={() => {
-                        dispatch({ type: CLOSE_GUESTS_MODAL })
-                        setSelectedSection(null)
-                    }}></div>
+                    <div className="details-guests-modal-overlay" onClick={() => setIsGuestsModalOpen(false)}></div>
                     <div
-                        className="guests-modal-content"
+                        className="details-guests-modal-content"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {['adults', 'children', 'infants', 'pets'].map(type => (
-                            <div key={type} className="guest-row" >
+                            <div key={type} className="details-guest-row" >
                                 <div>
-                                    <div className="type-guests">
+                                    <div className="details-type-guests">
                                         {type}
                                     </div>
-                                    <div className="desc-guests">
+                                    <div className="details-desc-guests">
                                         {descriptions[type]}
                                     </div>
                                 </div>

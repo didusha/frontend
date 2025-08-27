@@ -1,30 +1,31 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer"
+import { DayPicker } from "react-day-picker"
+import "react-day-picker/dist/style.css"
 
 export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
-  const isDateModalOpen = useSelector(
-    (storeState) => storeState.systemModule.isDateModalOpen
-  );
-  const dispatch = useDispatch();
+  const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
+  const dispatch = useDispatch()
 
-  const [range, setRange] = useState({ from: null, to: null });
+  const [range, setRange] = useState({ from: null, to: null })
 
   useEffect(() => {
-    handleCheckInChange(range?.from);
+    handleCheckInChange(range?.from)
   }, [range?.from]);
 
   useEffect(() => {
-    handleCheckOutChange(range?.to);
+    handleCheckOutChange(range?.to)
   }, [range?.to]);
 
   return (
     <>
       {isDateModalOpen && (
         <>
-          <div className="modal-overlay" onClick={() => dispatch({ type: CLOSE_DATE_MODAL })}></div>
+          <div className="modal-overlay" onClick={() => {
+            dispatch({ type: CLOSE_DATE_MODAL })
+            setSelectedSection(null)
+            }}></div>
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}

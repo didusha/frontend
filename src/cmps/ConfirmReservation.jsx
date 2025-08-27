@@ -4,12 +4,10 @@ import { formatDateCalendar } from '../services/util.service.js'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { stayService } from '../services/stay'
 import { orderService } from '../services/order'
-import daimond from '../assets/images/daimond.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import { getDayDiff } from "../services/util.service"
-import star from '../assets/images/star.svg'
-import greenCheck from '../assets/images/greenCheck.svg'
+import { icons } from "../services/amenities.service.js"
 
 export function ConfirmReservation() {
 
@@ -19,7 +17,6 @@ export function ConfirmReservation() {
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
   const navigate = useNavigate()
-
 
   useEffect(() => {
     loadStay(stayId)
@@ -51,12 +48,11 @@ export function ConfirmReservation() {
     }
     catch (error) {
       console.log('Cannot confirm order', error)
-      // showErrorMsg('Cannot confirm order')
     }
   }
 
   if (!stay) return <div>Loading...</div>
-  const nights = getDayDiff(stay.startDate, stay.endDate)
+  const nights = getDayDiff(params.checkIn, params.checkOut)
   const totalPrice = nights * stay.price + 5
   const totalGuest = +params.adults + +params.children + +params.infants
 
@@ -66,7 +62,7 @@ export function ConfirmReservation() {
         <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
         <h1 className="bold">
           {(isOrderComplete) ?
-            <><img className="svg-image" src={greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
+            <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
             'Request to book'
           }
         </h1>
@@ -76,9 +72,8 @@ export function ConfirmReservation() {
             <p>{stay.name} is usually booked.</p>
           </div>
           <div>
-            <img src={daimond} alt="Diamond" />
+            <img src={icons.daimond} alt="Diamond" />
           </div>
-
         </div>
 
         <h3 className="trip-details bold">Your trip</h3>
@@ -91,16 +86,14 @@ export function ConfirmReservation() {
           <p>{totalGuest}</p>
         </div>
         <div className="order-confirm">
-          {isOrderComplete && <h3 className="bold"> We look forward to hosting you!</h3>}
+          {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
-          {(isOrderComplete) ?
-            <>
-              <button className="btn-confirm" onClick={() => navigate('/')}>Review Trips</button>
-              <h3 className="flex align-center bold">
-                <img className="svg-image" src={greenCheck} alt="Success" />
-                <span>Reservation success!</span>
-              </h3>
-            </> :
+          {(isOrderComplete) ? <>
+            <button className="btn-confirm" onClick={() => navigate('/')}>Review Trips</button>
+            <h3 className="flex align-center bold justify-center">
+              <img className="svg-image" src={icons.greenCheck} alt="Success" />
+              <span>Reservation success!</span>
+            </h3></> :
             <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>
           }
         </div>
@@ -110,12 +103,10 @@ export function ConfirmReservation() {
         <div className="stay-summary flex">
           <img src={stay.imgUrls[0]} alt="" />
           <div className="stay-desc flex column space-between">
-            <div>
-              <h4 className="">{stay.name}</h4>
-              <p className="grey">{stay.type}</p>
-            </div>
+            <h4 className="">{stay.name}</h4>
+            <p className="grey">{stay.type}</p>
             <div className="rating flex">
-              <img src={star} alt="Star" />
+              <img src={icons.star} alt="Star" />
               <span className="avg-rating">4.88</span>
               <span className="reviews-count grey">{stay.reviews ? `· ${stay.reviews?.length} reviews` : ''} </span>
             </div>
@@ -125,17 +116,17 @@ export function ConfirmReservation() {
 
         <div className="reservation-prices">
           <p className="flex space-between">
-            <span className="nights-info underline">{nights} nights x $ {stay.price}</span>
-            <span>$ {nights * stay.price}</span>
+            <span className="nights-info underline">{nights} nights x ${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
           </p>
           <p className="flex space-between">
             <span className="cleaning-fee underline">Cleaning fee</span>
-            <span>$ 5</span>
+            <span>$5</span>
           </p>
           <hr />
           <p className="flex space-between">
             <span>Total</span>
-            <span>$ {totalPrice}</span>
+            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
           </p>
 
         </div>

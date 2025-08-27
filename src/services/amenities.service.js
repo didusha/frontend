@@ -1,11 +1,11 @@
 import tvIcon from '../assets/images/svg/tv.svg'
 import wifiIcon from '../assets/images/svg/wifi.svg'
 import kitchenIcon from '../assets/images/svg/kitchen.svg'
-import smokingAllowedIcon from '../assets/images/svg/smokingallowed.svg' 
+import smokingAllowedIcon from '../assets/images/svg/smokingallowed.svg'
 import petsAllowedIcon from '../assets/images/svg/petsallowed.svg'
 import cookingBasicsIcon from '../assets/images/svg/kitchen.svg'
 import airConditioningIcon from '../assets/images/svg/air-conditioning.svg'
-import bbqGrillIcon from '../assets/images/svg/bbq-grill.svg' 
+import bbqGrillIcon from '../assets/images/svg/bbq-grill.svg'
 import beachAreaIcon from '../assets/images/svg/beach-area.svg'
 import fireExtinguisherIcon from '../assets/images/svg/fire-extinguisher.svg'
 import fireplaceIcon from '../assets/images/svg/fireplace.svg'
@@ -29,7 +29,7 @@ import dryerIcon from '../assets/images/svg/dryer.svg'
 import elevatorIcon from '../assets/images/svg/elevator.svg'
 import essentialsIcon from '../assets/images/svg/essentials.svg'
 // import freeIcon from '/svg/free.svg' //***** */
-import gardenIcon from '../assets/images/svg/garden.svg' 
+import gardenIcon from '../assets/images/svg/garden.svg'
 import hairIcon from '../assets/images/svg/hair.svg'
 import heatingIcon from '../assets/images/svg/heating.svg'
 import ironIcon from '../assets/images/svg/iron.svg'
@@ -43,6 +43,9 @@ import checkinIcon from '../assets/images/svg/checkin.svg'
 import communicationIcon from '../assets/images/svg/Communication.svg'
 import mapIcon from '../assets/images/svg/map.svg'
 import valueIcon from '../assets/images/svg/value.svg'
+import starIcon from '../assets/images/svg/star.svg'
+import greenCheckIcon from '../assets/images/svg/green-check.svg'
+import daimondIcon from '../assets/images/svg/daimond.svg'
 import shareIcon from '../assets/images/svg/share.svg'
 import favoriteIcon from '../assets/images/svg/favorite.svg'
 import appsIcon from '../assets/images/svg/apps.svg'
@@ -94,14 +97,7 @@ export const icons = {
     Accuracy: accuracyIcon,
     'Check-in': checkinIcon,
     Communication: communicationIcon,
-    Location: mapIcon,
-    Value: valueIcon,
-    share:shareIcon,
-    favorite:favoriteIcon,
-    apps:appsIcon,
-    door:doorIcon,
-    chat:chatIcon, 
-    pin:pinIcon, 
-
+    Map: mapIcon,
+    value: valueIcon,
 }
 

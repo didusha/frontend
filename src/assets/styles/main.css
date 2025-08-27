@@ -28,7 +28,10 @@
 @import "cmps/stay/ImgCarousel";
 @import "cmps/stay/StayGallery";
 @import "cmps/stay/DateModal";
+@import "cmps/stay/DetailsDateModal";
 @import "cmps/stay/GuestsModal";
+@import "cmps/stay/DetailsGuestsModal";
+@import "cmps/stay/whereModal";
 @import "cmps/stay/StaySmallFilter";
 @import "cmps/stay/StayDetails";
 @import "cmps/stay/StayDescription";

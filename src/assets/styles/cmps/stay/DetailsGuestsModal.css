@@ -1,4 +1,4 @@
-.guests-modal-overlay {
+.details-guests-modal-overlay {
     position: fixed;
     inset: 0;
     display: flex;
@@ -7,7 +7,7 @@
     z-index: 3;
 }
 
-.guests-modal-content {
+.details-guests-modal-content {
     background-color: white;
     padding: 2em 2.5em;
     border-radius: 30px;
@@ -27,17 +27,17 @@
     gap: 7px;
 }
 
-.desc-guests {
+.details-desc-guests {
     font-size: 0.8em;
     color: #555;
 }
 
-.type-guests {
+.details-type-guests {
     font-weight: 700;
     text-transform: capitalize;
 }
 
-.guest-row {
+.details-guest-row {
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -60,7 +60,7 @@
     color: black;
 }
 
-.guest-row::after {
+.details-guest-row::after {
     content: '';
     position: absolute;
     bottom: -10px;
@@ -72,7 +72,7 @@
     top: 65px;
 }
 
-.guest-row:last-child::after {
+.details-guest-row:last-child::after {
     display: none;
 }
 
