@@ -1,6 +1,5 @@
 import Slider from "react-slick";
 
-
 export function ImgCarousel({ imgUrls = [], stayName = "" }) {
 
   const slides = imgUrls.length ? imgUrls : ["/images/placeholder.jpg"]
@@ -24,9 +23,7 @@ export function ImgCarousel({ imgUrls = [], stayName = "" }) {
     ),
   }
 
-  function addToWishList(){
-
-  }
+  function addToWishList(){}
 
   return (
     <div className="stay-media slider-container">

@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef } from 'react'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, CLOSE_WHERE_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, CLOSE_WHERE_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
 import { WhereModal } from './WhereModal'
-import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
@@ -69,7 +69,6 @@ export function StayFilter() {
             infants: localFilter.capacity.infants,
             pets: localFilter.capacity.pets,
         }
-        // window.history.replaceState(null, '', `?${params.toString()}`)
         setSearchParams(params)
     }
 
