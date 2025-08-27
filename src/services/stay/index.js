@@ -8,18 +8,18 @@ import { stayService as remote } from './stay.service.remote'
 function getEmptyStay() {
   return {
     _id: '',
-    name: makeLorem(3),
+    name: '',
     type: '',
     imgUrls: [
-      'https://robohash.org/0?set=set5',
-      'https://robohash.org/1?set=set5',
-      'https://robohash.org/2?set=set5',
-      'https://robohash.org/3?set=set5',
-      'https://robohash.org/4?set=set5',
+      // 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/miso/Hosting-902946227708109581/original/5a6bd161-bd8e-4a64-a1d9-1a70655578e7.jpeg?im_w=1200',
+      // 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/4cc97299-cc7f-4512-96f1-e4901800c349.jpg?im_w=720',
+      // 'https://a0.muscache.com/im/ml/photo_enhancement/pictures/miso/Hosting-902946227708109581/original/e895d31c-ec93-4da8-9537-53ba21ced52c.jpeg?im_w=720',
+      // 'https://a0.muscache.com/im/pictures/miso/Hosting-902946227708109581/original/fed70a4f-0fe0-4016-a87f-f9adf682b684.jpeg?im_w=720',
+      // 'https://a0.muscache.com/im/pictures/miso/Hosting-902946227708109581/original/6ef2fe81-f541-4c11-ada5-6c89fe8fb0aa.jpeg?im_w=720',
     ],
     summary: '',
-    capacity: getRandomIntInclusive(0, 8),
-    price: getRandomIntInclusive(80, 240),
+    capacity: 0,
+    price: 0,
     amenities: [],
     host: {},
     loc: {
@@ -42,13 +42,13 @@ function getDefaultFilter() {
   return {
     txt: '',
     capacity: {
-            adults: 0,
-            children: 0,
-            infants: 0,
-            pets: 0,
-        },
-        checkIn: null,
-        checkOut: null
+      adults: 0,
+      children: 0,
+      infants: 0,
+      pets: 0,
+    },
+    checkIn: null,
+    checkOut: null
   }
 }
 

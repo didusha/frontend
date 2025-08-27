@@ -28,11 +28,12 @@
     pointer-events: none;
     padding: .5em .8em;
     z-index: 1;
-    transition: background 0.2s, opacity 0.2s ease, transform 0.25s ease;
+    transition: background 0.2s, opacity 0.2s ease, transform 0.25s ease, scale 0.2s ease;
 }
 
 .carousel-arrow:hover {
     background: rgba(255, 255, 255, 0.938);
+    scale: 1.05;
 }
 
 .carousel-arrow.left {

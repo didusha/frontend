@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { ImgCarousel } from './ImgCarousel.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { formatDateRange } from '../services/util.service.js';
+import { formatDateRange, getRandomIntInclusive } from '../services/util.service.js';
 
 
 export function StayPreview({ stay, params }) {
@@ -14,18 +14,16 @@ export function StayPreview({ stay, params }) {
             <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} />
 
             <div className="preview-info">
-                <div className="preview-name ">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
+                <div className="preview-name">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
+                {stay.reviews && <span className="preview-rate">
+                    <span><FontAwesomeIcon icon={faStar} /></span>
+                    {stay.rating} ({stay.reviews?.length})
+                </span>}
 
-                    <span className="preview-rate">
-                        <span><FontAwesomeIcon icon={faStar} /></span>
-                        {stay.rating} ({stay.reviews?.length})
-                        </span>
-
-                <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {9} years</div>
-                {/* <div className=""></div> */}
+                <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {getRandomIntInclusive(1, 10)} years</div>
                 <div className="preview-dates grey">{formatDateRange(stay.startDate, stay.endDate)}</div>
                 <div className="preview-price">
-                    <span className="">$ {stay.price}</span><span className="grey"> night</span>
+                    <span className="underline">${stay.price}</span><span className="grey"> night</span>
                 </div>
             </div>
         </article>

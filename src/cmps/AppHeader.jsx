@@ -111,7 +111,7 @@ export function AppHeader() {
 					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
 						<img className="hamburger" src={Hamburger} alt="menu" />
 					</button>
-					{isHamburgerOpen && !user &&
+					{isHamburgerOpen &&
 						<div className="logged-out-hamburger">
 							<section className="help-center">
 								<img className="circle-question" src={question} alt="" />
@@ -131,7 +131,13 @@ export function AppHeader() {
 								<div className="hamburger-options">Gift cards</div>
 							</section >
 							<div className="log-in-link">
-								<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink>
+								<NavLink onClick={() => setIsHamburgerOpen(false)} to="stay/edit" className="login-link">Add stay</NavLink>
+							</div>
+							<div className="log-in-link">
+								{(!user) ?
+									<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink> :
+									<div className="" onClick={onLogout}>Log out</div>
+								}
 							</div>
 						</div>
 					}

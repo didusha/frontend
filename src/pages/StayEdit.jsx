@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
+import { addStay } from '../store/actions/stay.actions'
+import { stayService } from '../services/stay/'
+import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { ImgUploader } from '../cmps/ImgUploader'
+
+
 
 export function StayEdit() {
 
-    const [stay, setStay] = useState({})
+    const [stay, setStay] = useState(stayService.getEmptyStay())
     const [images, setImages] = useState([])
 
     const amenitiesOptions = [
@@ -22,12 +28,21 @@ export function StayEdit() {
     function handleChange(ev) {
         const { type, name, value } = ev.target
         const val = (type === 'number') ? +value : value
-        setLocalFilter(prev => ({ ...prev, [name]: val }))
+        setStay(prev => {
+            if (["city", "country", "address"].includes(name)) {
+                return { ...prev, loc: { ...prev.loc, [name]: val } }
+            }
+            return { ...prev, [name]: val }
+        })
     }
 
     const handleMultiSelect = (ev) => {
         const selected = Array.from(ev.target.selectedOptions, (opt) => opt.value);
         setStay((prev) => ({ ...prev, amenities: selected }));
+    }
+
+    function onUploaded(url) {
+        setStay(prev => ({ ...prev, imgUrls: [...(prev.imgUrls || []), url] }))
     }
 
     const handleImageUpload = (ev) => {
@@ -38,9 +53,16 @@ export function StayEdit() {
         // setStay(prev => ({ ...prev, images: [...(prev.images || []), ...files] }))
     }
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault();
-        onSave(stay);
+    async function handleSubmit(ev) {
+        ev.preventDefault()
+        try {
+            const savedStay = await addStay(stay)
+            console.log('added stay')
+            // showSuccessMsg(`Stay added (id: ${savedStay._id})`)
+        } catch (err) {
+            console.log('Cannot add stay')
+            showErrorMsg('Cannot add stay')
+        }
     }
 
     return (
@@ -55,17 +77,17 @@ export function StayEdit() {
 
                 <div className="form-row">
                     <label>City</label>
-                    <input name="city" value={stay.city || ""} onChange={handleChange} />
+                    <input name="city" value={stay.loc.city || ""} onChange={handleChange} />
                 </div>
 
                 <div className="form-row">
                     <label>Country</label>
-                    <input name="country" value={stay.country || ""} onChange={handleChange} />
+                    <input name="country" value={stay.loc.country || ""} onChange={handleChange} />
                 </div>
 
                 <div className="form-row">
-                    <label>Street</label>
-                    <input name="street" value={stay.street || ""} onChange={handleChange} />
+                    <label>Address</label>
+                    <input name="address" value={stay.loc.address || ""} onChange={handleChange} />
                 </div>
 
                 <div className="form-row">
@@ -85,7 +107,7 @@ export function StayEdit() {
 
                 <div className="form-row">
                     <label>Property Type</label>
-                    <select name="propertyType" value={stay.propertyType || ""} onChange={handleChange}>
+                    <select name="type" value={stay.type || ""} onChange={handleChange}>
                         <option value="">Select type</option>
                         <option value="Private room">Private room</option>
                         <option value="Apartment">Apartment</option>
@@ -98,18 +120,19 @@ export function StayEdit() {
                 </div>
 
                 <div className="form-row full-width">
-                    <label>Upload Images</label>
-                    <input type="file" multiple accept="image/*" onChange={handleImageUpload} />
+                    {/* <label>Upload Images</label> */}
+                    <ImgUploader onUploaded={onUploaded} />
+                    {/* <input type="file" multiple accept="image/*" onChange={handleImageUpload} />
                     <div className="image-preview">
-                        {images.map((img, idx) => (
+                        {stay.imgUrls.map((img, idx) => (
                             <img key={idx} src={img} alt="Preview" />
                         ))}
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="form-row full-width">
-                    <label>Description</label>
-                    <textarea name="description" rows="4" value={stay.description || ""} onChange={handleChange} />
+                    <label>Summary</label>
+                    <textarea name="summary" rows="4" value={stay.summary || ""} onChange={handleChange} />
                 </div>
 
                 <div className="form-row full-width">

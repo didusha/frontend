@@ -87,7 +87,14 @@
         .stay-summary {
             gap: 10px;
 
+            .stay-desc {
+                row-gap: 3px;
+                justify-content: center;
+            }
+
             img {
+                /* aspect-ratio: 1 / 1; */
+                border-radius: 12px;
                 width: 150px;
                 object-fit: contain;
             }

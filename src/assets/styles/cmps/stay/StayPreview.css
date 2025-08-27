@@ -38,19 +38,26 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            margin-bottom: .3em;
+
         }
 
         .preview-stay-with {
             grid-area: host;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         .preview-rate {
             grid-area: rating;
-            place-self: end;
+            justify-self: end;
         }
 
         .preview-dates {
             grid-area: dates;
+            margin-bottom: .3em;
+
         }
 
         .preview-price {

@@ -70,8 +70,7 @@ async function save(stay) {
     savedStay = await storageService.put(STORAGE_KEY, stayToSave)
   } else {
     const stayToSave = {
-      name:
-        stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
+      name: stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase(),
       price: stay.price,
       type: stay.type,
       imgUrls: stay.imgUrls,
@@ -79,7 +78,11 @@ async function save(stay) {
       price: stay.price,
       capacity: stay.capacity,
       amenities: stay.amenities,
-      loc: stay.loc,
+      loc: {
+        city: stay.loc.city,
+        address: stay.loc.address,
+        country: stay.loc.country,
+      },
       // Later, host is set by the backend
       host: userService.getLoggedinUser(),
       msgs: [],
@@ -210,7 +213,8 @@ function getFakeReviews(count = 5) {
 }
 
 function createStays() {
-  const stays = [
+  const stays = loadFromStorage(STORAGE_KEY) ||
+   [
     {
       _id: '6738ca4cae769d402b653c7c',
       name: 'Penthouse Sands of Kahana Sandy Swimmable Beach',
