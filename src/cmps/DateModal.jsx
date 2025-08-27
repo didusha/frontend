@@ -4,7 +4,7 @@ import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
-export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
+export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection }) {
   const isDateModalOpen = useSelector(
     (storeState) => storeState.systemModule.isDateModalOpen
   );
@@ -24,7 +24,10 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange }) {
     <>
       {isDateModalOpen && (
         <>
-          <div className="modal-overlay" onClick={() => dispatch({ type: CLOSE_DATE_MODAL })}></div>
+          <div className="modal-overlay" onClick={() => {
+            dispatch({ type: CLOSE_DATE_MODAL })
+            setSelectedSection(null)
+            }}></div>
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
