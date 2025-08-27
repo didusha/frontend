@@ -2,16 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
-import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
+import { WhereModal } from './WhereModal'
 import { useSearchParams } from 'react-router-dom'
 
 export function StayFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
+    const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
     const [selectedSection, setSelectedSection] = useState(null)
     const [localFilter, setLocalFilter] = useState(filterBy)
@@ -30,7 +32,7 @@ export function StayFilter() {
 
     useEffect(() => {
         getSectionClass(null)
-    }, [isDateModalOpen, isGuestsModalOpen])
+    }, [isDateModalOpen, isGuestsModalOpen, isWhereModalOpen])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -109,6 +111,7 @@ export function StayFilter() {
                 <section
                     className={`search ${getSectionClass("search")}`}
                     onClick={() => {
+                        dispatch({ type: OPEN_WHERE_MODAL })
                         setSelectedSection(selectedSection === "search" ? null : "search")
                         closeModals()
                     }}
@@ -165,6 +168,9 @@ export function StayFilter() {
                     </button>
                 </section>
             </form >
+            <WhereModal
+
+            />
             <DateModal
                 handleCheckOutChange={handleCheckOutChange}
                 handleCheckInChange={handleCheckInChange}
