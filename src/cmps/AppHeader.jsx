@@ -13,6 +13,8 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
+	const [isOpenFromDetails, setIsOpenFromDetails] = useState(false)
+
 	const isHomePage = location.pathname === '/'
 
 	const [isFocus, setIsFocus] = useState(isHomePage ? true : false)
@@ -60,7 +62,11 @@ export function AppHeader() {
 				</section>
 
 				{(!isHomePage || (isHomePage && !isFocus)) && (
-					<StaySmallFilter openFocusComponent={openFocusComponent} />
+					<StaySmallFilter
+						openFocusComponent={openFocusComponent}
+						setIOpenFromDetails={setIsOpenFromDetails}
+						isHomePage={isHomePage}
+					/>
 				)}
 
 				{isHomePage && isFocus && (
@@ -125,7 +131,7 @@ export function AppHeader() {
 				</section>
 			</nav>
 
-			{isHomePage && isFocus && <StayFilter />}
+			{(isOpenFromDetails || (isHomePage && isFocus)) && <StayFilter />}
 		</header>
 	)
 }
