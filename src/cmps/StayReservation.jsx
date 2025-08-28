@@ -56,9 +56,9 @@ export function StayReservation({ stay }) {
 
       <div className="reservation-form">
         <div className="check-in-date" onClick={onDateModal}>
+
           <label>CHECK-IN</label>
           <p>{(params.checkIn === undefined) ? formatDateCalendar(randStartDate) : formatDateCalendar(params.checkIn)}</p>
-          <DetailsDateModal isDateModalOpen={isDateModalOpen} setIsDateModalOpen={setIsDateModalOpen}/>
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
@@ -71,8 +71,10 @@ export function StayReservation({ stay }) {
         <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
-        <DetailsGuestsModal setIsGuestsModalOpen={setIsGuestsModalOpen} isGuestsModalOpen={isGuestsModalOpen}/>
       </div>
+      <DetailsDateModal isDateModalOpen={isDateModalOpen} setIsDateModalOpen={setIsDateModalOpen} />
+      <DetailsGuestsModal setIsGuestsModalOpen={setIsGuestsModalOpen} isGuestsModalOpen={isGuestsModalOpen} />
+
 
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
       <p className="note">You won’t be charged yet</p>
