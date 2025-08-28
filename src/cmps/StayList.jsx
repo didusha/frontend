@@ -4,13 +4,13 @@ import { StayPreview } from './StayPreview'
 
 export function StayList({ stays, onRemoveStay, onUpdateStay }) {
 
-    function shouldShowActionBtns(stay) {
-        const user = userService.getLoggedinUser()
+    // function shouldShowActionBtns(stay) {
+    //     const user = userService.getLoggedinUser()
 
-        if (!user) return false
-        if (user.isAdmin) return true
-        return stay.host?._id === user._id
-    }
+    //     if (!user) return false
+    //     if (user.isAdmin) return true
+    //     return stay.host?._id === user._id
+    // }
 
     const [searchParams] = useSearchParams()
     const params = Object.fromEntries([...searchParams]) || {}
@@ -20,10 +20,10 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
             {stays.map(stay =>
                 <li key={stay._id}>
                     <StayPreview stay={stay} params={params}/>
-                    {shouldShowActionBtns(stay) && <div className="actions">
+                    {/* {shouldShowActionBtns(stay) && <div className="actions">
                         <button className="stay-action" onClick={() => onUpdateStay(stay)}>Edit</button>
                         <button className="stay-action" onClick={() => onRemoveStay(stay._id)}>x</button>
-                    </div>}
+                    </div>} */}
                 </li>)
 
             }

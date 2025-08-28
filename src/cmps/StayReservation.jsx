@@ -17,7 +17,6 @@ export function StayReservation({ stay }) {
   const params = Object.fromEntries([...searchParams])
   const [isDateModalOpen, setIsDateModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
-  // console.log("🚀 ~ StayReservation ~ params:", params)
 
   if (!stay) return <div>Loading..</div>
   const nights = getDayDiff(params.checkIn, params.checkOut)
