@@ -29,7 +29,7 @@ async function query(filterBy = { txt: '', capacity: 1 }) {
     const regex = new RegExp(filterBy.txt, 'i')
     stays = stays.filter((stay) => regex.test(stay.loc.city))
   }
-  if (capacity && capacity > 1) {
+  if (capacity) {
     stays = stays.filter((stay) => stay.capacity >= capacity)
   }
   // stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))

@@ -115,6 +115,8 @@ export function AppHeader() {
 						<img className="hamburger" src={Hamburger} alt="menu" />
 					</button>
 					{isHamburgerOpen &&
+					<>
+					<div className="hamburger-overlay" onClick={() => setIsHamburgerOpen(false)}></div>
 						<div className="logged-out-hamburger">
 							<section className="help-center">
 								<img className="circle-question" src={question} alt="" />
@@ -135,7 +137,7 @@ export function AppHeader() {
 							</section >
 							{user &&
 								<div>
-									<section className="trips-link" onClick={() => linkTo('trips')}>Trips</section>
+									<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
 									<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
 									<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
 									<section className="log-out-link" onClick={onLogout}>Log out</section>
@@ -147,6 +149,7 @@ export function AppHeader() {
 								</section>
 							}
 						</div>
+						</>
 					}
 				</section>
 			</nav>
