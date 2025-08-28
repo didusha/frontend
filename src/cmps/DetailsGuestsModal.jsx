@@ -5,7 +5,7 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function DetailsGuestsModal({isGuestsModalOpen, setIsGuestsModalOpen}) {
+export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder }) {
     const [guests, setGuests] = useState({
         adults: 0,
         children: 0,
@@ -13,9 +13,11 @@ export function DetailsGuestsModal({isGuestsModalOpen, setIsGuestsModalOpen}) {
         pets: 0,
     })
 
-    // useEffect(() => {
-    //     handleGuestChange(guests)
-    // }, [guests])
+    useEffect(() => {
+        if (guests) {
+            setOrder(prev => ({ ...prev, guests: guests }))
+        }
+    }, [guests])
 
     const handleIncrement = (type) => {
         setGuests(prev => ({ ...prev, [type]: prev[type] + 1 }))

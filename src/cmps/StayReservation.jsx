@@ -18,6 +18,17 @@ export function StayReservation({ stay }) {
   const [isDateModalOpen, setIsDateModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
+  const [order, setOrder] = useState({
+    checkIn: null,
+    checkOut: null,
+    guests: {
+      adults: null,
+      children: null,
+      infants: null,
+      pets: null,
+    }
+  })
+
   if (!stay) return <div>Loading..</div>
   const nights = getDayDiff(params.checkIn, params.checkOut)
   const totalPrice = nights * stay.price + 5
@@ -27,12 +38,12 @@ export function StayReservation({ stay }) {
 
   function onResrve() {
     const orderParams = new URLSearchParams({
-      checkIn: params.checkIn || randStartDate,
-      checkOut: params.checkOut || randEndDate,
-      adults: params.adults || 1,
-      children: params.children || 0,
-      infants: params.infants || 0,
-      pets: params.pets || 0,
+      checkIn: order.checkIn || params.checkIn || randStartDate,
+      checkOut: order.checkOut || params.checkOut || randEndDate,
+      adults: order.guests.adults || params.adults || 1,
+      children: order.guests.children || params.children || 0,
+      infants: order.guests.infants || params.infants || 0,
+      pets: order.guests.pets || params.pets || 0,
       totalPrice: totalPrice || 0,
     })
     navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
@@ -47,6 +58,18 @@ export function StayReservation({ stay }) {
     setIsDateModalOpen(true)
   }
 
+  function getGuestsLabel(guests) {
+    const { adults, children, infants, pets } = guests
+    let parts = []
+
+    if (adults > 0) parts.push(`${adults} ${adults === 1 ? 'adult' : 'adults'}`)
+    if (children > 0) parts.push(`${children} ${children === 1 ? 'child' : 'children'}`)
+    if (infants > 0) parts.push(`${infants} ${infants === 1 ? 'infant' : 'infants'}`)
+    if (pets > 0) parts.push(`${pets} ${pets === 1 ? 'pet' : 'pets'}`)
+    if (parts.length === 0) return '1 Guest'
+    return parts.join(', ')
+  }
+
   return (
     <section className='stay-reservation' id='reservation'>
       <div className="reservation-header">
@@ -58,22 +81,38 @@ export function StayReservation({ stay }) {
         <div className="check-in-date" onClick={onDateModal}>
 
           <label>CHECK-IN</label>
-          <p>{(params.checkIn === undefined) ? formatDateCalendar(randStartDate) : formatDateCalendar(params.checkIn)}</p>
+          <p> {order.checkIn
+            ? formatDateCalendar(order.checkIn)
+            : params.checkIn
+              ? formatDateCalendar(params.checkIn)
+              : formatDateCalendar(randStartDate)}</p>
         </div>
         <div className="check-out-date" onClick={onDateModal}>
           <label>CHECKOUT</label>
-          <p>{(params.checkOut === undefined) ? formatDateCalendar(randEndDate) : formatDateCalendar(params.checkOut)}</p>
+          <p> {order.checkOut
+            ? formatDateCalendar(order.checkOut)
+            : params.checkOut
+              ? formatDateCalendar(params.checkOut)
+              : formatDateCalendar(randEndDate)}</p>
         </div>
         <div className="guests-amount">
           <label>GUESTS</label>
-          <p>{(totalGuest) ? totalGuest : 1} {totalGuest > 1 ? 'guests' : 'guest'}</p>
+          <p>{totalGuest || getGuestsLabel(order.guests)}</p>
         </div>
         <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
       </div>
-      <DetailsDateModal isDateModalOpen={isDateModalOpen} setIsDateModalOpen={setIsDateModalOpen} />
-      <DetailsGuestsModal setIsGuestsModalOpen={setIsGuestsModalOpen} isGuestsModalOpen={isGuestsModalOpen} />
+      <DetailsDateModal
+        isDateModalOpen={isDateModalOpen}
+        setIsDateModalOpen={setIsDateModalOpen}
+        setOrder={setOrder}
+      />
+      <DetailsGuestsModal
+        setIsGuestsModalOpen={setIsGuestsModalOpen}
+        isGuestsModalOpen={isGuestsModalOpen}
+        setOrder={setOrder}
+      />
 
 
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
