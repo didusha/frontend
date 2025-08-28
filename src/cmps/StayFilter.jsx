@@ -9,13 +9,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
 import { WhereModal } from './WhereModal'
 
-export function StayFilter() {
+export function StayFilter({ selectedSection, setSelectedSection }) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
-    const [selectedSection, setSelectedSection] = useState(null)
+
     const [localFilter, setLocalFilter] = useState(filterBy)
     const [searchParams, setSearchParams] = useSearchParams()
     const wrapperRef = useRef(null)

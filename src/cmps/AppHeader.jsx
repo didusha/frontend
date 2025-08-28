@@ -20,17 +20,11 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const location = useLocation()
 	const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
-	const [isOpenFromDetails, setIsOpenFromDetails] = useState(false)
+	const [selectedSection, setSelectedSection] = useState(null)
 
 	const isHomePage = location.pathname === '/'
 
 	const [isFocus, setIsFocus] = useState(isHomePage ? true : false)
-	const [forceOpen, setForceOpen] = useState(false)
-
-	const openFocusComponent = () => {
-		setForceOpen(true)
-		setIsFocus(true)
-	}
 
 	useEffect(() => {
 		if (!isHomePage) return
@@ -38,17 +32,12 @@ export function AppHeader() {
 		const handleScroll = throttle(() => {
 			const currentScrollY = window.scrollY
 
-			if (forceOpen) {
-				if (currentScrollY === 0) setForceOpen(false)
-				return
-			}
-
 			setIsFocus(currentScrollY === 0)
 		}, 100)
 
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
-	}, [forceOpen, isHomePage])
+	}, [ isHomePage])
 
 	async function onLogout() {
 		try {
@@ -68,30 +57,36 @@ export function AppHeader() {
 					<span>rarebnb</span>
 				</section>
 
-				{((!isHomePage && !isOpenFromDetails) || (isHomePage && !isFocus)) && (
-					<StaySmallFilter
-						openFocusComponent={openFocusComponent}
-						setIsOpenFromDetails={setIsOpenFromDetails}
-						isHomePage={isHomePage}
-					/>
-				)}
+				{(
+					(isHomePage && !isFocus && !selectedSection) ||
+					(!isHomePage && !selectedSection)
+				) && (
+						<StaySmallFilter
+							setSelectedSection={setSelectedSection}
+							selectedSection={selectedSection}
+							isHomePage={isHomePage}
+						/>
+					)}
 
-				{(isOpenFromDetails || (isHomePage && isFocus)) && (
-					<section className="navigation-links">
-						<section className="homes-section">
-							<img className="homes-imgs" src={homes} alt="homes" />
-							<a>Homes</a>
+				{(
+					(isHomePage && (isFocus || selectedSection)) ||
+					(!isHomePage && selectedSection)
+				) && (
+						<section className="navigation-links">
+							<section className="homes-section">
+								<img className="homes-imgs" src={homes} alt="homes" />
+								<a>Homes</a>
+							</section>
+							<section className="experiences-section">
+								<img className="experiences-imgs" src={experiences} alt="experiences" />
+								<a>Experiences</a>
+							</section>
+							<section>
+								<img className="services-imgs" src={services} alt="services" />
+								<a>Services</a>
+							</section>
 						</section>
-						<section className="experiences-section">
-							<img className="experiences-imgs" src={experiences} alt="experiences" />
-							<a>Experiences</a>
-						</section>
-						<section>
-							<img className="services-imgs" src={services} alt="services" />
-							<a>Services</a>
-						</section>
-					</section>
-				)}
+					)}
 
 				{/* {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
 
@@ -144,7 +139,14 @@ export function AppHeader() {
 				</section>
 			</nav>
 
-			{(isOpenFromDetails || (isHomePage && isFocus)) && <StayFilter />}
-		</header>
+			{(
+				(isHomePage && (isFocus || selectedSection)) ||
+				(!isHomePage && selectedSection)
+			) && (
+					<StayFilter
+						selectedSection={selectedSection}
+						setSelectedSection={setSelectedSection}
+					/>
+				)}		</header>
 	)
 }
