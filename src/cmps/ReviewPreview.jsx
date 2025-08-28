@@ -3,7 +3,7 @@ import { LongTxt } from './LongTxt'
 import { dateFromTimestamp, getRandomIntInclusive } from '../services/util.service'
 
 export function ReviewPreview({ review }) {
-  const { by, txt, rate, date } = review
+  const { by, txt, rate, date } = review   ///at
 
   function rating(rate) {
     const rating = [...Array(rate)].map(() => {
@@ -13,7 +13,7 @@ export function ReviewPreview({ review }) {
   }
 
 
-  const newDate = dateFromTimestamp(date)
+  const newDate = dateFromTimestamp(date)  //at
   const years = getRandomIntInclusive(1, 10)
 
   return (
