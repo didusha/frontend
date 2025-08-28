@@ -15,12 +15,9 @@ export function Trips() {
     <section className="trips">
       <h2 className="trips-title">My Trips</h2>
       {!trips.length && <p>No trips booked yet.</p>}
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <ul className="trips-container">
         {trips.map(trip => (
-          <li
-            key={trip._id}
-            className="p-5 rounded-2xl shadow-md border bg-white"
-          >
+          <li key={trip._id}className="trip">
             <h3 className="text-lg font-semibold mb-2">{trip.stay?.name}</h3>
             <p className="text-sm text-gray-600">
               Host: {trip.host?.fullname} – {trip.host?.location}
