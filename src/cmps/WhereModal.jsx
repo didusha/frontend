@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CLOSE_WHERE_MODAL } from '../store/reducers/system.reducer'
+import { CLOSE_WHERE_MODAL, OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
 
-export function WhereModal({handleWhereChange, setSelectedSection}) {
+export function WhereModal({ handleWhereChange, setSelectedSection }) {
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
 
@@ -92,9 +92,14 @@ export function WhereModal({handleWhereChange, setSelectedSection}) {
                         <ul className="dest-list">
                             {destinations.map((d, idx) => {
                                 const [city, country] = d.title.split(', ')
-                                const loc = {city, country}
+                                const loc = { city, country }
                                 return (
-                                    <li key={idx} className="dest-item" onClick={() => handleWhereChange(loc)}>
+                                    <li key={idx} className="dest-item"
+                                        onClick={() => {
+                                            handleWhereChange(loc)
+                                            setSelectedSection("checkIn")
+                                            dispatch({ type: OPEN_DATE_MODAL })
+                                        }}>
                                         <span className="dest-icon">{d.icon}</span>
                                         <div className="dest-text">
                                             <div className="dest-title">
