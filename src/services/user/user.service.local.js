@@ -2,6 +2,7 @@ import { storageService } from '../async-storage.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
+
 export const userService = {
     login,
     logout,
@@ -73,16 +74,15 @@ function saveLoggedinUser(user) {
 	return user
 }
 
-// To quickly create an admin user, uncomment the next line
-// _createAdmin()
+_createAdmin()
 async function _createAdmin() {
     const user = {
         username: 'admin',
         password: 'admin',
-        fullname: 'Mustafa Adminsky',
+        fullname: 'Muli Adminsky',
         imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
     }
 
-    const newUser = await storageService.post('user', userCred)
-    console.log('newUser: ', newUser)
+    const newUser = await storageService.post('user', user)
+    // console.log('newUser: ', newUser)
 }
