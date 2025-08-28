@@ -8,7 +8,6 @@
 @import "basics/base";
 @import "basics/mq";
 
-
 @import "RootCmp";
 
 @import "cmps/AboutUs";
@@ -38,9 +37,11 @@
 @import "cmps/stay/StayReservation";
 @import "cmps/stay/ConfirmReservation.css";
 @import "cmps/stay/StayEdit.css";
-
 @import "cmps/stay/StayAmenities";
 
 @import "cmps/review/ReviewEdit";
 @import "cmps/review/ReviewList";
 @import "cmps/review/ReviewPreview";
+
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
