@@ -21,7 +21,8 @@ export const stayService = {
 }
 window.cs = stayService
 
-async function query(filterBy = { txt: '', capacity: 1 }) {
+async function query(filterBy = { txt: '', capacity: {} }) {
+  
   var stays = await storageService.query(STORAGE_KEY)
   const { txt, capacity } = filterBy
 
