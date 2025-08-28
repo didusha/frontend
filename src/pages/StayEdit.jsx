@@ -5,7 +5,6 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { ImgUploader } from '../cmps/ImgUploader'
 
 
-
 export function StayEdit() {
 
     const [stay, setStay] = useState(stayService.getEmptyStay())
@@ -45,20 +44,11 @@ export function StayEdit() {
         setStay(prev => ({ ...prev, imgUrls: [...(prev.imgUrls || []), url] }))
     }
 
-    const handleImageUpload = (ev) => {
-        // const files = Array.from(ev.target.files)
-        // const fileURLs = files.map(file => URL.createObjectURL(file))
-
-        // setImages(prev => [...prev, ...fileURLs])
-        // setStay(prev => ({ ...prev, images: [...(prev.images || []), ...files] }))
-    }
-
     async function handleSubmit(ev) {
         ev.preventDefault()
         try {
             const savedStay = await addStay(stay)
             console.log('added stay')
-            // showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
             console.log('Cannot add stay')
             showErrorMsg('Cannot add stay')
@@ -120,8 +110,8 @@ export function StayEdit() {
                 </div>
 
                 <div className="form-row full-width">
-                    {/* <label>Upload Images</label> */}
                     <ImgUploader onUploaded={onUploaded} />
+                    {/* <label>Upload Images</label> */}
                     {/* <input type="file" multiple accept="image/*" onChange={handleImageUpload} />
                     <div className="image-preview">
                         {stay.imgUrls.map((img, idx) => (
@@ -149,3 +139,12 @@ export function StayEdit() {
         </form>
     )
 }
+
+
+    // const handleImageUpload = (ev) => {
+        // const files = Array.from(ev.target.files)
+        // const fileURLs = files.map(file => URL.createObjectURL(file))
+
+        // setImages(prev => [...prev, ...fileURLs])
+        // setStay(prev => ({ ...prev, images: [...(prev.images || []), ...files] }))
+    // }

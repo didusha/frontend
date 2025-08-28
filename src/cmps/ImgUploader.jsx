@@ -18,8 +18,8 @@ export function ImgUploader({ onUploaded = null }) {
   }
 
   function getUploadLabel() {
-    if (imgData.imgUrl) return 'Upload Another?'
-    return isUploading ? 'Uploading....' : 'Upload Image'
+    if (imgData.imgUrl) return 'Upload Another? '
+    return isUploading ? 'Uploading....' : 'Upload Image '
   }
 
   return (

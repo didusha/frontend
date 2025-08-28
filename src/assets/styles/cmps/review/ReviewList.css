@@ -2,6 +2,34 @@
   padding-block: 48px;
   border-block-start: 1px solid #dddddd;
 
+
+  .review-rate{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-block-end:1px solid  #dddddd; 
+    gap: 20px;
+   
+    >*{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      row-gap: 30px;
+      padding-bottom: 4px;
+      font-size: 16px;
+    }
+
+    > *:not(:last-child){
+      border-inline-end:1px solid  #dddddd ;
+    }
+
+    img{
+      width: 32px;
+    }
+
+  }
+
   .list-title {
     font-size: 1.625rem;
     padding-block-end: 40px;

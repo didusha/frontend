@@ -32,7 +32,6 @@ async function query(filterBy = { txt: '', capacity: 1 }) {
   if (capacity && capacity > 1) {
     stays = stays.filter((stay) => stay.capacity >= capacity)
   }
-
   // stays = stays.map(({ _id, name, price, host }) => ({ _id, name, price, host }))
   return stays
 }

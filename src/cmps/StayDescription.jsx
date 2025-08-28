@@ -1,23 +1,9 @@
 import { LongTxt } from './LongTxt.jsx'
-import doorUrl from '../assets/images/door.svg'
-import locationUrl from '../assets/images/location.svg'
-import chatUrl from '../assets/images/chat.svg'
-import {
-  getAverageRating,
-  getRandomIntInclusive,
-} from '../services/util.service.js'
+import {getAverageRating,getRandomIntInclusive} from '../services/util.service.js'
+import { icons } from '../services/amenities.service.js'
 
 export function StayDescription({ stay }) {
-  const {
-    host,
-    roomType,
-    loc,
-    summary,
-    reviews,
-    bathrooms,
-    bedrooms,
-    capacity,
-  } = stay
+  const {host,roomType,loc,summary,reviews,bathrooms,bedrooms,capacity} = stay
 
   const years = getRandomIntInclusive(1, 15)
   const avg = getAverageRating(reviews)
@@ -61,7 +47,7 @@ export function StayDescription({ stay }) {
       <div className='gest-check-in flex'>
         <article className='flex'>
           <section className='icon'>
-            <img src={doorUrl} alt='door icon' />
+            <img src={icons.door} alt='door icon' />
           </section>
           <div>
             <h3>Great check-in experience</h3>
@@ -71,7 +57,7 @@ export function StayDescription({ stay }) {
 
         <article className='flex'>
           <section className='icon'>
-            <img src={locationUrl} alt='location icon' />
+            <img src={icons.pin} alt='location icon' />
           </section>
 
           <div>
@@ -82,7 +68,7 @@ export function StayDescription({ stay }) {
 
         <article className='flex'>
           <section className='icon'>
-            <img src={chatUrl} alt='location icon' />
+            <img src={icons.chat} alt='location icon' />
           </section>
 
           <div>
