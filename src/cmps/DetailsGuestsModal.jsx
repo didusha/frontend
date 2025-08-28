@@ -5,13 +5,8 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder }) {
-    const [guests, setGuests] = useState({
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0,
-    })
+export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder, order }) {
+const [guests, setGuests] = useState(order.guests)
 
     useEffect(() => {
         if (guests) {

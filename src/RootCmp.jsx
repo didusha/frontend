@@ -18,6 +18,9 @@ import { LoginSignup, Login, Signup } from './pages/LoginSignup.jsx'
 import { ConfirmReservation } from './cmps/ConfirmReservation.jsx'
 import { StayEdit } from './pages/StayEdit.jsx'
 
+import { Dashboard } from './pages/Dashboard.jsx'
+import { Trips } from './pages/Trips.jsx'
+
 
 export function RootCmp() {
     return (
@@ -41,6 +44,8 @@ export function RootCmp() {
                         <Route path="login" element={<Login />} />
                         <Route path="signup" element={<Signup />} />
                     </Route>
+                    <Route path="dashboard" element={<Dashboard />}/>
+                    <Route path="trips" element={<Trips />}/>
                 </Routes>
             </main>
             <AppFooter />

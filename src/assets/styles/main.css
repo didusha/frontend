@@ -19,6 +19,8 @@
 @import "cmps/AppHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
+@import "cmps/Trips";
+@import "cmps/Dashboard";
 
 @import "cmps/stay/StayIndex";
 @import "cmps/stay/StayList";

@@ -18,23 +18,24 @@ export function StayReservation({ stay }) {
   const [isDateModalOpen, setIsDateModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
-  const [order, setOrder] = useState({
-    checkIn: null,
-    checkOut: null,
-    guests: {
-      adults: null,
-      children: null,
-      infants: null,
-      pets: null,
-    }
-  })
 
   if (!stay) return <div>Loading..</div>
-  const nights = getDayDiff(params.checkIn, params.checkOut)
-  const totalPrice = nights * stay.price + 5
-  const totalGuest = +params.adults + +params.children + +params.infants
+  // const totalGuest = (+order.guests.adults + +order.guests.children + +order.guests.infants) || (+params.adults + +params.children + +params.infants)
   const randStartDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
   const randEndDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)
+
+  const [order, setOrder] = useState({
+    checkIn: params.checkIn || randStartDate,
+    checkOut: params.checkOut || randEndDate,
+    guests: {
+      adults: +params.adults || 1,
+      children: +params.children || 0,
+      infants: +params.infants || 0,
+      pets: +params.pets || 0,
+    }
+  })
+  const nights = getDayDiff(order.checkIn, order.checkOut) || getDayDiff(params.checkIn, params.checkOut) || 1
+  const totalPrice = nights * stay.price + 5
 
   function onResrve() {
     const orderParams = new URLSearchParams({
@@ -70,11 +71,20 @@ export function StayReservation({ stay }) {
     return parts.join(', ')
   }
 
+  const guestsToShow = order.guests
+
   return (
     <section className='stay-reservation' id='reservation'>
       <div className="reservation-header">
-        <span className="price underline">{(params.checkIn && params.checkOut) ? `$${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}` : `$${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}`}</span>
-        <span className="per-night"> for {(params.checkIn && params.checkOut && nights > 1) ? `${nights} nights` : `1 night`}</span>
+        <span className="price underline"> {(order.checkIn && order.checkOut) || (params.checkIn && params.checkOut)
+          ? `$${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+          : `$${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
+        }</span>
+        <span className="per-night"> for {
+          ((order.checkIn && order.checkOut) || (params.checkIn && params.checkOut))
+            ? `${nights} ${nights > 1 ? 'nights' : 'night'}`
+            : '1 night'
+        }</span>
       </div>
 
       <div className="reservation-form">
@@ -97,7 +107,7 @@ export function StayReservation({ stay }) {
         </div>
         <div className="guests-amount">
           <label>GUESTS</label>
-          <p>{totalGuest || getGuestsLabel(order.guests)}</p>
+          <p>{getGuestsLabel(guestsToShow)}</p>
         </div>
         <span className="chevron-arrow" onClick={onGuestModal}>
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
@@ -112,6 +122,7 @@ export function StayReservation({ stay }) {
         setIsGuestsModalOpen={setIsGuestsModalOpen}
         isGuestsModalOpen={isGuestsModalOpen}
         setOrder={setOrder}
+        order={order}
       />
 
 

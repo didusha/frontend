@@ -35,7 +35,7 @@ import heatingIcon from '../assets/images/svg/heating.svg'
 import ironIcon from '../assets/images/svg/iron.svg'
 import lockboxIcon from '../assets/images/svg/lockbox.svg'
 import mountainIcon from '../assets/images/svg/mountain.svg'
-// import privatehotTubIcon from '/svg/private-hot-tub.svg'
+import privatehotTubIcon from '../assets/images/svg/hot-tub.svg'
 import shampooIcon from '../assets/images/svg/shampoo.svg'
 import cleanIcon from '../assets/images/svg/clean.svg'
 import accuracyIcon from '../assets/images/svg/accuracy.svg'
@@ -91,7 +91,7 @@ export const icons = {
     Iron: ironIcon,
     Lockbox: lockboxIcon,
     Mountain: mountainIcon,
-    // 'Private hot tub': privatehotTubIcon,
+    'Private hot tub': privatehotTubIcon,
     Shampoo: shampooIcon,
     Cleanliness: cleanIcon,
     Accuracy: accuracyIcon,
@@ -109,4 +109,9 @@ export const icons = {
     chat:chatIcon, 
     pin:pinIcon,
 }
+
+
+
+
+
 
