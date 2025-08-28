@@ -16,12 +16,10 @@ export function DetailsDateModal({setIsDateModalOpen, isDateModalOpen}) {
         <>
             {isDateModalOpen && (
                 <>
-                    <div className="details-date-modal-overlay" onClick={() => setIsDateModalOpen(false)}></div>
-                    <div
-                        className="details-date-modal-content"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="airbnb-details-calendar">
+                    <div className="details-date-modal-overlay" onClick={(e) => {
+                        e.stopPropagation()
+                        setIsDateModalOpen(false)}}></div>
+                    <div className="details-date-modal-content" onClick={(e) => e.stopPropagation()}>
                             <DayPicker
                                 mode="range"
                                 selected={range}
@@ -30,7 +28,6 @@ export function DetailsDateModal({setIsDateModalOpen, isDateModalOpen}) {
                                 pagedNavigation
                             />
                         </div>
-                    </div>
                 </>
             )}
         </>
