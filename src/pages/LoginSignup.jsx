@@ -52,7 +52,7 @@ export function Login() {
   }
 
 function onDemoLogin(){
-    const demoUser={username:'lola', password:'lola'}
+    const demoUser={username:'admin', password:'admin'}
     setCredentials({ ...credentials, ...demoUser})
 }
 
