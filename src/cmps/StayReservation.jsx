@@ -48,7 +48,7 @@ export function StayReservation({ stay }) {
   }
 
   return (
-    <section className='stay-reservation'>
+    <section className='stay-reservation' id='reservation'>
       <div className="reservation-header">
         <span className="price underline">{(params.checkIn && params.checkOut) ? `$${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}` : `$${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}`}</span>
         <span className="per-night"> for {(params.checkIn && params.checkOut && nights > 1) ? `${nights} nights` : `1 night`}</span>

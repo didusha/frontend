@@ -46,6 +46,12 @@ import valueIcon from '../assets/images/svg/value.svg'
 import starIcon from '../assets/images/svg/star.svg'
 import greenCheckIcon from '../assets/images/svg/green-check.svg'
 import daimondIcon from '../assets/images/svg/daimond.svg'
+import shareIcon from '../assets/images/svg/share.svg'
+import favoriteIcon from '../assets/images/svg/favorite.svg'
+import appsIcon from '../assets/images/svg/apps.svg'
+import doorIcon from '../assets/images/svg/door.svg'
+import chatIcon from '../assets/images/svg/chat.svg'
+import pinIcon from '../assets/images/svg/pin.svg'
 
 export const icons = {
     TV: tvIcon,
@@ -87,14 +93,20 @@ export const icons = {
     Mountain: mountainIcon,
     // 'Private hot tub': privatehotTubIcon,
     Shampoo: shampooIcon,
-    Clean: cleanIcon,
+    Cleanliness: cleanIcon,
     Accuracy: accuracyIcon,
-    'Check in': checkinIcon,
+    'Check-in': checkinIcon,
     Communication: communicationIcon,
-    Map: mapIcon,
-    value: valueIcon,
+    Location: mapIcon,
+    Value: valueIcon,
     star: starIcon,
     greenCheck: greenCheckIcon,
     daimond: daimondIcon,
+    share:shareIcon,
+    favorite:favoriteIcon,
+    apps:appsIcon,
+    door:doorIcon,
+    chat:chatIcon, 
+    pin:pinIcon,
 }
 
