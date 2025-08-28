@@ -49,10 +49,18 @@ export function AppHeader() {
 		}
 	}
 
+	function linkTo(link) {
+		setIsHamburgerOpen(false)
+		navigate(`/${link}`)
+	}
+
 	return (
 		<header className={`app-header full ${isHomePage ? 'sticky' : ''}`}>
 			<nav>
-				<section className="logo" onClick={() => navigate('/')}>
+				<section className="logo" onClick={() => {
+					navigate('/')
+					setIsHamburgerOpen(false)
+				}}>
 					<img className="logo-img" src={rarebnb} alt="logo" />
 					<span>rarebnb</span>
 				</section>
@@ -125,15 +133,19 @@ export function AppHeader() {
 								<div className="hamburger-options">Find a co-host</div>
 								<div className="hamburger-options">Gift cards</div>
 							</section >
-							<div className="log-in-link">
-								<NavLink onClick={() => setIsHamburgerOpen(false)} to="stay/edit" className="login-link">Add stay</NavLink>
-							</div>
-							<div className="log-in-link">
-								{(!user) ?
-									<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink> :
-									<div className="" onClick={onLogout}>Log out</div>
-								}
-							</div>
+							{user &&
+								<div>
+									<section className="trips-link" onClick={() => linkTo('trips')}>Trips</section>
+									<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
+									<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
+									<section className="log-out-link" onClick={onLogout}>Log out</section>
+								</div>
+							}
+							{!user &&
+								<section className="log-in-link">
+									<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink>
+								</section>
+							}
 						</div>
 					}
 				</section>
