@@ -15,7 +15,7 @@
       color: var(--gray-icon);
     }
 
-    .btn-container{
+    .btn-container {
       gap: 8px;
     }
 
@@ -30,7 +30,6 @@
       padding: 8px;
       transition: hover 0.3s;
     }
-
 
     .btn:hover {
       background-color: var(--gray-btn);
@@ -65,7 +64,6 @@
       &:not(:last-child):hover {
         cursor: pointer;
       }
-
     }
     /* .img::after {
       content: '';

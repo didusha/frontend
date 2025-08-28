@@ -1,36 +1,33 @@
-
 .review-preview {
-	.rate{
-	font-size: 14px;
-	}
+  .rate {
+    font-size: 14px;
+  }
 
-	.review-txt{
-		line-height: 1.5rem;
-	}
+  .review-txt {
+    line-height: 1.5rem;
+  }
 
-	.profile{
-		margin-bottom: 12px;
-		align-items: center;
-		gap: 5px;
+  .profile {
+    margin-bottom: 12px;
+    align-items: center;
+    gap: 5px;
 
-		img{
-			width: 48px;
-            height: 48px;
-            border-radius: 50%;
-			object-fit: cover;
-			object-position: top; 
-		}
-		.time{
-			font-size: 14px;
-		}
-	} 
-	button{
-		background-color: transparent;
-		text-decoration: underline;
-		line-height: 24px;
-		padding: 0;
-		margin: 8px 0 0 0 ;
-
-	}
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .time {
+      font-size: 14px;
+    }
+  }
+  button {
+    background-color: transparent;
+    text-decoration: underline;
+    line-height: 24px;
+    padding: 0;
+    margin: 8px 0 0 0;
+  }
 }
-

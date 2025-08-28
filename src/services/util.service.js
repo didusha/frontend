@@ -151,3 +151,26 @@ export function getAverageRating(reviews) {
     
   return (total / reviews.length).toFixed(1)
 }
+
+
+  export function dateFromTimestamp(date) {
+    const reviewDate = new Date(date)
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
+    const monthName = months[reviewDate.getMonth()]
+    const year = reviewDate.getFullYear()
+
+    return { monthName, year }
+  }
