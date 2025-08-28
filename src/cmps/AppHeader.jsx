@@ -37,7 +37,7 @@ export function AppHeader() {
 
 		window.addEventListener('scroll', handleScroll)
 		return () => window.removeEventListener('scroll', handleScroll)
-	}, [ isHomePage])
+	}, [isHomePage])
 
 	async function onLogout() {
 		try {
@@ -147,6 +147,7 @@ export function AppHeader() {
 						selectedSection={selectedSection}
 						setSelectedSection={setSelectedSection}
 					/>
-				)}		</header>
+				)}
+		</header>
 	)
 }
