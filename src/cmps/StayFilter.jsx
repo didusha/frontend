@@ -30,6 +30,10 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [wrapperRef])
 
+    // useEffect(() => {
+    //     setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
+    // }, [localFilter.checkIn])
+
     function handleChange(ev) {
         const { type, name, value } = ev.target
         const val = (type === 'number') ? +value : value
@@ -144,7 +148,6 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                     onClick={() => {
                         dispatch({ type: OPEN_DATE_MODAL })
                         setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
-                        // closeModals()
                     }}
                 >
                     <h5>Check out</h5>
