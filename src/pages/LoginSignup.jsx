@@ -21,6 +21,7 @@ export function LoginSignup() {
 
 export function Login() {
     const [users, setUsers] = useState([])
+    const [isSignup, setIsSignup] = useState(false)
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
     const navigate = useNavigate()

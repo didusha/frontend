@@ -1,7 +1,6 @@
-import { faStar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { LongTxt } from './LongTxt'
-import { getRandomIntInclusive } from '../services/util.service'
+import { dateFromTimestamp, getRandomIntInclusive } from '../services/util.service'
 
 export function ReviewPreview({ review }) {
   const { by, txt, rate, date } = review
@@ -13,27 +12,6 @@ export function ReviewPreview({ review }) {
     return rating
   }
 
-  function dateFromTimestamp(date) {
-    const reviewDate = new Date(date)
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
-    const monthName = months[reviewDate.getMonth()]
-    const year = reviewDate.getFullYear()
-
-    return { monthName, year }
-  }
 
   const newDate = dateFromTimestamp(date)
   const years = getRandomIntInclusive(1, 10)

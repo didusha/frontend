@@ -1,9 +1,21 @@
 import { LongTxt } from './LongTxt.jsx'
-import {getAverageRating,getRandomIntInclusive} from '../services/util.service.js'
+import {
+  getAverageRating,
+  getRandomIntInclusive,
+} from '../services/util.service.js'
 import { icons } from '../services/amenities.service.js'
 
 export function StayDescription({ stay }) {
-  const {host,roomType,loc,summary,reviews,bathrooms,bedrooms,capacity} = stay
+  const {
+    host,
+    roomType,
+    loc,
+    summary,
+    reviews,
+    bathrooms,
+    bedrooms,
+    capacity,
+  } = stay
 
   const years = getRandomIntInclusive(1, 15)
   const avg = getAverageRating(reviews)

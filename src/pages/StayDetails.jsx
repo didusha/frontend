@@ -39,7 +39,7 @@ export function StayDetails() {
         setShowHeader(false)
       }
 
-      if (reservation.bottom<= 100){
+      if (reservation.bottom <= 100){
         setShowReserve(true)
       }else {
         setShowReserve(false)
@@ -101,9 +101,9 @@ export function StayDetails() {
             <p className='nights'>{checkIn && checkOut ? `for` +` `+ getDayDiff(checkIn, checkOut) +` `+ `nights` : `Add dates for price`}</p>
             {stay.reviews && <p className='review'>★ {stay.rating} · <span>{stay.reviews.length} {stay.reviews > 1 ?'reviews':'review'}</span></p>}
           </div>
-         {checkIn && checkOut ? <button className='reserve-btn' onClick={onSendReserve}>Reserve</button>
-         : <a href='#reservation' className='check-btn'>Check availability</a>}
-        </section>}
+          {checkIn && checkOut ? <button className='reserve-btn' onClick={onSendReserve}>Reserve</button>
+          : <button className='check-btn' onClick={()=>location.href='#reservation'}>Check availability</button>}
+          </section>}
         </div>
       </nav>}
       <div className='photos' id='photos' ref={photoRef} >
