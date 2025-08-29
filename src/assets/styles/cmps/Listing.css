@@ -1,0 +1,93 @@
+.listings {
+    display: grid;
+    grid-template-columns: 7% 33% repeat(6, 10%);
+    align-content: start;
+    gap: 6px;
+}
+
+.listings-container {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 6px;
+}
+
+.listings-title {
+    font-family: AirbnbCereal-Bold;
+    font-size: 1.8rem;
+}
+
+.listings-length {
+    margin: 35px 0;
+}
+
+.listing {
+    position: relative;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.listings-headers {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    margin-bottom: 20px;
+
+    span {
+        display: flex;
+        align-items: center;
+        color: rgb(168, 168, 168);
+        font-size: .9rem;
+        font-family: AirbnbCereal-Bold;
+    }
+}
+
+.listing-loc,
+.listing-price {
+    color: rgb(81, 81, 81);
+}
+
+.listing-bath,
+.listing-bed,
+.listing-guests {
+    color: grey;
+}
+
+.listing::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #dfdfdf;
+    top: -10px;
+}
+
+.listing-img {
+    height: 60px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.listing-loc,
+.listing-loc-header {
+    margin-right: 3rem;
+}
+
+.listing-bath-header:hover,
+.listing-bed-header:hover,
+.listing-guests-header:hover,
+.listing-price-header:hover {
+    cursor: pointer;
+}
+
+.listing-name{
+    font-size: .98rem;
+}
+
+.listing-todo-header,
+.listing-todo{
+    justify-self: center;
+}

@@ -40,6 +40,7 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
                 onSelect={setRange}
                 numberOfMonths={2}
                 pagedNavigation
+                disabled={{ before: new Date() }}
               />
             </div>
           </div>
