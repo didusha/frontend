@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
-import { orderService } from '../services/order/order.service.local'
+import { orderService } from '../services/order/index'
 import { formatDateCalendar } from '../services/util.service'
+import { useSelector } from 'react-redux'
 
 export function Dashboard() {
   const [orders, setOrders] = useState()
+  const user = useSelector(storeState => storeState.userModule.user)
 
   useEffect(() => {
     loadOrders()
   }, [])
 
   async function loadOrders() {
-    const orders = await orderService.query()
+    const orders = await orderService.query({hostId: user._id})
     setOrders(orders)
   }
 
