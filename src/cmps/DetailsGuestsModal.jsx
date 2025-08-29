@@ -6,7 +6,7 @@ import plus from '../assets/images/svg/plus-btn.svg'
 Modal.setAppElement('#root')
 
 export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder, order }) {
-const [guests, setGuests] = useState(order.guests)
+    const [guests, setGuests] = useState(order.guests)
 
     useEffect(() => {
         if (guests) {
@@ -49,7 +49,11 @@ const [guests, setGuests] = useState(order.guests)
                                     </div>
                                 </div>
                                 <div className="btns-guests">
-                                    <button className="btn-count" onClick={() => handleDecrement(type)}>
+                                    <button
+                                        className="btn-count"
+                                        onClick={() => handleDecrement(type)}
+                                        disabled={guests[type] === 0}
+                                    >
                                         <img className="svg-image" src={minus} alt="minus" />
                                     </button>
                                     <span>{guests[type]}</span>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { CLOSE_DATE_MODAL } from "../store/reducers/system.reducer"
+import { CLOSE_DATE_MODAL, OPEN_GUESTS_MODAL } from "../store/reducers/system.reducer"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
@@ -12,6 +12,9 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
 
   useEffect(() => {
     handleCheckInChange(range?.from)
+    if (range?.from !== null) {
+      setSelectedSection("checkOut")
+    }
   }, [range?.from]);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
           <div className="modal-overlay" onClick={() => {
             dispatch({ type: CLOSE_DATE_MODAL })
             setSelectedSection(null)
-            }}></div>
+          }}></div>
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}

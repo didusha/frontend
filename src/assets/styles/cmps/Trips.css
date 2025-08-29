@@ -1,3 +1,80 @@
-.logo{
-    background-color: red;
+.trips{
+    display: grid;
+    grid-template-columns: 7% 33% repeat(6, 10%);
+    align-content: start;
+    gap: 6px;
+}
+
+.trips-container{
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 6px;
+}
+
+.trips-title {
+    font-family: AirbnbCereal-Bold;
+    font-size: 1.8rem;
+}
+
+.trips-length {
+    margin: 35px 0;
+}
+
+.trip {
+    position: relative;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.trips-headers {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    margin-bottom: 20px;
+
+    span {
+        color: rgb(168, 168, 168);
+        font-size: .9rem;
+        font-family: AirbnbCereal-Bold;
+    }
+}
+
+.destination-header {
+    margin-right: 20em;
+}
+
+.trip-host,
+.trip-price {
+    color: rgb(81, 81, 81);
+}
+
+.trip-checkIn,
+.trip-checkOut,
+.trip-guests {
+    color: grey;
+}
+
+.trip::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #dfdfdf;
+    top: -10px;
+}
+
+.trip-img{
+    height: 60px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.trip-status,
+.status-header{
+    justify-self: end;
+    margin-right: 3rem;
 }

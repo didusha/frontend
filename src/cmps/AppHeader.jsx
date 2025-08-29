@@ -11,7 +11,8 @@ import { throttle } from 'lodash'
 import homes from '../assets/images/png/homes.png'
 import experiences from '../assets/images/png/experiences.png'
 import services from '../assets/images/png/services.png'
-import Hamburger from '../assets/images/png/Hamburger.png'
+import hamburger from '../assets/images/svg/hamburger.svg'
+import translate from '../assets/images/svg/translate.svg'
 import question from '../assets/images/png/circle-question.png'
 import rarebnb from '../assets/images/png/rarebnb.webp'
 
@@ -23,6 +24,7 @@ export function AppHeader() {
 	const [selectedSection, setSelectedSection] = useState(null)
 
 	const isHomePage = location.pathname === '/'
+	const isDetailsPage = location.pathname.startsWith('/stay/')
 
 	const [isFocus, setIsFocus] = useState(isHomePage ? true : false)
 
@@ -55,7 +57,7 @@ export function AppHeader() {
 	}
 
 	return (
-		<header className={`app-header full ${isHomePage ? 'sticky' : ''}`}>
+		<header className={`app-header full ${isHomePage ? 'sticky' : ''} ${isDetailsPage ? 'small-layout' : ''}`}>
 			<nav>
 				<section className="logo" onClick={() => {
 					navigate('/')
@@ -111,42 +113,54 @@ export function AppHeader() {
 					</div>
 				)} */}
 				<section className="hamburger-menu-section">
+					{!user ?
+						<button className="btn-translate">
+							<img className="translate" src={translate} alt="translate" />
+						</button>
+						:
+						<button className="btn-user">
+							<img className="user-img" src={user.imgUrl} alt="" />
+						</button>
+					}
 					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
-						<img className="hamburger" src={Hamburger} alt="menu" />
+						<img className="hamburger" src={hamburger} alt="menu" />
 					</button>
 					{isHamburgerOpen &&
-						<div className="logged-out-hamburger">
-							<section className="help-center">
-								<img className="circle-question" src={question} alt="" />
-								Help Center
-							</section>
-							<section className="become-host">
-								<div>
-									<span className="host-span">Become a host</span>
-									<p className="become-host-p" >It's easy to start hosting and</p>
-									<p className="become-host-p" >earn extra income</p>
-								</div>
-								<img className="homes-hamburger" src={homes} alt="" />
-							</section>
-							<section>
-								<div className="hamburger-options">Refer a Host</div>
-								<div className="hamburger-options">Find a co-host</div>
-								<div className="hamburger-options">Gift cards</div>
-							</section >
-							{user &&
-								<div>
-									<section className="trips-link" onClick={() => linkTo('trips')}>Trips</section>
-									<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
-									<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
-									<section className="log-out-link" onClick={onLogout}>Log out</section>
-								</div>
-							}
-							{!user &&
-								<section className="log-in-link">
-									<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink>
+						<>
+							<div className="hamburger-overlay" onClick={() => setIsHamburgerOpen(false)}></div>
+							<div className="logged-out-hamburger">
+								<section className="help-center">
+									<img className="circle-question" src={question} alt="" />
+									Help Center
 								</section>
-							}
-						</div>
+								<section className="become-host">
+									<div>
+										<span className="host-span">Become a host</span>
+										<p className="become-host-p" >It's easy to start hosting and</p>
+										<p className="become-host-p" >earn extra income</p>
+									</div>
+									<img className="homes-hamburger" src={homes} alt="" />
+								</section>
+								<section>
+									<div className="hamburger-options">Refer a Host</div>
+									<div className="hamburger-options">Find a co-host</div>
+									<div className="hamburger-options">Gift cards</div>
+								</section >
+								{user &&
+									<div>
+										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
+										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
+										<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
+										<section className="log-out-link" onClick={onLogout}>Log out</section>
+									</div>
+								}
+								{!user &&
+									<section className="log-in-link">
+										<NavLink onClick={() => setIsHamburgerOpen(false)} to="auth/login" className="login-link">Log in or sign up</NavLink>
+									</section>
+								}
+							</div>
+						</>
 					}
 				</section>
 			</nav>

@@ -79,3 +79,8 @@
 .svg-image {
     width: .6rem;
 }
+
+.btn-count:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

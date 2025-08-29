@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { formatDateCalendar } from "../services/util.service"
 
 export function Trips() {
   const [trips, setTrips] = useState([])
@@ -10,44 +11,39 @@ export function Trips() {
     }
   }, [])
 
-
   return (
-    <section className="trips">
-      <h2 className="trips-title">My Trips</h2>
+    <>
+      <h1 className="trips-title">My Trips</h1>
       {!trips.length && <p>No trips booked yet.</p>}
-      <ul className="trips-container">
-        {trips.map(trip => (
-          <li key={trip._id}className="trip">
-            <h3 className="text-lg font-semibold mb-2">{trip.stay?.name}</h3>
-            <p className="text-sm text-gray-600">
-              Host: {trip.host?.fullname} – {trip.host?.location}
-            </p>
+      <h2 className="trips-length">{trips.length} {trips.length === 1 ? 'Trip' : 'Trips'}</h2>
+      <section className="trips">
 
-            <div className="mt-3 space-y-1">
-              <p>
-                <span className="font-medium">Check-in:</span>{" "}
-                {trip.startDate || "Not set"}
-              </p>
-              <p>
-                <span className="font-medium">Check-out:</span>{" "}
-                {trip.endDate || "Not set"}
-              </p>
-              <p>
-                <span className="font-medium">Guests:</span>{" "}
-                {trip.guests?.adults} adults, {trip.guests?.children} children,{" "}
-                {trip.guests?.infants} infants, {trip.guests?.pets} pets
-              </p>
-              <p>
-                <span className="font-medium">Status:</span> {trip.status}
-              </p>
-              <p>
-                <span className="font-medium">Total Price:</span> $
-                {trip.totalPrice || trip.stay?.price}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+        <div className="trips-headers">
+          <span className="destination-header">destination</span>
+          <span></span>
+          <span className="host-header">Host</span>
+          <span className="check-in-header">Check-in</span>
+          <span className="check-out-header">Check-out</span>
+          <span className="guests-header">Guests</span>
+          <span className="price-header">Price</span>
+          <span className="status-header">Status</span>
+        </div>
+
+        <ul className="trips-container">
+          {trips.map(trip => (
+            <li key={trip._id} className="trip">
+              <img className="trip-img" src={trip.stay.imgUrls[0]} alt="stay-img" />
+              <h3 className="trip-name">{trip.stay?.name}</h3>
+              <span className="trip-host">{trip.host?.fullname}</span>
+              <span className="trip-checkIn">{formatDateCalendar(trip.startDate) || "Not set"}</span>
+              <span className="trip-checkOut">{formatDateCalendar(trip.endDate) || "Not set"}</span>
+              <span className="trip-guests">{(trip.guests?.adults || 0) + (trip.guests?.children || 0) + (trip.guests?.infants || 0)} Guests</span>
+              <span className="trip-price">${trip.totalPrice || trip.stay?.price}</span>
+              <span className="trip-status">{trip.status}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   )
 }
