@@ -2,9 +2,16 @@
   h2 {
     margin-block: 1rem;
   }
-
-  .pie-chart{
-    width: 30%;
+  .charts {
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    .statistic{
+      gap: 20px;
+      .bar{
+        align-self: flex-end;
+      }
+    }
   }
 
   .table {

@@ -7,7 +7,7 @@ import { icons } from '../services/amenities.service.js'
 
 export function StayDescription({ stay }) {
   const {
-    host, // לשנות  לאחר הוספת באק לpictureUrl
+    host, 
     roomType,
     loc,
     summary,
@@ -47,7 +47,7 @@ export function StayDescription({ stay }) {
 
       <div className="host flex align-center">
         <div className="profile">
-          <img src={host.imgUrl} alt="host profile" />  
+          <img src={host.pictureUrl} alt="host profile" />  
         </div>
         <div>
           Hosted by {host.fullname}

@@ -1,38 +1,37 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Doughnut } from 'react-chartjs-2'
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  LinearScale,
+  BarElement,
+  CategoryScale,
+  Title,
+} from 'chart.js'
+import { Doughnut, Bar } from 'react-chartjs-2'
+import { dataBase } from '../services/util.service.js'
 
-export function Charts({orders}) {
-
+export function Charts({ orders }) {
   const labels = [...new Set(orders.map((o) => o.stay.name))]
-  function price(orders) {
-    // console.log(orders);
-    const labels = [...new Set(orders.map((o) => o.stay.name))]
-    // console.log('lab', labels)
 
-    const prices = labels.reduce((acc, label) => {
-      const labelPriceAmount = { name: label, price: 0 }
-      orders.forEach((order) => {
-        if (order.stay.name === label) {
-          labelPriceAmount.price += +order.totalPrice
-        }
-      })
-      labelPriceAmount.price = labelPriceAmount.price.toFixed(1)
-    //   console.log(labelPriceAmount)
-      acc.push(labelPriceAmount)
-      return acc
-    }, [])
+  const counts = dataBase(orders, { name: 'labels', data: labels })
 
-    return prices
-  }
-const prices = price(orders)
-  ChartJS.register(ArcElement, Tooltip, Legend)
+  ChartJS.register(
+    ArcElement,
+    Tooltip,
+    Legend,
+    CategoryScale,
+    LinearScale,
+    Title,
+    BarElement
+  )
 
   const data = {
-    labels: [...new Set(orders.map((o) => o.stay.name))],
+    labels: [...new Set(orders.map((order) => order.stay.name))],
     datasets: [
       {
         label: '',
-        data: prices.map(price=>price.price), 
+        data: counts.map((count) => count.amount),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -54,5 +53,59 @@ const prices = price(orders)
     ],
   }
 
-  return <Doughnut data={data} />
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+  }
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+  const priceTotal = dataBase(orders, { name: 'monthNames', data: monthNames })
+
+  const months = [
+    ...new Set(
+      orders.map((order) => {
+        const monthIndex = new Date(order.createAt).getMonth()
+        return monthNames[monthIndex]
+      })
+    ),
+  ]
+
+  const data2 = {
+    labels: months,
+    datasets: [
+      {
+        label: 'Total price fer month',
+        data: priceTotal.filter((p) => p.price > 0).map((p) => p.price),
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  }
+
+  return (
+    <section className="statistic flex">
+      <div className="doughnut">
+      <Doughnut data={data} />
+      </div>
+      <div className="bar">
+      <Bar options={options} data={data2} />
+      </div>
+    </section>
+  )
 }

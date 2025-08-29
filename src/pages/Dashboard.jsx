@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
-import { orderService } from '../services/order/order.service.local'
+import { orderService } from '../services/order/index'
 import { formatDateCalendar } from '../services/util.service'
 import { Charts } from '../cmps/Charts'
 
 export function Dashboard() {
   const [orders, setOrders] = useState()
+ const user = useSelector(storeState => storeState.userModule.user)
 
   useEffect(() => {
     loadOrders()
   }, [])
 
   async function loadOrders() {
-    const orders = await orderService.query()
+    const orders = await orderService.query({hostId:user._id})
     setOrders(orders)
   }
 
@@ -22,17 +23,18 @@ export function Dashboard() {
 
   }
 
-  if (!orders || !orders.length) return <div>No orders yet</div>
+  if (!orders || !orders.length) return <div>No orders yet</div> 
   
   return (
     <section className='dashboard'>
-      <div className="charts">
+
+      <div className="charts flex">
         <div>
-          <p>Approved</p>
-          <p>Reject</p>
-          <p>Pending</p>
+          <p>Approved <span>{(orders.filter(o=>o.status==='Approved')).length}</span></p>
+          <p>Reject <span>{(orders.filter(o=>o.status==='Rejected')).length}</span></p>
+          <p>Pending <span>{(orders.filter(o=>o.status==='pending')).length}</span> </p>
         </div>
-        <div className="pie-chart">
+        <div >
         <Charts orders={orders}/>
         </div>
       </div>
@@ -71,7 +73,7 @@ export function Dashboard() {
                 <td className="stay">{order.stay.name}</td>
                 <td className='price'>$ {order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
                 <td
-                  className={( order.status === 'Approved' )?'active':''}
+                  className={( order.status === 'Approved' )?'active': (order.status === 'pending' ? 'pending' : 'non-active')}
                 >
                   {order.status}
                 </td>
