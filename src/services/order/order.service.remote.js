@@ -9,7 +9,7 @@ export const orderService = {
 
 function query(filterBy) {
 	console.log("🚀 ~ query ~ filterBy:", filterBy)
-	var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&sort=anaAref`
+	var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=anaAref`
 	console.log("🚀 ~ query ~ queryStr:", queryStr)
 	return httpService.get(`order${queryStr}`)
 	// return httpService.get(`order`)
@@ -21,7 +21,6 @@ async function remove(orderId) {
 
 async function add(stay, order) {
 	const user = userService.getLoggedinUser()
-	// console.log("🚀 ~ add ~ stay:", stay)
 	const orderToAdd = {
 		host:{
 			_id: stay.host._id,
@@ -51,7 +50,7 @@ async function add(stay, order) {
 		status: 'pending',
 		createdAt: order.createdAt,
 	  }
-	return await httpService.post(`order`, {orderToAdd })
+	return await httpService.post(`order`, orderToAdd )
 }
 
 

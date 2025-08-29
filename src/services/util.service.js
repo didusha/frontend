@@ -124,11 +124,12 @@ export function getDayDiff(startDateStr, endDateStr) {
 }
 
 export function formatDateCalendar(dateStr) {
-  if (!dateStr || dateStr === 'null' || dateStr === 'undefined')
-    return 'Add date'
+  if (!dateStr || dateStr === 'null' || dateStr === 'undefined') return
+    // return 'Add date'
 
   const d = new Date(dateStr)
-  if (isNaN(d.getTime())) return 'Add date'
+  if (isNaN(d.getTime())) return 
+  // 'Add date'
 
   // dd/mm/yyyy format
   const day = String(d.getDate()).padStart(2, '0')
