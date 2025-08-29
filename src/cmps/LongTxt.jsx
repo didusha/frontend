@@ -3,6 +3,7 @@ import { useState } from 'react'
 export function LongTxt({ txt, length = 100 }) {
   const isLongerThanLimit = txt.length > length
   const textToShow = !isLongerThanLimit ? txt : txt.substring(0, length) + '...'
+  
   return (
     <section className='long-txt'>
       <p className='txt'>

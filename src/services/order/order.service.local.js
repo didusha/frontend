@@ -11,6 +11,7 @@ export const orderService = {
   add,
   query,
   remove,
+  save,
 }
 
 function query(filterBy) {
@@ -39,11 +40,52 @@ async function add(stay, order) {
       _id: stay._id,
       name: stay.name,
       price: stay.price,
-	  imgUrls:stay.imgUrls
+      imgUrls: stay.imgUrls,
     },
+    createAt: new Date(),
     msgs: stay.msgs,
     status: 'pending',
   }
   const addedOrder = await storageService.post('order', orderToAdd)
   return addedOrder
+}
+
+async function save(order) {
+  try {
+    const savedOrder = await storageService.put('order', order)
+    return savedOrder
+  } catch (err) {
+    throw err
+  }
+}
+
+_create
+
+async function _create() {
+  const order = loadFromStorage('order') || [
+    {
+      _id: 'o1225',
+      hostId: { _id: 'u102', fullname: 'bob', imgUrl: '...' },
+      guest: {
+        _id: 'u101',
+        fullname: 'User 1',
+      },
+      totalPrice: 160,
+      startDate: '2025/10/15',
+      endDate: '2025/10/17',
+      guests: {
+        adults: 1,
+        kids: 2,
+      },
+      stay: {
+        // mini-stay
+        _id: 'h102',
+        name: 'House Of Uncle My',
+        price: 80.0,
+      },
+      msgs: [], // host - guest chat
+      status: 'pending', // approved / rejected
+    },
+  ]
+  const addedOrder = await storageService.post('order', order)
 }

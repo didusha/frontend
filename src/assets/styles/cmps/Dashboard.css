@@ -1,0 +1,84 @@
+.dashboard {
+
+  h2{
+    margin-block: 1rem;
+  }
+
+
+  .table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+
+    td,
+    th {
+      text-align: start;
+      font-size: 0.875rem;
+    }
+
+    img {
+      width: 1.5rem;
+    }
+  }
+  td {
+    min-height: 0.28em;
+  }
+  tbody tr:hover {
+    background-color:var(--gray-btn)
+  }
+
+  .price {
+    padding-inline-start: 0.625em;
+  }
+
+  .guest {
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .price {
+    text-align: center;
+  }
+
+  .btn-container {
+    display: flex;
+  } 
+
+  .btn {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+    margin: 0.35714em;
+    font-family: AirbnbCereal;
+    height: 40%;
+    border-radius: 0.4285em;
+  }
+
+  .btn.approve {
+    background-color: var(--green--3-);
+    color: var(--green-base-);
+    border: 1px solid var(--green-base-);
+  }
+  .btn.approve:hover {
+    background-color: var(--green-base-);
+    color: var(--white-bg-btn);
+  }
+  .btn.reject:hover {
+    background-color: var(--red-base-);
+    color: var(--white-bg-btn);
+  }
+
+  .btn.reject {
+    background-color: var(--red--3-);
+    color: var(--red-base-);
+    border: 1px solid var(--red-base-);
+  }
+
+  .active {
+    color: var(--green-base-);
+  }
+  .non-active {
+    color: var(--red-base-);
+  }
+}
