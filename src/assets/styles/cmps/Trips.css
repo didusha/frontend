@@ -1,21 +1,40 @@
+.trips{
+    display: grid;
+    grid-template-columns: 7% 33% repeat(6, 10%);
+    align-content: start;
+    gap: 6px;
+}
+
+.trips-container{
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 6px;
+}
+
 .trips-title {
     font-family: AirbnbCereal-Bold;
     font-size: 1.8rem;
 }
 
 .trips-length {
-    margin: 20px 0;
+    margin: 35px 0;
 }
 
 .trip {
     position: relative;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .trips-headers {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    margin-bottom: 20px;
 
     span {
         color: rgb(168, 168, 168);
@@ -42,9 +61,20 @@
 .trip::before {
     content: '';
     position: absolute;
-    bottom: -10px;
     height: 1px;
     width: 100%;
-    background-color: #ccc;
-    top: 0;
+    background-color: #dfdfdf;
+    top: -10px;
+}
+
+.trip-img{
+    height: 60px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.trip-status,
+.status-header{
+    justify-self: end;
+    margin-right: 3rem;
 }

@@ -1,26 +1,44 @@
-.app-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.footer {
+  background-color: #f7f7f7;
+  padding: 40px 20px;
+  font-family: AirbnbCereal;
+  color: #222;
+}
 
-    min-height: 3.5rem;
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
 
-    padding: .8rem 1rem;
-    background-color: var(--clr4);
+.footer-col {
+  flex: 1 1 200px;
+  margin: 10px;
+}
 
-    & p {
-        margin: 0;
-    }
-    
-    > span {
-        font-size: .8em;
-        
-        &.local-services {
-            color: --var(clr1);
-        }
-        
-        &.remote-services {
-            color: --var(clr5);
-        }
-    }
+.footer-col h5 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  cursor: default;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #717171;
+  flex-wrap: wrap;
+  gap: 10px;
 }
