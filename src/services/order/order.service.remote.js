@@ -8,38 +8,49 @@ export const orderService = {
 }
 
 function query(filterBy) {
-	var queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`
+	console.log("🚀 ~ query ~ filterBy:", filterBy)
+	var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=anaAref`
+	console.log("🚀 ~ query ~ queryStr:", queryStr)
 	return httpService.get(`order${queryStr}`)
+	// return httpService.get(`order`)
 }
 
 async function remove(orderId) {
 	await httpService.delete(`order/${orderId}`)
 }
 
-async function add({ stay, order }) {
+async function add(stay, order) {
+	const user = userService.getLoggedinUser()
 	const orderToAdd = {
-		host: stay.host,
-		guest: userService.getLoggedinUser(),
+		host:{
+			_id: stay.host._id,
+			fullname: stay.host.fullname,
+			pictureUrl: stay.host.pictureUrl,
+		},
+		guest: {
+			_id: user._id,
+			fullname: user.fullname,
+		},
 		totalPrice: order.totalPrice,
 		startDate: new Date(order.checkIn),
 		endDate: new Date(order.checkOut),
 		guests: {
-		  adults: order.adults,
-		  children: order.children,
-		  infants: order.infants,
-		  pets: order.pets,
+			adults: order.adults,
+			children: order.children,
+			infants: order.infants,
+			pets: order.pets,
 		},
 		stay: {
-		  _id: stay._id,
-		  name: stay.name,
-		  price: stay.price,
-		  imgUrls:stay.imgUrls
+			_id: stay._id,
+			name: stay.name,
+			price: stay.price,
+			imgUrls: stay.imgUrls
 		},
 		msgs: stay.msgs,
 		status: 'pending',
 		createdAt: order.createdAt,
 	  }
-	return await httpService.post(`order`, {orderToAdd })
+	return await httpService.post(`order`, orderToAdd )
 }
 
 

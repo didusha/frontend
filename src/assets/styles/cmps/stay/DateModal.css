@@ -86,3 +86,7 @@
 .rdp-range_end .rdp-day_button, .rdp-range_start .rdp-day_button:hover{
   background-color: black !important;
 }
+
+.rdp-day_button:disabled{
+  border: none;
+}

@@ -13,6 +13,7 @@ export function ConfirmReservation() {
 
   const { stayId } = useParams()
   const [stay, setStay] = useState()
+  console.log("🚀 ~ ConfirmReservation ~ stay:", stay)
   const [isOrderComplete, setIsOrderComplete] = useState(false)
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
@@ -89,7 +90,7 @@ export function ConfirmReservation() {
           {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
           {(isOrderComplete) ? <>
-            <button className="btn-confirm" onClick={() => navigate('/')}>Review Trips</button>
+            <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
             <h3 className="flex align-center bold justify-center">
               <img className="svg-image" src={icons.greenCheck} alt="Success" />
               <span>Reservation success!</span>

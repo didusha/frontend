@@ -1,7 +1,7 @@
 import { CLOSE_DATE_MODAL, CLOSE_GUESTS_MODAL, CLOSE_WHERE_MODAL, OPEN_DATE_MODAL, OPEN_GUESTS_MODAL, OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect, useRef } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { setFilterBy } from '../store/actions/stay.actions'
 import { DateModal } from './DateModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +15,7 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [localFilter, setLocalFilter] = useState(filterBy)
     const [searchParams, setSearchParams] = useSearchParams()
@@ -61,6 +62,9 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
         ev.preventDefault()
         setParams()
         dispatch(setFilterBy(localFilter))
+        closeModals()
+        setSelectedSection(null)
+        navigate('/')
     }
 
     function setParams() {
@@ -123,10 +127,12 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                 >
                     <h5>Where</h5>
                     <input
+                        className="where-filter"
                         type="text"
                         name="txt"
                         value={localFilter.txt}
                         onChange={handleChange}
+                        onClick={(e) => e.stopPropagation()}
                         placeholder="Search destinations"
                     />
                 </section>
@@ -140,7 +146,7 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                     }}
                 >
                     <h5>Check in</h5>
-                    <span>{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
+                    <span className="check-in-filter">{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
                 </section>
 
                 <section
@@ -151,7 +157,7 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                     }}
                 >
                     <h5>Check out</h5>
-                    <span>{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
+                    <span className="check-out-filter">{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
                 </section>
 
                 <section className={`guests ${getSectionClass("guests")}`}>
@@ -164,7 +170,7 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                         }}
                     >
                         <h5>Who</h5>
-                        <span>{getGuestsLabel(localFilter.capacity)}</span>
+                        <span className="guests-filter">{getGuestsLabel(localFilter.capacity)}</span>
                     </div>
                     <button className={!selectedSection ? "btn-search" : "btn-search-selected"} type="submit">
                         <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />

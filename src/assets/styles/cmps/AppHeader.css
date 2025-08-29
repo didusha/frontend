@@ -89,11 +89,13 @@
 .experiences-imgs {
     height: 40px;
     width: 27px;
+    transition: .4s;
 }
 
 .services-imgs {
     height: 40px;
     width: 55px;
+    transition: .4s;
 }
 
 .hamburger-overlay {
@@ -117,7 +119,7 @@
     height: 40px;
 }
 
-.hamburger-menu-section{
+.hamburger-menu-section {
     display: flex;
     align-items: center;
 }
@@ -128,12 +130,12 @@
     margin-right: 20px;
 }
 
-.user-img{
+.user-img {
     height: 40px;
     width: 40px;
 }
 
-.btn-user{
+.btn-user {
     padding: 0;
     border-radius: 50%;
     margin-right: 20px;
@@ -206,7 +208,8 @@
 .dashboard-link,
 .trips-link,
 .log-out-link,
-.log-in-link {
+.log-in-link,
+.listing-link {
     padding: 12.5px 20px;
 }
 
@@ -217,7 +220,8 @@
 .log-out-link:hover,
 .add-stay-link:hover,
 .dashboard-link:hover,
-.trips-link:hover {
+.trips-link:hover,
+.listing-link:hover {
     background-color: rgb(233, 233, 233);
     cursor: pointer;
 }
@@ -239,4 +243,13 @@
 
 .homes-section a {
     color: #003366;
+}
+
+.experiences-imgs:hover,
+.services-imgs:hover {
+    scale: 1.2;
+}
+
+.logo-span{
+    opacity: 0;
 }

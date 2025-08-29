@@ -125,7 +125,7 @@ export function StayReservation({ stay }) {
         order={order}
       />
 
-
+      
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
       <p className="note">You won’t be charged yet</p>
       {/* Dont delete!! */}
