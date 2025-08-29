@@ -59,33 +59,5 @@ async function save(order) {
   }
 }
 
-_create
 
-async function _create() {
-  const order = loadFromStorage('order') || [
-    {
-      _id: 'o1225',
-      hostId: { _id: 'u102', fullname: 'bob', imgUrl: '...' },
-      guest: {
-        _id: 'u101',
-        fullname: 'User 1',
-      },
-      totalPrice: 160,
-      startDate: '2025/10/15',
-      endDate: '2025/10/17',
-      guests: {
-        adults: 1,
-        kids: 2,
-      },
-      stay: {
-        // mini-stay
-        _id: 'h102',
-        name: 'House Of Uncle My',
-        price: 80.0,
-      },
-      msgs: [], // host - guest chat
-      status: 'pending', // approved / rejected
-    },
-  ]
-  const addedOrder = await storageService.post('order', order)
-}
+

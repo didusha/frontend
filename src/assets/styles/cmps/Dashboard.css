@@ -1,9 +1,11 @@
 .dashboard {
-
-  h2{
+  h2 {
     margin-block: 1rem;
   }
 
+  .pie-chart{
+    width: 30%;
+  }
 
   .table {
     width: 100%;
@@ -19,12 +21,18 @@
     img {
       width: 1.5rem;
     }
+
+    .stay {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
   td {
     min-height: 0.28em;
   }
   tbody tr:hover {
-    background-color:var(--gray-btn)
+    background-color: var(--gray-btn);
   }
 
   .price {
@@ -44,7 +52,7 @@
 
   .btn-container {
     display: flex;
-  } 
+  }
 
   .btn {
     font-size: 0.875rem;
