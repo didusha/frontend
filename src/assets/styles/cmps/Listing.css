@@ -1,27 +1,27 @@
-.trips {
+.listings {
     display: grid;
     grid-template-columns: 7% 33% repeat(6, 10%);
     align-content: start;
     gap: 6px;
 }
 
-.trips-container {
+.listings-container {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     gap: 6px;
 }
 
-.trips-title {
+.listings-title {
     font-family: AirbnbCereal-Bold;
     font-size: 1.8rem;
 }
 
-.trips-length {
+.listings-length {
     margin: 35px 0;
 }
 
-.trip {
+.listing {
     position: relative;
     display: grid;
     grid-column: 1 / -1;
@@ -30,7 +30,7 @@
     margin-bottom: 15px;
 }
 
-.trips-headers {
+.listings-headers {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
@@ -45,22 +45,18 @@
     }
 }
 
-.destination-header {
-    margin-right: 20em;
-}
-
-.trip-host,
-.trip-price {
+.listing-loc,
+.listing-price {
     color: rgb(81, 81, 81);
 }
 
-.trip-checkIn,
-.trip-checkOut,
-.trip-guests {
+.listing-bath,
+.listing-bed,
+.listing-guests {
     color: grey;
 }
 
-.trip::before {
+.listing::before {
     content: '';
     position: absolute;
     height: 1px;
@@ -69,39 +65,29 @@
     top: -10px;
 }
 
-.trip-img {
+.listing-img {
     height: 60px;
     width: 100px;
     border-radius: 10px;
 }
 
-.trip-status,
-.status-header {
-    justify-self: end;
+.listing-loc,
+.listing-loc-header {
     margin-right: 3rem;
 }
 
-.sort-arrows {
-    display: inline-flex;
-    flex-direction: column;
-    margin-left: 4px;
-    font-size: 0.7em;
-    line-height: 0.8em;
-}
-
-.arrow {
-    color: gray;
-    font-size: 0.6em !important;
-}
-
-.arrow.active {
-    color: rgb(36, 164, 255);
-}
-
-.check-in-header:hover,
-.check-out-header:hover,
-.guests-header:hover,
-.price-header:hover,
-.status-header:hover {
+.listing-bath-header:hover,
+.listing-bed-header:hover,
+.listing-guests-header:hover,
+.listing-price-header:hover {
     cursor: pointer;
+}
+
+.listing-name{
+    font-size: .98rem;
+}
+
+.listing-todo-header,
+.listing-todo{
+    justify-self: center;
 }

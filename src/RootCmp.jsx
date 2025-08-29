@@ -20,6 +20,7 @@ import { StayEdit } from './pages/StayEdit.jsx'
 
 import { Dashboard } from './pages/Dashboard.jsx'
 import { Trips } from './pages/Trips.jsx'
+import { Listing } from './pages/Listing.jsx'
 
 
 export function RootCmp() {
@@ -46,6 +47,7 @@ export function RootCmp() {
                     </Route>
                     <Route path="dashboard" element={<Dashboard />}/>
                     <Route path="trips" element={<Trips />}/>
+                    <Route path="listing" element={<Listing />}/>
                 </Routes>
             </main>
             <AppFooter />

@@ -141,14 +141,15 @@ export function AppHeader() {
 									</div>
 									<img className="homes-hamburger" src={homes} alt="" />
 								</section>
-								<section>
+								{/* <section>
 									<div className="hamburger-options">Refer a Host</div>
 									<div className="hamburger-options">Find a co-host</div>
 									<div className="hamburger-options">Gift cards</div>
-								</section >
+								</section > */}
 								{user &&
 									<div>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
+										<section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>
 										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
 										<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
 										<section className="log-out-link" onClick={onLogout}>Log out</section>
