@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
+import { stayService } from "../services/stay/index"
+import { loadStays } from '../store/actions/stay.actions'
+import { useSelector } from "react-redux"
 
 export function Listing() {
-  const [stays, setStays] = useState([])
+  const stays = useSelector(storeState => storeState.stayModule.stays)
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null })
   const [originalStays, setOriginalStays] = useState([])
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("stay"))
-    if (data && Array.isArray(data)) {
-      setStays(data)
-      setOriginalStays(data)
-    }
+    loadStays()
+    setOriginalStays(stays)
   }, [])
 
   function handleSort(key) {

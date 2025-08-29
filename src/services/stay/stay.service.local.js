@@ -25,7 +25,7 @@ async function query(filterBy = { txt: '', capacity: {} }) {
   
   var stays = await storageService.query(STORAGE_KEY)
   const { txt, capacity } = filterBy
-
+  
   if (txt) {
     const regex = new RegExp(filterBy.txt, 'i')
     stays = stays.filter((stay) => regex.test(stay.loc.city))
