@@ -1,13 +1,13 @@
 /* MOBILE */
 @media (max-width: 375px) {
-        .form-grid {
+    .form-grid {
         grid-template-columns: 1fr;
     }
 }
 
 /* SMALL */
 @media (min-width: 375px) {
-        .form-grid {
+    .form-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -17,7 +17,9 @@
 
 /* LARGE */
 @media (min-width: 950px) {
-
+    .logo-span {
+        opacity: 1 !important;
+    }
 }
 
 /* XLARGE */
