@@ -4,70 +4,76 @@
     left: 0;
     width: 100%;
     z-index: 2;
-
     background-color: #fefefe;
     padding: .8rem 1rem;
     border-bottom: 1px solid #eae9e9b4;
+}
 
-    & nav {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 1em;
-        justify-content: space-between;
+.small-layout {
+    display: grid;
+    grid-template-columns: minmax(112px, 1fr) minmax(auto, 1120px) minmax(112px, 1fr);
 
-        font-size: .8em;
-
-        .active {
-            color: var(--clr1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            margin-inline-start: 32px;
-            font-size: 1.65em;
-            font-family: AirbnbCereal;
-            font-weight: 900;
-            color: var(--clr1);
-            cursor: pointer;
-        }
-
-        & button {
-            margin-inline-end: 0;
-        }
-
-        .logo-img {
-            height: 33px;
-            width: 50;
-            margin-inline-end: 4px;
-        }
-
-        .navigation-links a {
-            padding: 7px;
-        }
+    >* {
+        grid-column: 2;
     }
 
-    .user-info {
-        display: flex;
-        align-items: center;
-        color: var(--clr1);
-
-        .score {
-            padding: 8px;
-            background-color: var(--clr2);
-            border-radius: 50%;
-            margin: 10px;
-
-            color: var(--gray1);
-        }
-
-        & img {
-            width: 2em;
-            aspect-ratio: 1;
-            border-radius: 50%;
-        }
+    nav {
+        padding-inline: 0 !important;
     }
+}
+
+.app-header nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
+    font-size: .8em;
+    padding: 0 1.8rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.65em;
+    font-family: AirbnbCereal;
+    font-weight: 900;
+    color: var(--clr1);
+    cursor: pointer;
+    margin: 0;
+}
+
+.logo-img {
+    height: 33px;
+    width: 33px;
+    margin-inline-end: 4px;
+}
+
+.navigation-links {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin: 0;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.navigation-links section {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    font-size: 14px;
+    font-family: AirbnbCereal;
+    color: var(--gray-text-color);
+}
+
+.navigation-links section:hover {
+    cursor: pointer;
+    color: rgb(20, 20, 53);
+}
+
+.navigation-links section a:hover {
+    text-decoration: none;
 }
 
 .sticky {
@@ -90,38 +96,7 @@
     width: 55px;
 }
 
-.navigation-links {
-    display: flex;
-    gap: 25px;
-    margin: 10px;
-    margin-top: 4px;
-    margin-bottom: 16px;
-    padding-right: 60px;
-}
-
-.navigation-links section {
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    font-size: 14px;
-    font-family: AirbnbCereal;
-    color: var(--gray-text-color);
-}
-
-.navigation-links section:hover {
-    cursor: pointer;
-    color: rgb(20, 20, 53);
-}
-
-.navigation-links section a:hover {
-    text-decoration: none;
-}
-
-.experiences-section {
-    padding-left: 13px;
-}
-
-.hamburger-overlay{
+.hamburger-overlay {
     position: fixed;
     inset: 0;
     z-index: 3;
@@ -131,13 +106,40 @@
     width: 15px;
 }
 
+.translate {
+    width: 15px;
+}
+
 .hamburger-menu {
     padding: 12px;
     border-radius: 50%;
-    margin-right: 30px !important;
+    margin: 0;
+    height: 40px;
 }
 
-.logged-out-hamburger{
+.hamburger-menu-section{
+    display: flex;
+    align-items: center;
+}
+
+.btn-translate {
+    padding: 12px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.user-img{
+    height: 40px;
+    width: 40px;
+}
+
+.btn-user{
+    padding: 0;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.logged-out-hamburger {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -152,64 +154,60 @@
     background-color: #fff;
 }
 
-.hamburger-options{
-    padding: 8px 0;
-    padding-inline: 20px;
+.hamburger-options {
+    padding: 8px 20px;
 }
 
 .logged-out-hamburger section:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  left: 10px;    
-  right: 10px;  
-  bottom: 0;
-  height: 1px;
-  background-color: #ccc; 
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 0;
+    height: 1px;
+    background-color: #ccc;
 }
 
-.become-host-p{
+.become-host-p {
     font-size: 13px;
     color: grey;
 }
 
-.circle-question{
+.circle-question {
     width: 15px;
     height: 15px;
 }
 
-.help-center{
+.help-center {
     display: flex;
     align-items: center;
     gap: 5px;
-    padding-inline: 20px;
-    padding-block: 12.5px;
+    padding: 12.5px 20px;
 }
 
-.host-span{
+.host-span {
     color: black;
     font-size: 15px;
 }
 
-.homes-hamburger{
+.homes-hamburger {
     width: 50px;
     height: 50px;
 }
 
-.become-host{
+.become-host {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-inline: 20px;
-    padding-block: 12.5px;
+    padding: 12.5px 20px;
 }
 
 .add-stay-link,
 .dashboard-link,
 .trips-link,
 .log-out-link,
-.log-in-link{
-    padding-inline: 20px;
-    padding-block: 12.5px;
+.log-in-link {
+    padding: 12.5px 20px;
 }
 
 .log-in-link:hover,
@@ -219,7 +217,7 @@
 .log-out-link:hover,
 .add-stay-link:hover,
 .dashboard-link:hover,
-.trips-link:hover{
+.trips-link:hover {
     background-color: rgb(233, 233, 233);
     cursor: pointer;
 }
@@ -237,7 +235,6 @@
     height: 3px;
     background-color: #003366;
     pointer-events: none;
-
 }
 
 .homes-section a {

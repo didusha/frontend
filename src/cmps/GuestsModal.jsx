@@ -60,7 +60,11 @@ export function GuestsModal({ handleGuestChange, setSelectedSection }) {
                                     </div>
                                 </div>
                                 <div className="btns-guests">
-                                    <button className="btn-count" onClick={() => handleDecrement(type)}>
+                                    <button
+                                        className="btn-count"
+                                        onClick={() => handleDecrement(type)}
+                                        disabled={guests[type] === 0}
+                                    >
                                         <img className="svg-image" src={minus} alt="minus" />
                                     </button>
                                     <span>{guests[type]}</span>
