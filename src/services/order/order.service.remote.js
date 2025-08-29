@@ -15,6 +15,28 @@ async function remove(orderId) {
 	await httpService.delete(`order/${orderId}`)
 }
 
-async function add({ txt, aboutUserId }) {
-	return await httpService.post(`order`, { txt, aboutUserId })
+async function add({ stay, order }) {
+	const orderToAdd = {
+		host: stay.host,
+		guest: userService.getLoggedinUser(),
+		totalPrice: order.totalPrice,
+		startDate: new Date(order.checkIn),
+		endDate: new Date(order.checkOut),
+		guests: {
+		  adults: order.adults,
+		  children: order.children,
+		  infants: order.infants,
+		  pets: order.pets,
+		},
+		stay: {
+		  _id: stay._id,
+		  name: stay.name,
+		  price: stay.price,
+		  imgUrls:stay.imgUrls
+		},
+		msgs: stay.msgs,
+		status: 'pending',
+		createdAt: order.createdAt,
+	  }
+	return await httpService.post(`order`, {orderToAdd })
 }
