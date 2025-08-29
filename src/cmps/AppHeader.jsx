@@ -64,7 +64,7 @@ export function AppHeader() {
 					setIsHamburgerOpen(false)
 				}}>
 					<img className="logo-img" src={rarebnb} alt="logo" />
-					<span>rarebnb</span>
+					<span className="logo-span">rarebnb</span>
 				</section>
 
 				{(
@@ -113,14 +113,14 @@ export function AppHeader() {
 					</div>
 				)} */}
 				<section className="hamburger-menu-section">
-					{!user ?
-						<button className="btn-translate">
-							<img className="translate" src={translate} alt="translate" />
-						</button>
-						:
+					{user ?
 						<button className="btn-user">
 							<img className="user-img" src={user.imgUrl} alt="" />
 						</button>
+								:
+							<button className="btn-translate">
+								<img className="translate" src={translate} alt="translate" />
+							</button>
 					}
 					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
 						<img className="hamburger" src={hamburger} alt="menu" />

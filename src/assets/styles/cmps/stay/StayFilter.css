@@ -93,7 +93,7 @@
     opacity: 0;
 }
 
-.stay-filter section:hover + *::before {
+.stay-filter section:hover+*::before {
     opacity: 0;
 }
 
@@ -101,7 +101,7 @@
     opacity: 0;
 }
 
-.selected + *::before {
+.selected+*::before {
     opacity: 0;
 }
 
@@ -205,4 +205,13 @@
 
 .form-active {
     background-color: #ebebeb !important;
+}
+
+.where-filter,
+.check-in-filter,
+.check-out-filter,
+.guests-filter {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
