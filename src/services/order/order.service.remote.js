@@ -4,6 +4,7 @@ export const orderService = {
 	add,
 	query,
 	remove,
+	save
 }
 
 function query(filterBy) {
@@ -40,3 +41,15 @@ async function add({ stay, order }) {
 	  }
 	return await httpService.post(`order`, {orderToAdd })
 }
+
+
+async function save(order) {
+  try {
+	const savedOrder = await httpService.post(`order/${order._id}`, order)
+	return savedOrder
+  } catch (err) {
+	throw err
+  }
+}
+
+

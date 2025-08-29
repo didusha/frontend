@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { orderService } from '../services/order/order.service.local'
 import { formatDateCalendar } from '../services/util.service'
+import { Charts } from '../cmps/Charts'
 
 export function Dashboard() {
   const [orders, setOrders] = useState()
@@ -18,12 +19,11 @@ export function Dashboard() {
     order.status = status
     const savedOrder = await orderService.save(order)
     setOrders((prevOrders) => [...prevOrders])
-    console.log(savedOrder)
+
   }
 
   if (!orders || !orders.length) return <div>No orders yet</div>
-  console.log(orders)
-
+  
   return (
     <section className='dashboard'>
       <div className="charts">
@@ -32,7 +32,11 @@ export function Dashboard() {
           <p>Reject</p>
           <p>Pending</p>
         </div>
+        <div className="pie-chart">
+        <Charts orders={orders}/>
+        </div>
       </div>
+
 
       <h2>{orders.length} Reservations</h2>
       <table className='table'>
@@ -53,8 +57,6 @@ export function Dashboard() {
             const checkIn = formatDateCalendar(order.startDate)
             const checkOut = formatDateCalendar(order.endDate)
             const createAt = formatDateCalendar(order.createAt)
-            const isLongerThanLimit = order.stay.name.length > 30
-            const textToShow = !isLongerThanLimit ? order.stay.name: (order.stay.name).substring(0, 30) + '...'
             return (
               <tr key={order._id} className="first-tr">
                 <td>
@@ -66,12 +68,10 @@ export function Dashboard() {
                 <td>{checkIn}</td>
                 <td>{checkOut}</td>
                 <td>{createAt}</td>
-                <td>{textToShow}</td>
-                <td className='price'>$ {order.totalPrice}</td>
+                <td className="stay">{order.stay.name}</td>
+                <td className='price'>$ {order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</td>
                 <td
-                  className={
-                    order.status === 'Approved' ? 'active' : 'non-active'
-                  }
+                  className={( order.status === 'Approved' )?'active':''}
                 >
                   {order.status}
                 </td>
