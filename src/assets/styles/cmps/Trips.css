@@ -1,11 +1,11 @@
-.trips{
+.trips {
     display: grid;
     grid-template-columns: 7% 33% repeat(6, 10%);
     align-content: start;
     gap: 6px;
 }
 
-.trips-container{
+.trips-container {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
@@ -37,6 +37,8 @@
     margin-bottom: 20px;
 
     span {
+        display: flex;
+        align-items: center;
         color: rgb(168, 168, 168);
         font-size: .9rem;
         font-family: AirbnbCereal-Bold;
@@ -67,14 +69,39 @@
     top: -10px;
 }
 
-.trip-img{
+.trip-img {
     height: 60px;
     width: 100px;
     border-radius: 10px;
 }
 
 .trip-status,
-.status-header{
+.status-header {
     justify-self: end;
     margin-right: 3rem;
+}
+
+.sort-arrows {
+    display: inline-flex;
+    flex-direction: column;
+    margin-left: 4px;
+    font-size: 0.7em;
+    line-height: 0.8em;
+}
+
+.arrow {
+    color: gray;
+    font-size: 0.6em !important;
+}
+
+.arrow.active {
+    color: rgb(36, 164, 255);
+}
+
+.check-in-header:hover,
+.check-out-header:hover,
+.guests-header:hover,
+.price-header:hover,
+.status-header:hover {
+    cursor: pointer;
 }

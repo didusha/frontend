@@ -1,7 +1,7 @@
 
 export function AppFooter() {
   return (
-    <footer className="footer">
+    <footer className="footer full main-layout">
       <div className="footer-top">
         <div className="footer-col">
           <h5>ABOUT</h5>
