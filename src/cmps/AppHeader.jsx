@@ -129,6 +129,7 @@ export function AppHeader() {
 								</section>
 								{user &&
 									<div>
+										<section className="wishlist-link" onClick={() => linkTo('wishlist')}>Wishlist</section>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
 										<section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>
 										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>

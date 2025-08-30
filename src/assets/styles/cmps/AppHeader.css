@@ -211,6 +211,7 @@
 .trips-link,
 .log-out-link,
 .log-in-link,
+.wishlist-link,
 .listing-link {
     padding: 12.5px 20px;
 }
@@ -223,6 +224,7 @@
 .add-stay-link:hover,
 .dashboard-link:hover,
 .trips-link:hover,
+.wishlist-link:hover,
 .listing-link:hover {
     background-color: rgb(233, 233, 233);
     cursor: pointer;
