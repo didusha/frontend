@@ -18,7 +18,6 @@ export function Listing() {
     if (!user) return;
     dispatch({ type: SET_FILTER_BY, filterBy: { hostId: user._id } })
     loadStays()
-    console.log("🚀 ~ Listing ~ filterBy:", filterBy)
     setOriginalStays(stays)
 
     return (() => {
