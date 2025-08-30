@@ -7,62 +7,62 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
 
     const destinations = [
         {
-            icon: "🏙️",
+            imgUrl: "🏙️",
             title: "Tel Aviv-Yafo, Israel",
             subtitle: "Because your wishlist has stays in Tel Aviv-Yafo",
         },
         {
-            icon: "⛩️",
+            imgUrl: "⛩️",
             title: "Bangkok, Thailand",
             subtitle: "For sights like Grand Palace",
         },
         {
-            icon: "🏖️",
+            imgUrl: "🏖️",
             title: "Rio de Janeiro, Brazil",
             subtitle: "Popular beach destination",
         },
         {
-            icon: "🌊",
+            imgUrl: "🌊",
             title: "Ipanema Beach, Brazil",
             subtitle: "For a trip abroad",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Santiago, Chile",
             subtitle: "For sights like Museo Nacional de Bellas Artes",
         },
         {
-            icon: "🏯",
+            imgUrl: "🏯",
             title: "Hanoi, Vietnam",
             subtitle: "For its stunning architecture",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Rome, Italy",
             subtitle: "For its top-notch dining",
         },
         {
-            icon: "⛪",
+            imgUrl: "⛪",
             title: "Jerusalem, Israel",
             subtitle: "For sights like Church of the Holy Sepulchre",
         },
         {
-            icon: "🏝️",
+            imgUrl: "🏝️",
             title: "Salvador, Brazil",
             subtitle: "Popular beach destination",
         },
         {
-            icon: "🗼",
+            imgUrl: "🗼",
             title: "Paris, France",
             subtitle: "For its bustling nightlife",
         },
         {
-            icon: "🌇",
+            imgUrl: "🌇",
             title: "Buenos Aires, Argentina",
             subtitle: "For its stunning architecture",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Athens, Greece",
             subtitle: "For sights like Acropolis of Athens",
         },
@@ -95,7 +95,7 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
                                             setSelectedSection("checkIn")
                                             dispatch({ type: OPEN_DATE_MODAL })
                                         }}>
-                                        <span className="dest-icon">{d.icon}</span>
+                                        <span className="dest-img">{d.imgUrl}</span>
                                         <div className="dest-text">
                                             <div className="dest-title">
                                                 <span className="dest-city">{city}</span>

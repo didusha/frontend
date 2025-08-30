@@ -68,7 +68,8 @@ function saveLoggedinUser(user) {
         _id: user._id, 
         fullname: user.fullname, 
         imgUrl: user.imgUrl, 
-        isAdmin: user.isAdmin 
+        isHost: user.isHost,
+        wishlist: user.wishlist
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
@@ -79,6 +80,8 @@ async function _createAdmin() {
     const user = {
         username: 'admin',
         password: 'admin',
+        isHost: true,
+        wishlist: [],
         fullname: 'Muli Adminsky',
         imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
     }

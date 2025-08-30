@@ -6,14 +6,12 @@ export const SET_WATCHED_USER = 'SET_WATCHED_USER'
 export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
 export const SET_SCORE = 'SET_SCORE'
-export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST'
-export const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST'
+export const TOGGLE_WISHLIST = 'TOGGLE_WISHLIST'
 
 const initialState = {
     user: userService.getLoggedinUser(),
     users: [],
     watchedUser: null,
-    wishlist: []
 }
 
 export function userReducer(state = initialState, action) {
@@ -31,23 +29,14 @@ export function userReducer(state = initialState, action) {
                 users: state.users.filter(user => user._id !== action.userId)
             }
             break
-        case ADD_TO_WISHLIST:
+        case TOGGLE_WISHLIST:
             newState = {
                 ...state,
                 user: {
                     ...state.user,
                     wishlist: state.user.wishlist.includes(action.stayId)
-                        ? state.user.wishlist
-                        : [...state.user.wishlist, action.stayId]
-                }
-            }
-            break
-        case REMOVE_FROM_WISHLIST:
-            newState = {
-                ...state,
-                user: {
-                    ...state.user,
-                    wishlist: state.user.wishlist.filter(id => id !== action.stayId)
+                        ? state.user.wishlist.filter(id => id !== action.stayId) 
+                        : [...state.user.wishlist, action.stayId]           
                 }
             }
             break
@@ -59,7 +48,6 @@ export function userReducer(state = initialState, action) {
     }
     // For debug:
     // window.userState = newState
-    // console.log('State:', newState)
+    console.log('State:', newState)
     return newState
-
 }
