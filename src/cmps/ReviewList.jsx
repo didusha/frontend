@@ -38,7 +38,7 @@ export function ReviewList({ reviews }) {
         {reviews.map((review, idx) => {
           if (idx < 6)
             return (
-              <li key={review._id}>
+              <li key={review.at}>
                 <ReviewPreview review={review} />
               </li>
             )

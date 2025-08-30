@@ -73,6 +73,7 @@ export function StayDetails() {
   const {checkIn, checkOut} = params
 
 
+
   return (
     <section className="stay-details details-layout ">
      {showHeader && <nav className="nav details-layout ">

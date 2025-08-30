@@ -175,3 +175,33 @@ export function getAverageRating(reviews) {
 
     return { monthName, year }
   }
+
+   export function dataBase(orders, datasets) {
+      let data  
+      if (datasets.name === 'labels') {
+        data = datasets.data.reduce((acc, dataset) => {
+          const labelPriceAmount = { name: dataset, amount: 0 }
+          orders.forEach((order) => {
+            if (order.stay.name === dataset) {
+              labelPriceAmount.amount++
+            }
+          })
+          acc.push(labelPriceAmount)
+          return acc
+        }, [])
+      } else if (datasets.name === 'monthNames') {        
+        data = datasets.data.reduce((acc, dataset, idx) => {
+          const labelPriceAmount = { name: dataset, price: 0 }
+          orders.forEach((order) => {
+            if (new Date(order.createAt).getMonth() === idx) {
+              labelPriceAmount.price += +order.totalPrice
+            }
+          })
+          labelPriceAmount.price = labelPriceAmount.price.toFixed(1)
+          acc.push(labelPriceAmount)
+          return acc
+        }, [])
+      }
+      
+      return data
+    }
