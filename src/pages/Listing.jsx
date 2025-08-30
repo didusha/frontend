@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { stayService } from "../services/stay/index"
 import { loadStays } from '../store/actions/stay.actions'
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router"
 
 export function Listing() {
   const stays = useSelector(storeState => storeState.stayModule.stays)
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null })
   const [originalStays, setOriginalStays] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadStays()
@@ -91,7 +93,9 @@ export function Listing() {
             <li key={stay._id} className="listing">
               <img className="listing-img" src={stay.imgUrls[0]} alt="listing-img" />
               <h3 className="listing-name">{stay.name}</h3>
-              <span className="listing-todo"><button className="listing-update">Update</button></span>
+              <span className="listing-todo">
+                <button className="listing-update" onClick={() => navigate(`/stay/edit/${stay._id}`)}>Update</button>
+                </span>
               <span className="listing-guests">{stay.capacity} Guests</span>
               <span className="listing-bed">{stay.bedrooms} Bedrooms</span>
               <span className="listing-bath">{stay.bathrooms} Bathrooms</span>

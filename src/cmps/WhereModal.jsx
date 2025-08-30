@@ -7,11 +7,6 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
 
     const destinations = [
         {
-            icon: "📍",
-            title: "Nearby",
-            subtitle: "Find what’s around you",
-        },
-        {
             icon: "🏙️",
             title: "Tel Aviv-Yafo, Israel",
             subtitle: "Because your wishlist has stays in Tel Aviv-Yafo",

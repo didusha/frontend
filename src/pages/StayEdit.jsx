@@ -3,12 +3,28 @@ import { addStay } from '../store/actions/stay.actions'
 import { stayService } from '../services/stay/'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { ImgUploader } from '../cmps/ImgUploader'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 
 export function StayEdit() {
-
     const [stay, setStay] = useState(stayService.getEmptyStay())
     const [images, setImages] = useState([])
+    const { stayId } = useParams()
+
+    useEffect(() => {
+        loadStay(stayId)
+    }, [stayId])
+
+    async function loadStay(stayId) {
+        if (!stayId) return
+        try {
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Cannot load stay', err)
+            showErrorMsg('Cannot load stay')
+        }
+    }
 
     const amenitiesOptions = [
         "TV", "Cable TV", "Internet", "Wifi", "Air conditioning", "Pool", "Kitchen",
@@ -141,10 +157,10 @@ export function StayEdit() {
 }
 
 
-    // const handleImageUpload = (ev) => {
-        // const files = Array.from(ev.target.files)
-        // const fileURLs = files.map(file => URL.createObjectURL(file))
+// const handleImageUpload = (ev) => {
+// const files = Array.from(ev.target.files)
+// const fileURLs = files.map(file => URL.createObjectURL(file))
 
-        // setImages(prev => [...prev, ...fileURLs])
-        // setStay(prev => ({ ...prev, images: [...(prev.images || []), ...files] }))
-    // }
+// setImages(prev => [...prev, ...fileURLs])
+// setStay(prev => ({ ...prev, images: [...(prev.images || []), ...files] }))
+// }
