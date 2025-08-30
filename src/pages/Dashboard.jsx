@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 export function Dashboard() {
   const [orders, setOrders] = useState()
+  // console.log("🚀 ~ Dashboard ~ orders:", orders)
   const user = useSelector(storeState => storeState.userModule.user)
 
   useEffect(() => {

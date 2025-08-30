@@ -12,7 +12,7 @@ export function Trips() {
   useEffect(() => {
     loadOrders()
   }, [])
-  console.log("🚀 ~ Trips ~ orders:", orders)
+  // console.log("🚀 ~ Trips ~ orders:", orders)
   
   async function loadOrders() {
     const orders = await orderService.query({ guestId: user._id })

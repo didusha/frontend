@@ -1,8 +1,10 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER_BY } from '../reducers/stay.reducer'
+import { LOADING_START, LOADING_DONE } from '../reducers/system.reducer'
 
 export async function loadStays() {
+    store.dispatch({type: LOADING_START})
     let { filterBy } = store.getState().stayModule
     if (filterBy.capacity && typeof filterBy.capacity === 'object') {
         const { adults = 1, children = 0, infants = 0 } = filterBy.capacity
@@ -14,6 +16,7 @@ export async function loadStays() {
     try {
         const stays = await stayService.query(filterBy)
         store.dispatch(getCmdSetStays(stays))
+        store.dispatch({type: LOADING_DONE})
     } catch (err) {
         console.log('Cannot load stays', err)
         throw err

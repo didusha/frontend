@@ -13,7 +13,7 @@ export function ConfirmReservation() {
 
   const { stayId } = useParams()
   const [stay, setStay] = useState()
-  console.log("🚀 ~ ConfirmReservation ~ stay:", stay)
+  // console.log("🚀 ~ ConfirmReservation ~ stay:", stay)
   const [isOrderComplete, setIsOrderComplete] = useState(false)
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])

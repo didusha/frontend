@@ -8,11 +8,8 @@ export const orderService = {
 }
 
 function query(filterBy) {
-	console.log("🚀 ~ query ~ filterBy:", filterBy)
 	var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=anaAref`
-	console.log("🚀 ~ query ~ queryStr:", queryStr)
 	return httpService.get(`order${queryStr}`)
-	// return httpService.get(`order`)
 }
 
 async function remove(orderId) {
@@ -51,13 +48,15 @@ async function add(stay, order) {
 		status: 'pending',
 		createdAt: order.createdAt,
 	  }
+	console.log("🚀 ~ add ~ orderToAdd:", orderToAdd)
 	return await httpService.post(`order`, orderToAdd )
 }
 
 
 async function save(order) {
+  console.log("🚀 ~ save ~ order:", order)
   try {
-	const savedOrder = await httpService.post(`order/${order._id}`, order)
+	const savedOrder = await httpService.put(`order/${order._id}`, order)
 	return savedOrder
   } catch (err) {
 	throw err
