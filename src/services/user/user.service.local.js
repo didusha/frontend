@@ -81,6 +81,8 @@ async function _createAdmin() {
         password: 'admin',
         fullname: 'Muli Adminsky',
         imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
+        isHost:true ,
+        wishlist:[]
     }
 
     const newUser = await storageService.post('user', user)

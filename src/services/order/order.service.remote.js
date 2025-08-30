@@ -7,9 +7,9 @@ export const orderService = {
 	save
 }
 
-function query(filterBy) {
-	var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=anaAref`
-	return httpService.get(`order${queryStr}`)
+function query(filterBy) {	
+	// var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=${filterBy.sort}`
+	return httpService.get(`order`,filterBy) //${queryStr}
 }
 
 async function remove(orderId) {
@@ -45,7 +45,7 @@ async function add(stay, order) {
 			imgUrls: stay.imgUrls
 		},
 		msgs: stay.msgs,
-		status: 'pending',
+		status: 'Pending',
 		createdAt: order.createdAt,
 	  }
 	console.log("🚀 ~ add ~ orderToAdd:", orderToAdd)

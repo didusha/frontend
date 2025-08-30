@@ -218,3 +218,4 @@ export function getAverageRating(reviews) {
 
     return `${day}/${month}/${year}`
   }
+
