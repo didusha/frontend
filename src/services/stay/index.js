@@ -50,6 +50,8 @@ function getDefaultFilter() {
     checkIn: null,
     checkOut: null,
     hostId: null,
+    type: null,
+    dir: 1,
   }
 }
 

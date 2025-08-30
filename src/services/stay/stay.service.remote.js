@@ -9,6 +9,7 @@ export const stayService = {
 }
 
 async function query(filterBy = { txt: '', capacity: 1 }) {
+    // console.log("🚀 ~ query ~ filterBy:", filterBy)
     return httpService.get(`stay`, filterBy)
 }
 
@@ -30,6 +31,6 @@ async function save(stay) {
 }
 
 async function addStayMsg(stayId, txt) {
-    const savedMsg = await httpService.post(`stay/${stayId}/msg`, {txt})
+    const savedMsg = await httpService.post(`stay/${stayId}/msg`, { txt })
     return savedMsg
 }

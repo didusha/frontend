@@ -8,25 +8,25 @@ export function Trips() {
   const [orders, setOrders] = useState([])
   const [sort, setSort] = useState({ key: null, direction: 1 })
   const [originalOrders, setOriginalOrders] = useState([])
-  
+
   useEffect(() => {
     loadOrders()
   }, [sort])
   // console.log("🚀 ~ Trips ~ orders:", orders)
   // console.log(sort);
-  
-  
+
+
   async function loadOrders() {
-    const orders = await orderService.query({ guestId: user._id, type:sort.key, dir:sort.direction})
+    const orders = await orderService.query({ guestId: user._id, type: sort.key, dir: sort.direction })
     setOrders(orders)
     setOriginalOrders(orders)
   }
 
-    function onSetSorting(key){
-  setSort(prev=>({...prev, key:key, direction: -prev.direction}))
+  function onSetSorting(key) {
+    setSort(prev => ({ ...prev, key: key, direction: -prev.direction }))
   }
 
- 
+
 
   function renderSortArrows(key) {
     const isActive = sort.key === key
