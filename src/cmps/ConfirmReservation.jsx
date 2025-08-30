@@ -61,36 +61,37 @@ export function ConfirmReservation() {
   const totalGuest = +params.adults + +params.children + +params.infants
 
   return (
-    <section className='confirm-reservation'>
-      <section className="order-details">
-        <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
-        <h1 className="bold">
-          {(isOrderComplete) ?
-            <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
-            'Request to book'
-          }
-        </h1>
-        <div className="rare-find flex">
-          <div>
-            <h3 className="bold">This is a rare find</h3>
-            <p>{stay.name} is usually booked.</p>
+    <section className="confirm-details-container">
+      <section className='confirm-reservation'>
+        <section className="order-details">
+          <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
+          <h1 className="bold">
+            {(isOrderComplete) ?
+              <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
+              'Request to book'
+            }
+          </h1>
+          <div className="rare-find flex">
+            <div>
+              <h3 className="bold">This is a rare find</h3>
+              <p>{stay.name} is usually booked.</p>
+            </div>
+            <div>
+              <img src={icons.daimond} alt="Diamond" />
+            </div>
           </div>
-          <div>
-            <img src={icons.daimond} alt="Diamond" />
-          </div>
-        </div>
 
-        <h3 className="trip-details bold">Your trip</h3>
-        <div className="date-details flex space-between">
-          <p className="bold">Dates</p>
-          <p>{formatDateCalendar(params.checkIn)} - {formatDateCalendar(params.checkOut)}</p>
-        </div>
-        <div className="guests-details flex space-between">
-          <p className="bold">Guests</p>
-          <p>{totalGuest}</p>
-        </div>
-        <div className="order-confirm">
-          {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
+          <h3 className="trip-details bold">Your trip</h3>
+          <div className="date-details flex space-between">
+            <p className="bold">Dates</p>
+            <p>{formatDateCalendar(params.checkIn)} - {formatDateCalendar(params.checkOut)}</p>
+          </div>
+          <div className="guests-details flex space-between">
+            <p className="bold">Guests</p>
+            <p>{totalGuest}</p>
+          </div>
+          <div className="order-confirm">
+            {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
           {(isOrderComplete) ? <>
             <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
@@ -106,37 +107,38 @@ export function ConfirmReservation() {
         </div>
       </section>
 
-      <section className="order-summary">
-        <div className="stay-summary flex">
-          <img src={stay.imgUrls[0]} alt="" />
-          <div className="stay-desc flex column space-between">
-            <h4 className="">{stay.name}</h4>
-            <p className="grey">{stay.type}</p>
-            <div className="rating flex">
-              <img src={icons.star} alt="Star" />
-              <span className="avg-rating">4.88</span>
-              <span className="reviews-count grey">{stay.reviews ? `· ${stay.reviews?.length} reviews` : ''} </span>
+        <section className="order-summary">
+          <div className="stay-summary flex">
+            <img src={stay.imgUrls[0]} alt="" />
+            <div className="stay-desc flex column space-between">
+              <h4 className="">{stay.name}</h4>
+              <p className="grey">{stay.type}</p>
+              <div className="rating flex">
+                <img src={icons.star} alt="Star" />
+                <span className="avg-rating">4.88</span>
+                <span className="reviews-count grey">{stay.reviews ? `· ${stay.reviews?.length} reviews` : ''} </span>
+              </div>
             </div>
           </div>
-        </div>
-        <hr />
-
-        <div className="reservation-prices">
-          <p className="flex space-between">
-            <span className="nights-info underline">{nights} nights x ${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-          </p>
-          <p className="flex space-between">
-            <span className="cleaning-fee underline">Cleaning fee</span>
-            <span>$5</span>
-          </p>
           <hr />
-          <p className="flex space-between">
-            <span>Total</span>
-            <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-          </p>
 
-        </div>
+          <div className="reservation-prices">
+            <p className="flex space-between">
+              <span className="nights-info underline">{nights} nights x ${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+              <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+            </p>
+            <p className="flex space-between">
+              <span className="cleaning-fee underline">Cleaning fee</span>
+              <span>$5</span>
+            </p>
+            <hr />
+            <p className="flex space-between">
+              <span>Total</span>
+              <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+            </p>
+
+          </div>
+        </section>
       </section>
     </section>
   )

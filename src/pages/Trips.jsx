@@ -8,11 +8,12 @@ export function Trips() {
   const [orders, setOrders] = useState([])
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null })
   const [originalOrders, setOriginalOrders] = useState([])
-
+  
   useEffect(() => {
     loadOrders()
   }, [])
-
+  // console.log("🚀 ~ Trips ~ orders:", orders)
+  
   async function loadOrders() {
     const orders = await orderService.query({ guestId: user._id })
     setOrders(orders)

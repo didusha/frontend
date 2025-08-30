@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react"
 import { stayService } from "../services/stay/index"
 import { loadStays } from '../store/actions/stay.actions'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { SET_FILTER_BY } from "../store/reducers/stay.reducer"
 
 export function Listing() {
   const stays = useSelector(storeState => storeState.stayModule.stays)
+  const user = useSelector(storeState => storeState.userModule.user)
   const [sortConfig, setSortConfig] = useState({ key: null, direction: null })
   const [originalStays, setOriginalStays] = useState([])
+  const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    if (!user) return;
+    dispatch({ type: SET_FILTER_BY, filterBy: { hostId: user._id } })
     loadStays()
     setOriginalStays(stays)
-  }, [])
+
+    return (() => {
+      dispatch({ type: SET_FILTER_BY, filterBy: { hostId: null } })
+    })
+  }, [user])
 
   function handleSort(key) {
     let direction = 'asc'
@@ -61,6 +73,7 @@ export function Listing() {
     )
   }
 
+  if (isLoading) return <div>Loading... </div>
   return (
     <>
       <h1 className="listings-title">My Listings</h1>
