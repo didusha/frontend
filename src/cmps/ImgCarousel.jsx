@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Slider from "react-slick";
 
 export function ImgCarousel({ imgUrls = [], stayName = "" }) {
+  const [isStayLiked, setIsStayLiked] = useState(false)
 
   const slides = imgUrls.length ? imgUrls : ["/images/placeholder.jpg"]
 
@@ -36,16 +38,25 @@ export function ImgCarousel({ imgUrls = [], stayName = "" }) {
               alt={stayName ? `${stayName} – image ${i + 1}` : `Stay image ${i + 1}`}
               loading="lazy"
             />
-            <button className="heart-btn" onClick={addToWishList} aria-label="Add to wishlist">
+            <button 
+            className="heart-btn" 
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              addToWishList()
+              setIsStayLiked(!isStayLiked)
+            }} 
+            aria-label="Add to wishlist">
               <svg
                 viewBox="0 0 32 32"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
                 strokeWidth="2"
                 style={{ width: "24px", height: "24px"}}
               >
-                <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z" />
+                <path 
+                d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z" 
+                fill={isStayLiked ? "#fe385c" : "rgba(0,0,0,0.5)"}
+                />
               </svg>
             </button>
           </div>
