@@ -30,6 +30,7 @@ async function add(stay, order) {
 		guest: {
 			_id: user._id,
 			fullname: user.fullname,
+			imgUrl: user.imgUrl,
 		},
 		totalPrice: order.totalPrice,
 		startDate: new Date(order.checkIn),
