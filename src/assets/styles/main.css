@@ -17,6 +17,7 @@
 @import "cmps/Chat";
 
 @import "cmps/AppHeader";
+@import "cmps/SmallHeader";
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 @import "cmps/Trips";
@@ -28,6 +29,7 @@
 @import "cmps/stay/StayList";
 @import "cmps/stay/StayPreview";
 @import "cmps/stay/StayFilter";
+@import "cmps/stay/SmallMqFilter";
 @import "cmps/stay/ImgCarousel";
 @import "cmps/stay/StayGallery";
 @import "cmps/stay/DateModal";

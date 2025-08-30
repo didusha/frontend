@@ -22,12 +22,14 @@ import { Dashboard } from './pages/Dashboard.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { Listing } from './pages/Listing.jsx'
 import { Wishlist } from './cmps/Wishlist.jsx'
+import { SmallHeader } from './cmps/SmallHeader.jsx'
 
 
 export function RootCmp() {
     return (
         <div className="main-container">
             <AppHeader />
+            <SmallHeader />
             <UserMsg />
 
             <main>
