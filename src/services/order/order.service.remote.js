@@ -29,6 +29,7 @@ async function add(stay, order) {
 			fullname: user.fullname,
 			imgUrl: user.imgUrl,
 		},
+		capacity: order.capacity,
 		totalPrice: order.totalPrice,
 		startDate: new Date(order.checkIn),
 		endDate: new Date(order.checkOut),
