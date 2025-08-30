@@ -98,29 +98,15 @@ export function AppHeader() {
 						</section>
 					)}
 
-				{/* {user?.isAdmin && <NavLink to="/admin">Admin</NavLink>}
-
-
-				{!user && <NavLink to="auth/login" className="login-link">Login</NavLink>}
-				{user && (
-					<div className="user-info">
-						<Link to={`user/${user._id}`}>
-							{user.imgUrl && <img src={user.imgUrl} />}
-							{user.fullname}
-						</Link>
-						
-						<button onClick={onLogout}>logout</button>
-					</div>
-				)} */}
 				<section className="hamburger-menu-section">
 					{user ?
 						<button className="btn-user">
 							<img className="user-img" src={user.imgUrl} alt="" />
 						</button>
-								:
-							<button className="btn-translate">
-								<img className="translate" src={translate} alt="translate" />
-							</button>
+						:
+						<button className="btn-translate">
+							<img className="translate" src={translate} alt="translate" />
+						</button>
 					}
 					<button className="hamburger-menu" onClick={() => setIsHamburgerOpen(!isHamburgerOpen)}>
 						<img className="hamburger" src={hamburger} alt="menu" />
@@ -141,11 +127,6 @@ export function AppHeader() {
 									</div>
 									<img className="homes-hamburger" src={homes} alt="" />
 								</section>
-								{/* <section>
-									<div className="hamburger-options">Refer a Host</div>
-									<div className="hamburger-options">Find a co-host</div>
-									<div className="hamburger-options">Gift cards</div>
-								</section > */}
 								{user &&
 									<div>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
