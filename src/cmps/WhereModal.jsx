@@ -6,15 +6,20 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
     const dispatch = useDispatch()
 
     const destinations = [
-        {
-            icon: "📍",
-            title: "Nearby",
-            subtitle: "Find what’s around you",
-        },
+        // {
+        //     icon: "📍",
+        //     title: "Nearby",
+        //     subtitle: "Find what’s around you",
+        // },
         {
             icon: "🏙️",
-            title: "Tel Aviv-Yafo, Israel",
+            title: "Tel Aviv, Israel",
             subtitle: "Because your wishlist has stays in Tel Aviv-Yafo",
+        },
+        {
+            icon: "🗼",
+            title: "Paris, France",
+            subtitle: "For its bustling nightlife",
         },
         {
             icon: "⛩️",
@@ -28,49 +33,44 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
         },
         {
             icon: "🌊",
-            title: "Ipanema Beach, Brazil",
+            title: "Istanbul, Turkey",
             subtitle: "For a trip abroad",
         },
         {
             icon: "🏛️",
-            title: "Santiago, Chile",
+            title: "Barcelona, Spain",
             subtitle: "For sights like Museo Nacional de Bellas Artes",
         },
         {
             icon: "🏯",
-            title: "Hanoi, Vietnam",
+            title: "New York, United States",
             subtitle: "For its stunning architecture",
         },
         {
             icon: "🏛️",
-            title: "Rome, Italy",
+            title: "Sydney, Australia",
             subtitle: "For its top-notch dining",
         },
         {
             icon: "⛪",
-            title: "Jerusalem, Israel",
+            title: "Porto, Portugal",
             subtitle: "For sights like Church of the Holy Sepulchre",
         },
-        {
-            icon: "🏝️",
-            title: "Salvador, Brazil",
-            subtitle: "Popular beach destination",
-        },
-        {
-            icon: "🗼",
-            title: "Paris, France",
-            subtitle: "For its bustling nightlife",
-        },
-        {
-            icon: "🌇",
-            title: "Buenos Aires, Argentina",
-            subtitle: "For its stunning architecture",
-        },
-        {
-            icon: "🏛️",
-            title: "Athens, Greece",
-            subtitle: "For sights like Acropolis of Athens",
-        },
+        // {
+        //     icon: "🏝️",
+        //     title: "Salvador, Brazil",
+        //     subtitle: "Popular beach destination",
+        // },
+        // {
+        //     icon: "🌇",
+        //     title: "Buenos Aires, Argentina",
+        //     subtitle: "For its stunning architecture",
+        // },
+        // {
+        //     icon: "🏛️",
+        //     title: "Athens, Greece",
+        //     subtitle: "For sights like Acropolis of Athens",
+        // },
     ]
 
     return (
