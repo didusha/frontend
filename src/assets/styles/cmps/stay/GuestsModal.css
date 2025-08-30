@@ -84,3 +84,23 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.who{
+  margin: 1em;
+  font-size: 1.2rem;
+  font-family: AirbnbCereal-Bold;
+}
+
+.guests-modal-overlay.small-guests-modal{
+  display: none;
+}
+
+.guests-modal-content.small-guests-modal{
+  position: relative;
+  width: 95%;
+  height: 26em;
+  left: 3%;
+  padding: 0 2em !important;
+  top: 0;
+  padding: 0;
+}

@@ -4,7 +4,7 @@ import { CLOSE_DATE_MODAL, OPEN_GUESTS_MODAL } from "../store/reducers/system.re
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
-export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection }) {
+export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
   const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
   const dispatch = useDispatch()
 
@@ -22,30 +22,31 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
   }, [range?.to]);
 
   return (
-    <>
-      {isDateModalOpen && (
-        <>
-          <div className="modal-overlay" onClick={() => {
-            dispatch({ type: CLOSE_DATE_MODAL })
-            setSelectedSection(null)
-          }}></div>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="airbnb-calendar">
-              <DayPicker
-                mode="range"
-                selected={range}
-                onSelect={setRange}
-                numberOfMonths={2}
-                pagedNavigation
-                disabled={{ before: new Date() }}
-              />
+      <>
+        {isDateModalOpen && (
+          <>
+            <div className={`modal-overlay ${isSmallModal ? "small-date-modal" : ""}`} onClick={() => {
+              dispatch({ type: CLOSE_DATE_MODAL })
+              setSelectedSection(null)
+            }}></div>
+            <div
+              className={`modal-content ${isSmallModal ? "small-date-modal" : ""}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {isSmallModal && <h1 className="when">When?</h1>}
+              <div className="airbnb-calendar">
+                <DayPicker
+                  mode="range"
+                  selected={range}
+                  onSelect={setRange}
+                  numberOfMonths={2}
+                  pagedNavigation
+                  disabled={{ before: new Date() }}
+                />
+              </div>
             </div>
-          </div>
-        </>
-      )}
-    </>
+          </>
+        )}
+      </>
   )
 }

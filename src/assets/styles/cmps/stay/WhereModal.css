@@ -66,3 +66,22 @@
   font-size: 0.8rem;
   color: #666;
 }
+
+.where{
+  margin: 1em;
+  font-size: 1.2rem;
+  font-family: AirbnbCereal-Bold;
+}
+
+.where-modal-overlay.small-date-modal{
+  display: none;
+}
+
+.where-modal-content.small-date-modal{
+  position: relative;
+  width: 95%;
+  height: 26em;
+  margin: auto;
+  top: 0;
+  padding: 0;
+}

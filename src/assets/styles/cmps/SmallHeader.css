@@ -1,32 +1,36 @@
-.small-header{
-    .navigation-links{
+.small-header {
+    background-color: #fefefe;
+    border-bottom: 1px solid #eae9e9b4;
+
+    .navigation-links {
         justify-content: space-between;
         width: 90%;
         margin: auto;
+        margin-bottom: 5px;
 
-        section{
+        section {
             flex-direction: column;
         }
 
-        .homes-imgs{
+        .homes-imgs {
             height: 35px;
             width: 30px;
             margin: auto;
         }
-        
-        .experiences-imgs{
+
+        .experiences-imgs {
             height: 30px;
             width: 20px;
             margin: auto;
         }
-        
-        .services-imgs{
+
+        .services-imgs {
             height: 30px;
             width: 45px;
             margin: auto;
         }
 
-        .homes-section::after{
+        .homes-section::after {
             width: 140%;
             left: -0.5em;
             bottom: -5px;
@@ -34,18 +38,18 @@
     }
 }
 
-.start-search{
+.start-search {
     text-align: center;
     margin-block: 1em;
     padding: 1.1em;
     border-radius: 3em;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 
-    span{
+    span {
         margin-inline-start: .5em;
     }
 }
 
-.start-search:hover{
+.start-search:hover {
     cursor: pointer;
 }

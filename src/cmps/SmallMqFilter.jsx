@@ -9,6 +9,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { GuestsModal } from './GuestsModal'
 import { WhereModal } from './WhereModal'
 
+import homes from '../assets/images/png/homes.png'
+import experiences from '../assets/images/png/experiences.png'
+import services from '../assets/images/png/services.png'
+
+
 export function SmallMqFilter() {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
@@ -17,10 +22,15 @@ export function SmallMqFilter() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    // const [showWhereModal, setShowWhereModal] = useState(false)
+    // const [showWhenModal, setShowWhenModal] = useState(false)
+    // const [showWhoModal, setShowWhoModal] = useState(false)
     const [localFilter, setLocalFilter] = useState(filterBy)
     const [selectedSection, setSelectedSection] = useState("search")
     const [searchParams, setSearchParams] = useSearchParams()
     const wrapperRef = useRef(null)
+
+    const isSmallModal = true
 
     useEffect(() => {
         function handleClickOutside(event) {
@@ -99,7 +109,7 @@ export function SmallMqFilter() {
 
     function getSectionClass(sectionName) {
         if (selectedSection === null) return ""
-        return selectedSection === sectionName ? "selected" : "not-selected"
+        return selectedSection === sectionName ? "small-selected" : "small-not-selected"
     }
 
     function closeModals() {
@@ -110,84 +120,99 @@ export function SmallMqFilter() {
 
     return (
         <section className="small-mq-filter" ref={wrapperRef}>
+            <section className="navigation-links">
+                <section className="homes-section">
+                    <img className="homes-imgs" src={homes} alt="homes" />
+                    <a>Homes</a>
+                </section>
+                <section className="experiences-section">
+                    <img className="experiences-imgs" src={experiences} alt="experiences" />
+                    <a>Experiences</a>
+                </section>
+                <section>
+                    <img className="services-imgs" src={services} alt="services" />
+                    <a>Services</a>
+                </section>
+            </section>
+
             <form
                 onSubmit={onSubmit}
                 className={selectedSection ? "form-active" : ""}
             >
-                <section
-                    className={`search ${getSectionClass("search")}`}
-                    onClick={() => {
-                        dispatch({ type: OPEN_WHERE_MODAL })
-                        setSelectedSection(selectedSection === "search" ? null : "search")
-                        closeModals()
-                    }}
-                >
-                    <h5>Where</h5>
-                    <input
-                        className="where-filter"
-                        type="text"
-                        name="txt"
-                        value={localFilter.txt}
-                        onChange={handleChange}
-                        onClick={(e) => e.stopPropagation()}
-                        placeholder="Search destinations"
+                {selectedSection === "search" &&
+                    <section
+                        className={`small-search ${getSectionClass("search")}`}
+                        onClick={() => {
+                            dispatch({ type: OPEN_WHERE_MODAL })
+                            setSelectedSection(selectedSection === "search" ? null : "search")
+                            closeModals()
+                        }}
+                    >
+                        <h4>Where</h4>
+                        <input
+                            className="where-small-filter"
+                            type="text"
+                            name="txt"
+                            value={localFilter.txt}
+                            onChange={handleChange}
+                            onClick={(e) => e.stopPropagation()}
+                            placeholder="Search destinations"
+                        />
+                    </section>
+                }
+                {selectedSection !== "search" &&
+                    <WhereModal
+                        isSmallModal={isSmallModal}
+                        setSelectedSection={setSelectedSection}
+                        handleWhereChange={handleWhereChange}
                     />
-                </section>
+                }
+                {selectedSection !== "checkIn" &&
+                    <section
+                        className={`when ${getSectionClass("checkIn")}`}
+                        onClick={() => {
+                            dispatch({ type: OPEN_DATE_MODAL })
+                            setSelectedSection(selectedSection === "checkIn" ? null : "checkIn")
+                            closeModals()
+                        }}
+                    >
+                        <h4>When</h4>
+                        <span className="check-in-small-filter">{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
+                    </section>
+                }
 
-                <section
-                    className={`check-in ${getSectionClass("checkIn")}`}
-                    onClick={() => {
-                        dispatch({ type: OPEN_DATE_MODAL })
-                        setSelectedSection(selectedSection === "checkIn" ? null : "checkIn")
-                        closeModals()
-                    }}
-                >
-                    <h5>Check in</h5>
-                    <span className="check-in-filter">{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
-                </section>
-
-                <section
-                    className={`check-out ${getSectionClass("checkOut")}`}
-                    onClick={() => {
-                        dispatch({ type: OPEN_DATE_MODAL })
-                        setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
-                    }}
-                >
-                    <h5>Check out</h5>
-                    <span className="check-out-filter">{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
-                </section>
-
-                <section className={`guests ${getSectionClass("guests")}`}>
-                    <div
-                        className="guests-text"
+                {selectedSection === "checkIn" &&
+                    <DateModal
+                        isSmallModal={isSmallModal}
+                        setSelectedSection={setSelectedSection}
+                        handleCheckOutChange={handleCheckOutChange}
+                        handleCheckInChange={handleCheckInChange}
+                    />
+                }
+                {selectedSection !== "guests" &&
+                    <section className={`small-guests ${getSectionClass("guests")}`}
                         onClick={() => {
                             dispatch({ type: OPEN_GUESTS_MODAL })
                             setSelectedSection(selectedSection === "guests" ? null : "guests")
                             closeModals()
                         }}
                     >
-                        <h5>Who</h5>
-                        <span className="guests-filter">{getGuestsLabel(localFilter.capacity)}</span>
-                    </div>
-                    <button className={!selectedSection ? "btn-search" : "btn-search-selected"} type="submit">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                        <span className="search-span">search</span>
-                    </button>
-                </section>
+                        <h4>Who</h4>
+                        <span className="guests-small-filter">{getGuestsLabel(localFilter.capacity)}</span>
+                    </section>
+                }
+                {selectedSection === "guests" &&
+                    <GuestsModal
+                        isSmallModal={isSmallModal}
+                        setSelectedSection={setSelectedSection}
+                        handleGuestChange={handleGuestChange}
+                    />
+                }
+                <button className={!selectedSection ? "small-btn-search" : "small-btn-search-selected"} type="submit">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                    <span className="small-search-span">search</span>
+                </button>
             </form >
-            <WhereModal
-                setSelectedSection={setSelectedSection}
-                handleWhereChange={handleWhereChange}
-            />
-            <DateModal
-                setSelectedSection={setSelectedSection}
-                handleCheckOutChange={handleCheckOutChange}
-                handleCheckInChange={handleCheckInChange}
-            />
-            <GuestsModal
-                setSelectedSection={setSelectedSection}
-                handleGuestChange={handleGuestChange}
-            />
         </section >
     )
 }

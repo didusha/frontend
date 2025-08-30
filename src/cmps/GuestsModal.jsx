@@ -7,7 +7,7 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function GuestsModal({ handleGuestChange, setSelectedSection }) {
+export function GuestsModal({ handleGuestChange, setSelectedSection, isSmallModal }) {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const dispatch = useDispatch()
 
@@ -41,14 +41,15 @@ export function GuestsModal({ handleGuestChange, setSelectedSection }) {
         <>
             {isGuestsModalOpen && (
                 <>
-                    <div className="guests-modal-overlay" onClick={() => {
+                    <div className={`guests-modal-overlay ${isSmallModal ? "small-guests-modal" : ""}`} onClick={() => {
                         dispatch({ type: CLOSE_GUESTS_MODAL })
                         setSelectedSection(null)
                     }}></div>
                     <div
-                        className="guests-modal-content"
+                        className={`guests-modal-content ${isSmallModal ? "small-guests-modal" : ""}`}
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {isSmallModal && <h1 className="who">Who?</h1>}
                         {['adults', 'children', 'infants', 'pets'].map(type => (
                             <div key={type} className="guest-row" >
                                 <div>
