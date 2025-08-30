@@ -56,7 +56,7 @@ async function add(stay, order) {
 
 async function save(order) {
   try {
-	const savedOrder = await httpService.post(`order/${order._id}`, order)
+	const savedOrder = await httpService.put(`order/${order._id}`, order)
 	return savedOrder
   } catch (err) {
 	throw err

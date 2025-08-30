@@ -8,16 +8,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import { getDayDiff } from "../services/util.service"
 import { icons } from "../services/amenities.service.js"
+import { Login} from "../pages/LoginSignup.jsx"
+import { useSelector } from "react-redux"
 
 export function ConfirmReservation() {
 
   const { stayId } = useParams()
   const [stay, setStay] = useState()
-  console.log("🚀 ~ ConfirmReservation ~ stay:", stay)
   const [isOrderComplete, setIsOrderComplete] = useState(false)
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
   const navigate = useNavigate()
+  const user = useSelector(storeState => storeState.userModule.user) //*** */
+
 
   useEffect(() => {
     loadStay(stayId)
@@ -94,8 +97,11 @@ export function ConfirmReservation() {
             <h3 className="flex align-center bold justify-center">
               <img className="svg-image" src={icons.greenCheck} alt="Success" />
               <span>Reservation success!</span>
-            </h3></> :
-            <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>
+            </h3></> :(user) ? ( <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
+            : <div className="login"> 
+              <h2>Please login to book</h2>
+              < Login/>  
+              </div>
           }
         </div>
       </section>
