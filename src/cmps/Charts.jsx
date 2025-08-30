@@ -67,7 +67,9 @@ export function Charts({ orders }) {
     'November',
     'December',
   ]
-  const priceTotal = dataBase(orders, { name: 'monthNames', data: monthNames })
+  const totalPrice = dataBase(orders, { name: 'monthNames', data: monthNames })
+// console.log(totalPrice );
+
 
   const months = [
     ...new Set(
@@ -101,7 +103,7 @@ export function Charts({ orders }) {
     datasets: [
       {
         label: 'Total price fer month',
-        data: priceTotal.filter((p) => p.price > 0).map((p) => p.price),
+        data: totalPrice.filter((p) => p.price > 0).map((p) => p.price),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],

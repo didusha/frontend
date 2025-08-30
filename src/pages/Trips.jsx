@@ -30,8 +30,8 @@ export function Trips() {
 
   function renderSortArrows(key) {
     const isActive = sort.key === key
-    const upActive = isActive && sort.direction === 'asc'
-    const downActive = isActive && sort.direction === 'desc'
+    const upActive = isActive && sort.direction === 1
+    const downActive = isActive && sort.direction === -1
     return (
       <span className="sort-arrows">
         <span className={`arrow up ${upActive ? 'active' : ''}`}>▲</span>
@@ -61,7 +61,7 @@ export function Trips() {
             Guests {renderSortArrows('capacity')}
           </span>
           <span className="price-header" onClick={() => onSetSorting('totalPrice')}>
-            Price {renderSortArrows('price')}
+            Price {renderSortArrows('totalPrice')}
           </span>
           <span className="status-header" onClick={() => onSetSorting('status')}>
             Status {renderSortArrows('status')}

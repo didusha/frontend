@@ -95,7 +95,7 @@
 }
 
 .arrow.active {
-    color: rgb(36, 164, 255);
+    color:var(--clr1)
 }
 
 .check-in-header:hover,
