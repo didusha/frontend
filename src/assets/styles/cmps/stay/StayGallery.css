@@ -10,6 +10,11 @@
       font-family: AirbnbCereal-Bold;
     }
 
+    .arrow{
+      width: 1rem;
+      border-radius: 50%;
+    }
+
     .btn img {
       width: 16px;
       color: var(--gray-icon);
@@ -65,6 +70,9 @@
 @media (max-width: 750px){
    .gallery-btn{
     display: none;
+   }
+   .photo-header{
+    margin-bottom: 1rem;
    }
 }
 

@@ -52,6 +52,8 @@ import appsIcon from '../assets/images/svg/apps.svg'
 import doorIcon from '../assets/images/svg/door.svg'
 import chatIcon from '../assets/images/svg/chat.svg'
 import pinIcon from '../assets/images/svg/pin.svg'
+import arrowIcon from '../assets/images/svg/arrow.svg'
+
 
 export const icons = {
     TV: tvIcon,
@@ -108,6 +110,7 @@ export const icons = {
     door:doorIcon,
     chat:chatIcon, 
     pin:pinIcon,
+    arrow: arrowIcon,
 }
 
 

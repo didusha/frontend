@@ -42,8 +42,7 @@ async function login(userCred) {
 	try {
 		const user = await httpService.post('auth/login', userCred)
 		console.log(user);
-		if (user) return saveLoggedinUser(user)
-		
+		if (user) return saveLoggedinUser(user)	
 	} catch (err) {
 		throw err
 	}
