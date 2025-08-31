@@ -79,29 +79,30 @@
   flex-wrap: nowrap;
 }
 
-.rdp-nav{
+.rdp-nav {
   z-index: 9;
 }
 
-.rdp-range_end .rdp-day_button, .rdp-range_start .rdp-day_button:hover{
+.rdp-range_end .rdp-day_button,
+.rdp-range_start .rdp-day_button:hover {
   background-color: black !important;
 }
 
-.rdp-day_button:disabled{
+.rdp-day_button:disabled {
   border: none;
 }
 
-.when{
+.when-small {
   margin: 1em;
   font-size: 1.2rem;
   font-family: AirbnbCereal-Bold;
 }
 
-.modal-overlay.small-date-modal{
+.modal-overlay.small-date-modal {
   display: none;
 }
 
-.modal-content.small-date-modal{
+.modal-content.small-date-modal {
   position: relative;
   width: 95%;
   height: 26em;
@@ -109,3 +110,4 @@
   top: 0;
   padding: 0;
 }
+

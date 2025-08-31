@@ -5,11 +5,14 @@ import experiences from '../assets/images/png/experiences.png'
 import services from '../assets/images/png/services.png'
 import { SmallMqFilter } from './SmallMqFilter'
 import { useState, useEffect } from 'react'
+import { OPEN_WHERE_MODAL } from '../store/reducers/system.reducer'
+import { useDispatch } from 'react-redux'
 
 export function SmallHeader() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const [isSticky, setIsSticky] = useState(true)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         function handleScroll() {setIsScrolled(window.scrollY > 0)}
@@ -23,6 +26,7 @@ export function SmallHeader() {
             <div className="start-search" onClick={() => {
                 setIsFilterOpen(true)
                 setIsSticky(false)
+                dispatch({ type: OPEN_WHERE_MODAL })
                 }}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                 <span>Start your search</span>

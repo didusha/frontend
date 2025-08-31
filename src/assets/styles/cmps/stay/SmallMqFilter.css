@@ -44,3 +44,21 @@
     border: none;
 }
 
+.btn-close-filter{
+    background-color: white;
+    border-radius: 50%;
+    width: 2em;
+    height: 3.5em;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: .3s;
+}
+
+.btn-close-filter:hover{
+    background-color: white;
+    transform: scale(1.2);
+}
+
+.close-svg{
+    height: 20px;
+    width: 20px;
+}

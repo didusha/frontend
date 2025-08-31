@@ -8,7 +8,7 @@ export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal
     const destinations = [
         {
             imgUrl: "🏙️",
-            title: "Tel Aviv-Yafo, Israel",
+            title: "Tel Aviv, Israel",
             subtitle: "Because your wishlist has stays in Tel Aviv-Yafo",
         },
         {
@@ -22,49 +22,34 @@ export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal
             subtitle: "Popular beach destination",
         },
         {
-            imgUrl: "🌊",
-            title: "Ipanema Beach, Brazil",
-            subtitle: "For a trip abroad",
-        },
-        {
             imgUrl: "🏛️",
-            title: "Santiago, Chile",
+            title: "Porto, Portugal",
             subtitle: "For sights like Museo Nacional de Bellas Artes",
         },
         {
             imgUrl: "🏯",
-            title: "Hanoi, Vietnam",
+            title: "New York, United State",
             subtitle: "For its stunning architecture",
         },
         {
             imgUrl: "🏛️",
-            title: "Rome, Italy",
+            title: "Barcelona, Spain",
             subtitle: "For its top-notch dining",
         },
         {
             imgUrl: "⛪",
-            title: "Jerusalem, Israel",
+            title: "Istanbul, Turkey",
             subtitle: "For sights like Church of the Holy Sepulchre",
         },
         {
             imgUrl: "🏝️",
-            title: "Salvador, Brazil",
+            title: "Sydney, Australia",
             subtitle: "Popular beach destination",
         },
         {
             imgUrl: "🗼",
             title: "Paris, France",
             subtitle: "For its bustling nightlife",
-        },
-        {
-            imgUrl: "🌇",
-            title: "Buenos Aires, Argentina",
-            subtitle: "For its stunning architecture",
-        },
-        {
-            imgUrl: "🏛️",
-            title: "Athens, Greece",
-            subtitle: "For sights like Acropolis of Athens",
         },
     ]
 

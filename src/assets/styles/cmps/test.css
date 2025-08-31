@@ -17,8 +17,13 @@
     font-size: 1.8rem;
 }
 
+.listings-length {
+    margin: 35px 0;
+}
+
 .listing {
     position: relative;
+    display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     align-items: center;
@@ -26,6 +31,7 @@
 }
 
 .listings-headers {
+    display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     margin-bottom: 20px;
@@ -65,6 +71,11 @@
     border-radius: 10px;
 }
 
+.listing-loc,
+.listing-loc-header {
+    margin-right: 3rem;
+}
+
 .listing-bath-header:hover,
 .listing-bed-header:hover,
 .listing-guests-header:hover,
@@ -74,6 +85,11 @@
 
 .listing-name{
     font-size: .98rem;
+}
+
+.listing-todo-header,
+.listing-todo{
+    justify-self: center;
 }
 
 .listing-update{
