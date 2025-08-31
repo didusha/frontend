@@ -22,11 +22,13 @@ export function GuestsModal({ handleGuestChange, setSelectedSection, isSmallModa
         handleGuestChange(guests)
     }, [guests])
 
-    const handleIncrement = (type) => {
+    function handleIncrement(e, type) {
+        e.stopPropagation()
         setGuests(prev => ({ ...prev, [type]: prev[type] + 1 }))
     }
 
-    const handleDecrement = (type) => {
+    function handleDecrement(e, type) {
+        e.stopPropagation()
         setGuests(prev => ({ ...prev, [type]: prev[type] > 0 ? prev[type] - 1 : 0 }))
     }
 
@@ -51,7 +53,7 @@ export function GuestsModal({ handleGuestChange, setSelectedSection, isSmallModa
                     >
                         {isSmallModal && <h1 className="who">Who?</h1>}
                         {['adults', 'children', 'infants', 'pets'].map(type => (
-                            <div key={type} className="guest-row" >
+                            <div key={type} className={`guest-row ${isSmallModal ? "small-row" : ""}`} >
                                 <div>
                                     <div className="type-guests">
                                         {type}
@@ -62,14 +64,15 @@ export function GuestsModal({ handleGuestChange, setSelectedSection, isSmallModa
                                 </div>
                                 <div className="btns-guests">
                                     <button
+                                        type="button"
                                         className="btn-count"
-                                        onClick={() => handleDecrement(type)}
+                                        onClick={(e) => handleDecrement(e, type)}
                                         disabled={guests[type] === 0}
                                     >
                                         <img className="svg-image" src={minus} alt="minus" />
                                     </button>
                                     <span>{guests[type]}</span>
-                                    <button className="btn-count" onClick={() => handleIncrement(type)}>
+                                    <button type="button" className="btn-count" onClick={(e) => handleIncrement(e, type)}>
                                         <img className="svg-image" src={plus} alt="plus" />
                                     </button>
                                 </div>

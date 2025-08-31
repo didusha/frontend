@@ -12,9 +12,10 @@ import { WhereModal } from './WhereModal'
 import homes from '../assets/images/png/homes.png'
 import experiences from '../assets/images/png/experiences.png'
 import services from '../assets/images/png/services.png'
+import close from '../assets/images/svg/close.svg'
 
 
-export function SmallMqFilter() {
+export function SmallMqFilter({ setIsFilterOpen }) {
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
     const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
@@ -41,6 +42,13 @@ export function SmallMqFilter() {
         document.addEventListener("mousedown", handleClickOutside)
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [wrapperRef])
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden'
+        return () => {
+            document.body.style.overflow = 'auto'
+        }
+    }, [])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -71,6 +79,7 @@ export function SmallMqFilter() {
         dispatch(setFilterBy(localFilter))
         closeModals()
         setSelectedSection(null)
+        setIsFilterOpen(false)
         navigate('/')
     }
 
@@ -121,18 +130,23 @@ export function SmallMqFilter() {
     return (
         <section className="small-mq-filter" ref={wrapperRef}>
             <section className="navigation-links">
-                <section className="homes-section">
-                    <img className="homes-imgs" src={homes} alt="homes" />
-                    <a>Homes</a>
-                </section>
-                <section className="experiences-section">
-                    <img className="experiences-imgs" src={experiences} alt="experiences" />
-                    <a>Experiences</a>
-                </section>
-                <section>
-                    <img className="services-imgs" src={services} alt="services" />
-                    <a>Services</a>
-                </section>
+                <div className="links">
+                    <section className="homes-section">
+                        <img className="homes-imgs" src={homes} alt="homes" />
+                        <a>Homes</a>
+                    </section>
+                    <section className="experiences-section">
+                        <img className="experiences-imgs" src={experiences} alt="experiences" />
+                        <a>Experiences</a>
+                    </section>
+                    <section>
+                        <img className="services-imgs" src={services} alt="services" />
+                        <a>Services</a>
+                    </section>
+                </div>
+                <button className="btn-close-filter" onClick={() => setIsFilterOpen(false)}>
+                    <img className="close-svg" src={close} alt="close" />
+                </button>
             </section>
 
             <form
@@ -149,7 +163,9 @@ export function SmallMqFilter() {
                         }}
                     >
                         <h4>Where</h4>
-                        <span>I'm flexible</span>
+                        <span> {localFilter.txt && localFilter.txt.length > 0
+                            ? localFilter.txt
+                            : "I'm flexible"}</span>
                     </section>
                 }
                 {selectedSection === "search" &&
@@ -170,7 +186,11 @@ export function SmallMqFilter() {
                         }}
                     >
                         <h4>When</h4>
-                        <span className="check-in-small-filter">{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
+                        <span className="check-in-small-filter">
+                            {localFilter.checkIn || localFilter.checkOut
+                                ? `${localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add start'} – ${localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add end'}`
+                                : 'Add dates'}
+                        </span>
                     </section>
                 }
 

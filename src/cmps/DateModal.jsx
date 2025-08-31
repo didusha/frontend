@@ -12,7 +12,7 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
 
   useEffect(() => {
     handleCheckInChange(range?.from)
-    if (range?.from !== null) {
+    if ((range?.from !== null) && !isSmallModal) {
       setSelectedSection("checkOut")
     }
   }, [range?.from]);
@@ -33,13 +33,13 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
               className={`modal-content ${isSmallModal ? "small-date-modal" : ""}`}
               onClick={(e) => e.stopPropagation()}
             >
-              {isSmallModal && <h1 className="when">When?</h1>}
+              {isSmallModal && <h1 className="when-small">When?</h1>}
               <div className="airbnb-calendar">
                 <DayPicker
                   mode="range"
                   selected={range}
                   onSelect={setRange}
-                  numberOfMonths={2}
+                  numberOfMonths={isSmallModal ? 1 : 2}
                   pagedNavigation
                   disabled={{ before: new Date() }}
                 />

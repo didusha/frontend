@@ -14,26 +14,13 @@
 
 /* MEDIUM */
 @media (min-width: 750px) {
-    .small-header{
-        display: none;
-    }
 }
 
 @media (max-width: 750px) {
-    .app-header {
-        display: none;
-    }
-
-    .small-header {
-        display: block;
-    }
 }
 
 /* LARGE */
 @media (min-width: 950px) {
-    .logo-span {
-        opacity: 1 !important;
-    }
 }
 
 /* XLARGE */

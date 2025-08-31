@@ -98,10 +98,14 @@
 .guests-modal-content.small-guests-modal{
   position: relative;
   width: 95%;
-  height: 26em;
+  height: 24em;
   left: 0;
   margin: auto;
   padding: 0 2em !important;
   top: 0;
   padding: 0;
+}
+
+.small-row{
+    margin-bottom: 37px;
 }

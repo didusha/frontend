@@ -8,7 +8,7 @@ import { formatDateCalendar } from '../services/util.service.js'
 import { DetailsDateModal } from './DetailsDateModal.jsx'
 import { DetailsGuestsModal } from './DetailsGuestsModal.jsx'
 
-export function StayReservation({ stay ,isDateModalOpen ,onSetIsDateModalOpen}) {
+export function StayReservation({ stay, isDateModalOpen, onSetIsDateModalOpen }) {
 
   const [arrow, setArrow] = useState(false)
   const navigate = useNavigate()
@@ -118,13 +118,15 @@ export function StayReservation({ stay ,isDateModalOpen ,onSetIsDateModalOpen}) 
         setOrder={setOrder}
       />
       <DetailsGuestsModal
+        setArrow={setArrow}
+        arrow={arrow}
         setIsGuestsModalOpen={setIsGuestsModalOpen}
         isGuestsModalOpen={isGuestsModalOpen}
         setOrder={setOrder}
         order={order}
       />
 
-      
+
       <button className="reserve-btn" onClick={onResrve}>Reserve</button>
       <p className="note">You won’t be charged yet</p>
       {/* Dont delete!! */}

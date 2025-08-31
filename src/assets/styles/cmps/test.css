@@ -17,14 +17,17 @@
     font-size: 1.8rem;
 }
 
+.listings-length {
+    margin: 35px 0;
+}
+
 .listing {
     position: relative;
-    margin-bottom: 15px;
-    align-items: center;
     display: grid;
-            grid-column: 1 / -1;
-        grid-template-columns: subgrid;
-
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .listings-headers {
@@ -68,6 +71,11 @@
     border-radius: 10px;
 }
 
+.listing-loc,
+.listing-loc-header {
+    margin-right: 3rem;
+}
+
 .listing-bath-header:hover,
 .listing-bed-header:hover,
 .listing-guests-header:hover,
@@ -75,20 +83,24 @@
     cursor: pointer;
 }
 
-.listing-name {
+.listing-name{
     font-size: .98rem;
 }
 
-.listing-update {
+.listing-todo-header,
+.listing-todo{
+    justify-self: center;
+}
+
+.listing-update{
     background-color: transparent;
     border: 1.5px solid rgb(190, 190, 190);
     color: rgb(101, 101, 101);
 }
 
-.listing-update:hover {
+.listing-update:hover{
     background-color: transparent;
     border: 1.5px solid rgb(107, 182, 233);
     color: rgb(107, 182, 233);
     transition: none;
 }
-
