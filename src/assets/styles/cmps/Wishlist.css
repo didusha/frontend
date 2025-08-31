@@ -1,0 +1,77 @@
+.wishlists-container {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    row-gap: 40px;
+    column-gap: 24px;
+    padding: 0;
+    margin-top: 16px;
+    margin-bottom: 40px;
+
+    .preview-info {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-areas:
+            "name rating"
+            "host host"
+            "dates dates"
+            "price price";
+        gap: 2px 8px;
+        padding-inline: 4px;
+
+        .preview-name {
+            grid-area: name;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-bottom: .3em;
+
+        }
+
+        .preview-stay-with {
+            grid-area: host;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .preview-rate {
+            grid-area: rating;
+            justify-self: end;
+        }
+
+        .preview-dates {
+            grid-area: dates;
+            margin-bottom: .3em;
+
+        }
+
+        .preview-price {
+            grid-area: price;
+        }
+    }
+    .heart-btn{
+        position: absolute;
+        top: -8px;
+        right: -8px;
+    }
+}
+
+.wishlist{
+    position: relative;
+}
+
+.wishlist-img {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1.053 / 1;
+    height: auto;
+    vertical-align: bottom;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.wishlists-length {
+    margin: 35px 0;
+}

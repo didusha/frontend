@@ -21,12 +21,15 @@ import { StayEdit } from './pages/StayEdit.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { Listing } from './pages/Listing.jsx'
+import { Wishlist } from './cmps/Wishlist.jsx'
+import { SmallHeader } from './cmps/SmallHeader.jsx'
 
 
 export function RootCmp() {
     return (
         <div className="main-container">
             <AppHeader />
+            <SmallHeader />
             <UserMsg />
 
             <main>
@@ -36,7 +39,7 @@ export function RootCmp() {
                     <Route path="stay" element={<StayIndex />} />
                     <Route path="stay/:stayId" element={<StayDetails />} />
                     <Route path="stay/:stayId/order" element={<ConfirmReservation />} />
-                    <Route path="stay/edit" element={<StayEdit />} />
+                    <Route path="stay/edit/:stayId?" element={<StayEdit />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     {/* <Route path="review" element={<ReviewIndex />} /> */}
                     <Route path="chat" element={<ChatApp />} />
@@ -48,6 +51,7 @@ export function RootCmp() {
                     <Route path="dashboard" element={<Dashboard />}/>
                     <Route path="trips" element={<Trips />}/>
                     <Route path="listing" element={<Listing />}/>
+                    <Route path="wishlist" element={<Wishlist />}/>
                 </Routes>
             </main>
             <AppFooter />

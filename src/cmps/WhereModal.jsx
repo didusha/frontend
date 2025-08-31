@@ -1,73 +1,68 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CLOSE_WHERE_MODAL, OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
 
-export function WhereModal({ handleWhereChange, setSelectedSection }) {
+export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal, handleChange }) {
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
 
     const destinations = [
         {
-            icon: "📍",
-            title: "Nearby",
-            subtitle: "Find what’s around you",
-        },
-        {
-            icon: "🏙️",
+            imgUrl: "🏙️",
             title: "Tel Aviv-Yafo, Israel",
             subtitle: "Because your wishlist has stays in Tel Aviv-Yafo",
         },
         {
-            icon: "⛩️",
+            imgUrl: "⛩️",
             title: "Bangkok, Thailand",
             subtitle: "For sights like Grand Palace",
         },
         {
-            icon: "🏖️",
+            imgUrl: "🏖️",
             title: "Rio de Janeiro, Brazil",
             subtitle: "Popular beach destination",
         },
         {
-            icon: "🌊",
+            imgUrl: "🌊",
             title: "Ipanema Beach, Brazil",
             subtitle: "For a trip abroad",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Santiago, Chile",
             subtitle: "For sights like Museo Nacional de Bellas Artes",
         },
         {
-            icon: "🏯",
+            imgUrl: "🏯",
             title: "Hanoi, Vietnam",
             subtitle: "For its stunning architecture",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Rome, Italy",
             subtitle: "For its top-notch dining",
         },
         {
-            icon: "⛪",
+            imgUrl: "⛪",
             title: "Jerusalem, Israel",
             subtitle: "For sights like Church of the Holy Sepulchre",
         },
         {
-            icon: "🏝️",
+            imgUrl: "🏝️",
             title: "Salvador, Brazil",
             subtitle: "Popular beach destination",
         },
         {
-            icon: "🗼",
+            imgUrl: "🗼",
             title: "Paris, France",
             subtitle: "For its bustling nightlife",
         },
         {
-            icon: "🌇",
+            imgUrl: "🌇",
             title: "Buenos Aires, Argentina",
             subtitle: "For its stunning architecture",
         },
         {
-            icon: "🏛️",
+            imgUrl: "🏛️",
             title: "Athens, Greece",
             subtitle: "For sights like Acropolis of Athens",
         },
@@ -78,16 +73,28 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
             {isWhereModalOpen && (
                 <>
                     <div
-                        className="where-modal-overlay"
+                        className={`where-modal-overlay ${isSmallModal ? "small-where-modal" : ""}`}
                         onClick={() => {
                             dispatch({ type: CLOSE_WHERE_MODAL })
                             setSelectedSection(null)
                         }}
                     />
                     <div
-                        className="where-modal-content"
+                        className={`where-modal-content ${isSmallModal ? "small-where-modal" : ""}`}
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {isSmallModal && <h1 className="where">Where?</h1>}
+                        {isSmallModal &&
+                            <input
+                                className="where-small-filter"
+                                type="text"
+                                name="txt"
+                                onChange={handleChange}
+                                onClick={(e) => e.stopPropagation()}
+                                placeholder="Search destinations"
+                            />
+
+                        }
                         <h3 className="where-modal-title">Suggested destinations</h3>
                         <ul className="dest-list">
                             {destinations.map((d, idx) => {
@@ -100,7 +107,7 @@ export function WhereModal({ handleWhereChange, setSelectedSection }) {
                                             setSelectedSection("checkIn")
                                             dispatch({ type: OPEN_DATE_MODAL })
                                         }}>
-                                        <span className="dest-icon">{d.icon}</span>
+                                        <span className="dest-img">{d.imgUrl}</span>
                                         <div className="dest-text">
                                             <div className="dest-title">
                                                 <span className="dest-city">{city}</span>

@@ -18,7 +18,7 @@ export function StayPreview({ stay, params }) {
 
     return <Link to={`/stay/${stay._id}?${paramsString}`}>
         <article className="stay-preview">
-            <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} />
+            <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} stayId={stay._id} />
 
             <div className="preview-info">
                 <div className="preview-name">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>

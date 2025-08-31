@@ -91,3 +91,16 @@
 .listing-todo{
     justify-self: center;
 }
+
+.listing-update{
+    background-color: transparent;
+    border: 1.5px solid rgb(190, 190, 190);
+    color: rgb(101, 101, 101);
+}
+
+.listing-update:hover{
+    background-color: transparent;
+    border: 1.5px solid rgb(107, 182, 233);
+    color: rgb(107, 182, 233);
+    transition: none;
+}

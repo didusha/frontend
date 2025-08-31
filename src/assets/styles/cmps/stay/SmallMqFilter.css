@@ -1,0 +1,46 @@
+.small-mq-filter {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    font-family: AirbnbCereal;
+    max-width: 850px;
+
+    .navigation-links{
+        margin: 1em auto;
+        justify-content: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: .7em;
+        z-index: 4;
+
+        section{
+            background-color: white;
+            border-radius: 20px;
+            padding: 1.2em;
+            margin:0 1em;
+        }
+    }
+}
+
+.small-not-selected{
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-btn-search{
+    width: 8em;
+    border-radius: 10px;
+    padding: 1em;
+    background-image: linear-gradient(to right, #ff385c, #bd1e59);
+    color: white;
+    border: none;
+}
+

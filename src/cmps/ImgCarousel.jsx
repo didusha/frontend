@@ -1,8 +1,13 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
+import { TOGGLE_WISHLIST } from "../store/reducers/user.reducer";
 
-export function ImgCarousel({ imgUrls = [], stayName = "" }) {
-
+export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
+  const user = useSelector(state => state.userModule.user)
+  const isStayLiked = user?.wishlist?.includes(stayId)
   const slides = imgUrls.length ? imgUrls : ["/images/placeholder.jpg"]
+  const dispatch = useDispatch()
 
   const settings = {
     dots: true,
@@ -23,29 +28,35 @@ export function ImgCarousel({ imgUrls = [], stayName = "" }) {
     ),
   }
 
-  function addToWishList(){}
-
   return (
     <div className="stay-media slider-container">
       <Slider {...settings}>
         {slides.map((src, i) => (
-            <div className="slide stay-img-wrapper" key={i}>
+          <div className="slide stay-img-wrapper" key={i}>
             <img
               className="stay-img"
               src={src}
               alt={stayName ? `${stayName} – image ${i + 1}` : `Stay image ${i + 1}`}
               loading="lazy"
             />
-            <button className="heart-btn" onClick={addToWishList} aria-label="Add to wishlist">
+            <button
+              className="heart-btn"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                dispatch({ type: TOGGLE_WISHLIST, stayId })
+              }}
+              aria-label="Add to wishlist">
               <svg
                 viewBox="0 0 32 32"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                stroke="currentColor"
                 strokeWidth="2"
-                style={{ width: "24px", height: "24px"}}
+                style={{ width: "24px", height: "24px" }}
               >
-                <path d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z" />
+                <path
+                  d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+                  fill={isStayLiked ? "#fe385c" : "rgba(0,0,0,0.5)"}
+                />
               </svg>
             </button>
           </div>

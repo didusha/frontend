@@ -90,3 +90,22 @@
 .rdp-day_button:disabled{
   border: none;
 }
+
+.when{
+  margin: 1em;
+  font-size: 1.2rem;
+  font-family: AirbnbCereal-Bold;
+}
+
+.modal-overlay.small-date-modal{
+  display: none;
+}
+
+.modal-content.small-date-modal{
+  position: relative;
+  width: 95%;
+  height: 26em;
+  margin: auto;
+  top: 0;
+  padding: 0;
+}

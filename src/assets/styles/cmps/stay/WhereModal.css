@@ -47,7 +47,7 @@
   background: #f5f5f5;
 }
 
-.dest-icon {
+.dest-img {
   font-size: 1.5em;
   margin-right: 0.7em;
 }
@@ -65,4 +65,32 @@
 .dest-subtitle {
   font-size: 0.8rem;
   color: #666;
+}
+
+.where{
+  margin: .5em;
+  font-size: 1.2rem;
+  font-family: AirbnbCereal-Bold;
+}
+
+.where-modal-overlay.small-where-modal{
+  display: none;
+}
+
+.where-modal-content.small-where-modal{
+  position: relative;
+  width: 95%;
+  height: 23em;
+  margin: auto;
+  top: 0;
+  right: 0;
+  padding: 1em;
+}
+
+.where-small-filter{
+  padding: 1.2em;
+  width: 100%;
+  border-radius: 13px;
+  margin-bottom: 1em;
+  font-size: .95rem;
 }
