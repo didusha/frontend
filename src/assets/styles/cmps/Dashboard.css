@@ -37,19 +37,12 @@
   cursor: pointer;
 }
 
-.dashboard-guest {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  img {
+.dashboard-guest img {
     width: 35px;
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
   }
-}
-
 
 .dashboard-stay,
 .dashboard-price {
