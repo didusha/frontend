@@ -80,3 +80,9 @@
     height: 17px;
     width: 17px;
 }
+
+.small-search:hover,
+.when:hover,
+.small-guests:hover{
+    cursor: pointer;
+}
