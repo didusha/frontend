@@ -60,6 +60,7 @@ export function GuestsModal({ localFilter, handleGuestChange, setSelectedSection
                                 </div>
                                 <div className="btns-guests">
                                     <button
+                                        type="button"
                                         className="btn-count"
                                         onClick={() => handleDecrement(type)}
                                         disabled={guests[type] === 0}
@@ -67,7 +68,7 @@ export function GuestsModal({ localFilter, handleGuestChange, setSelectedSection
                                         <img className="svg-image" src={minus} alt="minus" />
                                     </button>
                                     <span>{guests[type]}</span>
-                                    <button className="btn-count" onClick={() => handleIncrement(type)}>
+                                    <button className="btn-count" onClick={() => handleIncrement(type)} type="button">
                                         <img className="svg-image" src={plus} alt="plus" />
                                     </button>
                                 </div>
