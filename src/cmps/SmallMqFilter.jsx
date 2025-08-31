@@ -34,6 +34,23 @@ export function SmallMqFilter({ setIsFilterOpen }) {
     const isSmallModal = true
 
     useEffect(() => {
+        const filter = {
+            checkIn: searchParams.get('checkIn') || null,
+            checkOut: searchParams.get('checkOut') || null,
+            txt: searchParams.get('where') || '',
+            capacity: {
+                adults: +searchParams.get('adults') || 0,
+                children: +searchParams.get('children') || 0,
+                infants: +searchParams.get('infants') || 0,
+                pets: +searchParams.get('pets') || 0
+            }
+        }
+        dispatch(setFilterBy(filter))
+        setLocalFilter(filter)
+        console.log('index filterBy', filterBy)
+    }, [searchParams])
+
+    useEffect(() => {
         function handleClickOutside(event) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
                 setSelectedSection(null)
@@ -75,25 +92,31 @@ export function SmallMqFilter({ setIsFilterOpen }) {
 
     function onSubmit(ev) {
         ev.preventDefault()
-        setParams()
+        const params = setParams()
         dispatch(setFilterBy(localFilter))
         closeModals()
         setSelectedSection(null)
         setIsFilterOpen(false)
-        navigate('/')
+        navigate({
+            pathname: '/',
+            search: `?${params.toString()}`
+        })
     }
 
     function setParams() {
-        const params = {
-            checkIn: localFilter.checkIn,
-            checkOut: localFilter.checkOut,
-            where: localFilter.txt,
-            adults: localFilter.capacity.adults,
-            children: localFilter.capacity.children,
-            infants: localFilter.capacity.infants,
-            pets: localFilter.capacity.pets,
-        }
+        const params = new URLSearchParams()
+        if (localFilter.checkIn) params.set('checkIn', localFilter.checkIn)
+        if (localFilter.checkOut) params.set('checkOut', localFilter.checkOut)
+        if (localFilter.txt) params.set('where', localFilter.txt)
+
+        const { adults, children, infants, pets } = localFilter.capacity
+        if (adults) params.set('adults', adults)
+        if (children) params.set('children', children)
+        if (infants) params.set('infants', infants)
+        if (pets) params.set('pets', pets)
+
         setSearchParams(params)
+        return params
     }
 
     function formatDate(date) {
@@ -196,6 +219,7 @@ export function SmallMqFilter({ setIsFilterOpen }) {
 
                 {selectedSection === "checkIn" &&
                     <DateModal
+                        localFilter={localFilter}
                         isSmallModal={isSmallModal}
                         setSelectedSection={setSelectedSection}
                         handleCheckOutChange={handleCheckOutChange}
@@ -216,6 +240,7 @@ export function SmallMqFilter({ setIsFilterOpen }) {
                 }
                 {selectedSection === "guests" &&
                     <GuestsModal
+                        localFilter={localFilter}
                         isSmallModal={isSmallModal}
                         setSelectedSection={setSelectedSection}
                         handleGuestChange={handleGuestChange}

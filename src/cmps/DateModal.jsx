@@ -4,11 +4,13 @@ import { CLOSE_DATE_MODAL, OPEN_GUESTS_MODAL } from "../store/reducers/system.re
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
-export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
+export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
   const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
   const dispatch = useDispatch()
-
-  const [range, setRange] = useState({ from: null, to: null })
+  const [range, setRange] = useState({
+    from: localFilter.checkIn || null,
+    to: localFilter.checkOut || null
+  })
 
   useEffect(() => {
     handleCheckInChange(range?.from)
@@ -22,31 +24,31 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
   }, [range?.to]);
 
   return (
-      <>
-        {isDateModalOpen && (
-          <>
-            <div className={`modal-overlay ${isSmallModal ? "small-date-modal" : ""}`} onClick={() => {
-              dispatch({ type: CLOSE_DATE_MODAL })
-              setSelectedSection(null)
-            }}></div>
-            <div
-              className={`modal-content ${isSmallModal ? "small-date-modal" : ""}`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {isSmallModal && <h1 className="when-small">When?</h1>}
-              <div className="airbnb-calendar">
-                <DayPicker
-                  mode="range"
-                  selected={range}
-                  onSelect={setRange}
-                  numberOfMonths={isSmallModal ? 1 : 2}
-                  pagedNavigation
-                  disabled={{ before: new Date() }}
-                />
-              </div>
+    <>
+      {isDateModalOpen && (
+        <>
+          <div className={`modal-overlay ${isSmallModal ? "small-date-modal" : ""}`} onClick={() => {
+            dispatch({ type: CLOSE_DATE_MODAL })
+            setSelectedSection(null)
+          }}></div>
+          <div
+            className={`modal-content ${isSmallModal ? "small-date-modal" : ""}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {isSmallModal && <h1 className="when-small">When?</h1>}
+            <div className="airbnb-calendar">
+              <DayPicker
+                mode="range"
+                selected={range}
+                onSelect={setRange}
+                numberOfMonths={isSmallModal ? 1 : 2}
+                pagedNavigation
+                disabled={{ before: new Date() }}
+              />
             </div>
-          </>
-        )}
-      </>
+          </div>
+        </>
+      )}
+    </>
   )
 }

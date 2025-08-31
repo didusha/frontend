@@ -7,17 +7,15 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function GuestsModal({ handleGuestChange, setSelectedSection, isSmallModal }) {
+export function GuestsModal({ localFilter, handleGuestChange, setSelectedSection, isSmallModal }) {
     const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
     const dispatch = useDispatch()
-
     const [guests, setGuests] = useState({
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0,
+        adults: localFilter.capacity.adults || 0,
+        children: localFilter.capacity.children || 0,
+        infants: localFilter.capacity.infants || 0,
+        pets: localFilter.capacity.pets || 0,
     })
-
     useEffect(() => {
         handleGuestChange(guests)
     }, [guests])

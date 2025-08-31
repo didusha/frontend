@@ -95,7 +95,7 @@
 }
 
 .arrow.active {
-    color:var(--clr1)
+    color: var(--clr1)
 }
 
 .check-in-header:hover,
@@ -104,4 +104,12 @@
 .price-header:hover,
 .status-header:hover {
     cursor: pointer;
+}
+
+.trip-status.approved {
+    color: green;
+}
+
+.trip-status.rejected {
+    color: red;
 }
