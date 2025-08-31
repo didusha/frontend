@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { icons } from '../services/amenities.service'
+import { icons } from '../services/amenities.service.js'
+import { useNavigate } from 'react-router';
 
 export function StayGallery({ images, name }) {
+  const navigate =useNavigate()
+
   const [isSmallScreen, setIsSmallScreen] = useState(
     window.matchMedia("(max-width: 750px)").matches
   )
@@ -20,7 +23,7 @@ export function StayGallery({ images, name }) {
   return (
     <section className='stay-gallery' id='photos'>
       <div className='photo-header '>
-        {!isSmallScreen ? <h1>{name}</h1> : "←"}
+        {!isSmallScreen ? <h1>{name}</h1> : <img  className="arrow" src={icons.arrow}onClick={()=>navigate('/')} /> }
         <div className='btn-container flex'>
           <button className='btn bold flex'>
             <img src={icons.share} alt='share button' />
