@@ -193,9 +193,9 @@ export function getAverageRating(reviews) {
         data = datasets.data.reduce((acc, dataset, idx) => {
           const labelPriceAmount = { name: dataset, price: 0 }
           orders.forEach((order) => {
-            if (new Date(order.createAt).getMonth() === idx && order.status === 'Approved') {
+            if (new Date(parseInt((order._id).substring(0, 8), 16)*1000).getMonth() === idx && order.status === 'Approved') {
               labelPriceAmount.price += (+order.totalPrice)
-            }
+            }     
           })
           labelPriceAmount.price = labelPriceAmount.price.toFixed(1)
           acc.push(labelPriceAmount)
@@ -207,7 +207,7 @@ export function getAverageRating(reviews) {
     }
 
 
-    export  function getDateFromObjectId(id) {
+  export  function getDateFromObjectId(id) {
     const timestampHex = id.toString().substring(0, 8) 
     const timestamp = parseInt(timestampHex, 16) 
     const date = new Date(timestamp * 1000) 

@@ -8,14 +8,13 @@ import { formatDateCalendar } from '../services/util.service.js'
 import { DetailsDateModal } from './DetailsDateModal.jsx'
 import { DetailsGuestsModal } from './DetailsGuestsModal.jsx'
 
-export function StayReservation({ stay }) {
+export function StayReservation({ stay ,isDateModalOpen ,onSetIsDateModalOpen}) {
 
   const [arrow, setArrow] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
-  const [isDateModalOpen, setIsDateModalOpen] = useState(false)
   const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
 
 
@@ -56,7 +55,7 @@ export function StayReservation({ stay }) {
   }
 
   function onDateModal() {
-    setIsDateModalOpen(true)
+    onSetIsDateModalOpen(true)
   }
 
   function getGuestsLabel(guests) {
@@ -115,7 +114,7 @@ export function StayReservation({ stay }) {
       </div>
       <DetailsDateModal
         isDateModalOpen={isDateModalOpen}
-        setIsDateModalOpen={setIsDateModalOpen}
+        onSetIsDateModalOpen={onSetIsDateModalOpen}
         setOrder={setOrder}
       />
       <DetailsGuestsModal

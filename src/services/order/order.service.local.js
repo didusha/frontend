@@ -6,7 +6,7 @@ import {
 } from '../util.service.js'
 import { storageService } from '../async-storage.service'
 import { userService } from '../user'
-import { sortBy } from 'lodash'
+
 
 export const orderService = {
   add,
@@ -60,10 +60,10 @@ async function query(filterBy) {
         (o1, o2) => o1.stay.name.localeCompare(o2.stay.name) * filterBy.sort.dir
       )
     }
-    // console.log( orders);
-
     return orders
-  } catch (error) {}
+  } catch (err) {
+    throw err
+  }
 }
 
 async function remove(orderId) {

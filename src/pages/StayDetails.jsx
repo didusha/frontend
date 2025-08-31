@@ -10,6 +10,7 @@ import { ReviewList } from "../cmps/ReviewList.jsx"
 import { StayAmenities } from "../cmps/StayAmenities.jsx"
 import { useRef } from "react"
 import { getDayDiff } from "../services/util.service.js"
+import { truncate } from "lodash"
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -21,6 +22,7 @@ export function StayDetails() {
   const navigate = useNavigate()
   const [showHeader, setShowHeader] = useState(false)
   const [showReserve, setShowReserve] = useState(false)
+    const [isDateModalOpen, setIsDateModalOpen] = useState(false)
 
   useEffect(() => {
     loadStay(stayId)
@@ -68,6 +70,16 @@ export function StayDetails() {
     navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
   }
 
+  function onSetIsDateModalOpen(data){
+    setIsDateModalOpen(data)
+  }
+
+  function onCheckAvailability(){
+    location.href="#reservation"
+    setIsDateModalOpen(true)
+  }
+
+  
   if (!stay) return <div>loading...</div>
 
   const {checkIn, checkOut} = params
@@ -91,7 +103,7 @@ export function StayDetails() {
             {stay.reviews && <p className="review">★ {stay.rating} · <span>{stay.reviews.length} {stay.reviews > 1 ?"reviews":"review"}</span></p>}
           </div>
           {checkIn && checkOut ? <button className="reserve-btn" onClick={onSendReserve}>Reserve</button>
-          : <button className="check-btn" onClick={()=>location.href="#reservation"}>Check availability</button>}
+          : <button className="check-btn" onClick={onCheckAvailability}>Check availability</button>}
           </section>}
         </div>
       </nav>}
@@ -100,7 +112,7 @@ export function StayDetails() {
       </div>
       <div className="main-details" ref={reserveRef} >
         <StayDescription stay={stay} />
-        <StayReservation stay={stay} />
+        <StayReservation stay={stay} isDateModalOpen={isDateModalOpen} onSetIsDateModalOpen={onSetIsDateModalOpen}/>
         <StayAmenities labels={stay.amenities} />
       </div>
       <div id="reviews">
