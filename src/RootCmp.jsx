@@ -20,6 +20,7 @@ import { Trips } from './pages/Trips.jsx'
 import { Listing } from './pages/Listing.jsx'
 import { Wishlist } from './cmps/Wishlist.jsx'
 import { SmallHeader } from './cmps/SmallHeader.jsx'
+import { SmallFooter } from './cmps/SmallFooter.jsx'
 
 
 export function RootCmp() {
@@ -50,6 +51,7 @@ export function RootCmp() {
                 </Routes>
             </main>
             <AppFooter />
+            <SmallFooter />
         </div>
     )
 }

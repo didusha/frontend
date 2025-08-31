@@ -267,3 +267,9 @@
         display: none;
     }
 }
+
+@media (min-width: 950px) {
+    .logo-span {
+        opacity: 1 !important;
+    }
+}

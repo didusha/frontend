@@ -19,6 +19,7 @@
 @import "cmps/AppHeader";
 @import "cmps/SmallHeader";
 @import "cmps/AppFooter";
+@import "cmps/SmallFooter";
 @import "cmps/UserMsg";
 @import "cmps/Trips";
 @import "cmps/Dashboard.css";
