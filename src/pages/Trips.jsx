@@ -74,7 +74,7 @@ export function Trips() {
               <span className="trip-checkOut">{formatDateCalendar(order.endDate) || "Not set"}</span>
               <span className="trip-guests">{order.capacity} Guests</span>
               <span className="trip-price">${order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-              <span className="trip-status">{order.status}</span>
+              <span className={`trip-status ${order.status === 'Approved' ? 'approved': order.status === 'Rejected' ? 'rejected' : ''}`}>{order.status} </span>
             </li>
           ))}
         </ul>

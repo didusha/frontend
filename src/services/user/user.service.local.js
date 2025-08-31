@@ -81,7 +81,6 @@ function saveLoggedinUser(user) {
   return user
 }
 
-_createAdmin()
 async function _createAdmin() {
   let user = loadFromStorage('user')[0] || {
     username: 'admin',

@@ -17,47 +17,45 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
-	const [localFilter, setLocalFilter] = useState({ ...filterBy })
-	const [searchParams, setSearchParams] = useSearchParams()
-	const wrapperRef = useRef(null)
-	console.log('filter filterBy', localFilter)
+    const [localFilter, setLocalFilter] = useState({ ...filterBy })
+    const [searchParams, setSearchParams] = useSearchParams()
+    const wrapperRef = useRef(null)
 
-	useEffect(() => {
-		const filter = {
-			checkIn: searchParams.get('checkIn') || null,
-			checkOut: searchParams.get('checkOut') || null,
-			txt: searchParams.get('where') || '',
-			capacity: {
-				adults: +searchParams.get('adults') || 0,
-				children: +searchParams.get('children') || 0,
-				infants: +searchParams.get('infants') || 0,
-				pets: +searchParams.get('pets') || 0
-			}
-		}
-		dispatch(setFilterBy(filter))
-		setLocalFilter(filter)
-		console.log('index filterBy', filterBy)
-	}, [searchParams])
+    useEffect(() => {
+        const filter = {
+            checkIn: searchParams.get('checkIn') || null,
+            checkOut: searchParams.get('checkOut') || null,
+            txt: searchParams.get('where') || '',
+            capacity: {
+                adults: +searchParams.get('adults') || 0,
+                children: +searchParams.get('children') || 0,
+                infants: +searchParams.get('infants') || 0,
+                pets: +searchParams.get('pets') || 0
+            }
+        }
+        dispatch(setFilterBy(filter))
+        setLocalFilter(filter)
+    }, [searchParams])
 
-	useEffect(() => {
-		function handleClickOutside(event) {
-			if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-				setSelectedSection(null)
-			}
-		}
-		document.addEventListener('mousedown', handleClickOutside)
-		return () => document.removeEventListener('mousedown', handleClickOutside)
-	}, [wrapperRef])
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setSelectedSection(null)
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [wrapperRef])
 
 	// useEffect(() => {
 	//     setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
 	// }, [localFilter.checkIn])
 
-	function handleChange(ev) {
-		const { type, name, value } = ev.target
-		const val = type === 'number' ? +value : value
-		setLocalFilter(prev => ({ ...prev, [name]: val }))
-	}
+    function handleChange(ev) {
+        const { type, name, value } = ev.target
+        const val = type === 'number' ? +value : value
+        setLocalFilter(prev => ({ ...prev, [name]: val }))
+    }
 
 	function handleGuestChange(val) {
 		setLocalFilter(prev => ({ ...prev, capacity: val }))
@@ -76,33 +74,33 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
 		setLocalFilter(prev => ({ ...prev, txt: txt }))
 	}
 
-	function onSubmit(ev) {
-		ev.preventDefault()
-		const params = setParams()
-		dispatch(setFilterBy(localFilter))
-		closeModals()
-		setSelectedSection(null)
-		navigate({
-			pathname: '/',
-			search: `?${params.toString()}`
-		})
-	}
+    function onSubmit(ev) {
+        ev.preventDefault()
+        const params = setParams()
+        dispatch(setFilterBy(localFilter))
+        closeModals()
+        setSelectedSection(null)
+        navigate({
+            pathname: '/',
+            search: `?${params.toString()}`
+        })
+    }
 
-	function setParams() {
-		const params = new URLSearchParams()
-		if (localFilter.checkIn) params.set('checkIn', localFilter.checkIn)
-		if (localFilter.checkOut) params.set('checkOut', localFilter.checkOut)
-		if (localFilter.txt) params.set('where', localFilter.txt)
+    function setParams() {
+        const params = new URLSearchParams()
+        if (localFilter.checkIn) params.set('checkIn', localFilter.checkIn)
+        if (localFilter.checkOut) params.set('checkOut', localFilter.checkOut)
+        if (localFilter.txt) params.set('where', localFilter.txt)
 
-		const { adults, children, infants, pets } = localFilter.capacity
-		if (adults) params.set('adults', adults)
-		if (children) params.set('children', children)
-		if (infants) params.set('infants', infants)
-		if (pets) params.set('pets', pets)
+        const { adults, children, infants, pets } = localFilter.capacity
+        if (adults) params.set('adults', adults)
+        if (children) params.set('children', children)
+        if (infants) params.set('infants', infants)
+        if (pets) params.set('pets', pets)
 
-		setSearchParams(params)
-		return params
-	}
+        setSearchParams(params)
+        return params
+    }
 
 	function formatDate(date) {
 		if (!date) return 'Add dates'
@@ -124,10 +122,10 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
 		return parts.join(', ')
 	}
 
-	function getSectionClass(sectionName) {
-		if (selectedSection === null) return ''
-		return selectedSection === sectionName ? 'selected' : 'not-selected'
-	}
+    function getSectionClass(sectionName) {
+        if (selectedSection === null) return ''
+        return selectedSection === sectionName ? 'selected' : 'not-selected'
+    }
 
 	function closeModals() {
 		if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
@@ -135,61 +133,61 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
 		if (isWhereModalOpen) dispatch({ type: CLOSE_WHERE_MODAL })
 	}
 
-	return (
-		<section className='stay-filter' ref={wrapperRef}>
-			<form onSubmit={onSubmit} className={selectedSection ? 'form-active' : ''}>
-				<section
-					className={`search ${getSectionClass('search')}`}
-					onClick={() => {
-						dispatch({ type: OPEN_WHERE_MODAL })
-						setSelectedSection(selectedSection === 'search' ? null : 'search')
-						closeModals()
-					}}>
-					<h5>Where</h5>
-					<input className='where-filter' type='text' name='txt' value={localFilter.txt} onChange={handleChange} onClick={e => e.stopPropagation()} placeholder='Search destinations' />
-				</section>
+    return (
+        <section className='stay-filter' ref={wrapperRef}>
+            <form onSubmit={onSubmit} className={selectedSection ? 'form-active' : ''}>
+                <section
+                    className={`search ${getSectionClass('search')}`}
+                    onClick={() => {
+                        dispatch({ type: OPEN_WHERE_MODAL })
+                        setSelectedSection(selectedSection === 'search' ? null : 'search')
+                        closeModals()
+                    }}>
+                    <h5>Where</h5>
+                    <input className='where-filter' type='text' name='txt' value={localFilter.txt} onChange={handleChange} onClick={e => e.stopPropagation()} placeholder='Search destinations' />
+                </section>
 
-				<section
-					className={`check-in ${getSectionClass('checkIn')}`}
-					onClick={() => {
-						dispatch({ type: OPEN_DATE_MODAL })
-						setSelectedSection(selectedSection === 'checkIn' ? null : 'checkIn')
-						closeModals()
-					}}>
-					<h5>Check in</h5>
-					<span className='check-in-filter'>{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
-				</section>
+                <section
+                    className={`check-in ${getSectionClass('checkIn')}`}
+                    onClick={() => {
+                        dispatch({ type: OPEN_DATE_MODAL })
+                        setSelectedSection(selectedSection === 'checkIn' ? null : 'checkIn')
+                        closeModals()
+                    }}>
+                    <h5>Check in</h5>
+                    <span className='check-in-filter'>{localFilter.checkIn ? formatDate(localFilter.checkIn) : 'Add dates'}</span>
+                </section>
 
-				<section
-					className={`check-out ${getSectionClass('checkOut')}`}
-					onClick={() => {
-						dispatch({ type: OPEN_DATE_MODAL })
-						setSelectedSection(selectedSection === 'checkOut' ? null : 'checkOut')
-					}}>
-					<h5>Check out</h5>
-					<span className='check-out-filter'>{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
-				</section>
+                <section
+                    className={`check-out ${getSectionClass('checkOut')}`}
+                    onClick={() => {
+                        dispatch({ type: OPEN_DATE_MODAL })
+                        setSelectedSection(selectedSection === 'checkOut' ? null : 'checkOut')
+                    }}>
+                    <h5>Check out</h5>
+                    <span className='check-out-filter'>{localFilter.checkOut ? formatDate(localFilter.checkOut) : 'Add dates'}</span>
+                </section>
 
-				<section className={`guests ${getSectionClass('guests')}`}>
-					<div
-						className='guests-text'
-						onClick={() => {
-							dispatch({ type: OPEN_GUESTS_MODAL })
-							setSelectedSection(selectedSection === 'guests' ? null : 'guests')
-							closeModals()
-						}}>
-						<h5>Who</h5>
-						<span className='guests-filter'>{getGuestsLabel(localFilter.capacity)}</span>
-					</div>
-					<button className={!selectedSection ? 'btn-search' : 'btn-search-selected'} type='submit'>
-						<FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: '#ffffff' }} />
-						<span className='search-span'>search</span>
-					</button>
-				</section>
-			</form>
-			<WhereModal setSelectedSection={setSelectedSection} handleWhereChange={handleWhereChange} />
-			<DateModal localFilter={localFilter} setSelectedSection={setSelectedSection} handleCheckOutChange={handleCheckOutChange} handleCheckInChange={handleCheckInChange} />
-			<GuestsModal localFilter={localFilter} setSelectedSection={setSelectedSection} handleGuestChange={handleGuestChange} />
-		</section>
-	)
+                <section className={`guests ${getSectionClass('guests')}`}>
+                    <div
+                        className='guests-text'
+                        onClick={() => {
+                            dispatch({ type: OPEN_GUESTS_MODAL })
+                            setSelectedSection(selectedSection === 'guests' ? null : 'guests')
+                            closeModals()
+                        }}>
+                        <h5>Who</h5>
+                        <span className='guests-filter'>{getGuestsLabel(localFilter.capacity)}</span>
+                    </div>
+                    <button className={!selectedSection ? 'btn-search' : 'btn-search-selected'} type='submit'>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: '#ffffff' }} />
+                        <span className='search-span'>search</span>
+                    </button>
+                </section>
+            </form>
+            <WhereModal setSelectedSection={setSelectedSection} handleWhereChange={handleWhereChange} />
+            <DateModal localFilter={localFilter} setSelectedSection={setSelectedSection} handleCheckOutChange={handleCheckOutChange} handleCheckInChange={handleCheckInChange} />
+            <GuestsModal localFilter={localFilter} setSelectedSection={setSelectedSection} handleGuestChange={handleGuestChange} />
+        </section>
+    )
 }

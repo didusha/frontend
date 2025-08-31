@@ -16,7 +16,6 @@ export function GuestsModal({ localFilter, handleGuestChange, setSelectedSection
         infants: localFilter.capacity.infants || 0,
         pets: localFilter.capacity.pets || 0,
     })
-
     useEffect(() => {
         handleGuestChange(guests)
     }, [guests])

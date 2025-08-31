@@ -77,9 +77,3 @@
         display: block;
     }
 }
-
-@media (min-width: 950px) {
-    .logo-span {
-        opacity: 1 !important;
-    }
-}
