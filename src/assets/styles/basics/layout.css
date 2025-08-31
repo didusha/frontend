@@ -16,7 +16,7 @@
 @media (max-width: 750px) {
 .details-layout{
   grid-template-columns: minmax(24px, 1fr) minmax(300px, 700px) minmax(24px, 1fr);
-    /* grid-template-columns:24px minmax(300px, 700px) 24px; */
+
 }
 
 }

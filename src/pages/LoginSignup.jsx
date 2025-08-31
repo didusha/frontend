@@ -46,7 +46,7 @@ export function Login() {
   }
 
   function onDemoLogin() {
-    const demoUser = { username: 'admin', password: 'admin' }
+    const demoUser = { username: 'Barbara', password: 'Barbara' }
     setCredentials({ ...credentials, ...demoUser })
   }
 
