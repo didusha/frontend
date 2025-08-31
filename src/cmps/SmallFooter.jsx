@@ -13,6 +13,7 @@ export function SmallFooter() {
     const navigate = useNavigate()
     const [selected, setSelected] = useState('explore')
     const user = useSelector(storeState => storeState.userModule.user)
+    const isHomePage = location.pathname === '/'
 
     async function onLogout() {
         try {
@@ -26,64 +27,66 @@ export function SmallFooter() {
     }
 
     return (
-        <footer className="small-footer">
-            <section
-                className={selected === 'explore' ? 'page-selected' : ''}
-                onClick={() => {
-                    navigate('/')
-                    setSelected('explore')
-                }}
-            >
-                <img className="footer-imgs" src={explore} alt="explore" />
-                <span>Explore</span>
-            </section>
-
-            <section
-                className={selected === 'wishlist' ? 'page-selected' : ''}
-                onClick={() => {
-                    navigate('/wishlist')
-                    setSelected('wishlist')
-                }}
-            >
-                <img className="footer-imgs" src={wishlist} alt="wishlist" />
-                <span>Wishlist</span>
-            </section>
-
-            <section
-                className={selected === 'trips' ? 'page-selected' : ''}
-                onClick={() => {
-                    navigate('/trips')
-                    setSelected('trips')
-                }}
-            >
-                <img className="footer-imgs" src={trips} alt="trips" />
-                <span>Trips</span>
-            </section>
-            <section>
-                <img className="footer-imgs" src={messages} alt="message" />
-                <span>Messages</span>
-            </section>
-            {!user &&
+        isHomePage && (
+            <footer className="small-footer">
                 <section
-                    className={selected === 'login' ? 'page-selected' : ''}
+                    className={selected === 'explore' ? 'page-selected' : ''}
                     onClick={() => {
-                        navigate('/auth/login')
-                        setSelected('login')
-                    }}>
-                    <img className="footer-imgs" src={profile} alt="login" />
-                    <span>Log in</span>
+                        navigate('/')
+                        setSelected('explore')
+                    }}
+                >
+                    <img className="footer-imgs" src={explore} alt="explore" />
+                    <span>Explore</span>
                 </section>
-            }
-            {user &&
+
                 <section
-                    className={selected === 'logout' ? 'page-selected' : ''}
+                    className={selected === 'wishlist' ? 'page-selected' : ''}
                     onClick={() => {
-                        onLogout()
-                    }}>
-                    <img className="footer-imgs" src={profile} alt="login" />
-                    <span>Log out</span>
+                        navigate('/wishlist')
+                        setSelected('wishlist')
+                    }}
+                >
+                    <img className="footer-imgs" src={wishlist} alt="wishlist" />
+                    <span>Wishlist</span>
                 </section>
-            }
-        </footer>
+
+                <section
+                    className={selected === 'trips' ? 'page-selected' : ''}
+                    onClick={() => {
+                        navigate('/trips')
+                        setSelected('trips')
+                    }}
+                >
+                    <img className="footer-imgs" src={trips} alt="trips" />
+                    <span>Trips</span>
+                </section>
+                <section>
+                    <img className="footer-imgs" src={messages} alt="message" />
+                    <span>Messages</span>
+                </section>
+                {!user &&
+                    <section
+                        className={selected === 'login' ? 'page-selected' : ''}
+                        onClick={() => {
+                            navigate('/auth/login')
+                            setSelected('login')
+                        }}>
+                        <img className="footer-imgs" src={profile} alt="login" />
+                        <span>Log in</span>
+                    </section>
+                }
+                {user &&
+                    <section
+                        className={selected === 'logout' ? 'page-selected' : ''}
+                        onClick={() => {
+                            onLogout()
+                        }}>
+                        <img className="footer-imgs" src={profile} alt="login" />
+                        <span>Log out</span>
+                    </section>
+                }
+            </footer>
+        )
     )
 }

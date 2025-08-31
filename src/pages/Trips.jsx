@@ -35,6 +35,7 @@ export function Trips() {
       </span>
     )
   }
+
   return (
     <>
       <h1 className="trips-title">My Trips</h1>
@@ -73,7 +74,7 @@ export function Trips() {
               <span className="trip-checkOut">{formatDateCalendar(order.endDate) || "Not set"}</span>
               <span className="trip-guests">{order.capacity} Guests</span>
               <span className="trip-price">${order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-              <span className={`trip-status ${order.status === 'approved' ? 'approved': order.status === 'rejected' ? 'rejected' : ''}`}>{order.status} </span>
+              <span className={`trip-status ${order.status === 'Approved' ? 'approved': order.status === 'Rejected' ? 'rejected' : ''}`}>{order.status} </span>
             </li>
           ))}
         </ul>
