@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CLOSE_WHERE_MODAL, OPEN_DATE_MODAL } from '../store/reducers/system.reducer'
 
-export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal }) {
+export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal, handleChange }) {
     const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
     const dispatch = useDispatch()
 
@@ -84,6 +84,17 @@ export function WhereModal({ handleWhereChange, setSelectedSection, isSmallModal
                         onClick={(e) => e.stopPropagation()}
                     >
                         {isSmallModal && <h1 className="where">Where?</h1>}
+                        {isSmallModal &&
+                            <input
+                                className="where-small-filter"
+                                type="text"
+                                name="txt"
+                                onChange={handleChange}
+                                onClick={(e) => e.stopPropagation()}
+                                placeholder="Search destinations"
+                            />
+
+                        }
                         <h3 className="where-modal-title">Suggested destinations</h3>
                         <ul className="dest-list">
                             {destinations.map((d, idx) => {

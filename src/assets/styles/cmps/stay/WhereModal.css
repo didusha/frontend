@@ -68,20 +68,29 @@
 }
 
 .where{
-  margin: 1em;
+  margin: .5em;
   font-size: 1.2rem;
   font-family: AirbnbCereal-Bold;
 }
 
-.where-modal-overlay.small-date-modal{
+.where-modal-overlay.small-where-modal{
   display: none;
 }
 
-.where-modal-content.small-date-modal{
+.where-modal-content.small-where-modal{
   position: relative;
   width: 95%;
-  height: 26em;
+  height: 23em;
   margin: auto;
   top: 0;
-  padding: 0;
+  right: 0;
+  padding: 1em;
+}
+
+.where-small-filter{
+  padding: 1.2em;
+  width: 100%;
+  border-radius: 13px;
+  margin-bottom: 1em;
+  font-size: .95rem;
 }

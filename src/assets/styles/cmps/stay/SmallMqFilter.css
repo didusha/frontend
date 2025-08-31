@@ -35,3 +35,12 @@
     justify-content: space-between;
 }
 
+.small-btn-search{
+    width: 8em;
+    border-radius: 10px;
+    padding: 1em;
+    background-image: linear-gradient(to right, #ff385c, #bd1e59);
+    color: white;
+    border: none;
+}
+

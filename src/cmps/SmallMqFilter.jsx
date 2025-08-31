@@ -139,7 +139,7 @@ export function SmallMqFilter() {
                 onSubmit={onSubmit}
                 className={selectedSection ? "form-active" : ""}
             >
-                {selectedSection === "search" &&
+                {selectedSection !== "search" &&
                     <section
                         className={`small-search ${getSectionClass("search")}`}
                         onClick={() => {
@@ -149,19 +149,11 @@ export function SmallMqFilter() {
                         }}
                     >
                         <h4>Where</h4>
-                        <input
-                            className="where-small-filter"
-                            type="text"
-                            name="txt"
-                            value={localFilter.txt}
-                            onChange={handleChange}
-                            onClick={(e) => e.stopPropagation()}
-                            placeholder="Search destinations"
-                        />
                     </section>
                 }
-                {selectedSection !== "search" &&
+                {selectedSection === "search" &&
                     <WhereModal
+                        handleChange={handleChange}
                         isSmallModal={isSmallModal}
                         setSelectedSection={setSelectedSection}
                         handleWhereChange={handleWhereChange}
@@ -208,7 +200,7 @@ export function SmallMqFilter() {
                         handleGuestChange={handleGuestChange}
                     />
                 }
-                <button className={!selectedSection ? "small-btn-search" : "small-btn-search-selected"} type="submit">
+                <button className="small-btn-search" type="submit">
                     <FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
                     <span className="small-search-span">search</span>
                 </button>
