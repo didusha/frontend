@@ -17,14 +17,17 @@
     font-size: 1.8rem;
 }
 
+.listings-length {
+    margin: 35px 0;
+}
+
 .listing {
     position: relative;
     margin-bottom: 15px;
     align-items: center;
     display: grid;
-            grid-column: 1 / -1;
-        grid-template-columns: subgrid;
-
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
 }
 
 .listings-headers {
@@ -91,4 +94,3 @@
     color: rgb(107, 182, 233);
     transition: none;
 }
-
