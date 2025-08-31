@@ -5,7 +5,7 @@ import plus from '../assets/images/svg/plus-btn.svg'
 
 Modal.setAppElement('#root')
 
-export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder, order }) {
+export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, setOrder, order, setArrow, arrow }) {
     const [guests, setGuests] = useState(order.guests)
 
     useEffect(() => {
@@ -33,14 +33,17 @@ export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, se
         <>
             {isGuestsModalOpen && (
                 <>
-                    <div className="details-guests-modal-overlay" onClick={() => setIsGuestsModalOpen(false)}></div>
+                    <div className="details-guests-modal-overlay" onClick={() => {
+                        setIsGuestsModalOpen(false)
+                        setArrow(!arrow)
+                        }}></div>
                     <div
                         className="details-guests-modal-content"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {['adults', 'children', 'infants', 'pets'].map(type => (
                             <div key={type} className="details-guest-row" >
-                                <div>
+                                <div className="details-type-guest">
                                     <div className="details-type-guests">
                                         {type}
                                     </div>
@@ -54,11 +57,11 @@ export function DetailsGuestsModal({ isGuestsModalOpen, setIsGuestsModalOpen, se
                                         onClick={() => handleDecrement(type)}
                                         disabled={guests[type] === 0}
                                     >
-                                        <img className="svg-image" src={minus} alt="minus" />
+                                            <img className="svg-image" src={minus} alt="minus" />
                                     </button>
                                     <span>{guests[type]}</span>
                                     <button className="btn-count" onClick={() => handleIncrement(type)}>
-                                        <img className="svg-image" src={plus} alt="plus" />
+                                            <img className="svg-image" src={plus} alt="plus" />
                                     </button>
                                 </div>
                             </div>

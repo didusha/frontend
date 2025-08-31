@@ -5,7 +5,7 @@ import { Charts } from '../cmps/Charts.jsx'
 import { useSelector } from 'react-redux'
 import { showErrorMsg } from '../services/event-bus.service.js'
 
-export function Dashboard() {
+export function DashboardSmall() {
   const [orders, setOrders] = useState()
   const [sort, setSort] = useState({ type: '', dir: 1 })
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -45,8 +45,8 @@ export function Dashboard() {
     const downActive = isActive && sort.dir === -1
     return (
       <span className="sort-arrows">
-        <span className={`arrow up ${upActive ? 'active' : ''}`}>▲</span>
-        <span className={`arrow down ${downActive ? 'active' : ''}`}>▼</span>
+        <span className={`arrow up ${upActive ? 'action' : ''}`}>▲</span>
+        <span className={`arrow down ${downActive ? 'action' : ''}`}>▼</span>
       </span>
     )
   }
@@ -55,20 +55,20 @@ export function Dashboard() {
 
   return (
     <>
-      <h1 className="dashboard-title">My Reservations</h1>
+      <h1 className="small-dashboard-title">My Reservations</h1>
       <div className='charts'>
         <div>
           <Charts orders={orders} />
         </div>
       </div>
       {!!orders.length && (
-        <h2 className="dashboard-length">
+        <h2 className="small-dashboard-length">
           {orders.length} {orders.length === 1 ? "Reservation" : "Reservations"}
         </h2>
       )}
 
-      <section className="dashboard">
-        <div className="dashboard-headers">
+      <section className="small-dashboard">
+        <div className="small-dashboard-headers">
           <span className="guest-header">Guest</span>
           <span className="check-in-header" onClick={() => onSetSorting('startDate')}>
             Check-in {renderSortArrows('startDate')}
@@ -91,7 +91,7 @@ export function Dashboard() {
           <span className="actions-header">Actions</span>
         </div>
 
-        <ul className="dashboard-container">
+        <ul className="small-dashboard-container">
           {orders.map((order) => {
             const checkIn = formatDateCalendar(order.startDate)
             const checkOut = formatDateCalendar(order.endDate)
@@ -99,21 +99,21 @@ export function Dashboard() {
             // const isActioned = (order.status !== "Pending") ? true : false
 
             return (
-              <li key={order._id} className="dashboard-item">
-                <div className="dashboard-guest">
+              <li key={order._id} className="small-dashboard-item">
+                <div className="small-dashboard-guest">
                   <img src={order.guest.imgUrl} alt="guest profile" />
                   <span>{order.guest.fullname}</span>
                 </div>
 
-                <span className="dashboard-checkIn">{checkIn}</span>
-                <span className="dashboard-checkOut">{checkOut}</span>
-                <span className="dashboard-booked">{createdAt}</span>
-                <span className="dashboard-stay">{order.stay?.name}</span>
-                <span className="dashboard-price">
+                <span className="small-dashboard-checkIn">{checkIn}</span>
+                <span className="small-dashboard-checkOut">{checkOut}</span>
+                <span className="small-dashboard-booked">{createdAt}</span>
+                <span className="small-dashboard-stay">{order.stay?.name}</span>
+                <span className="small-dashboard-price">
                   ${order.totalPrice.toLocaleString("en-US", { maximumFractionDigits: 0 })}
                 </span>
                 <span
-                  className={`dashboard-status ${order.status === "Approved"
+                  className={`small-dashboard-status ${order.status === "Approved"
                     ? "active"
                     : order.status === "Pending"
                       ? "pending"
@@ -123,7 +123,7 @@ export function Dashboard() {
                 </span>
 
 
-                <div className="dashboard-actions">
+                <div className="small-dashboard-actions">
                   <button className="btn approve" onClick={() => onSetStatus(order, "Approved")}
                   // disabled={isActioned}
                   >Approve

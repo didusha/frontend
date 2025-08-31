@@ -1,6 +1,8 @@
 .small-header {
     background-color: #fefefe;
     border-bottom: 1px solid #eae9e9b4;
+    z-index: 2;
+
 
     .navigation-links {
         justify-content: space-between;
@@ -52,4 +54,32 @@
 
 .start-search:hover {
     cursor: pointer;
+}
+
+.scrolled{
+    display: none;
+}
+
+.sticky{
+    position: sticky;
+    top: 0;
+}
+
+
+@media (min-width: 750px) {
+    .small-header {
+        display: none;
+    }
+}
+
+@media (max-width: 750px) {
+    .small-header {
+        display: block;
+    }
+}
+
+@media (min-width: 950px) {
+    .logo-span {
+        opacity: 1 !important;
+    }
 }

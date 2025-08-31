@@ -21,7 +21,8 @@
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 @import "cmps/Trips";
-@import "cmps/Dashboard";
+@import "cmps/Dashboard.css";
+@import "cmps/Charts.css";
 @import "cmps/Listing";
 @import "cmps/Wishlist";
 

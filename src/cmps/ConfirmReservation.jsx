@@ -46,6 +46,7 @@ export function ConfirmReservation() {
         infants: +params.infants || 0,
         pets: +params.pets || 0,
         totalPrice: +params.totalPrice || 0,
+        capacity:totalGuest,
       }
       const savedOrder = await orderService.add(stay, orderData)
       setIsOrderComplete(true)

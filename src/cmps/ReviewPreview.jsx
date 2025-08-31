@@ -12,7 +12,6 @@ export function ReviewPreview({ review }) {
     return rating
   }
 
-
   const newDate = dateFromTimestamp(at)  
   const years = getRandomIntInclusive(1, 10)
 

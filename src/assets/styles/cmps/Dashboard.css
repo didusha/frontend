@@ -1,130 +1,313 @@
-.dashboard {
-  h2 {
-    margin-block: 1rem;
+.dashboard-container {
+  display: block;
+}
+
+.dashboard-title {
+  font-family: AirbnbCereal-Bold;
+  font-size: 1.8rem;
+}
+
+.dashboard-length {
+  margin: 35px 0;
+}
+
+.dashboard-item {
+  position: relative;
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 6px 0;
+}
+
+.dashboard-headers {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  margin-bottom: 20px;
+}
+
+.dashboard-headers span {
+  display: flex;
+  align-items: center;
+  color: rgb(168, 168, 168);
+  font-size: 0.9rem;
+  font-family: AirbnbCereal-Bold;
+  cursor: pointer;
+}
+
+.dashboard-guest img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
   }
-  .charts {
-    margin-bottom: 1rem;
 
-    .orders-status {
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      padding: 1rem;
+.dashboard-stay,
+.dashboard-price {
+  color: rgb(81, 81, 81);
+}
 
-      > * {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 50px;
-        justify-content: space-around;
-      }
-    }
+.dashboard-checkIn,
+.dashboard-checkOut,
+.dashboard-booked,
+.dashboard-guests {
+  color: grey;
+}
 
-    .statistic {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns:repeat(3,300px);
-      align-items: end;
+.dashboard-status {
+  justify-self: center;
+}
 
-      > * {
-        padding: 1rem;
-      }
-      .bar {
-        align-self: flex-end;
-      }
-    }
+.dashboard-status.active {
+  color: var(--green-base-);
+}
+
+.dashboard-status.pending {
+  color: rgb(245, 182, 66);
+}
+
+.dashboard-status.non-active {
+  color: var(--red-base-);
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btn {
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.approve {
+  background-color: var(--green--3-);
+  color: var(--green-base-);
+  border: 1px solid var(--green-base-)
+}
+
+.btn.approve:hover {
+  background-color: var(--green-base-);
+  color: var(--white-bg-btn);
+}
+
+.btn.reject {
+  background-color: var(--red--3-);
+  color: var(--red-base-);
+  border: 1px solid var(--red-base-);
+}
+
+.btn.reject:hover {
+  background-color: var(--red-base-);
+  color: var(--white-bg-btn);
+}
+
+.sort-arrows {
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 4px;
+  font-size: 0.7em;
+  line-height: 0.8em;
+}
+
+.arrow {
+  color: gray;
+  font-size: 0.6em !important;
+}
+
+.arrow.active {
+  color: var(--clr1);
+}
+
+.dashboard-stay::before,
+.dashboard-price::before,
+.dashboard-checkIn::before,
+.dashboard-checkOut::before,
+.dashboard-booked::before,
+.dashboard-status::before,
+.dashboard-actions::before {
+  font-weight: 600;
+  margin-right: 8px;
+  color: #555;
+}
+
+/* Mobile */
+@media (max-width: 400px) {
+  /* .dashboard {
+    display: block;
+  } */
+
+  .dashboard-container {
+    display: block;
   }
 
-  .table {
+  .dashboard-headers {
+    display: none;
+  }
+
+  .dashboard-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: 20em;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dashboard-guest {
+    margin-bottom: 10px;
+  }
+
+  .dashboard-guest img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .dashboard-stay::before {
+    content: "Stay:";
+  }
+
+  .dashboard-price::before {
+    content: "Price:";
+  }
+
+  .dashboard-checkIn::before {
+    content: "Check-in:";
+  }
+
+  .dashboard-checkOut::before {
+    content: "Check-out:";
+  }
+
+  .dashboard-booked::before {
+    content: "Booked:";
+  }
+
+  .dashboard-status::before {
+    content: "Status:";
+  }
+
+  .dashboard-actions::before {
+    content: "Actions:";
+  }
+}
+
+/* Small */
+@media (min-width: 400px) {
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .dashboard-headers {
+    display: none;
+  }
+
+  .dashboard-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: 20em;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dashboard-guest {
+    margin-bottom: 10px;
+  }
+
+  .dashboard-guest img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .dashboard-stay::before {
+    content: "Stay:";
+  }
+
+  .dashboard-price::before {
+    content: "Price:";
+  }
+
+  .dashboard-checkIn::before {
+    content: "Check-in:";
+  }
+
+  .dashboard-checkOut::before {
+    content: "Check-out:";
+  }
+
+  .dashboard-booked::before {
+    content: "Booked:";
+  }
+
+  .dashboard-status::before {
+    content: "Status:";
+  }
+
+  .dashboard-actions::before {
+    content: "Actions:";
+  }
+}
+
+/* Medium */
+@media (min-width: 750px) {}
+
+/* Large */
+@media (min-width: 950px) {
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    gap: 6px;
+  }
+
+  .dashboard-container {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    gap: 6px;
+  }
+
+  .dashboard-headers {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-item::before {
+    content: '';
+    position: absolute;
+    height: 1px;
     width: 100%;
-    table-layout: fixed;
-    border-spacing: 0;
-
-    td,
-    th {
-      text-align: start;
-      font-size: 0.875rem;
-    }
-
-    img {
-      width: 1.8rem;
-      height: 1.8rem;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .stay {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .table-title:hover {
-      cursor: pointer;
-    }
-  }
-  td {
-    min-height: 0.28em;
-  }
-  tbody tr:hover {
-    background-color: var(--gray-btn);
+    background-color: #dfdfdf;
+    top: -10px;
   }
 
-  .price {
-    padding-inline-start: 0.625em;
-  }
-
-  .guest {
-    display: flex;
-    justify-content: start;
-    gap: 5px;
+  .dashboard-item {
+    display: grid;
+    grid-template-columns: subgrid;
     align-items: center;
+    padding: 6px 0;
+    border: none;
+    box-shadow: none;
   }
 
-  .price {
-    text-align: center;
-  }
-
-  .btn-container {
-    display: flex;
-  }
-
-  .btn {
-    font-size: 0.875rem;
-    padding: 0.5rem;
-    margin: 0.35714em;
-    font-family: AirbnbCereal;
-    height: 40%;
-    border-radius: 0.4285em;
-  }
-
-  .btn.approve {
-    background-color: var(--green--3-);
-    color: var(--green-base-);
-    border: 1px solid var(--green-base-);
-  }
-  .btn.approve:hover {
-    background-color: var(--green-base-);
-    color: var(--white-bg-btn);
-  }
-  .btn.reject:hover {
-    background-color: var(--red-base-);
-    color: var(--white-bg-btn);
-  }
-
-  .btn.reject {
-    background-color: var(--red--3-);
-    color: var(--red-base-);
-    border: 1px solid var(--red-base-);
-  }
-
-  .active {
-    color: var(--green-base-);
-  }
-  .non-active {
-    color: var(--red-base-);
-  }
-  .action {
-    color: var(--clr1);
-    /* text-align: start */
+  .dashboard-item span::before {
+    content: '';
   }
 }

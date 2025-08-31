@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 export function Trips() {
   const user = useSelector(storeState => storeState.userModule.user)
   const [orders, setOrders] = useState([])
+  // console.log("🚀 ~ Trips ~ orders:", orders)
   const [sort, setSort] = useState({ key: null, direction: 1 })
   const [originalOrders, setOriginalOrders] = useState([])
 
