@@ -100,3 +100,7 @@
         text-align: center;
     }
 }
+
+.guests-amount:hover{
+    cursor: pointer;
+}

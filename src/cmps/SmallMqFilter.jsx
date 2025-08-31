@@ -149,6 +149,7 @@ export function SmallMqFilter() {
                         }}
                     >
                         <h4>Where</h4>
+                        <span>I'm flexible</span>
                     </section>
                 }
                 {selectedSection === "search" &&

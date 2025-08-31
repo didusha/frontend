@@ -105,11 +105,11 @@ export function StayReservation({ stay }) {
               ? formatDateCalendar(params.checkOut)
               : formatDateCalendar(randEndDate)}</p>
         </div>
-        <div className="guests-amount">
+        <div className="guests-amount" onClick={onGuestModal}>
           <label>GUESTS</label>
           <p>{getGuestsLabel(guestsToShow)}</p>
         </div>
-        <span className="chevron-arrow" onClick={onGuestModal}>
+        <span className="chevron-arrow">
           {(arrow) ? <FontAwesomeIcon icon={faChevronDown} /> : <FontAwesomeIcon icon={faChevronUp} />}
         </span>
       </div>
