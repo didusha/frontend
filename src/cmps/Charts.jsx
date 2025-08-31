@@ -27,7 +27,8 @@ export function Charts({ orders }) {
   )
 
   const data = {
-    labels: [...new Set(orders.map((order) => order.stay.name))],
+    labels,
+    // labels: [...new Set(orders.map((order) => order.stay.name))],
     datasets: [
       {
         label: '',
@@ -72,7 +73,7 @@ export function Charts({ orders }) {
   const months = [
     ...new Set(
       orders.map((order) => {
-        const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16)*1000).getMonth()
+        const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16) * 1000).getMonth()
         return monthNames[monthIndex]
       })
     ),
@@ -99,17 +100,18 @@ export function Charts({ orders }) {
   }
 
   return (
-    <section className='statistic '>
-      <div className="orders-status">
-        <p>Approved<span className="active">{orders.filter((o) => o.status === 'Approved').length}</span></p>
-        <p>Reject<span className="non-active">{orders.filter((o) => o.status === 'Rejected').length}</span></p>
-        <p>Pending<span className="">{orders.filter((o) => o.status === 'Pending').length}</span></p>
+    <section className="statistic">
+      <div className="stat-card orders-status">
+        <h3 className='bold'>Reservations status</h3>
+        <p>Approved <span className="active">{orders.filter(o => o.status === 'Approved').length}</span></p>
+        <p>Rejected <span className="non-active">{orders.filter(o => o.status === 'Rejected').length}</span></p>
+        <p>Pending <span>{orders.filter(o => o.status === 'Pending').length}</span></p>
       </div>
-      <div className='doughnut'>
-        <Doughnut data={data} />
+      <div className="stat-card doughnut">
+        <Doughnut data={data} options={{ plugins: { legend: { display: false } } }}/>
       </div>
-      <div className='bar'>
-        <Bar options={options} data={data2}/>
+      <div className="stat-card bar">
+        <Bar options={options} data={data2} />
       </div>
     </section>
   )
