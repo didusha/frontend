@@ -5,6 +5,7 @@ import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
 export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
+export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
   const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
   const dispatch = useDispatch()
   const [range, setRange] = useState({
@@ -14,7 +15,7 @@ export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChan
 
   useEffect(() => {
     handleCheckInChange(range?.from)
-    if ((range?.from !== null) && !isSmallModal) {
+    if (range?.from !== null) {
       setSelectedSection("checkOut")
     }
   }, [range?.from]);

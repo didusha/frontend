@@ -10,12 +10,12 @@ import { GuestsModal } from './GuestsModal'
 import { WhereModal } from './WhereModal'
 
 export function StayFilter({ selectedSection, setSelectedSection }) {
-    const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
-    const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
-    const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
-    const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+	const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+	const isDateModalOpen = useSelector(storeState => storeState.systemModule.isDateModalOpen)
+	const isGuestsModalOpen = useSelector(storeState => storeState.systemModule.isGuestsModalOpen)
+	const isWhereModalOpen = useSelector(storeState => storeState.systemModule.isWhereModalOpen)
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
     const [localFilter, setLocalFilter] = useState({ ...filterBy })
     const [searchParams, setSearchParams] = useSearchParams()
@@ -47,9 +47,9 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [wrapperRef])
 
-    // useEffect(() => {
-    //     setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
-    // }, [localFilter.checkIn])
+	// useEffect(() => {
+	//     setSelectedSection(selectedSection === "checkOut" ? null : "checkOut")
+	// }, [localFilter.checkIn])
 
     function handleChange(ev) {
         const { type, name, value } = ev.target
@@ -57,22 +57,22 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
         setLocalFilter(prev => ({ ...prev, [name]: val }))
     }
 
-    function handleGuestChange(val) {
-        setLocalFilter(prev => ({ ...prev, capacity: val }))
-    }
+	function handleGuestChange(val) {
+		setLocalFilter(prev => ({ ...prev, capacity: val }))
+	}
 
-    function handleCheckInChange(val) {
-        setLocalFilter(prev => ({ ...prev, checkIn: val }))
-    }
+	function handleCheckInChange(val) {
+		setLocalFilter(prev => ({ ...prev, checkIn: val }))
+	}
 
-    function handleCheckOutChange(val) {
-        setLocalFilter(prev => ({ ...prev, checkOut: val }))
-    }
+	function handleCheckOutChange(val) {
+		setLocalFilter(prev => ({ ...prev, checkOut: val }))
+	}
 
-    function handleWhereChange(val) {
-        const txt = val.city
-        setLocalFilter(prev => ({ ...prev, txt: txt }))
-    }
+	function handleWhereChange(val) {
+		const txt = val.city
+		setLocalFilter(prev => ({ ...prev, txt: txt }))
+	}
 
     function onSubmit(ev) {
         ev.preventDefault()
@@ -102,36 +102,36 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
         return params
     }
 
-    function formatDate(date) {
-        if (!date) return 'Add dates'
-        const d = new Date(date)
-        if (isNaN(d.getTime())) return 'Add dates'
-        const options = { day: 'numeric', month: 'short' }
-        return d.toLocaleDateString('en-US', options)
-    }
+	function formatDate(date) {
+		if (!date) return 'Add dates'
+		const d = new Date(date)
+		if (isNaN(d.getTime())) return 'Add dates'
+		const options = { day: 'numeric', month: 'short' }
+		return d.toLocaleDateString('en-US', options)
+	}
 
-    function getGuestsLabel(capacity) {
-        const { adults, children, infants, pets } = capacity
-        let parts = []
+	function getGuestsLabel(capacity) {
+		const { adults, children, infants, pets } = capacity
+		let parts = []
 
-        if (adults > 0) parts.push(`${adults} ${adults === 1 ? 'adult' : 'adults'}`)
-        if (children > 0) parts.push(`${children} ${children === 1 ? 'child' : 'children'}`)
-        if (infants > 0) parts.push(`${infants} ${infants === 1 ? 'infant' : 'infants'}`)
-        if (pets > 0) parts.push(`${pets} ${pets === 1 ? 'pet' : 'pets'}`)
-        if (parts.length === 0) return 'Add guests'
-        return parts.join(', ')
-    }
+		if (adults > 0) parts.push(`${adults} ${adults === 1 ? 'adult' : 'adults'}`)
+		if (children > 0) parts.push(`${children} ${children === 1 ? 'child' : 'children'}`)
+		if (infants > 0) parts.push(`${infants} ${infants === 1 ? 'infant' : 'infants'}`)
+		if (pets > 0) parts.push(`${pets} ${pets === 1 ? 'pet' : 'pets'}`)
+		if (parts.length === 0) return 'Add guests'
+		return parts.join(', ')
+	}
 
     function getSectionClass(sectionName) {
         if (selectedSection === null) return ''
         return selectedSection === sectionName ? 'selected' : 'not-selected'
     }
 
-    function closeModals() {
-        if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
-        if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
-        if (isWhereModalOpen) dispatch({ type: CLOSE_WHERE_MODAL })
-    }
+	function closeModals() {
+		if (isDateModalOpen) dispatch({ type: CLOSE_DATE_MODAL })
+		if (isGuestsModalOpen) dispatch({ type: CLOSE_GUESTS_MODAL })
+		if (isWhereModalOpen) dispatch({ type: CLOSE_WHERE_MODAL })
+	}
 
     return (
         <section className='stay-filter' ref={wrapperRef}>
