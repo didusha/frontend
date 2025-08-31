@@ -15,9 +15,6 @@ export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChan
 
   useEffect(() => {
     handleCheckInChange(range?.from)
-    if (range?.from !== null) {
-      setSelectedSection("checkOut")
-    }
   }, [range?.from]);
 
   useEffect(() => {
