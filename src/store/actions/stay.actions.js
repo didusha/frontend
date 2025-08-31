@@ -6,8 +6,8 @@ import { LOADING_START, LOADING_DONE } from '../reducers/system.reducer'
 export async function loadStays(sortBy={}) {
     store.dispatch({type: LOADING_START})
     let { filterBy } = store.getState().stayModule
-    if (filterBy.capacity) {
-        const { adults = 1, children = 0, infants = 0 } = filterBy.capacity
+    if (filterBy.guests) {
+        const { adults = 1, children = 0, infants = 0 } = filterBy.guests
         filterBy = {
             ...filterBy,
             capacity: adults + children + infants
