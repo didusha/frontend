@@ -1,26 +1,38 @@
 :root {
   --clr1: #fe385c;
-   --clr2: rgb(34, 34, 34);
-  
+  --clr2: rgb(34, 34, 34);
+
   --gray-btn: #f1f1f1;
   --gray-filter: #eaeaea;
   --gray-footer: #f6f6f6;
   --gray-text-color: rgb(106, 106, 106);
-  --gray-icon:#747474;
-  --white-bg-btn:#ffffff;
-  --black-btn:#222222;
+  --gray-icon: #747474;
+  --white-bg-btn: #ffffff;
+  --black-btn: #222222;
   --gray-p: #6a6a6a;
+  --gray-3: rgb(176, 176, 176);
 
-/* LOGIN */
-  --blue-form:#dcdfe6;
-  --colorful-btn:radial-gradient(circle, #ff385c 0, #e61e4d 27.5%, #e31c5f 40%, #d70466 57.5%, #bd1e59 75%, #bd1e59 100%);
-  
+  /* LOGIN */
+  --blue--5: #ecf5ff;
+  --blue--4: #dcdfe6;
+  --blue--3: #c6e2ff;
+  --blue-base-: #409eff;
+
+  --colorful-btn: radial-gradient(
+    circle,
+    #ff385c 0,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+  );
 
   /* dashboard */
-  --green--3-:#f0f9eb;
-  --green-base-:#67c23a;
+  --green--3-: #f0f9eb;
+  --green-base-: #67c23a;
 
-  --red--3-:#fef0f0;
-  --red-base-:#f56e8e;
+  --red--3-: #fef0f0;
+  --red-base-: #f56e8e;
+  --rad-1-: rgb(218, 62, 62);
 }
-

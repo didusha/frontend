@@ -6,24 +6,22 @@ import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
 
 export function LoginSignup() {
-  const [isSignup, setIsSignup] = useState(false)
   	const isLogin = location.pathname === '/auth/login'
+  	const isSignup = location.pathname === '/auth/signup'
    
-  function onSetIsSignup() {
-    setIsSignup(!isSignup)
-  }
   return (
     <div className='login-page'>
       <div className='page-title flex justify-center bold'>
         {isLogin ? 'Log in' : 'Sign up'}
       </div>
-      <Outlet context={{ onSetIsSignup }} />
+      <Outlet />
     </div>
   )
 }
 
 export function Login() {
-  const { onSetIsSignup } = useOutletContext()
+    	const isLogin = location.pathname === '/auth/login'
+
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState({
     username: '',
@@ -37,7 +35,7 @@ export function Login() {
     if (ev) ev.preventDefault()
     if (!credentials.username) return
     await login(credentials)
-    navigate('/')
+   if (isLogin )navigate('/')
   }
 
   function handleChange(ev) {
@@ -46,10 +44,6 @@ export function Login() {
     setCredentials({ ...credentials, [field]: value })
   }
 
-  function onNavigate() {
-    onSetIsSignup()
-    navigate('/auth/signup')
-  }
 
 function onDemoLogin(){
     const demoUser={username:'admin', password:'admin'}
@@ -83,15 +77,15 @@ function onDemoLogin(){
         <span> or </span>
       </div>
       <button onClick={onDemoLogin} className='demo-btn btn'>Demo login</button>
-      <button onClick={onNavigate} className='btn'>Signup</button>
+      <button onClick={()=>navigate('/auth/signup')} className='btn'>Signup</button>
     </form>
   )
 }
 
 export function Signup() {
   const [credentials, setCredentials] = useState(userService.getEmptyUser())
-  const { onSetIsSignup } = useOutletContext()
   const navigate = useNavigate()
+  const isSignup = location.pathname === '/auth/signup'
 
   function clearState() {
     setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
@@ -112,17 +106,14 @@ export function Signup() {
       return
     await signup(credentials)
     clearState()
-    navigate('/')
+   if (isSignup) navigate('/')
   }
 
   function onUploaded(imgUrl) {
     setCredentials({ ...credentials, imgUrl })
   }
 
-  function onNavigate() {
-    onSetIsSignup()
-    navigate('/auth/login')
-  }
+
 
   return (
     <form className='login-Sign-form' onSubmit={onSignup}>
@@ -163,7 +154,7 @@ export function Signup() {
         <div className='or-container'>  
         <span> or </span>
       </div>
-      <button onClick={onNavigate}  className='btn'>Login</button>
+      <button onClick={()=>navigate('/auth/login')}  className='btn'>Login</button>
     </form>
   )
 }

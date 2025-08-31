@@ -32,7 +32,7 @@ export function StayDetails() {
       const rect = photoRef.current.getBoundingClientRect()
       const reservation = reserveRef.current.getBoundingClientRect()
       setShowHeader(rect.bottom <= 0)
-        setShowReserve(reservation.bottom <= 100)
+      setShowReserve(reservation.bottom <= 100)
     }
     
     window.addEventListener('scroll', handleScroll)

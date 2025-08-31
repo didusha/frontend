@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadStays, addStay, updateStay, removeStay, addStayMsg } from '../store/actions/stay.actions'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
+import { SET_FILTER_BY } from "../store/reducers/stay.reducer"
 import { stayService } from '../services/stay/'
 import { userService } from '../services/user'
 import { StayList } from '../cmps/StayList'
@@ -9,6 +10,12 @@ import { StayList } from '../cmps/StayList'
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
     const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
+    // const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     dispatch({ type: SET_FILTER_BY, filterBy: { hostId: null } })
+    // }, [])
 
     useEffect(() => {
         loadStays()
@@ -37,7 +44,7 @@ export function StayIndex() {
     async function onAddRandStay() {
         const stay = stayService.getRandomStay()
         try {
-            const savedStay = await addStay(stay)            
+            const savedStay = await addStay(stay)
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
         } catch (err) {
             showErrorMsg('Cannot add stay')
@@ -57,6 +64,7 @@ export function StayIndex() {
         }
     }
 
+    if (isLoading) return <div>Loading... </div>
     return (
         <section className="stay-index">
             {/* {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}

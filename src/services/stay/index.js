@@ -48,7 +48,10 @@ function getDefaultFilter() {
       pets: 0,
     },
     checkIn: null,
-    checkOut: null
+    checkOut: null,
+    hostId: null,
+    type: null,
+    dir: 1,
   }
 }
 

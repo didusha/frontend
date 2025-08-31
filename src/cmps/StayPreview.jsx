@@ -4,12 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { formatDateRange, getRandomIntInclusive } from '../services/util.service.js';
 
-  const randStartDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
-  const randEndDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)
-
 export function StayPreview({ stay, params }) {
 
     const paramsString = new URLSearchParams(params).toString()
+    const randStartDate = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
+    const randEndDate = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000)
+
+    let avgRate = null
+    if (stay.reviews?.length) {
+        const sum = stay.reviews.reduce((acc, r) => acc + (r.rate || 0), 0)
+        avgRate = (sum / stay.reviews.length).toFixed(1)
+    }
 
     return <Link to={`/stay/${stay._id}?${paramsString}`}>
         <article className="stay-preview">
@@ -19,7 +24,7 @@ export function StayPreview({ stay, params }) {
                 <div className="preview-name">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
                 {stay.reviews && <span className="preview-rate">
                     <span><FontAwesomeIcon icon={faStar} /></span>
-                    {stay.rating} ({stay.reviews?.length})
+                    {avgRate} ({stay.reviews?.length})
                 </span>}
 
                 <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {getRandomIntInclusive(1, 10)} years</div>

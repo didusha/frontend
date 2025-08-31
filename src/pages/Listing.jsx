@@ -1,60 +1,44 @@
 import { useEffect, useState } from "react"
 import { stayService } from "../services/stay/index"
 import { loadStays } from '../store/actions/stay.actions'
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { SET_FILTER_BY } from "../store/reducers/stay.reducer"
 import { useNavigate } from "react-router"
 
 export function Listing() {
   const stays = useSelector(storeState => storeState.stayModule.stays)
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: null })
+  const user = useSelector(storeState => storeState.userModule.user)
+  const [sortBy, setSortBy] = useState({ type: null, dir: 1 })
   const [originalStays, setOriginalStays] = useState([])
   const navigate = useNavigate()
+  const filterBy = useSelector(storeState => storeState.stayModule.filterBy)
+  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
+    if (!user) return;
+    dispatch({ type: SET_FILTER_BY, filterBy: { hostId: user._id } })
     loadStays()
     setOriginalStays(stays)
-  }, [])
 
-  function handleSort(key) {
-    let direction = 'asc'
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc'
-    } else if (sortConfig.key === key && sortConfig.direction === 'desc') {
-      direction = null
-    }
-    setSortConfig({ key, direction })
-
-    if (direction === null) {
-      setStays(originalStays)
-      return
-    }
-
-    const sorted = [...stays].sort((a, b) => {
-      let aVal, bVal
-      if (key === 'capacity') {
-        aVal = a.capacity
-        bVal = b.capacity
-      } else if (key === 'bedrooms') {
-        aVal = a.bedrooms
-        bVal = b.bedrooms
-      } else if (key === 'bathrooms') {
-        aVal = a.bathrooms
-        bVal = b.bathrooms
-      } else if (key === 'price') {
-        aVal = a.price
-        bVal = b.price
-      }
-      if (aVal < bVal) return direction === 'asc' ? -1 : 1
-      if (aVal > bVal) return direction === 'asc' ? 1 : -1
-      return 0
+    return (() => {
+      dispatch({ type: SET_FILTER_BY, filterBy: { hostId: null } })
     })
-    setStays(sorted)
+  }, [user, sortBy])
+
+  function onSetSorting(type) {
+    const newDir = sortBy.type === type ? -sortBy.dir : 1
+    const newSort = { type, dir: newDir }
+
+    setSortBy(newSort)
+    dispatch({ type: SET_FILTER_BY, filterBy: newSort})
   }
 
-  function renderSortArrows(key) {
-    const isActive = sortConfig.key === key
-    const upActive = isActive && sortConfig.direction === 'asc'
-    const downActive = isActive && sortConfig.direction === 'desc'
+  function renderSortArrows(type) {
+    const isActive = sortBy.type === type
+    const upActive = isActive && sortBy.dir === 'asc'
+    const downActive = isActive && sortBy.dir === 'desc'
     return (
       <span className="sort-arrows">
         <span className={`arrow up ${upActive ? 'active' : ''}`}>▲</span>
@@ -63,6 +47,7 @@ export function Listing() {
     )
   }
 
+  if (isLoading) return <div>Loading... </div>
   return (
     <>
       <h1 className="listings-title">My Listings</h1>
@@ -73,16 +58,16 @@ export function Listing() {
           <span className="listing-destination-header">Listing</span>
           <span></span>
           <span className="listing-todo-header">Todo</span>
-          <span className="listing-guests-header" onClick={() => handleSort('capacity')}>
+          <span className="listing-guests-header" onClick={() => onSetSorting('capacity')}>
             Capacity {renderSortArrows('capacity')}
           </span>
-          <span className="listing-bed-header" onClick={() => handleSort('bedrooms')}>
+          <span className="listing-bed-header" onClick={() => onSetSorting('bedrooms')}>
             Bedrooms {renderSortArrows('bedrooms')}
           </span>
-          <span className="listing-bath-header" onClick={() => handleSort('bathrooms')}>
+          <span className="listing-bath-header" onClick={() => onSetSorting('bathrooms')}>
             Bathrooms {renderSortArrows('bathrooms')}
           </span>
-          <span className="listing-price-header" onClick={() => handleSort('price')}>
+          <span className="listing-price-header" onClick={() => onSetSorting('price')}>
             Price {renderSortArrows('price')}
           </span>
           <span className="listing-loc-header">Location</span>
@@ -90,7 +75,7 @@ export function Listing() {
 
         <ul className="listings-container">
           {stays.map(stay => (
-            <li key={stay._id} className="listing">
+            <li type={stay._id} className="listing">
               <img className="listing-img" src={stay.imgUrls[0]} alt="listing-img" />
               <h3 className="listing-name">{stay.name}</h3>
               <span className="listing-todo">

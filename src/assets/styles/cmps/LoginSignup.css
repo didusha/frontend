@@ -1,5 +1,5 @@
 .login-page {
-  border: 1px solid #b0b0b0;
+  border: 1px solid var(--gray-3);
   border-radius: 0.75rem;
   position: relative;
   max-width: 35.5rem;
@@ -15,116 +15,116 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-block-end: 1px solid #b0b0b0;
+    border-block-end: 1px solid var(--gray-3);
   }
 
-  .login-Sign-form {
+}
+.login-Sign-form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+
+  .login-Sign-row {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    margin: 0.625rem 0 1.125rem 0;
 
-    .login-Sign-row {
-      display: flex;
-      flex-direction: column;
-      margin: 0.625rem 0 1.125rem 0;
+    label {
+      color: #7f736b;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.57142em;
+      padding-inline-end: 0.75rem;
 
-      label {
-        color: #7f736b;
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.57142em;
-        padding-inline-end: 0.75rem;
-
-        span {
-          color: rgb(218, 62, 62);
-        }
-      }
-
-      input {
-        border: 1px solid var(--blue-form);
-        padding: 8px;
-        border-radius: 3px;
-        padding-inline: 11px;
-      }
-
-      input:hover {
-        box-shadow: 0 0 1px #c0c4cc inset;
-      }
-
-      input:focus-visible {
-        border: none;
-        box-shadow: 0 0 0 2px rgba(255, 75, 43, 0.2);
-      }
-    }
-
-    .or-container {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      margin: 20px 0;
       span {
-        color: rgb(96, 98, 102);
-        font-size: 1rem;
+        color:var( --rad-1-);
       }
     }
-    .or-container::before,
-    .or-container::after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid #ccc;
-    }
-    .or-container:not(:empty)::before {
-      margin-right: 10px;
-    }
-    .or-container:not(:empty)::after {
-      margin-left: 10px;
-    }
 
-    .log-btn {
-      width: 100%;
-      padding-block: 15px 20px 12px 20px;
-      background-image: var(--colorful-btn);
-      background-position: var(--colorful-btn-position);
-      color: var(--white-bg-btn);
-      border-radius: 5px;
-      margin: 0;
-    }
-
-    .btn {
-      width: 100%;
-      background-color: inherit;
-      border-radius: 5px;
-      border: 1px solid var(--blue-form);
-      padding: 10px 24px;
-    }
-    .btn:hover {
-      border-color: #c6e2ff;
-      color: #409eff;
-      background-color: #ecf5ff;
-    }
-
-    .img {
-      display: flex;
-      background-color: #409eff;
+    input {
+      border: 1px solid var(--blue--4);
       padding: 8px;
-      margin-inline-start: 3px;
-      align-self: self-start;
+      border-radius: 3px;
+      padding-inline: 11px;
+    }
+
+    input:hover {
+      box-shadow: 0 0 1px #c0c4cc inset;
+    }
+
+    input:focus-visible {
+      border: none;
+      box-shadow: 0 0 0 2px rgba(255, 75, 43, 0.2);
+    }
+  }
+
+  .or-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    span {
+      color: rgb(96, 98, 102);
+      font-size: 1rem;
+    }
+  }
+  .or-container::before,
+  .or-container::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+  }
+  .or-container:not(:empty)::before {
+    margin-right: 10px;
+  }
+  .or-container:not(:empty)::after {
+    margin-left: 10px;
+  }
+
+  .log-btn {
+    width: 100%;
+    padding-block: 15px 20px 12px 20px;
+    background-image: var(--colorful-btn);
+    background-position: var(--colorful-btn-position);
+    color: var(--white-bg-btn);
+    border-radius: 5px;
+    margin: 0;
+  }
+
+  .btn {
+    width: 100%;
+    background-color: inherit;
+    border-radius: 5px;
+    border: 1px solid var( --blue--4);
+    padding: 10px 24px;
+  }
+  .btn:hover {
+    border-color:var(  --blue--3);
+    color: var(--blue--base-);
+    background-color:var(  --blue--5);
+  }
+
+  .img {
+    display: flex;
+    background-color: var(--blue--base-);
+    padding: 8px;
+    margin-inline-start: 3px;
+    align-self: self-start;
+    cursor: pointer;
+    display: inline-flex;
+    border-radius: 5px;
+    align-items: center;
+    margin: 0.625rem 0 1.125rem 0;
+
+    label {
       cursor: pointer;
-      display: inline-flex;
-      border-radius: 5px;
-      align-items: center;
-      margin: 0.625rem 0 1.125rem 0;
+      color: #ecf5ff;
+      font-size: 1rem;
+    }
 
-      label {
-        cursor: pointer;
-        color: #ecf5ff;
-        font-size: 1rem;
-      }
-
-      input {
-        display: none;
-        cursor: pointer;
-      }
+    input {
+      display: none;
+      cursor: pointer;
     }
   }
 }

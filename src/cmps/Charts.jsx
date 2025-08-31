@@ -53,15 +53,6 @@ export function Charts({ orders }) {
     ],
   }
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-    },
-  }
-
   const monthNames = [
     'January',
     'February',
@@ -87,6 +78,24 @@ export function Charts({ orders }) {
     ),
   ]
 
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      scales: {
+        y: {
+          min: 0,
+          max: 1000,
+          ticks: {
+            stepSize: 100,
+          },
+        },
+      },
+    },
+  }
+
   const data2 = {
     labels: months,
     datasets: [
@@ -99,12 +108,12 @@ export function Charts({ orders }) {
   }
 
   return (
-    <section className="statistic flex">
-      <div className="doughnut">
-      <Doughnut data={data} />
+    <section className='statistic '>
+      <div className='doughnut'>
+        <Doughnut data={data} />
       </div>
-      <div className="bar">
-      <Bar options={options} data={data2} />
+      <div className='bar'>
+        <Bar options={options} data={data2} />
       </div>
     </section>
   )
