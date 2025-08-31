@@ -10,7 +10,7 @@ export function ReviewList({ reviews }) {
     'Communication',
     'Location',
     'Value',
-  ]
+  ] 
 
   if (!reviews) return <div>No reviews (yet)</div>
   const avg = getAverageRating(reviews)

@@ -17,7 +17,7 @@ export function ReviewPreview({ review }) {
   const years = getRandomIntInclusive(1, 10)
 
   return (
-    <article className='review-preview'>
+    <article className='review-preview flex'>
       <div className='profile flex'>
         <section>
           <img src={by.imgUrl} alt='user profile' />
@@ -27,13 +27,14 @@ export function ReviewPreview({ review }) {
           <p className='time'>{years} years on Airbnb</p>
         </section>
       </div>
-
+<div>
       <p className='rate'>
         <span>{rating(rate)}</span> · <span>{newDate.monthName}</span>{' '}
         <span>{newDate.year}</span>
       </p>
       <div className='review-txt'>
         <LongTxt txt={txt} length={100} />
+      </div>
       </div>
     </article>
   )

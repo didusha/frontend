@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useOutletContext} from 'react-router'
+import { Outlet, useNavigate, useOutletContext } from 'react-router'
 import { useState } from 'react'
 
 import { userService } from '../services/user'
@@ -7,7 +7,7 @@ import { ImgUploader } from '../cmps/ImgUploader'
 import { showErrorMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
-  	const isLogin = location.pathname === '/auth/login'   
+  const isLogin = location.pathname === '/auth/login'
   return (
     <div className='login-page'>
       <div className='page-title flex justify-center bold'>
@@ -19,26 +19,23 @@ export function LoginSignup() {
 }
 
 export function Login() {
-  const isLogin = location.pathname === '/auth/login'
-
+  // const isLogin = location.pathname === '/auth/login'
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   })
 
+  async function onLogin(ev) {
+    ev.preventDefault()
+    if (!credentials.username) return
 
-
-  async function onLogin(ev = null) {
-    if (ev) ev.preventDefault()
-    if (!credentials.username) return 
-  
     try {
-      await login(credentials)
-     if (isLogin )navigate('/')     
+       await login(credentials)
+      //  if (user && isLogin )navigate('/')
     } catch (err) {
-      console.log(err);
-      showErrorMsg('can`t login')   
+      console.log(err)
+      showErrorMsg('can`t login')
     }
   }
 
@@ -48,16 +45,18 @@ export function Login() {
     setCredentials({ ...credentials, [field]: value })
   }
 
-
-function onDemoLogin(){
-    const demoUser={username:'admin', password:'admin'}
-    setCredentials({ ...credentials, ...demoUser})
-}
+  function onDemoLogin() {
+    const demoUser = { username: 'admin', password: 'admin' }
+    setCredentials({ ...credentials, ...demoUser })
+  }
 
   return (
     <form className='login-Sign-form' onSubmit={onLogin}>
       <div className='login-Sign-row'>
-        <label htmlFor='username'> <span>*</span> Username</label>
+        <label htmlFor='username'>
+          {' '}
+          <span>*</span> Username
+        </label>
         <input
           type='text'
           name='username'
@@ -67,7 +66,9 @@ function onDemoLogin(){
         />
       </div>
       <div className='login-Sign-row'>
-        <label htmlFor='password'><span>*</span> Password</label>
+        <label htmlFor='password'>
+          <span>*</span> Password
+        </label>
         <input
           type='password'
           name='password'
@@ -77,11 +78,15 @@ function onDemoLogin(){
         />
       </div>
       <button className='log-btn bold'>Log in</button>
-      <div className='or-container'>  
+      <div className='or-container'>
         <span> or </span>
       </div>
-      <button onClick={onDemoLogin} className='demo-btn btn'>Demo login</button>
-      <button onClick={()=>navigate('/auth/signup')} className='btn'>Signup</button>
+      <button onClick={onDemoLogin} className='demo-btn btn'>
+        Demo login
+      </button>
+      <button onClick={() => navigate('/auth/signup')} className='btn'>
+        Signup
+      </button>
     </form>
   )
 }
@@ -103,16 +108,16 @@ export function Signup() {
     setCredentials({ ...credentials, [field]: value })
   }
 
-  async function onSignup(ev = null) {
-    if (ev) ev.preventDefault()
+  async function onSignup(ev) {
+    ev.preventDefault()
 
     if (!credentials.username || !credentials.password || !credentials.fullname)
-      return 
+      return
     try {
       await signup(credentials)
       clearState()
-     if (isSignup) navigate('/') 
-    } catch (error) {
+      // if (isSignup) navigate('/')
+    } catch (err) {
       showErrorMsg('can`t sing up')
     }
   }
@@ -121,12 +126,12 @@ export function Signup() {
     setCredentials({ ...credentials, imgUrl })
   }
 
-
-
   return (
     <form className='login-Sign-form' onSubmit={onSignup}>
       <div className='login-Sign-row'>
-        <label htmlFor='fullname'><span>*</span> Fullname</label>
+        <label htmlFor='fullname'>
+          <span>*</span> Fullname
+        </label>
         <input
           type='text'
           name='fullname'
@@ -136,7 +141,9 @@ export function Signup() {
         />
       </div>
       <div className='login-Sign-row'>
-        <label htmlFor='username'><span>*</span> Username</label>
+        <label htmlFor='username'>
+          <span>*</span> Username
+        </label>
         <input
           type='text'
           name='username'
@@ -146,7 +153,9 @@ export function Signup() {
         />
       </div>
       <div className='login-Sign-row'>
-        <label htmlFor='password'><span>*</span> Password</label>
+        <label htmlFor='password'>
+          <span>*</span> Password
+        </label>
         <input
           type='password'
           name='password'
@@ -156,13 +165,15 @@ export function Signup() {
         />
       </div>
       <div className='img'>
-      <ImgUploader onUploaded={onUploaded} />
+        <ImgUploader onUploaded={onUploaded} />
       </div>
       <button className='log-btn'>Sign up</button>
-        <div className='or-container'>  
+      <div className='or-container'>
         <span> or </span>
       </div>
-      <button onClick={()=>navigate('/auth/login')}  className='btn'>Login</button>
+      <button onClick={() => navigate('/auth/login')} className='btn'>
+        Login
+      </button>
     </form>
   )
 }

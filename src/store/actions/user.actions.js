@@ -29,16 +29,17 @@ export async function removeUser(userId) {
 
 export async function login(credentials) {
     try {
+        console.log(credentials);
+        
         const user = await userService.login(credentials)
-        // console.log( user );
         store.dispatch({
             type: SET_USER,
             user
         })
-        socketService.login(user._id)
+        // socketService.login(user._id)
         return user
     } catch (err) {
-        console.log('Cannot login', err)
+        console.log('Can`t login', err)
         throw err
     }
 }
@@ -50,7 +51,7 @@ export async function signup(credentials) {
             type: SET_USER,
             user
         })
-        socketService.login(user._id)
+        // socketService.login(user._id)
         return user
     } catch (err) {
         console.log('Cannot signup', err)

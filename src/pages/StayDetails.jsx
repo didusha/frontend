@@ -11,6 +11,7 @@ import { StayAmenities } from "../cmps/StayAmenities.jsx"
 import { useRef } from "react"
 import { getDayDiff } from "../services/util.service.js"
 import { truncate } from "lodash"
+import { SmallReservation } from "../cmps/SmallReservation.jsx"
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -83,8 +84,7 @@ export function StayDetails() {
   if (!stay) return <div>loading...</div>
 
   const {checkIn, checkOut} = params
-
-
+ 
 
   return (
     <section className="stay-details details-layout ">
@@ -98,8 +98,8 @@ export function StayDetails() {
         </section>
       {showReserve&&<section className="reservation flex" > 
           <div>
-           {checkIn && checkOut && <p className="price underline bold">$ {getDayDiff(checkIn, checkOut)* stay.price+5}</p>}
-            <p className="nights">{checkIn && checkOut ? `for` +` `+ getDayDiff(checkIn, checkOut) +` `+ `nights` : `Add dates for price`}</p>
+           {checkIn && checkOut && <p className="price underline bold">$ {2 * stay.price+5}</p>}
+            <p className="nights">for {2} nights {12-19}</p>
             {stay.reviews && <p className="review">★ {stay.rating} · <span>{stay.reviews.length} {stay.reviews > 1 ?"reviews":"review"}</span></p>}
           </div>
           {checkIn && checkOut ? <button className="reserve-btn" onClick={onSendReserve}>Reserve</button>
@@ -118,6 +118,7 @@ export function StayDetails() {
       <div id="reviews">
         <ReviewList reviews={stay.reviews} />
       </div>
+       <SmallReservation stay={stay} params={params}/>
     </section>
   )
 }
