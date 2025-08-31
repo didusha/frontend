@@ -4,15 +4,18 @@ import { CLOSE_DATE_MODAL, OPEN_GUESTS_MODAL } from "../store/reducers/system.re
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
-export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
+export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
   const isDateModalOpen = useSelector((storeState) => storeState.systemModule.isDateModalOpen);
   const dispatch = useDispatch()
 
-  const [range, setRange] = useState({ from: null, to: null })
+  const [range, setRange] = useState({ 
+	from: localFilter.checkIn || null,
+	to: localFilter.checkOut || null
+ })
 
   useEffect(() => {
     handleCheckInChange(range?.from)
-    if ((range?.from !== null) && !isSmallModal) {
+    if (range?.from !== null) {
       setSelectedSection("checkOut")
     }
   }, [range?.from]);
@@ -33,13 +36,13 @@ export function DateModal({ handleCheckInChange, handleCheckOutChange, setSelect
               className={`modal-content ${isSmallModal ? "small-date-modal" : ""}`}
               onClick={(e) => e.stopPropagation()}
             >
-              {isSmallModal && <h1 className="when-small">When?</h1>}
+              {isSmallModal && <h1 className="when">When?</h1>}
               <div className="airbnb-calendar">
                 <DayPicker
                   mode="range"
                   selected={range}
                   onSelect={setRange}
-                  numberOfMonths={isSmallModal ? 1 : 2}
+                  numberOfMonths={2}
                   pagedNavigation
                   disabled={{ before: new Date() }}
                 />

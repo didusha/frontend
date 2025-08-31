@@ -39,17 +39,26 @@ async function update({ _id, score }) {
 
 async function login(userCred) {
 	console.log(userCred);
+	try {
+		const user = await httpService.post('auth/login', userCred)
+		console.log(user);
+		if (user) return saveLoggedinUser(user)
+		
+	} catch (err) {
+		throw err
+	}
 	
-	const user = await httpService.post('auth/login', userCred)
-	console.log(user);
 	
-	if (user) return saveLoggedinUser(user)
 }
 
 async function signup(userCred) {
-	if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    const user = await httpService.post('auth/signup', userCred)
-	return saveLoggedinUser(user)
+	try {
+		if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+		const user = await httpService.post('auth/signup', userCred)
+		return saveLoggedinUser(user)	
+	} catch (err) {
+		throw err
+	}
 }
 
 async function logout() {

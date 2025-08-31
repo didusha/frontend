@@ -15,7 +15,7 @@
 
     opacity: 0;
     translate: 150%;
-    transition: 600ms;
+    transition: 600ms; 
 
     &.visible {
         opacity: 1;
@@ -23,11 +23,11 @@
     }
 
     &.success {
-        background-color: var(--success);
+        background-color: var(--green-base);
     }
 
     &.error {
-        background-color: var(--error);
+        background-color: var(--rad-1-);
     }
 
     & button {

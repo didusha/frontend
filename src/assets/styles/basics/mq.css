@@ -1,15 +1,16 @@
 /* MOBILE */
 @media (max-width: 375px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* SMALL */
 @media (min-width: 375px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 /* MEDIUM */
@@ -24,4 +25,5 @@
 }
 
 /* XLARGE */
-@media (min-width: 1128px) {}
+@media (min-width: 1128px) {
+}
