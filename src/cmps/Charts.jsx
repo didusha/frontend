@@ -67,14 +67,12 @@ export function Charts({ orders }) {
     'November',
     'December',
   ]
-  const totalPrice = dataBase(orders, { name: 'monthNames', data: monthNames })
-// console.log(totalPrice );
-
+  const totalPrices = dataBase(orders, { name: 'monthNames', data: monthNames })
 
   const months = [
     ...new Set(
       orders.map((order) => {
-        const monthIndex = new Date(order.createAt).getMonth()
+        const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16)*1000).getMonth()
         return monthNames[monthIndex]
       })
     ),
@@ -86,15 +84,6 @@ export function Charts({ orders }) {
       legend: {
         position: 'top',
       },
-      scales: {
-        y: {
-          min: 0,
-          max: 1000,
-          ticks: {
-            stepSize: 100,
-          },
-        },
-      },
     },
   }
 
@@ -103,7 +92,7 @@ export function Charts({ orders }) {
     datasets: [
       {
         label: 'Total price fer month',
-        data: totalPrice.filter((p) => p.price > 0).map((p) => p.price),
+        data: totalPrices.filter((p) => p.price > 0).map((p) => p.price),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],
@@ -111,11 +100,16 @@ export function Charts({ orders }) {
 
   return (
     <section className='statistic '>
+      <div className="orders-status">
+        <p>Approved<span className="active">{orders.filter((o) => o.status === 'Approved').length}</span></p>
+        <p>Reject<span className="non-active">{orders.filter((o) => o.status === 'Rejected').length}</span></p>
+        <p>Pending<span className="">{orders.filter((o) => o.status === 'Pending').length}</span></p>
+      </div>
       <div className='doughnut'>
         <Doughnut data={data} />
       </div>
       <div className='bar'>
-        <Bar options={options} data={data2} />
+        <Bar options={options} data={data2}/>
       </div>
     </section>
   )

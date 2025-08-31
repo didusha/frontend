@@ -4,11 +4,10 @@ import { useState } from 'react'
 import { userService } from '../services/user'
 import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
+import { showErrorMsg } from '../services/event-bus.service'
 
 export function LoginSignup() {
-  	const isLogin = location.pathname === '/auth/login'
-  	const isSignup = location.pathname === '/auth/signup'
-   
+  	const isLogin = location.pathname === '/auth/login'   
   return (
     <div className='login-page'>
       <div className='page-title flex justify-center bold'>
@@ -20,22 +19,27 @@ export function LoginSignup() {
 }
 
 export function Login() {
-    	const isLogin = location.pathname === '/auth/login'
+  const isLogin = location.pathname === '/auth/login'
 
   const navigate = useNavigate()
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
-    fullname: '',
   })
 
 
 
   async function onLogin(ev = null) {
     if (ev) ev.preventDefault()
-    if (!credentials.username) return
-    await login(credentials)
-   if (isLogin )navigate('/')
+    if (!credentials.username) return 
+  
+    try {
+      await login(credentials)
+     if (isLogin )navigate('/')     
+    } catch (err) {
+      console.log(err);
+      showErrorMsg('can`t login')   
+    }
   }
 
   function handleChange(ev) {
@@ -103,10 +107,14 @@ export function Signup() {
     if (ev) ev.preventDefault()
 
     if (!credentials.username || !credentials.password || !credentials.fullname)
-      return
-    await signup(credentials)
-    clearState()
-   if (isSignup) navigate('/')
+      return 
+    try {
+      await signup(credentials)
+      clearState()
+     if (isSignup) navigate('/') 
+    } catch (error) {
+      showErrorMsg('can`t sing up')
+    }
   }
 
   function onUploaded(imgUrl) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
 
-export function DetailsDateModal({ setIsDateModalOpen, isDateModalOpen, setOrder }) {
+export function DetailsDateModal({ onSetIsDateModalOpen, isDateModalOpen, setOrder }) {
     const [range, setRange] = useState({ from: null, to: null })
     useEffect(() => {
         if (range?.from) {
@@ -22,7 +22,7 @@ export function DetailsDateModal({ setIsDateModalOpen, isDateModalOpen, setOrder
                 <>
                     <div className="details-date-modal-overlay" onClick={(e) => {
                         e.stopPropagation()
-                        setIsDateModalOpen(false)
+                        onSetIsDateModalOpen(false)
                     }}></div>
                     <div className="details-date-modal-content" onClick={(e) => e.stopPropagation()}>
                         <DayPicker

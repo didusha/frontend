@@ -54,20 +54,6 @@ export function Dashboard() {
   return (
     <section className='dashboard'>
       <div className='charts'>
-        <div className="orders-status">
-          <p>
-            Approved
-            <span>{orders.filter((o) => o.status === 'Approved').length}</span>
-          </p>
-          <p>
-            Reject
-            <span>{orders.filter((o) => o.status === 'Rejected').length}</span>
-          </p>
-          <p>
-            Pending
-            <span>{orders.filter((o) => o.status === 'Pending').length}</span>{' '}
-          </p>
-        </div>
         <div>
           <Charts orders={orders} />
         </div>
@@ -91,7 +77,7 @@ export function Dashboard() {
           {orders.map((order) => {
             const checkIn = formatDateCalendar(order.startDate)
             const checkOut = formatDateCalendar(order.endDate)
-            const createdAt = getDateFromObjectId(order._id) // change after adding createdAt property 
+            const createdAt = getDateFromObjectId(order._id) 
             return (
               <tr key={order._id} className='first-tr'>
                 <td>

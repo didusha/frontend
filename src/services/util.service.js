@@ -125,10 +125,10 @@ export function getDayDiff(startDateStr, endDateStr) {
 
 export function formatDateCalendar(dateStr) {
   if (!dateStr || dateStr === 'null' || dateStr === 'undefined') return
-  // return 'Add date'
+    // return 'Add date'
 
   const d = new Date(dateStr)
-  if (isNaN(d.getTime())) return
+  if (isNaN(d.getTime())) return 
   // 'Add date'
 
   // dd/mm/yyyy format
@@ -147,75 +147,75 @@ export function getRandomTimestampMillis(startYear = 2020, endYear = 2025) {
 
 export function getAverageRating(reviews) {
   if (!reviews.length) return 0
-  const total = reviews.reduce((sum, review) => sum + +review.rate, 0)
+  const total = reviews.reduce((sum, review) => sum + (+review.rate), 0)
 
+    
   return (total / reviews.length).toFixed(1)
 }
 
-export function dateFromTimestamp(date) {
-  const reviewDate = new Date(date)
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
-  const monthName = months[reviewDate.getMonth()]
-  const year = reviewDate.getFullYear()
 
-  return { monthName, year }
-}
+  export function dateFromTimestamp(date) {
+    const reviewDate = new Date(date)
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ]
+    const monthName = months[reviewDate.getMonth()]
+    const year = reviewDate.getFullYear()
 
-export function dataBase(orders, datasets) {
-  let data
-  if (datasets.name === 'labels') {
-    data = datasets.data.reduce((acc, dataset) => {
-      const labelPriceAmount = { name: dataset, amount: 0 }
-      orders.forEach((order) => {
-        if (order.stay.name === dataset) {
-          labelPriceAmount.amount++
-        }
-      })
-      acc.push(labelPriceAmount)
-      return acc
-    }, [])
-  } else if (datasets.name === 'monthNames') {
-    data = datasets.data.reduce((acc, dataset, idx) => {
-      const labelPriceAmount = { name: dataset, price: 0 }
-
-      orders.forEach((order) => {
-        const orderDate = new Date(getDateFromObjectId(order._id))
-        const orderMonth = orderDate.getMonth()
-
-        if (orderMonth === idx+1 && order.status === 'Approved') {
-          labelPriceAmount.price += +order.totalPrice          
-        }
-      })
-      labelPriceAmount.price = Number(labelPriceAmount.price.toFixed(1))
-      acc.push(labelPriceAmount)
-      return acc
-    }, [])
+    return { monthName, year }
   }
 
-  return data
-}
+   export function dataBase(orders, datasets) {
+      let data  
+      if (datasets.name === 'labels') {
+        data = datasets.data.reduce((acc, dataset) => {
+          const labelPriceAmount = { name: dataset, amount: 0 }
+          orders.forEach((order) => {
+            if (order.stay.name === dataset) {
+              labelPriceAmount.amount++
+            }
+          })
+          acc.push(labelPriceAmount)
+          return acc
+        }, [])
+      } else if (datasets.name === 'monthNames') {        
+        data = datasets.data.reduce((acc, dataset, idx) => {
+          const labelPriceAmount = { name: dataset, price: 0 }
+          orders.forEach((order) => {
+            if (new Date(parseInt((order._id).substring(0, 8), 16)*1000).getMonth() === idx && order.status === 'Approved') {
+              labelPriceAmount.price += (+order.totalPrice)
+            }     
+          })
+          labelPriceAmount.price = labelPriceAmount.price.toFixed(1)
+          acc.push(labelPriceAmount)
+          return acc
+        }, [])
+      }
+      
+      return data
+    }
 
-export function getDateFromObjectId(id) {
-  const timestampHex = id.toString().substring(0, 8)
-  const timestamp = parseInt(timestampHex, 16)
-  const date = new Date(timestamp * 1000)
 
-  const day = String(date.getDate()).padStart(2, '0')
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const year = date.getFullYear()
+  export  function getDateFromObjectId(id) {
+    const timestampHex = id.toString().substring(0, 8) 
+    const timestamp = parseInt(timestampHex, 16) 
+    const date = new Date(timestamp * 1000) 
 
-  return `${day}/${month}/${year}`
-}
+    const day = String(date.getDate()).padStart(2, '0')
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const year = date.getFullYear()
+
+    return `${day}/${month}/${year}`
+  }
+
