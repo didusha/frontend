@@ -33,6 +33,7 @@ export function Listing() {
     dispatch({ type: SET_FILTER_BY, filterBy: newSort})
   }
 
+
   function renderSortArrows(type) {
     const isActive = sortBy.type === type
     const upActive = isActive && sortBy.dir === 'asc'

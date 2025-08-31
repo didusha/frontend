@@ -15,11 +15,12 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     const [searchParams] = useSearchParams()
     const params = Object.fromEntries([...searchParams]) || {}
 
+    if (!stays.length) return <div>No properties found</div>
     return <section>
         <ul className="stay-list">
             {stays.map(stay =>
                 <li key={stay._id}>
-                    <StayPreview stay={stay} params={params}/>
+                    <StayPreview stay={stay} params={params} />
                     {/* {shouldShowActionBtns(stay) && <div className="actions">
                         <button className="stay-action" onClick={() => onUpdateStay(stay)}>Edit</button>
                         <button className="stay-action" onClick={() => onRemoveStay(stay._id)}>x</button>
