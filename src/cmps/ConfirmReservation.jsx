@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import { getDayDiff } from "../services/util.service"
 import { icons } from "../services/amenities.service.js"
-import { Login} from "../pages/LoginSignup.jsx"
+import { Login } from "../pages/LoginSignup.jsx"
 import { useSelector } from "react-redux"
 
 export function ConfirmReservation() {
@@ -46,7 +46,7 @@ export function ConfirmReservation() {
         infants: +params.infants || 0,
         pets: +params.pets || 0,
         totalPrice: +params.totalPrice || 0,
-        capacity:totalGuest,
+        capacity: totalGuest,
       }
       const savedOrder = await orderService.add(stay, orderData)
       setIsOrderComplete(true)
@@ -63,15 +63,19 @@ export function ConfirmReservation() {
 
   return (
     <section className="confirm-details-container">
+      <div className="confirm-details-header">
+        <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
+        <h1 className="bold">
+          {(isOrderComplete) ?
+            <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
+            'Request to book'
+          }
+        </h1>
+      </div>
       <section className='confirm-reservation'>
+
         <section className="order-details">
-          <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
-          <h1 className="bold">
-            {(isOrderComplete) ?
-              <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
-              'Request to book'
-            }
-          </h1>
+
           <div className="rare-find flex">
             <div>
               <h3 className="bold">This is a rare find</h3>
@@ -94,19 +98,19 @@ export function ConfirmReservation() {
           <div className="order-confirm">
             {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
-          {(isOrderComplete) ? <>
-            <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
-            <h3 className="flex align-center bold justify-center">
-              <img className="svg-image" src={icons.greenCheck} alt="Success" />
-              <span>Reservation success!</span>
-            </h3></> :(user) ? ( <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
-            : <div className="login"> 
-              <h2>Please login to book</h2>
-              < Login/>  
+            {(isOrderComplete) ? <>
+              <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
+              <h3 className="flex align-center bold justify-center">
+                <img className="svg-image" src={icons.greenCheck} alt="Success" />
+                <span>Reservation success!</span>
+              </h3></> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
+              : <div className="login">
+                <h2>Please login to book</h2>
+                < Login />
               </div>
-          }
-        </div>
-      </section>
+            }
+          </div>
+        </section>
 
         <section className="order-summary">
           <div className="stay-summary flex">
