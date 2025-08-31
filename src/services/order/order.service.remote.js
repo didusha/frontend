@@ -7,9 +7,7 @@ export const orderService = {
 	save
 }
 
-function query(filterBy) {	
-	console.log(filterBy);
-	
+function query(filterBy) {		
 	// var queryStr = !filterBy ? '' : `?hostId=${filterBy.hostId}&guestId=${filterBy.guestId}&sort=${filterBy.sort}`
 	return httpService.get(`order`,filterBy) //${queryStr}
 }
