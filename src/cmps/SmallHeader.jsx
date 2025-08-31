@@ -15,7 +15,7 @@ export function SmallHeader() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        function handleScroll() {setIsScrolled(window.scrollY > 0)}
+        function handleScroll() { setIsScrolled(window.scrollY > 0) }
 
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
@@ -27,7 +27,7 @@ export function SmallHeader() {
                 setIsFilterOpen(true)
                 setIsSticky(false)
                 dispatch({ type: OPEN_WHERE_MODAL })
-                }}>
+            }}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
                 <span>Start your search</span>
             </div>
@@ -45,7 +45,7 @@ export function SmallHeader() {
                     <a>Services</a>
                 </section>
             </section>
-            {isFilterOpen && <SmallMqFilter />}
+            {isFilterOpen && <SmallMqFilter setIsFilterOpen={setIsFilterOpen}/>}
         </header>
     )
 }
