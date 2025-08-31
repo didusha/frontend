@@ -72,7 +72,6 @@ async function remove(orderId) {
 
 async function add(stay, order) {
   const orderToAdd = {
-    _id: makeId(),
     host: stay.host,
     guest: userService.getLoggedinUser(),
     totalPrice: order.totalPrice,

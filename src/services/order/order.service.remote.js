@@ -1,4 +1,5 @@
 import { httpService } from '../http.service'
+import { userService } from '../user/user.service.remote'
 
 export const orderService = {
 	add,

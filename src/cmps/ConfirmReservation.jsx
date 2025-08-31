@@ -103,7 +103,8 @@ export function ConfirmReservation() {
               <h3 className="flex align-center bold justify-center">
                 <img className="svg-image" src={icons.greenCheck} alt="Success" />
                 <span>Reservation success!</span>
-              </h3></> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
+              </h3>
+              </> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
               : <div className="login">
                 <h2>Please login to book</h2>
                 < Login />
