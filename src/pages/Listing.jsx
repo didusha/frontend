@@ -4,6 +4,10 @@ import { loadStays } from '../store/actions/stay.actions'
 import { useSelector, useDispatch } from "react-redux"
 import { SET_FILTER_BY } from "../store/reducers/stay.reducer"
 import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
+import { Loader } from "../cmps/Loader.jsx"
+import { icons } from "../services/amenities.service"
+
 
 export function Listing() {
   const stays = useSelector(storeState => storeState.stayModule.stays)
@@ -48,9 +52,10 @@ export function Listing() {
     )
   }
 
-  if (isLoading) return <div>Loading... </div>
+  if (isLoading) return <Loader/>
   return (
     <>
+     <div className="navigation"><Link to="/dashboard"><img src={icons.arrow} alt="arrow"/> Check dashboard</Link></div>
       <h1 className="listings-title">My Listings</h1>
       {!stays.length && <p>No listings yet.</p>}
       <h2 className="listings-length">{stays.length} {stays.length === 1 ? 'Listing' : 'Listings'}</h2>
@@ -76,7 +81,7 @@ export function Listing() {
 
         <ul className="listings-container">
           {stays.map((stay,idx) => (
-            <li type={idx} className="listing">
+            <li key={idx} className="listing">
               <img className="listing-img" src={stay.imgUrls[0]} alt="listing-img" />
               <h3 className="listing-name">{stay.name}</h3>
               <span className="listing-guests">{stay.capacity} Guests</span>

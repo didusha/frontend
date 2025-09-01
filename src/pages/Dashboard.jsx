@@ -4,6 +4,8 @@ import { formatDateCalendar, getDateFromObjectId } from '../services/util.servic
 import { Charts } from '../cmps/Charts.jsx'
 import { useSelector } from 'react-redux'
 import { showErrorMsg } from '../services/event-bus.service.js'
+import { Link } from 'react-router-dom'
+import {icons} from '../services/amenities.service.js'
 
 export function Dashboard() {
   const [orders, setOrders] = useState()
@@ -55,6 +57,7 @@ export function Dashboard() {
 
   return (
     <>
+    <div className="navigation flex"><Link to="/listing"> <img src={icons.arrow} alt="arrow"/> Check listings</Link></div>
       <h1 className="dashboard-title">My Reservations</h1>
       <div className='charts'>
         <div>

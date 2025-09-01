@@ -13,6 +13,16 @@
   margin: 35px 0;
 }
 
+.navigation{
+  margin-top: 1rem;
+  a{
+    display: flex;
+    gap:0.5rem
+  }
+  img{
+    width: 16px;
+  }
+}
 .dashboard-item {
   position: relative;
   display: grid;
@@ -92,14 +102,15 @@
 .btn.approve {
   background-color: var(--green--3-);
   color: var(--green-base-);
-  border: 1px solid var(--green-base-)
+  border: 1px solid var(--green-base-);
 }
 
-.btn.approve:disabled,.btn.reject:disabled{
+.btn.approve:disabled,
+.btn.reject:disabled {
   pointer-events: none;
-  color: var( --gray-text-color);
-  border: 1px solid var( --gray-text-color);
-  background-color: var( --white-bg-btn);
+  color: var(--gray-text-color);
+  border: 1px solid var(--gray-text-color);
+  background-color: var(--white-bg-btn);
   opacity: 0.4;
 }
 
@@ -113,8 +124,6 @@
   color: var(--red-base-);
   border: 1px solid var(--red-base-);
 }
-
-
 
 .btn.reject:hover {
   background-color: var(--red-base-);
@@ -186,31 +195,31 @@
   }
 
   .dashboard-stay::before {
-    content: "Stay:";
+    content: 'Stay:';
   }
 
   .dashboard-price::before {
-    content: "Price:";
+    content: 'Price:';
   }
 
-  .dashboard-checkIn::before { 
-    content: "Check-in:";
+  .dashboard-checkIn::before {
+    content: 'Check-in:';
   }
 
   .dashboard-checkOut::before {
-    content: "Check-out:";
+    content: 'Check-out:';
   }
 
   .dashboard-booked::before {
-    content: "Booked:";
+    content: 'Booked:';
   }
 
   .dashboard-status::before {
-    content: "Status:";
+    content: 'Status:';
   }
 
   .dashboard-actions::before {
-    content: "Actions:";
+    content: 'Actions:';
   }
 }
 
@@ -248,36 +257,37 @@
   }
 
   .dashboard-stay::before {
-    content: "Stay:";
+    content: 'Stay:';
   }
 
   .dashboard-price::before {
-    content: "Price:";
+    content: 'Price:';
   }
 
   .dashboard-checkIn::before {
-    content: "Check-in:";
+    content: 'Check-in:';
   }
 
   .dashboard-checkOut::before {
-    content: "Check-out:";
+    content: 'Check-out:';
   }
 
   .dashboard-booked::before {
-    content: "Booked:";
+    content: 'Booked:';
   }
 
   .dashboard-status::before {
-    content: "Status:";
+    content: 'Status:';
   }
 
   .dashboard-actions::before {
-    content: "Actions:";
+    content: 'Actions:';
   }
 }
 
 /* Medium */
-@media (min-width: 750px) {}
+@media (min-width: 750px) {
+}
 
 /* Large */
 @media (min-width: 950px) {
@@ -287,6 +297,9 @@
     gap: 6px;
   }
 
+  .navigation {
+    display: none;
+  }
   .dashboard-actions::before {
     content: '';
   }

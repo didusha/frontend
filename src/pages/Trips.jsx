@@ -36,6 +36,7 @@ export function Trips() {
     )
   }
 
+  if (!orders) return <div>No orders yet...</div> 
   return (
     <>
       <h1 className="trips-title">My Trips</h1>
