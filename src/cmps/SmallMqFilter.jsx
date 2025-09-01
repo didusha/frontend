@@ -13,6 +13,7 @@ import homes from '../assets/images/png/homes.png'
 import experiences from '../assets/images/png/experiences.png'
 import services from '../assets/images/png/services.png'
 import close from '../assets/images/svg/close.svg'
+import { useScrollToTop } from '../customHooks/useScrollToTop'
 
 
 export function SmallMqFilter({ setIsFilterOpen }) {
@@ -32,6 +33,7 @@ export function SmallMqFilter({ setIsFilterOpen }) {
     const wrapperRef = useRef(null)
 
     const isSmallModal = true
+    useScrollToTop()
 
     useEffect(() => {
         const filter = {

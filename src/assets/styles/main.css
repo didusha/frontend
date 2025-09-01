@@ -26,6 +26,7 @@
 @import "cmps/Charts.css";
 @import "cmps/Listing";
 @import "cmps/Wishlist";
+@import "cmps/Loader.css";
 
 @import "cmps/stay/StayIndex";
 @import "cmps/stay/StayList";

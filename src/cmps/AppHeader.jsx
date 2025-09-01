@@ -15,6 +15,7 @@ import hamburger from '../assets/images/svg/hamburger.svg'
 import translate from '../assets/images/svg/translate.svg'
 import question from '../assets/images/png/circle-question.png'
 import rarebnb from '../assets/images/png/rarebnb.webp'
+import { useScrollToTop } from '../customHooks/useScrollToTop'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
@@ -27,6 +28,7 @@ export function AppHeader() {
 	const isDetailsPage = location.pathname.startsWith('/stay/')
 
 	const [isFocus, setIsFocus] = useState(isHomePage)
+	useScrollToTop()
 
 	useEffect(() => {
 		if (!isHomePage) return
@@ -123,9 +125,9 @@ export function AppHeader() {
 									<div>
 										<section className="wishlist-link" onClick={() => linkTo('wishlist')}>Wishlist</section>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
-										<section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>
+										{user.isHost && <section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>}
 										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
-										<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
+										{user.isHost && <section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>}
 										<section className="log-out-link" onClick={onLogout}>Log out</section>
 									</div>
 								}

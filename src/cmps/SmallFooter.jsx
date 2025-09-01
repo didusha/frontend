@@ -1,7 +1,7 @@
 import explore from "../assets/images/svg/explor.svg"
 import wishlist from "../assets/images/svg/wishlist.svg"
 import trips from "../assets/images/svg/trips.svg"
-import messages from "../assets/images/svg/messages.svg"
+import dashboard from "../assets/images/svg/dashboard.svg"
 import profile from "../assets/images/svg/profile.svg"
 import { useNavigate } from "react-router"
 import { useState } from "react"
@@ -61,9 +61,15 @@ export function SmallFooter() {
                     <img className="footer-imgs" src={trips} alt="trips" />
                     <span>Trips</span>
                 </section>
-                <section>
-                    <img className="footer-imgs" src={messages} alt="message" />
-                    <span>Messages</span>
+                <section
+                    className={selected === 'dashboard' ? 'page-selected' : ''}
+                    onClick={() => {
+                        navigate('/dashboard')
+                        setSelected('dashboard')
+                    }}
+                >
+                    <img className="footer-imgs" src={dashboard} alt="dashboard" />
+                    <span>Dashboard</span>
                 </section>
                 {!user &&
                     <section
