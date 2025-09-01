@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { TOGGLE_WISHLIST } from "../store/reducers/user.reducer";
 
 export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
+  const isStayIndex = location.pathname === '/'
   const user = useSelector(state => state.userModule.user)
   const isStayLiked = user?.wishlist?.includes(stayId)
   const slides = imgUrls.length ? imgUrls : ["/images/placeholder.jpg"]
@@ -19,8 +20,8 @@ export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
     arrows: true,
     adaptiveHeight: true,
     swipeToSlide: true,
-    prevArrow: <Arrow direction="left" />,
-    nextArrow: <Arrow direction="right" />,
+    prevArrow:isStayIndex && <Arrow direction="left" />,
+    nextArrow:isStayIndex && <Arrow direction="right" />,
     appendDots: dots => (
       <div style={{ bottom: "20px" }}>
         <ul style={{ margin: 0 }}>{dots}</ul>
@@ -39,7 +40,7 @@ export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
               alt={stayName ? `${stayName} – image ${i + 1}` : `Stay image ${i + 1}`}
               loading="lazy"
             />
-            <button
+           {isStayIndex && <button
               className="heart-btn"
               onClick={(e) => {
                 e.preventDefault()
@@ -58,7 +59,7 @@ export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
                   fill={isStayLiked ? "#fe385c" : "rgba(0,0,0,0.5)"}
                 />
               </svg>
-            </button>
+            </button>}
           </div>
         ))}
       </Slider>

@@ -3,6 +3,7 @@
   overflow-x: auto;
   width: max-content;
   flex-direction: column-reverse;
+  width: 90vw;
 
   .rate {
     font-size: 14px;

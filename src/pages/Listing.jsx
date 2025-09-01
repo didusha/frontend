@@ -58,7 +58,6 @@ export function Listing() {
         <div className="listings-headers">
           <span className="listing-destination-header">Listing</span>
           <span></span>
-          <span className="listing-todo-header">Todo</span>
           <span className="listing-guests-header" onClick={() => onSetSorting('capacity')}>
             Capacity {renderSortArrows('capacity')}
           </span>
@@ -72,21 +71,22 @@ export function Listing() {
             Price {renderSortArrows('price')}
           </span>
           <span className="listing-loc-header">Location</span>
+          <span className="listing-todo-header">Todo</span>
         </div>
 
         <ul className="listings-container">
-          {stays.map(stay => (
-            <li type={stay._id} className="listing">
+          {stays.map((stay,idx) => (
+            <li type={idx} className="listing">
               <img className="listing-img" src={stay.imgUrls[0]} alt="listing-img" />
               <h3 className="listing-name">{stay.name}</h3>
+              <span className="listing-guests">{stay.capacity} Guests</span>
+              <span className="listing-bed">{stay.bedrooms} {stay.bedroom > 1 ?'Bedrooms':'Bedroom'}</span>
+              <span className="listing-bath">{stay.bathrooms} {stay.bathrooms > 1 ?'Bathrooms':'Bathroom'}</span>
+              <span className="listing-price">${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+              <span className="listing-loc">{stay.loc?.city}, {stay.loc?.country}</span>
               <span className="listing-todo">
                 <button className="listing-update" onClick={() => navigate(`/stay/edit/${stay._id}`)}>Update</button>
                 </span>
-              <span className="listing-guests">{stay.capacity} Guests</span>
-              <span className="listing-bed">{stay.bedrooms} Bedrooms</span>
-              <span className="listing-bath">{stay.bathrooms} Bathrooms</span>
-              <span className="listing-price">${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-              <span className="listing-loc">{stay.loc?.city}, {stay.loc?.country}</span>
             </li>
           ))}
         </ul>

@@ -28,7 +28,6 @@ export function Charts({ orders }) {
 
   const data = {
     labels,
-    // labels: [...new Set(orders.map((order) => order.stay.name))],
     datasets: [
       {
         label: '',
@@ -92,7 +91,7 @@ export function Charts({ orders }) {
     labels: months,
     datasets: [
       {
-        label: 'Total price fer month',
+        label: 'Income per month',
         data: totalPrices.filter((p) => p.price > 0).map((p) => p.price),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },

@@ -6,6 +6,7 @@
   margin-bottom: 15px;
   font-family: AirbnbCereal-Bold;
   font-size: 1.8rem;
+  margin-top: 2rem;
 }
 
 .dashboard-length {
@@ -94,6 +95,14 @@
   border: 1px solid var(--green-base-)
 }
 
+.btn.approve:disabled,.btn.reject:disabled{
+  pointer-events: none;
+  color: var( --gray-text-color);
+  border: 1px solid var( --gray-text-color);
+  background-color: var( --white-bg-btn);
+  opacity: 0.4;
+}
+
 .btn.approve:hover {
   background-color: var(--green-base-);
   color: var(--white-bg-btn);
@@ -104,6 +113,8 @@
   color: var(--red-base-);
   border: 1px solid var(--red-base-);
 }
+
+
 
 .btn.reject:hover {
   background-color: var(--red-base-);
@@ -182,7 +193,7 @@
     content: "Price:";
   }
 
-  .dashboard-checkIn::before {
+  .dashboard-checkIn::before { 
     content: "Check-in:";
   }
 
@@ -274,6 +285,10 @@
     display: grid;
     grid-template-columns: repeat(8, auto);
     gap: 6px;
+  }
+
+  .dashboard-actions::before {
+    content: '';
   }
 
   .dashboard-container {

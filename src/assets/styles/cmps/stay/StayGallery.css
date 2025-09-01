@@ -43,9 +43,12 @@
 
   .gallery {
     position: relative;
-    img {
+
+    img{
       object-fit: cover;
+      /* height: 218px; */
     }
+
 
     .gallery-btn {
       position: absolute;
@@ -73,6 +76,10 @@
    }
    .photo-header{
     margin-bottom: 1rem;
+   }
+  .gallery .stay-media img{
+     width: 100%;
+     aspect-ratio: 2/1.5;
    }
 }
 

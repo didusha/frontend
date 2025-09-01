@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { icons } from '../services/amenities.service.js'
 import { useNavigate } from 'react-router';
+import { ImgCarousel } from './ImgCarousel.jsx';
 
 export function StayGallery({ images, name }) {
   const navigate =useNavigate()
@@ -36,22 +37,15 @@ export function StayGallery({ images, name }) {
         </div>
       </div>
       <div className='gallery'>
-        {images.map((Image, idx) => {
+        {isSmallScreen && <ImgCarousel imgUrls={images}/>}
 
-          if (isSmallScreen) {
-            if (idx === 0){
-              
-              return <img key={Image} src={Image} alt='photo in gallery' />
-            }
-          } else {
+        {!isSmallScreen && images.map((Image, idx) => {
             if (idx < 5)
               return <img key={Image} src={Image} alt='photo in gallery' />
-          }
-
             return null
         })}
         <button className='gallery-btn flex align-center'>
-          <img src={icons.apps} alt='' />
+          <img  src={icons.apps} alt='' className="show-btn" />
           show all photos
         </button>
       </div>
