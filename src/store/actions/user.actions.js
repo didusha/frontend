@@ -4,7 +4,7 @@ import { store } from '../store'
 
 import { showErrorMsg } from '../../services/event-bus.service'
 import { LOADING_DONE, LOADING_START } from '../reducers/system.reducer'
-import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER } from '../reducers/user.reducer'
+import { REMOVE_USER, SET_USER, SET_USERS, SET_WATCHED_USER, UPDATE_USER, TOGGLE_WISHLIST } from '../reducers/user.reducer'
 
 export async function loadUsers() {
     try {
@@ -30,7 +30,7 @@ export async function removeUser(userId) {
 export async function login(credentials) {
     try {
         console.log(credentials);
-        
+
         const user = await userService.login(credentials)
         store.dispatch({
             type: SET_USER,
@@ -80,5 +80,28 @@ export async function loadUser(userId) {
     } catch (err) {
         showErrorMsg('Cannot load user')
         console.log('Cannot load user', err)
+    }
+}
+
+export async function updateUser(user, stayId) {
+    try {
+        const wishlist = Array.isArray(user.wishlist) ? user.wishlist : []
+
+        const updatedWishlist = wishlist.includes(stayId)
+            ? wishlist.filter(id => id !== stayId)
+            : [stayId, ...wishlist]
+
+        const userToSave = { ...user, wishlist: updatedWishlist }
+
+        const savedUser = await userService.update(userToSave)
+
+        store.dispatch({ type: SET_USER, user: savedUser })
+
+        userService.saveLoggedinUser(savedUser)
+
+        return savedUser
+    } catch (err) {
+        console.log('Cannot save user', err)
+        throw err
     }
 }

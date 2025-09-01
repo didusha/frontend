@@ -134,7 +134,7 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
 	}
 
     return (
-        <section className='stay-filter' ref={wrapperRef}>
+        <section className="stay-filter" ref={wrapperRef}>
             <form onSubmit={onSubmit} className={selectedSection ? 'form-active' : ''}>
                 <section
                     className={`search ${getSectionClass('search')}`}

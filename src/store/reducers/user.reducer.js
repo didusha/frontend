@@ -7,6 +7,7 @@ export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
 export const SET_SCORE = 'SET_SCORE'
 export const TOGGLE_WISHLIST = 'TOGGLE_WISHLIST'
+export const UPDATE_USER = 'UPDATE_USER'
 
 const initialState = {
     user: userService.getLoggedinUser(),
@@ -29,14 +30,17 @@ export function userReducer(state = initialState, action) {
                 users: state.users.filter(user => user._id !== action.userId)
             }
             break
+        case UPDATE_USER:
+            newState = { ...state, user:{...user, ...action.user} }
+            break
         case TOGGLE_WISHLIST:
             newState = {
                 ...state,
                 user: {
                     ...state.user,
                     wishlist: state.user.wishlist.includes(action.stayId)
-                        ? state.user.wishlist.filter(id => id !== action.stayId) 
-                        : [...state.user.wishlist, action.stayId]           
+                        ? state.user.wishlist.filter(id => id !== action.stayId)
+                        : [...(state.user.wishlist || []), action.stayId]
                 }
             }
             break

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import { TOGGLE_WISHLIST } from "../store/reducers/user.reducer";
+import { updateUser } from "../store/actions/user.actions";
 
 export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
   const user = useSelector(state => state.userModule.user)
@@ -28,6 +29,15 @@ export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
     ),
   }
 
+  async function onUpdateWishlist() {
+    try {
+      if (!user) return
+      await updateUser(user, stayId)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="stay-media slider-container">
       <Slider {...settings}>
@@ -44,7 +54,7 @@ export function ImgCarousel({ imgUrls = [], stayName = "", stayId }) {
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                dispatch({ type: TOGGLE_WISHLIST, stayId })
+                onUpdateWishlist()
               }}
               aria-label="Add to wishlist">
               <svg

@@ -18,7 +18,7 @@ import { StayEdit } from './pages/StayEdit.jsx'
 import { Dashboard } from './pages/Dashboard.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { Listing } from './pages/Listing.jsx'
-import { Wishlist } from './cmps/Wishlist.jsx'
+import { Wishlist } from './pages/Wishlist.jsx'
 import { SmallHeader } from './cmps/SmallHeader.jsx'
 import { SmallFooter } from './cmps/SmallFooter.jsx'
 

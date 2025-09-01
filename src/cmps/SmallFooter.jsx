@@ -13,7 +13,7 @@ export function SmallFooter() {
     const navigate = useNavigate()
     const [selected, setSelected] = useState('explore')
     const user = useSelector(storeState => storeState.userModule.user)
-    const isHomePage = location.pathname === '/'
+    const isDetailsPage = location.pathname.startsWith('/stay')
 
     async function onLogout() {
         try {
@@ -27,7 +27,7 @@ export function SmallFooter() {
     }
 
     return (
-        isHomePage && (
+        !isDetailsPage && (
             <footer className="small-footer">
                 <section
                     className={selected === 'explore' ? 'page-selected' : ''}
