@@ -88,7 +88,7 @@ export function SmallFooter() {
                         onClick={() => {
                             onLogout()
                         }}>
-                        <img className="footer-imgs" src={profile} alt="login" />
+                        <img className="footer-imgs" src={user.imgUrl} alt="user-img" />
                         <span>Log out</span>
                     </section>
                 }
