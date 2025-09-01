@@ -18,7 +18,7 @@
 }
 
 .trips-length {
-    margin: 35px 0;
+    margin: .6em 0;
 }
 
 .trip {
@@ -154,7 +154,7 @@
 
     .trip-name {
         font-size: 1rem;
-        font-family: AirbnbCereal-Bold;
+        font-weight: 600;
         margin: 3px;
     }
 
