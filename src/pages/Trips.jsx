@@ -41,8 +41,8 @@ export function Trips() {
       <h1 className="trips-title">My Trips</h1>
       {!orders.length && <p>No trips booked yet.</p>}
       <h2 className="trips-length">{orders.length} {orders.length === 1 ? 'Trip' : 'Trips'}</h2>
-      <section className="trips">
 
+      <section className="trips">
         <div className="trips-headers">
           <span className="destination-header">Destination</span>
           <span></span>
@@ -69,12 +69,30 @@ export function Trips() {
             <li key={order._id} className="trip">
               <img className="trip-img" src={order.stay.imgUrls[0]} alt="stay-img" />
               <h3 className="trip-name">{order.stay?.name}</h3>
-              <span className="trip-host">{order.host?.fullname}</span>
-              <span className="trip-checkIn">{formatDateCalendar(order.startDate) || "Not set"}</span>
-              <span className="trip-checkOut">{formatDateCalendar(order.endDate) || "Not set"}</span>
-              <span className="trip-guests">{order.capacity} Guests</span>
-              <span className="trip-price">${order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-              <span className={`trip-status ${order.status === 'Approved' ? 'approved': order.status === 'Rejected' ? 'rejected' : ''}`}>{order.status} </span>
+              <div className="order-info">
+                <span className="small-headers">Host: </span>
+                <span className="trip-host">{order.host?.fullname}</span>
+              </div>
+              <div className="order-info">
+                <span className="small-headers">Check in: </span>
+                <span className="trip-checkIn">{formatDateCalendar(order.startDate) || "Not set"}</span>
+              </div>
+              <div className="order-info">
+                <span className="small-headers">Check out: </span>
+                <span className="trip-checkOut">{formatDateCalendar(order.endDate) || "Not set"}</span>
+              </div>
+              <div className="order-info">
+                <span className="small-headers">Capacity: </span>
+                <span className="trip-guests">{order.capacity} Guests</span>
+              </div>
+              <div className="order-info">
+                <span className="small-headers">Price: </span>
+                <span className="trip-price">${order.totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+              </div>
+              <div className="order-info">
+                <span className="small-headers">Status: </span>
+                <span className={`trip-status ${order.status === 'Approved' ? 'approved' : order.status === 'Rejected' ? 'rejected' : ''}`}>{order.status} </span>
+              </div>
             </li>
           ))}
         </ul>

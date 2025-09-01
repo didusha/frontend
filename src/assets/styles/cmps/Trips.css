@@ -35,14 +35,14 @@
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     margin-bottom: 20px;
+}
 
-    span {
-        display: flex;
-        align-items: center;
-        color: rgb(168, 168, 168);
-        font-size: .9rem;
-        font-family: AirbnbCereal-Bold;
-    }
+.trips-headers span {
+    display: flex;
+    align-items: center;
+    color: rgb(168, 168, 168);
+    font-size: .9rem;
+    font-family: AirbnbCereal-Bold;
 }
 
 .destination-header {
@@ -95,7 +95,7 @@
 }
 
 .arrow.active {
-    color: var(--clr1)
+    color: var(--clr1);
 }
 
 .check-in-header:hover,
@@ -112,4 +112,116 @@
 
 .trip-status.rejected {
     color: red;
+}
+
+.small-headers {
+    display: none;
+}
+
+@media (max-width: 1070px) {
+    .trips {
+        grid-template-columns: 1fr;
+    }
+
+    .trips-headers {
+        display: none;
+    }
+
+    .trips-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 17em);
+        gap: 15px;
+        justify-content: start;
+    }
+
+    .trip {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        width: 17em;
+        grid-column: auto;
+        align-items: start;
+    }
+
+    .trip-img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .trip-name {
+        font-size: 1rem;
+        font-family: AirbnbCereal-Bold;
+        margin: 3px;
+    }
+
+    .trip-host,
+    .trip-checkIn,
+    .trip-checkOut,
+    .trip-guests,
+    .trip-price,
+    .trip-status {
+        font-size: 0.85rem;
+        color: #555;
+        display: block;
+    }
+
+    .trip-status {
+        justify-self: start;
+        margin: 0;
+        margin-top: 4px;
+    }
+
+    .trip::before {
+        display: none;
+    }
+
+    .small-headers {
+        display: inline;
+        font-family: AirbnbCereal-Bold;
+        font-size: .9rem;
+    }
+
+    .order-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 2px;
+    }
+}
+
+@media (max-width: 625px) {
+    .trips-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .trip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        width: 100%;
+    }
+
+    .trip-img {
+        width: 70%;
+        height: 70px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .trip-name {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 420px) {
+    .order-info span{
+        font-size: .75rem;
+    }
 }
