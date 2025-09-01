@@ -16,6 +16,17 @@
   border-radius: 12px;
 }
 
+.navigation{
+  margin-top: 1rem;
+  a{
+    display: flex;
+    gap:0.5rem
+  }
+  img{
+    width: 16px;
+  }
+}
+
 .listings-title {
   font-family: AirbnbCereal-bold;
   font-size: 1.3rem;
@@ -130,6 +141,10 @@
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     gap: 6px;
+  }
+
+  .navigation{
+    display: none;
   }
 
   .listings-headers {

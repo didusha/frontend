@@ -10,7 +10,7 @@ import { ReviewList } from "../cmps/ReviewList.jsx"
 import { StayAmenities } from "../cmps/StayAmenities.jsx"
 import { useRef } from "react"
 import { getDayDiff } from "../services/util.service.js"
-import { truncate } from "lodash"
+import { Loader } from '../cmps/Loader'
 import { SmallReservation } from "../cmps/SmallReservation.jsx"
 
 export function StayDetails() {
@@ -81,7 +81,7 @@ export function StayDetails() {
   }
 
 
-  if (!stay) return <div>loading...</div>
+  if (!stay) return <Loader/>
 
   const { checkIn, checkOut } = params
 
