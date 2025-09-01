@@ -96,7 +96,7 @@ export function Dashboard() {
             const checkIn = formatDateCalendar(order.startDate)
             const checkOut = formatDateCalendar(order.endDate)
             const createdAt = getDateFromObjectId(order._id)
-            // const isActioned = (order.status !== "Pending") ? true : false
+            const isActioned = (order.status !== "Pending") ? true : false
 
             return (
               <li key={order._id} className="dashboard-item">
@@ -125,11 +125,11 @@ export function Dashboard() {
 
                 <div className="dashboard-actions">
                   <button className="btn approve" onClick={() => onSetStatus(order, "Approved")}
-                  // disabled={isActioned}
+                  disabled={isActioned}
                   >Approve
                   </button>
                   <button className="btn reject" onClick={() => onSetStatus(order, "Rejected")}
-                  // disabled={isActioned}
+                  disabled={isActioned}
                   >Reject
                   </button>
                 </div>

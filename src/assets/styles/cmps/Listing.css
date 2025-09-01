@@ -1,96 +1,169 @@
-.listings {
-    display: grid;
-    grid-template-columns: 7% 33% repeat(6, 10%);
-    align-content: start;
-    gap: 6px;
+.listings{
+    margin-bottom: 2rem;
 }
 
 .listings-container {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    gap: 6px;
-}
-
-.listings-title {
-    font-family: AirbnbCereal-Bold;
-    font-size: 1.8rem;
-}
-
-.listings-length {
-    margin: 35px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
 .listing {
+  display: grid;
+  grid-template-columns: subgrid;
+  flex-direction: column;
+  border-radius: 12px;
+}
+
+.listings-title {
+  font-family: AirbnbCereal-bold;
+  font-size: 1.3rem;
+  margin-top: 2rem
+}
+
+.listings-length {
+  font-size: 1.25rem;
+  margin: 1rem 0;
+}
+
+.listing-loc,
+.listing-price {
+  color: rgb(81, 81, 81);
+}
+
+.listing-bath,
+.listing-bed,
+.listing-guests {
+  color: grey;
+}
+
+.listing::before {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: #dfdfdf;
+  top: -10px;
+}
+
+.listing-img {
+  width: 100%;
+  height: 180px;
+  align-items: stretch;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.listing-name {
+  font-size: 0.98rem;
+}
+
+.listing-update {
+  background-color: transparent;
+  border: 1.5px solid rgb(190, 190, 190);
+  color: rgb(101, 101, 101);
+}
+
+.listing-update:hover {
+  background-color: transparent;
+  border: 1.5px solid rgb(107, 182, 233);
+  color: rgb(107, 182, 233);
+  transition: none;
+}
+
+@media (max-width: 950px) {
+  .listings {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 6px;
+  }
+
+  .listings-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .listing {
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+  }
+
+  .listings-headers {
+    display: none;
+  }
+
+  .listing h3 {
+    margin: 5px 0;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .listing span {
+    margin: 3px 0;
+    font-size: 0.9rem;
+  }
+
+  .listing-update {
+    margin: 5px 0 0 0;
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 950px) {
+  .listings {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    align-content: start;
+    gap: 6px;
+  }
+
+  .listing {
     position: relative;
     margin-bottom: 15px;
     align-items: center;
-    display: grid;
+    grid-column: 1 / -1;
+  }
+
+  .listings-container {
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
-}
+    gap: 6px;
+  }
 
-.listings-headers {
+  .listings-headers {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     margin-bottom: 20px;
 
     span {
-        display: flex;
-        align-items: center;
-        color: rgb(168, 168, 168);
-        font-size: .9rem;
-        font-family: AirbnbCereal-Bold;
+      display: flex;
+      align-items: center;
+      color: rgb(168, 168, 168);
+      font-size: 0.9rem;
+      font-family: AirbnbCereal-Bold;
     }
-}
+  }
 
-.listing-loc,
-.listing-price {
-    color: rgb(81, 81, 81);
-}
-
-.listing-bath,
-.listing-bed,
-.listing-guests {
-    color: grey;
-}
-
-.listing::before {
-    content: '';
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    background-color: #dfdfdf;
-    top: -10px;
-}
-
-.listing-img {
+  .listing-img {
     height: 60px;
     width: 100px;
     border-radius: 10px;
-}
+  }
 
-.listing-bath-header:hover,
-.listing-bed-header:hover,
-.listing-guests-header:hover,
-.listing-price-header:hover {
+  .listing-bath-header:hover,
+  .listing-bed-header:hover,
+  .listing-guests-header:hover,
+  .listing-price-header:hover {
     cursor: pointer;
-}
+  }
 
-.listing-name {
-    font-size: .98rem;
-}
-
-.listing-update {
-    background-color: transparent;
-    border: 1.5px solid rgb(190, 190, 190);
-    color: rgb(101, 101, 101);
-}
-
-.listing-update:hover {
-    background-color: transparent;
-    border: 1.5px solid rgb(107, 182, 233);
-    color: rgb(107, 182, 233);
-    transition: none;
+  .listings-title {
+    font-size: 1.8rem;
+  }
+  .listings-length{
+        font-size: 1rem;
+  }
 }
