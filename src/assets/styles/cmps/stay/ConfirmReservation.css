@@ -14,6 +14,7 @@
         grid-column: 2;
         display: flex;
         justify-content: space-between;
+        margin-bottom: 1.5rem;
 
         hr {
             margin-block: 1.5rem;
@@ -25,6 +26,7 @@
             .svg-image {
                 width: 24px;
                 display: inline-block;
+                margin-left: .5rem;
             }
 
             .btn-back,
@@ -151,6 +153,12 @@
     }
 }
 
+.svg-green-check {
+    width: 24px;
+    display: inline-block;
+    margin-left: .5rem;
+}
+
 
 /* MOBILE */
 @media (max-width: 375px) {
@@ -170,6 +178,7 @@
     .confirm-reservation {
         grid-column: 2;
         display: flex;
+        gap: 30px;
         flex-direction: column-reverse;
         align-items: flex-start;
     }
@@ -178,10 +187,6 @@
         gap: 10px;
         align-items: center;
         margin: 30px 0 30px 0;
-    }
-
-    .confirm-reservation {
-        gap: 30px;
     }
 }
 
