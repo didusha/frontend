@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { formatDateCalendar } from '../services/util.service.js'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
+import { formatDateCalendar, getDayDiff } from '../services/util.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 import { stayService } from '../services/stay'
 import { orderService } from '../services/order'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
-import { getDayDiff } from "../services/util.service"
 import { icons } from "../services/amenities.service.js"
 import { Login } from "../pages/LoginSignup.jsx"
 import { useSelector } from "react-redux"
@@ -16,15 +15,23 @@ export function ConfirmReservation() {
   const { stayId } = useParams()
   const [stay, setStay] = useState()
   const [isOrderComplete, setIsOrderComplete] = useState(false)
+  const [showConfetti, setShowConfetti] = useState(false)
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
   const navigate = useNavigate()
-  const user = useSelector(storeState => storeState.userModule.user) //*** */
-
+  const user = useSelector(storeState => storeState.userModule.user)
 
   useEffect(() => {
     loadStay(stayId)
   }, [stayId])
+
+  useEffect(() => {
+    if (isOrderComplete) {
+      setShowConfetti(true)
+      const timer = setTimeout(() => setShowConfetti(false), 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [isOrderComplete])
 
   async function loadStay(stayId) {
     try {
@@ -38,6 +45,7 @@ export function ConfirmReservation() {
 
   async function onConfirmReservation() {
     try {
+      const totalGuest = +params.adults + +params.children + +params.infants
       const orderData = {
         checkIn: params.checkIn,
         checkOut: params.checkOut,
@@ -48,10 +56,9 @@ export function ConfirmReservation() {
         totalPrice: +params.totalPrice || 0,
         capacity: totalGuest,
       }
-      const savedOrder = await orderService.add(stay, orderData)
+      await orderService.add(stay, orderData)
       setIsOrderComplete(true)
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Cannot confirm order', error)
     }
   }
@@ -64,7 +71,9 @@ export function ConfirmReservation() {
   return (
     <section className="confirm-details-container">
       <div className="confirm-details-header">
-        <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
+        <Link to="#" onClick={() => navigate(-1)} className="btn-back">
+          <FontAwesomeIcon icon={faChevronLeft} />
+        </Link>
         <h1 className="bold">
           {(isOrderComplete) ?
             <> <span>Reservation success!</span> <img className="svg-green-check" src={icons.greenCheck} alt="Success" /> </> :
@@ -72,6 +81,25 @@ export function ConfirmReservation() {
           }
         </h1>
       </div>
+
+      {showConfetti && (
+        <div className="confetti-container">
+          {Array.from({ length: 100 }).map((_, idx) => (
+            <div
+              key={idx}
+              className="confetti"
+              style={{
+                left: `${Math.random() * window.innerWidth}px`,
+                backgroundColor: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                width: `${5 + Math.random() * 10}px`,
+                height: `${5 + Math.random() * 10}px`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            ></div>
+          ))}
+        </div>
+      )}
+
       <section className='confirm-reservation'>
 
         <section className="order-details">
@@ -95,21 +123,24 @@ export function ConfirmReservation() {
             <p className="bold">Guests</p>
             <p>{totalGuest}</p>
           </div>
+
           <div className="order-confirm">
             {isOrderComplete && <h3 className="bold text-center"> We look forward to hosting you!</h3>}
 
             {(isOrderComplete) ? <>
               <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
               <h3 className="flex align-center bold justify-center">
-                <span>Reservation success!</span> 
+                <span>Reservation success!</span>
                 <img className="svg-image" src={icons.greenCheck} alt="Success" />
               </h3>
-            </> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
-              : <div className="login">
+            </> : (user) ? (
+              <button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>
+            ) : (
+              <div className="login">
                 <h2>Please login to book</h2>
                 < Login />
               </div>
-            }
+            )}
           </div>
         </section>
 
@@ -117,12 +148,12 @@ export function ConfirmReservation() {
           <div className="stay-summary flex">
             <img src={stay.imgUrls[0]} alt="" />
             <div className="stay-desc flex column space-between">
-              <h4 className="">{stay.name}</h4>
+              <h4>{stay.name}</h4>
               <p className="grey">{stay.type}</p>
               <div className="rating flex">
                 <img src={icons.star} alt="Star" />
                 <span className="avg-rating">4.88</span>
-                <span className="reviews-count grey">{stay.reviews ? `· ${stay.reviews?.length} reviews` : ''} </span>
+                <span className="reviews-count grey">{stay.reviews ? `· ${stay.reviews?.length} reviews` : ''}</span>
               </div>
             </div>
           </div>
@@ -142,11 +173,9 @@ export function ConfirmReservation() {
               <span>Total</span>
               <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
             </p>
-
           </div>
         </section>
       </section>
     </section>
   )
 }
-

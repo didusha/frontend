@@ -3,6 +3,7 @@ import wishlist from "../assets/images/svg/wishlist.svg"
 import trips from "../assets/images/svg/trips.svg"
 import dashboard from "../assets/images/svg/dashboard.svg"
 import profile from "../assets/images/svg/profile.svg"
+import massages from "../assets/images/svg/massages.svg"
 import { useNavigate } from "react-router"
 import { useState } from "react"
 import { useSelector } from "react-redux"
@@ -61,16 +62,24 @@ export function SmallFooter() {
                     <img className="footer-imgs" src={trips} alt="trips" />
                     <span>Trips</span>
                 </section>
-                <section
-                    className={selected === 'dashboard' ? 'page-selected' : ''}
-                    onClick={() => {
-                        navigate('/dashboard')
-                        setSelected('dashboard')
-                    }}
-                >
-                    <img className="footer-imgs" src={dashboard} alt="dashboard" />
-                    <span>Dashboard</span>
-                </section>
+                {user?.isHost &&
+                    <section
+                        className={selected === 'dashboard' ? 'page-selected' : ''}
+                        onClick={() => {
+                            navigate('/dashboard')
+                            setSelected('dashboard')
+                        }}
+                    >
+                        <img className="footer-imgs" src={dashboard} alt="dashboard" />
+                        <span>Dashboard</span>
+                    </section>
+                }
+                {(!user || !user.isHost) &&
+                    <section>
+                        <img className="footer-imgs" src={massages} alt="massages" />
+                        <span>Messages</span>
+                    </section>
+                }
                 {!user &&
                     <section
                         className={selected === 'login' ? 'page-selected' : ''}
@@ -88,7 +97,7 @@ export function SmallFooter() {
                         onClick={() => {
                             onLogout()
                         }}>
-                        <img className="footer-imgs" src={user.imgUrl} alt="user-img" />
+                        <img className="footer-imgs user" src={user.imgUrl} alt="user-img" />
                         <span>Log out</span>
                     </section>
                 }
