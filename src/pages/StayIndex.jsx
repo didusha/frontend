@@ -6,6 +6,7 @@ import { SET_FILTER_BY } from "../store/reducers/stay.reducer"
 import { stayService } from '../services/stay/'
 import { userService } from '../services/user'
 import { StayList } from '../cmps/StayList'
+import { Loader } from '../cmps/Loader'
 
 export function StayIndex() {
     const stays = useSelector(storeState => storeState.stayModule.stays)
@@ -64,15 +65,17 @@ export function StayIndex() {
         }
     }
 
-    if (isLoading) return <div>Loading... </div>
     return (
         <section className="stay-index">
+            {isLoading && <Loader />}
             {/* {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
             {userService.getLoggedinUser() && <button onClick={onAddRandStay}>Add rand Stay</button>} */}
-            <StayList
-                stays={stays}
-                onRemoveStay={onRemoveStay}
-                onUpdateStay={onUpdateStay} />
+            {!isLoading &&
+                <StayList
+                    stays={stays}
+                    onRemoveStay={onRemoveStay}
+                    onUpdateStay={onUpdateStay} />
+            }
         </section>
     )
 }

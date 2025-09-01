@@ -1,7 +1,7 @@
 import explore from "../assets/images/svg/explor.svg"
 import wishlist from "../assets/images/svg/wishlist.svg"
 import trips from "../assets/images/svg/trips.svg"
-import messages from "../assets/images/svg/messages.svg"
+import dashboard from "../assets/images/svg/dashboard.svg"
 import profile from "../assets/images/svg/profile.svg"
 import { useNavigate } from "react-router"
 import { useState } from "react"
@@ -13,7 +13,7 @@ export function SmallFooter() {
     const navigate = useNavigate()
     const [selected, setSelected] = useState('explore')
     const user = useSelector(storeState => storeState.userModule.user)
-    const isHomePage = location.pathname === '/'
+    const isDetailsPage = location.pathname.startsWith('/stay')
 
     async function onLogout() {
         try {
@@ -27,7 +27,7 @@ export function SmallFooter() {
     }
 
     return (
-        isHomePage && (
+        !isDetailsPage && (
             <footer className="small-footer">
                 <section
                     className={selected === 'explore' ? 'page-selected' : ''}
@@ -61,9 +61,15 @@ export function SmallFooter() {
                     <img className="footer-imgs" src={trips} alt="trips" />
                     <span>Trips</span>
                 </section>
-                <section>
-                    <img className="footer-imgs" src={messages} alt="message" />
-                    <span>Messages</span>
+                <section
+                    className={selected === 'dashboard' ? 'page-selected' : ''}
+                    onClick={() => {
+                        navigate('/dashboard')
+                        setSelected('dashboard')
+                    }}
+                >
+                    <img className="footer-imgs" src={dashboard} alt="dashboard" />
+                    <span>Dashboard</span>
                 </section>
                 {!user &&
                     <section

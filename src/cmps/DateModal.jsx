@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { CLOSE_DATE_MODAL, OPEN_GUESTS_MODAL } from "../store/reducers/system.reducer"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css"
+import { useEffectUpdate } from "../customHooks/useEffectUpdate"
 
 
 export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChange, setSelectedSection, isSmallModal }) {
@@ -13,9 +14,12 @@ export function DateModal({ localFilter, handleCheckInChange, handleCheckOutChan
     to: localFilter.checkOut || null
   })
 
-  useEffect(() => {
+
+  useEffectUpdate(() => {
     handleCheckInChange(range?.from)
-  }, [range?.from]);
+    if (!isSmallModal) setSelectedSection("checkOut")
+  }, [range?.from])
+
 
   useEffect(() => {
     handleCheckOutChange(range?.to)

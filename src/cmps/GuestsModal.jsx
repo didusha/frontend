@@ -49,7 +49,7 @@ export function GuestsModal({ localFilter, handleGuestChange, setSelectedSection
                     >
                         {isSmallModal && <h1 className="who">Who?</h1>}
                         {['adults', 'children', 'infants', 'pets'].map(type => (
-                            <div key={type} className="guest-row" >
+                            <div key={type} className={`guest-row ${isSmallModal ? "small-guests-modal" : ""}`} >
                                 <div>
                                     <div className="type-guests">
                                         {type}

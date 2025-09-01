@@ -1,9 +1,9 @@
 .small-footer {
     grid-column: 1 / -1;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background-color: white;
-    padding: 1em 4em;
+    padding: 1em 0;
 
     section {
         display: flex;

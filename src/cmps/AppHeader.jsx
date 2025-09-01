@@ -1,11 +1,11 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useLocation, useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import { StayFilter } from '../cmps/StayFilter'
-import { useState, useEffect } from 'react'
 import { StaySmallFilter } from './StaySmallFilter'
+import { useState, useEffect } from 'react'
 import { throttle } from 'lodash'
 
 import homes from '../assets/images/png/homes.png'
@@ -15,6 +15,7 @@ import hamburger from '../assets/images/svg/hamburger.svg'
 import translate from '../assets/images/svg/translate.svg'
 import question from '../assets/images/png/circle-question.png'
 import rarebnb from '../assets/images/png/rarebnb.webp'
+import { useScrollToTop } from '../customHooks/useScrollToTop'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
@@ -26,14 +27,14 @@ export function AppHeader() {
 	const isHomePage = location.pathname === '/'
 	const isDetailsPage = location.pathname.startsWith('/stay/')
 
-	const [isFocus, setIsFocus] = useState(isHomePage ? true : false)
+	const [isFocus, setIsFocus] = useState(isHomePage)
+	useScrollToTop()
 
 	useEffect(() => {
 		if (!isHomePage) return
 
 		const handleScroll = throttle(() => {
 			const currentScrollY = window.scrollY
-
 			setIsFocus(currentScrollY === 0)
 		}, 100)
 
@@ -67,36 +68,29 @@ export function AppHeader() {
 					<span className="logo-span">rarebnb</span>
 				</section>
 
-				{(
-					(isHomePage && !isFocus && !selectedSection) ||
-					(!isHomePage && !selectedSection)
-				) && (
-						<StaySmallFilter
-							setSelectedSection={setSelectedSection}
-							selectedSection={selectedSection}
-							isHomePage={isHomePage}
-						/>
-					)}
+				<div className={(isHomePage && !isFocus && !selectedSection) || (!isHomePage && !selectedSection) ? '' : 'filter-hide'}>
+					<StaySmallFilter
+						setSelectedSection={setSelectedSection}
+						selectedSection={selectedSection}
+						isHomePage={isHomePage}
+					/>
+				</div>
 
-				{(
-					(isHomePage && (isFocus || selectedSection)) ||
-					(!isHomePage && selectedSection)
-				) && (
-						<section className="navigation-links">
-							<section className="homes-section">
-								<img className="homes-imgs" src={homes} alt="homes" />
-								<a>Homes</a>
-							</section>
-							<section className="experiences-section">
-								<img className="experiences-imgs" src={experiences} alt="experiences" />
-								<a>Experiences</a>
-							</section>
-							<section>
-								<img className="services-imgs" src={services} alt="services" />
-								<a>Services</a>
-							</section>
-						</section>
-					)}
+
+				<section className={`navigation-links ${(isHomePage && (isFocus || selectedSection)) || (!isHomePage && selectedSection) ? '' : 'filter-hide'}`}>
+					<section className="homes-section">
+						<img className="homes-imgs" src={homes} alt="homes" />
+						<a>Homes</a>
+					</section>
+					<section className="experiences-section">
+						<img className="experiences-imgs" src={experiences} alt="experiences" />
+						<a>Experiences</a>
+					</section>
+					<section>
+						<img className="services-imgs" src={services} alt="services" />
+						<a>Services</a>
+					</section>
+				</section>
 
 				<section className="hamburger-menu-section">
 					{user ?
@@ -122,8 +116,8 @@ export function AppHeader() {
 								<section className="become-host">
 									<div>
 										<span className="host-span">Become a host</span>
-										<p className="become-host-p" >It's easy to start hosting and</p>
-										<p className="become-host-p" >earn extra income</p>
+										<p className="become-host-p">It's easy to start hosting and</p>
+										<p className="become-host-p">earn extra income</p>
 									</div>
 									<img className="homes-hamburger" src={homes} alt="" />
 								</section>
@@ -131,9 +125,9 @@ export function AppHeader() {
 									<div>
 										<section className="wishlist-link" onClick={() => linkTo('wishlist')}>Wishlist</section>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
-										<section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>
+										{user.isHost && <section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>}
 										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
-										<section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>
+										{user.isHost && <section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>}
 										<section className="log-out-link" onClick={onLogout}>Log out</section>
 									</div>
 								}
@@ -148,15 +142,13 @@ export function AppHeader() {
 				</section>
 			</nav>
 
-			{(
-				(isHomePage && (isFocus || selectedSection)) ||
-				(!isHomePage && selectedSection)
-			) && (
-					<StayFilter
-						selectedSection={selectedSection}
-						setSelectedSection={setSelectedSection}
-					/>
-				)}
+			<div className={(isHomePage && (isFocus || selectedSection)) || (!isHomePage && selectedSection) ? '' : 'filter-hide'}>
+				<StayFilter
+					selectedSection={selectedSection}
+					setSelectedSection={setSelectedSection}
+				/>
+			</div>
+
 		</header>
 	)
 }

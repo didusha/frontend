@@ -67,7 +67,7 @@ export function ConfirmReservation() {
         <Link to="#" onClick={() => navigate(-1)} className="btn-back"> <FontAwesomeIcon icon={faChevronLeft} /></Link>
         <h1 className="bold">
           {(isOrderComplete) ?
-            <><img className="svg-image" src={icons.greenCheck} alt="Success" /> <span>Reservation success!</span> </> :
+            <> <span>Reservation success!</span> <img className="svg-green-check" src={icons.greenCheck} alt="Success" /> </> :
             'Request to book'
           }
         </h1>
@@ -101,10 +101,10 @@ export function ConfirmReservation() {
             {(isOrderComplete) ? <>
               <button className="btn-confirm" onClick={() => navigate('/trips')}>Review Trips</button>
               <h3 className="flex align-center bold justify-center">
+                <span>Reservation success!</span> 
                 <img className="svg-image" src={icons.greenCheck} alt="Success" />
-                <span>Reservation success!</span>
               </h3>
-              </> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
+            </> : (user) ? (<button className="btn-confirm" onClick={onConfirmReservation}>Confirm</button>)
               : <div className="login">
                 <h2>Please login to book</h2>
                 < Login />

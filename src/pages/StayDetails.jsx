@@ -15,15 +15,15 @@ import { SmallReservation } from "../cmps/SmallReservation.jsx"
 
 export function StayDetails() {
   const { stayId } = useParams()
-  const photoRef = useRef(null) 
-  const reserveRef = useRef(null) 
+  const photoRef = useRef(null)
+  const reserveRef = useRef(null)
   const [searchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
   const [stay, setStay] = useState()
   const navigate = useNavigate()
   const [showHeader, setShowHeader] = useState(false)
   const [showReserve, setShowReserve] = useState(false)
-    const [isDateModalOpen, setIsDateModalOpen] = useState(false)
+  const [isDateModalOpen, setIsDateModalOpen] = useState(false)
 
   useEffect(() => {
     loadStay(stayId)
@@ -31,16 +31,16 @@ export function StayDetails() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!photoRef.current) return 
+      if (!photoRef.current) return
       const rect = photoRef.current.getBoundingClientRect()
       const reservation = reserveRef.current.getBoundingClientRect()
       setShowHeader(rect.bottom <= 0)
       setShowReserve(reservation.bottom <= 100)
     }
-    
+
     window.addEventListener('scroll', handleScroll)
     return () => {
- 
+
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -57,8 +57,8 @@ export function StayDetails() {
   }
 
 
-  function onSendReserve(){
-      const orderParams = new URLSearchParams({
+  function onSendReserve() {
+    const orderParams = new URLSearchParams({
       checkIn: params.checkIn,
       checkOut: params.checkOut,
       adults: params.adults,
@@ -66,44 +66,44 @@ export function StayDetails() {
       infants: params.infants,
       pets: params.pets,
       totalPrice: getDayDiff(checkIn, checkOut) * stay.price + 5,
-      
+
     })
     navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
   }
 
-  function onSetIsDateModalOpen(data){
+  function onSetIsDateModalOpen(data) {
     setIsDateModalOpen(data)
   }
 
-  function onCheckAvailability(){
-    location.href="#reservation"
+  function onCheckAvailability() {
+    location.href = "#reservation"
     setIsDateModalOpen(true)
   }
 
-  
+
   if (!stay) return <div>loading...</div>
 
-  const {checkIn, checkOut} = params
- 
+  const { checkIn, checkOut } = params
+
 
   return (
     <section className="stay-details details-layout ">
-     {showHeader && <nav className="nav details-layout ">
-      <div className="details-nav flex">
-        <section className="nav-list flex">
-          <a href="#photos">Photos</a>
-          <a href="#amenities">Amenities</a>
-          <a href="#reviews">Reviews</a>
-          {/* <a href="#location">Location</a> */}
-        </section>
-      {showReserve&&<section className="reservation flex" > 
-          <div>
-           {checkIn && checkOut && <p className="price underline bold">$ {2 * stay.price+5}</p>}
-            <p className="nights">for {2} nights {12-19}</p>
-            {stay.reviews && <p className="review">★ {stay.rating} · <span>{stay.reviews.length} {stay.reviews > 1 ?"reviews":"review"}</span></p>}
-          </div>
-          {checkIn && checkOut ? <button className="reserve-btn" onClick={onSendReserve}>Reserve</button>
-          : <button className="check-btn" onClick={onCheckAvailability}>Check availability</button>}
+      {showHeader && <nav className="nav details-layout ">
+        <div className="details-nav flex">
+          <section className="nav-list flex">
+            <a href="#photos">Photos</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#reviews">Reviews</a>
+            {/* <a href="#location">Location</a> */}
+          </section>
+          {showReserve && <section className="reservation flex" >
+            <div>
+              {checkIn && checkOut && <p className="price underline bold">$ {2 * stay.price + 5}</p>}
+              <p className="nights">for {2} nights {12 - 19}</p>
+              {stay.reviews && <p className="review">★ {stay.rating} · <span>{stay.reviews.length} {stay.reviews > 1 ? "reviews" : "review"}</span></p>}
+            </div>
+            {checkIn && checkOut ? <button className="reserve-btn" onClick={onSendReserve}>Reserve</button>
+              : <button className="check-btn" onClick={onCheckAvailability}>Check availability</button>}
           </section>}
         </div>
       </nav>}
@@ -112,13 +112,13 @@ export function StayDetails() {
       </div>
       <div className="main-details" ref={reserveRef} >
         <StayDescription stay={stay} />
-        <StayReservation stay={stay} isDateModalOpen={isDateModalOpen} onSetIsDateModalOpen={onSetIsDateModalOpen}/>
+        <StayReservation stay={stay} isDateModalOpen={isDateModalOpen} onSetIsDateModalOpen={onSetIsDateModalOpen} />
         <StayAmenities labels={stay.amenities} />
       </div>
       <div id="reviews">
         <ReviewList reviews={stay.reviews} />
       </div>
-       <SmallReservation stay={stay} params={params}/>
+      <SmallReservation stay={stay} params={params} />
     </section>
   )
 }

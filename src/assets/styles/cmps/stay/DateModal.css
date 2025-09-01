@@ -69,6 +69,7 @@
 
 .rdp-button_next {
   background-color: transparent !important;
+  justify-self: end;
 }
 
 .rdp-button_previous {

@@ -12,7 +12,6 @@ import { useLocation } from 'react-router'
 export function SmallHeader() {
     const [isFilterOpen, setIsFilterOpen] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
-    const [isSticky, setIsSticky] = useState(true)
     const dispatch = useDispatch()
     const location = useLocation()
     const isHomePage = location.pathname === '/'
@@ -26,10 +25,9 @@ export function SmallHeader() {
 
     return (
         isHomePage && (
-            <header className={`small-header ${isSticky ? "sticky" : ""}`}>
+            <header className="small-header sticky">
                 <div className="start-search" onClick={() => {
                     setIsFilterOpen(true)
-                    setIsSticky(false)
                     dispatch({ type: OPEN_WHERE_MODAL })
                 }}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />

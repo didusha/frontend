@@ -245,6 +245,14 @@
     opacity: 0;
 }
 
+.filter-hide{
+    display: none;
+}
+
+/* .filter-show{
+    display: block;
+} */
+
 
 
 @media (min-width: 750px) {
