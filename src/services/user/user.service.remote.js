@@ -53,7 +53,7 @@ async function signup(userCred) {
 	try {
 		if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
 		const user = await httpService.post('auth/signup', userCred)
-		return saveLoggedinUser(user)
+		if (user) return saveLoggedinUser(user)
 	} catch (err) {
 		throw err
 	}
