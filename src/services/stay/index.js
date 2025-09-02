@@ -52,6 +52,8 @@ function getDefaultFilter() {
     hostId: null,
     type: null,
     dir: 1,
+    page:1,
+    limit:10
   }
 }
 

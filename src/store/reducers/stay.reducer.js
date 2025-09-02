@@ -6,6 +6,7 @@ export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const ADD_STAY_MSG = 'ADD_STAY_MSG'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
+export const ADD_STAYS = 'ADD_STAYS'
 
 const initialState = {
     stays: [],
@@ -19,6 +20,10 @@ export function stayReducer(state = initialState, action) {
     switch (action.type) {
         case SET_STAYS:
             newState = { ...state, stays: action.stays }
+            break
+        case ADD_STAYS:
+        const newStays = action.stays.filter(newStay => !state.stays.some(stay => stay._id === newStay._id))
+            return { ...state, stays: [...state.stays, ...newStays] }
             break
         case REMOVE_STAY:
             const lastRemovedStay = state.stays.find(stay => stay._id === action.stayId)
