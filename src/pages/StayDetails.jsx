@@ -12,6 +12,7 @@ import { useRef } from "react"
 import { getDayDiff } from "../services/util.service.js"
 import { Loader } from '../cmps/Loader'
 import { SmallReservation } from "../cmps/SmallReservation.jsx"
+import { DetailsMap } from "./DetailsMap.jsx"
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -81,7 +82,7 @@ export function StayDetails() {
   }
 
 
-  if (!stay) return <Loader/>
+  if (!stay) return <Loader />
 
   const { checkIn, checkOut } = params
 
@@ -118,7 +119,11 @@ export function StayDetails() {
       <div id="reviews">
         <ReviewList reviews={stay.reviews} />
       </div>
+      <div className="google-map">
+        <DetailsMap stay={stay} />
+      </div>
       <SmallReservation stay={stay} params={params} />
+
     </section>
   )
 }
