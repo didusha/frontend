@@ -7,6 +7,7 @@ import { ImgUploader } from '../cmps/ImgUploader'
 import { showErrorMsg } from '../services/event-bus.service'
 
 import { auth, googleProvider, facebookProvider, signInWithPopup } from '../services/firebase'
+import { uploadService } from '../services/upload.service'
 
 export function LoginSignup() {
   const isLogin = location.pathname === '/auth/login'
@@ -69,9 +70,8 @@ async function loginWithGoogle() {
       username: firebaseUser.email, 
       password: firebaseUser.uid,         
       fullname: firebaseUser.displayName,
-      imgUrl: firebaseUser.photoURL
+      imgUrl: uploadService.uploadImg(firebaseUser.photoURL)
     }
-console.log(credentials.imgUrl);
 
     try {
       await login(credentials)  
@@ -130,7 +130,7 @@ console.log(credentials.imgUrl);
         <span> or </span>
       </div>
 
-      <button type='button' onClick={onDemoLogin} className='demo-btn btn'>
+      <button onClick={onDemoLogin} className='demo-btn btn'>
         Demo login
       </button>
 
