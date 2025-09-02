@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Link } from 'react-router-dom'
 import {icons} from '../services/amenities.service.js'
-import { SOCKET_EVENT_ADD_ORDER } from '../services/socket.service.js'
+import { SOCKET_EVENT_ADD_ORDER, socketService } from '../services/socket.service.js'
 
 export function Dashboard() {
   const [orders, setOrders] = useState(null)
@@ -19,7 +19,7 @@ export function Dashboard() {
     })
 
     return ()=>{
-      socketService.on(SOCKET_EVENT_ADD_ORDER)
+      socketService.off(SOCKET_EVENT_ADD_ORDER)
     }
   }, [])
 
