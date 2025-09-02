@@ -10,7 +10,7 @@ const defaultZoom = 12
 
 export function DetailsMap({ stay }) {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'AIzaSyBcLlKvJiWUP1ytSSJ3fbYlGiwZrdNGsQM',
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
   })
 
   if (loadError) return <div>Error loading maps</div>
