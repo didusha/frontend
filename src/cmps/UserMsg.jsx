@@ -24,7 +24,6 @@ export function UserMsg() {
 			showSuccessMsg(`Your order confirmed by ${order.host.fullname}`)
 		})
 		socketService.on(SOCKET_EVENT_ORDER_REJECT, order => {
-			console.log(order,'////////');
 			showErrorMsg(`Your order rejected by ${order.host.fullname}`)
 		})
 

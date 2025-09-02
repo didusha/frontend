@@ -6,11 +6,22 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Link } from 'react-router-dom'
 import {icons} from '../services/amenities.service.js'
+import { SOCKET_EVENT_ADD_ORDER } from '../services/socket.service.js'
 
 export function Dashboard() {
-  const [orders, setOrders] = useState()
+  const [orders, setOrders] = useState(null)
   const [sort, setSort] = useState({ type: '', dir: 1 })
   const user = useSelector((storeState) => storeState.userModule.user)
+
+  useEffect(() => {
+    socketService.on(SOCKET_EVENT_ADD_ORDER, order => {	
+      setOrders(prevOrders=> [order,...prevOrders])
+    })
+
+    return ()=>{
+      socketService.on(SOCKET_EVENT_ADD_ORDER)
+    }
+  }, [])
 
   useEffect(() => {
     loadOrders()
