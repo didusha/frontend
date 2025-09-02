@@ -19,12 +19,12 @@ const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
-const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
+const baseUrl = (process.env.NODE_ENV === 'production') ? '' : 'http://localhost:3030'
 
-export const socketService = (VITE_LOCAL === 'true')? createDummySocketService() : createSocketService()
+export const socketService = createSocketService()   //(VITE_LOCAL === 'true')? createDummySocketService() :
 
 // for debugging from console
-if (DEV) window.socketService = socketService
+// if (DEV) window.socketService = socketService
 
 socketService.setup()
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { formatDateCalendar } from '../services/util.service'
 import { orderService } from '../services/order/index'
 import { useSelector } from 'react-redux'
-import { SOCKET_EVENT_ORDER_CONFIRM, SOCKET_EVENT_ORDER_REJECT } from '../services/socket.service'
+import { SOCKET_EVENT_ORDER_CONFIRM, SOCKET_EVENT_ORDER_REJECT, socketService } from '../services/socket.service'
 
 export function Trips() {
   const user = useSelector((storeState) => storeState.userModule.user)
