@@ -196,35 +196,3 @@
     }
 }
 
-@media (max-width: 625px) {
-    .trips-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .trip {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-        width: 100%;
-    }
-
-    .trip-img {
-        width: 90%;
-        height: 70px;
-        border-radius: 8px;
-        object-fit: cover;
-    }
-
-    .trip-name {
-        font-size: 1rem;
-        font-weight: bold;
-    }
-}
-
-@media (max-width: 420px) {
-    .order-info span {
-        font-size: .75rem;
-    }
-}
