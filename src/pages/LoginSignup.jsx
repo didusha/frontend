@@ -30,8 +30,7 @@ export function Login() {
     const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
       setUser(firebaseUser)
       if (firebaseUser) {
-        console.log('Firebase user:', firebaseUser)
-        // אפשר גם לשמור ב-store או לשלוח לשרת
+        console.log('Firebase user')
       }
     })
     return () => unsubscribe()
@@ -61,19 +60,31 @@ export function Login() {
     setCredentials({ ...credentials, ...demoUser })
   }
 
-  async function loginWithGoogle() {
-    try {
-      const result = await signInWithPopup(auth, googleProvider)
-      console.log('Google login:', result.user)
-      setUser(result.user)
-      console.log(result.user);
+async function loginWithGoogle() {
+  try {
+    const result = await signInWithPopup(auth, googleProvider)
+    const firebaseUser = result.user
 
-      navigate('/')
-    } catch (err) {
-      console.error('Google login error:', err)
-      showErrorMsg('Google login failed')
+    const credentials = {
+      username: firebaseUser.email, 
+      password: firebaseUser.uid,         
+      fullname: firebaseUser.displayName,
+      imgUrl: firebaseUser.photoURL
     }
+console.log(credentials.imgUrl);
+
+    try {
+      await login(credentials)  
+    } catch (err) {
+      await signup(credentials) 
+    }
+
+    navigate('/')
+  } catch (err) {
+    console.error('Google login error:', err)
+    showErrorMsg('Google login failed')
   }
+}
 
   async function loginWithFacebook() {
     try {
