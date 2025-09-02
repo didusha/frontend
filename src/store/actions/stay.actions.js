@@ -1,12 +1,14 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER_BY } from '../reducers/stay.reducer'
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER_BY, ADD_STAYS } from '../reducers/stay.reducer'
 import { LOADING_START, LOADING_DONE } from '../reducers/system.reducer'
 
-export async function loadStays(sortBy={}) {
-    store.dispatch({type: LOADING_START})
-    let { filterBy } = store.getState().stayModule
-    if (filterBy.guests) {
+export async function loadStays(sortBy={}, filterBy) {
+    if (!filterBy) { 
+        filterBy = store.getState().stayModule.filterBy
+      }  
+      
+      if (filterBy.guests) {
         const { adults = 1, children = 0, infants = 0 } = filterBy.guests
         filterBy = {
             ...filterBy,
@@ -14,8 +16,13 @@ export async function loadStays(sortBy={}) {
         }
     }
     try {
+        if (filterBy.page === 1)store.dispatch({type: LOADING_START})
         const stays = await stayService.query(filterBy, sortBy)
-        store.dispatch(getCmdSetStays(stays))
+          if (filterBy.page > 1) {
+                store.dispatch(getCmdAddStays(stays))
+            }else{
+            store.dispatch(getCmdSetStays(stays))
+        }
         store.dispatch({type: LOADING_DONE})
     } catch (err) {
         console.log('Cannot load stays', err)
@@ -78,6 +85,12 @@ export function setFilterBy(filterBy) {
 function getCmdSetStays(stays) {
     return {
         type: SET_STAYS,
+        stays
+    }
+}
+function getCmdAddStays(stays) {
+    return {
+        type: ADD_STAYS,
         stays
     }
 }
