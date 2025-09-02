@@ -50,7 +50,7 @@ async function add(stay, order) {
 		status: 'Pending',
 		createdAt: order.createdAt,
 	  }
-	console.log("🚀 ~ add ~ orderToAdd:", orderToAdd)
+	// console.log("🚀 ~ add ~ orderToAdd:", orderToAdd)
 	return await httpService.post(`order`, orderToAdd )
 }
 
