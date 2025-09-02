@@ -128,3 +128,51 @@
     }
   }
 }
+
+
+/* כפתור Google */
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #DB4437; /* צבע Google */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s;
+}
+
+.google-btn:hover {
+  background-color: #c1351d;
+}
+
+.facebook-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4267B2; 
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s;
+}
+
+.facebook-btn:hover {
+  background-color: #375899;
+}
+
+.google-btn i,
+.facebook-btn i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
