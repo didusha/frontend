@@ -8,6 +8,7 @@ function getEmptyUser() {
         username: '', 
         password: '', 
         fullname: '',
+        imgUrl: '',
         isHost: false,
         wishlist:[]
     }

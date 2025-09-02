@@ -8,6 +8,7 @@ import { showErrorMsg } from '../services/event-bus.service'
 
 import { auth, googleProvider, facebookProvider, signInWithPopup } from '../services/firebase'
 import { uploadService } from '../services/upload.service'
+import { uploadGoogleService } from '../services/uploadGoogle.service'
 
 export function LoginSignup() {
   const isLogin = location.pathname === '/auth/login'
@@ -31,7 +32,6 @@ export function Login() {
     const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
       setUser(firebaseUser)
       if (firebaseUser) {
-        console.log('Firebase user')
       }
     })
     return () => unsubscribe()
@@ -61,30 +61,35 @@ export function Login() {
     setCredentials({ ...credentials, ...demoUser })
   }
 
-async function loginWithGoogle() {
-  try {
-    const result = await signInWithPopup(auth, googleProvider)
-    const firebaseUser = result.user
-
-    const credentials = {
-      username: firebaseUser.email, 
-      password: firebaseUser.uid,         
-      fullname: firebaseUser.displayName,
-      imgUrl: uploadService.uploadImg(firebaseUser.photoURL)
-    }
-
+  async function loginWithGoogle() {
     try {
-      await login(credentials)  
-    } catch (err) {
-      await signup(credentials) 
-    }
+      const result = await signInWithPopup(auth, googleProvider)
+      const firebaseUser = result.user
 
-    navigate('/')
-  } catch (err) {
-    console.error('Google login error:', err)
-    showErrorMsg('Google login failed')
+      const imgUrl = await uploadGoogleService.uploadGoogleImg(firebaseUser.photoURL)
+
+      const credentials = {
+        username: firebaseUser.email,
+        password: firebaseUser.uid,
+        fullname: firebaseUser.displayName,
+        imgUrl
+      }
+
+      let user
+      try {
+        user = await login(credentials)
+      } catch (err) {
+        user = await signup(credentials) 
+      }
+
+      if (user) {
+        navigate('/') 
+      }
+    } catch (err) {
+      console.error('Google login error:', err)
+      showErrorMsg('Google login failed')
+    }
   }
-}
 
   async function loginWithFacebook() {
     try {
