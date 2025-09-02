@@ -9,6 +9,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 import { icons } from "../services/amenities.service.js"
 import { Login } from "../pages/LoginSignup.jsx"
 import { useSelector } from "react-redux"
+import { socketService } from "../services/socket.service.js"
 
 export function ConfirmReservation() {
 
@@ -20,6 +21,7 @@ export function ConfirmReservation() {
   const params = Object.fromEntries([...searchParams])
   const navigate = useNavigate()
   const user = useSelector(storeState => storeState.userModule.user)
+
 
   useEffect(() => {
     loadStay(stayId)

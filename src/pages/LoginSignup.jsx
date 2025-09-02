@@ -119,7 +119,7 @@ export function Login() {
         <span> or </span>
       </div>
 
-      <button type='button' onClick={onDemoLogin} className='demo-btn btn'>
+      <button onClick={onDemoLogin} className='demo-btn btn'>
         Demo login
       </button>
 

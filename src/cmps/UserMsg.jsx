@@ -1,6 +1,6 @@
-import { eventBus, showSuccessMsg } from '../services/event-bus.service'
+import { eventBus, showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { useState, useEffect, useRef } from 'react'
-import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from '../services/socket.service'
+import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU, SOCKET_EVENT_ADD_ORDER, SOCKET_EVENT_ORDER_CONFIRM, SOCKET_EVENT_ORDER_REJECT } from '../services/socket.service'
 
 export function UserMsg() {
 	const [msg, setMsg] = useState(null)
@@ -16,13 +16,23 @@ export function UserMsg() {
 			timeoutIdRef.current = setTimeout(closeMsg, 3000)
 		})
 
-		socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
-			showSuccessMsg(`New review about me ${review.txt}`)
+		socketService.on(SOCKET_EVENT_ADD_ORDER, order => {
+			showSuccessMsg(`New order added by ${order.guest.fullname}`)
+		})
+
+		socketService.on(SOCKET_EVENT_ORDER_CONFIRM, order => {
+			showSuccessMsg(`Your order confirmed by ${order.host.fullname}`)
+		})
+		socketService.on(SOCKET_EVENT_ORDER_REJECT, order => {
+			console.log(order,'////////');
+			showErrorMsg(`Your order rejected by ${order.host.fullname}`)
 		})
 
 		return () => {
 			unsubscribe()
-			socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
+			socketService.off(SOCKET_EVENT_ADD_ORDER)
+			socketService.off(SOCKET_EVENT_ORDER_CONFIRM)
+			socketService.off(SOCKET_EVENT_ORDER_REJECT)
 		}
 	}, [])
 
