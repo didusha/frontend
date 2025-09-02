@@ -79,11 +79,11 @@ export function Login() {
       try {
         user = await login(credentials)
       } catch (err) {
-        user = await signup(credentials) 
+        user = await signup(credentials)
       }
 
       if (user) {
-        navigate('/') 
+        navigate('/')
       }
     } catch (err) {
       console.error('Google login error:', err)
@@ -94,9 +94,27 @@ export function Login() {
   async function loginWithFacebook() {
     try {
       const result = await signInWithPopup(auth, facebookProvider)
-      console.log('Facebook login:', result.user)
-      setUser(result.user)
-      navigate('/')
+      const firebaseUser = result.user
+
+      const imgUrl = await uploadGoogleService.uploadGoogleImg(firebaseUser.photoURL)
+      const credentials = {
+        username: firebaseUser.email,
+        password: firebaseUser.uid,
+        fullname: firebaseUser.displayName,
+        imgUrl
+      }
+
+      let user
+      try {
+        user = await login(credentials)
+      } catch (err) {
+        user = await signup(credentials)
+      }
+
+      if (user) {
+
+        navigate('/')
+      }
     } catch (err) {
       console.error('Facebook login error:', err)
       showErrorMsg('Facebook login failed')
