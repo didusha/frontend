@@ -1,8 +1,8 @@
 .stay-details {
-  > * {
+  >* {
     grid-column: 2;
   }
-  
+
   .nav {
     position: fixed;
     left: 0;
@@ -14,7 +14,7 @@
     background-color: var(--white-bg-btn);
     border-block-end: 1px solid #dddddd;
 
-    > * {
+    >* {
       grid-column: 2;
     }
 
@@ -28,11 +28,11 @@
       gap: 15px;
       align-items: center;
 
-      > * {
+      >* {
         padding-block: 30px;
       }
 
-      > *:hover {
+      >*:hover {
         box-shadow: inset 0 -4px rgb(34, 34, 34, 0.87);
         cursor: pointer;
       }
@@ -43,17 +43,14 @@
       gap: 5px;
 
       .check-btn {
-        background-image: radial-gradient(
-          circle,
-          #ff385c 0,
-          #e61e4d 27.5%,
-          #e31c5f 40%,
-          #d70466 57.5%,
-          #bd1e59 75%,
-          #bd1e59 100%
-        );
-        background-position: calc((100 - var(--mouse-x, 0)) * 1%)
-          calc((100 - var(--mouse-y, 0)) * 1%);
+        background-image: radial-gradient(circle,
+            #ff385c 0,
+            #e61e4d 27.5%,
+            #e31c5f 40%,
+            #d70466 57.5%,
+            #bd1e59 75%,
+            #bd1e59 100%);
+        background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
         background-size: 200% 200%;
         color: white;
         border: none;
@@ -66,6 +63,7 @@
 
       .review {
         font-size: 12px;
+
         span {
           color: var(--gray-p);
         }
@@ -77,29 +75,30 @@
     }
   }
 
-        .reserve-btn {
-        background-image: radial-gradient(
-          circle,
-          #ff385c 0,
-          #e61e4d 27.5%,
-          #e31c5f 40%,
-          #d70466 57.5%,
-          #bd1e59 75%,
-          #bd1e59 100%
-        );
-        background-position: calc((100 - var(--mouse-x, 0)) * 1%)
-          calc((100 - var(--mouse-y, 0)) * 1%);
-        background-size: 200% 200%;
-        color: white;
-        border: none;
-        padding: 15px 50px;
-        font-size: 16px;
-        border-radius: 999px;
-        cursor: pointer;
-        transition: background 0.2s ease;
-      }
+  .google-map {
+    margin-bottom: 40px;
+  }
 
-  .small-reservation{
+  .reserve-btn {
+    background-image: radial-gradient(circle,
+        #ff385c 0,
+        #e61e4d 27.5%,
+        #e31c5f 40%,
+        #d70466 57.5%,
+        #bd1e59 75%,
+        #bd1e59 100%);
+    background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+    background-size: 200% 200%;
+    color: white;
+    border: none;
+    padding: 15px 50px;
+    font-size: 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .small-reservation {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -113,31 +112,33 @@
 
 
 @media (max-width: 750px) {
-.stay-details {
-  .nav, .stay-reservation{
-        display: none;
+  .stay-details {
+
+    .nav,
+    .stay-reservation {
+      display: none;
+    }
   }
-}
 }
 
 
 @media (min-width: 750px) {
-.stay-details {
-  .small-reservation{
-    display: none;
-  
-}
+  .stay-details {
+    .small-reservation {
+      display: none;
 
- .main-details {
-    display: grid;
-    grid-template-columns: minmax(300px, 2fr) minmax(250px, 1fr);
-    column-gap: 60px;
-
-    &:first-child {
-      grid-column: 1;
     }
-  }
 
-}
+    .main-details {
+      display: grid;
+      grid-template-columns: minmax(300px, 2fr) minmax(250px, 1fr);
+      column-gap: 60px;
+
+      &:first-child {
+        grid-column: 1;
+      }
+    }
+
+  }
 
 }

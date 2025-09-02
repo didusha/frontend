@@ -13,6 +13,7 @@ import { stayService } from '../services/stay/'
 import { userService } from '../services/user'
 import { StayList } from '../cmps/StayList'
 import { Loader } from '../cmps/Loader'
+import { IndexLoader } from '../cmps/IndexLoader'
 
 export function StayIndex() {
   const stays = useSelector((storeState) => storeState.stayModule.stays)
@@ -97,7 +98,7 @@ export function StayIndex() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && <IndexLoader/>}
       {!isLoading && (
         <section className='stay-index'>
           {/* {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}

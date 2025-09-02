@@ -26,6 +26,11 @@
     width: 22px;
 }
 
+.footer-imgs.user{
+    border-radius: 50em;
+    height: 22px;
+}
+
 .page-selected{
     span{
         color: var(--clr1);

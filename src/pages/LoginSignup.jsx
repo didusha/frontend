@@ -1,10 +1,12 @@
-import { Outlet, useNavigate, useOutletContext } from 'react-router'
-import { useState } from 'react'
+import { Outlet, useNavigate } from 'react-router'
+import { useState, useEffect } from 'react'
 
 import { userService } from '../services/user'
 import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
 import { showErrorMsg } from '../services/event-bus.service'
+
+import { auth, googleProvider, facebookProvider, signInWithPopup } from '../services/firebase'
 
 export function LoginSignup() {
   const isLogin = location.pathname === '/auth/login'
@@ -19,23 +21,32 @@ export function LoginSignup() {
 }
 
 export function Login() {
-  // const isLogin = location.pathname === '/auth/login'
+  const isLogin = location.pathname === '/auth/login'
   const navigate = useNavigate()
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
-  })
+  const [credentials, setCredentials] = useState({ username: '', password: '' })
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser)
+      if (firebaseUser) {
+        console.log('Firebase user:', firebaseUser)
+        // אפשר גם לשמור ב-store או לשלוח לשרת
+      }
+    })
+    return () => unsubscribe()
+  }, [])
 
   async function onLogin(ev) {
     ev.preventDefault()
     if (!credentials.username) return
 
     try {
-       await login(credentials)
-      //  if (user && isLogin )navigate('/')
+      await login(credentials)
+      if (isLogin) navigate('/')
     } catch (err) {
       console.log(err)
-      showErrorMsg('can`t login')
+      showErrorMsg("Can't login")
     }
   }
 
@@ -50,11 +61,36 @@ export function Login() {
     setCredentials({ ...credentials, ...demoUser })
   }
 
+  async function loginWithGoogle() {
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      console.log('Google login:', result.user)
+      setUser(result.user)
+      console.log(result.user);
+
+      navigate('/')
+    } catch (err) {
+      console.error('Google login error:', err)
+      showErrorMsg('Google login failed')
+    }
+  }
+
+  async function loginWithFacebook() {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider)
+      console.log('Facebook login:', result.user)
+      setUser(result.user)
+      navigate('/')
+    } catch (err) {
+      console.error('Facebook login error:', err)
+      showErrorMsg('Facebook login failed')
+    }
+  }
+
   return (
     <form className='login-Sign-form' onSubmit={onLogin}>
       <div className='login-Sign-row'>
         <label htmlFor='username'>
-          {' '}
           <span>*</span> Username
         </label>
         <input
@@ -78,14 +114,29 @@ export function Login() {
         />
       </div>
       <button className='log-btn bold'>Log in</button>
+
       <div className='or-container'>
         <span> or </span>
       </div>
-      <button onClick={onDemoLogin} className='demo-btn btn'>
+
+      <button type='button' onClick={onDemoLogin} className='demo-btn btn'>
         Demo login
       </button>
-      <button onClick={() => navigate('/auth/signup')} className='btn'>
+
+      <button type='button' onClick={() => navigate('/auth/signup')} className='btn'>
         Signup
+      </button>
+
+      <div className='or-container'>
+        <span> or login with </span>
+      </div>
+
+      <button type="button" onClick={loginWithGoogle} className="google-btn">
+        <i className="fab fa-google"></i> Login with Google
+      </button>
+
+      <button type="button" onClick={loginWithFacebook} className="facebook-btn">
+        <i className="fab fa-facebook-f"></i> Login with Facebook
       </button>
     </form>
   )
@@ -102,7 +153,6 @@ export function Signup() {
 
   function handleChange(ev) {
     const type = ev.target.type
-
     const field = ev.target.name
     const value = ev.target.value
     setCredentials({ ...credentials, [field]: value })
@@ -110,15 +160,14 @@ export function Signup() {
 
   async function onSignup(ev) {
     ev.preventDefault()
+    if (!credentials.username || !credentials.password || !credentials.fullname) return
 
-    if (!credentials.username || !credentials.password || !credentials.fullname)
-      return
     try {
       await signup(credentials)
       clearState()
-      // if (isSignup) navigate('/')
+      navigate('/')
     } catch (err) {
-      showErrorMsg('can`t sing up')
+      showErrorMsg("Can't sign up")
     }
   }
 
@@ -171,7 +220,7 @@ export function Signup() {
       <div className='or-container'>
         <span> or </span>
       </div>
-      <button onClick={() => navigate('/auth/login')} className='btn'>
+      <button type='button' onClick={() => navigate('/auth/login')} className='btn'>
         Login
       </button>
     </form>

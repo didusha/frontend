@@ -19,6 +19,7 @@ import { Dashboard } from './pages/Dashboard.jsx'
 import { Trips } from './pages/Trips.jsx'
 import { Listing } from './pages/Listing.jsx'
 import { Wishlist } from './pages/Wishlist.jsx'
+import { DeleteLogin } from './pages/DeleteLogin.jsx'
 import { SmallHeader } from './cmps/SmallHeader.jsx'
 import { SmallFooter } from './cmps/SmallFooter.jsx'
 
@@ -48,6 +49,7 @@ export function RootCmp() {
                     <Route path="trips" element={<Trips />}/>
                     <Route path="listing" element={<Listing />}/>
                     <Route path="wishlist" element={<Wishlist />}/>
+                    <Route path="delete" element={<DeleteLogin />}/>
                 </Routes>
             </main>
             <AppFooter />
