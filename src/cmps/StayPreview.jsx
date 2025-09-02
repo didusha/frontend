@@ -27,7 +27,8 @@ export function StayPreview({ stay, params }) {
                     {avgRate} ({stay.reviews?.length})
                 </span>}
 
-                <div className="preview-stay-with grey">Stay with {stay.host.fullname} • Host for {getRandomIntInclusive(1, 10)} years</div>
+                <div className="preview-stay-with grey"> {stay.loc.city}, {stay.loc.country} • Stay with {stay.host.fullname}</div>  
+                {/* Host for {getRandomIntInclusive(1, 10)} years */}
                 <div className="preview-dates grey">{formatDateRange(randStartDate, randEndDate)}</div>
                 <div className="preview-price">
                     <span className="underline">${stay.price}</span><span className="grey"> night</span>
