@@ -53,7 +53,7 @@ function getDefaultFilter() {
     type: null,
     dir: 1,
     page:1,
-    limit:14
+    limit:28
   }
 }
 

@@ -67,7 +67,9 @@ export function ConfirmReservation() {
 
   if (!stay) return <div>Loading...</div>
   const nights = getDayDiff(params.checkIn, params.checkOut)
-  const totalPrice = nights * stay.price + 5
+  const clearingFee = 5
+  const priceBeforeClearing = nights * stay.price
+  const totalPrice = priceBeforeClearing + clearingFee
   const totalGuest = +params.adults + +params.children + +params.infants
 
   return (
@@ -164,7 +166,7 @@ export function ConfirmReservation() {
           <div className="reservation-prices">
             <p className="flex space-between">
               <span className="nights-info underline">{nights} nights x ${stay.price.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-              <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+              <span>${priceBeforeClearing.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
             </p>
             <p className="flex space-between">
               <span className="cleaning-fee underline">Cleaning fee</span>

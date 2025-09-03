@@ -4,6 +4,7 @@
     justify-content: space-evenly;
     background-color: white;
     padding: 1em 0;
+    /* z-index: 2; */
 
     section {
         display: flex;
@@ -17,7 +18,7 @@
         }
     }
 
-    section:hover{
+    section:hover {
         cursor: pointer;
     }
 }
@@ -26,17 +27,17 @@
     width: 22px;
 }
 
-.footer-imgs.user{
+.footer-imgs.user {
     border-radius: 50em;
     height: 22px;
 }
 
-.page-selected{
-    span{
+.page-selected {
+    span {
         color: var(--clr1);
     }
 
-    .footer-imgs{
+    .footer-imgs {
         color: red !important;
     }
 }

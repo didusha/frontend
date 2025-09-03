@@ -59,7 +59,7 @@ export function AppHeader() {
 
 	return (
 		<header className={`app-header full ${isHomePage ? 'sticky' : ''} ${isDetailsPage ? 'small-layout' : ''}`}>
-			<nav>
+			<nav className="big-header">
 				<section className="logo" onClick={() => {
 					navigate('/')
 					setIsHamburgerOpen(false)
@@ -108,7 +108,7 @@ export function AppHeader() {
 					{isHamburgerOpen &&
 						<>
 							<div className="hamburger-overlay" onClick={() => setIsHamburgerOpen(false)}></div>
-							<div className="logged-out-hamburger">
+							<div className={`logged-out-hamburger ${isDetailsPage ? "right-hamburger" : ""}`}>
 								<section className="help-center">
 									<img className="circle-question" src={question} alt="" />
 									Help Center
@@ -125,7 +125,7 @@ export function AppHeader() {
 									<div>
 										<section className="wishlist-link" onClick={() => linkTo('wishlist')}>Wishlist</section>
 										<section className="trips-link" onClick={() => linkTo('trips')}>My trips</section>
-										{user.isHost && <section className="listing-link" onClick={() => linkTo('listing')}>Listing</section>}
+										{user.isHost && <section className="listing-link" onClick={() => linkTo('listing')}>Listings</section>}
 										<section className="add-stay-link" onClick={() => linkTo('stay/edit')}>Add stay</section>
 										{user.isHost && <section className="dashboard-link" onClick={() => linkTo('dashboard')}>Dashboard</section>}
 										<section className="log-out-link" onClick={onLogout}>Log out</section>
