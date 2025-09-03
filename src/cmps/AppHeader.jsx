@@ -59,7 +59,7 @@ export function AppHeader() {
 
 	return (
 		<header className={`app-header full ${isHomePage ? 'sticky' : ''} ${isDetailsPage ? 'small-layout' : ''}`}>
-			<nav>
+			<nav className="big-header">
 				<section className="logo" onClick={() => {
 					navigate('/')
 					setIsHamburgerOpen(false)
@@ -108,7 +108,7 @@ export function AppHeader() {
 					{isHamburgerOpen &&
 						<>
 							<div className="hamburger-overlay" onClick={() => setIsHamburgerOpen(false)}></div>
-							<div className="logged-out-hamburger">
+							<div className={`logged-out-hamburger ${isDetailsPage ? "right-hamburger" : ""}`}>
 								<section className="help-center">
 									<img className="circle-question" src={question} alt="" />
 									Help Center

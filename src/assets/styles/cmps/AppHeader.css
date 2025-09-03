@@ -130,12 +130,16 @@
     margin-right: 20px;
 }
 
+.big-header{
+    position: relative;
+}
+
 .logged-out-hamburger {
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 80px;
-    right: 45px;
+    right: 1.8em;
     width: 280px;
     font-size: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -143,6 +147,10 @@
     border-radius: 13px;
     z-index: 5;
     background-color: #fff;
+}
+
+.right-hamburger{
+    right: 0 !important;
 }
 
 .hamburger-options {
