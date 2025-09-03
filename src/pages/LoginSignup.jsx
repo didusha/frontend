@@ -82,9 +82,7 @@ export function Login() {
         user = await signup(credentials)
       }
 
-      if (user) {
-        navigate('/')
-      }
+      if (isLogin) navigate('/')
     } catch (err) {
       console.error('Google login error:', err)
       showErrorMsg('Google login failed')

@@ -67,7 +67,7 @@ export function ConfirmReservation() {
 
   if (!stay) return <div>Loading...</div>
   const nights = getDayDiff(params.checkIn, params.checkOut)
-  const totalPrice = nights * stay.price + 5
+  const totalPrice = nights * stay.price
   const totalGuest = +params.adults + +params.children + +params.infants
 
   return (
@@ -173,7 +173,7 @@ export function ConfirmReservation() {
             <hr />
             <p className="flex space-between">
               <span>Total</span>
-              <span>${totalPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+              <span>${(totalPrice + 5).toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
             </p>
           </div>
         </section>
