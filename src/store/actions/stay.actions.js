@@ -4,18 +4,17 @@ import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER
 import { LOADING_START, LOADING_DONE } from '../reducers/system.reducer'
 
 export async function loadStays(sortBy={}, filterBy) {
-    if (!filterBy) { 
-        filterBy = store.getState().stayModule.filterBy
-      }  
-      
+
+   filterBy = store.getState().stayModule.filterBy 
+
       if (filterBy.guests) {
         const { adults = 1, children = 0, infants = 0 } = filterBy.guests
         filterBy = {
             ...filterBy,
             capacity: adults + children + infants
         }
-    }
-    try {
+        }
+    try {        
         if (filterBy.page === 1)store.dispatch({type: LOADING_START})
         const stays = await stayService.query(filterBy, sortBy)
           if (filterBy.page > 1) {

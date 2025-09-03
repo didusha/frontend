@@ -31,7 +31,8 @@ export function StayFilter({ selectedSection, setSelectedSection }) {
                 children: +searchParams.get('children') || 0,
                 infants: +searchParams.get('infants') || 0,
                 pets: +searchParams.get('pets') || 0
-            }
+            },
+            page:1,
         }
         dispatch(setFilterBy(filter))
         setLocalFilter(filter)

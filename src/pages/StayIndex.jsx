@@ -28,24 +28,23 @@ export function StayIndex() {
   // }, [])
 
   useEffect(() => {
-    loadStays({ ...filterBy, page: 0 })
+    loadStays()   
   }, [filterBy.txt, filterBy.capacity, filterBy.checkIn, filterBy.checkOut])
 
   useEffect(() => {
     if (!loaderRef.current) return
-
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0]
       if (entry.isIntersecting && !isLoadingRef.current) {
         isLoadingRef.current = true
         const nextPage = filterBy.page + 1
-        loadStays({ ...filterBy, page: nextPage }).finally(() => {
-          isLoadingRef.current = false
-        })
         dispatch({
           type: SET_FILTER_BY,
           filterBy: { ...filterBy, page: nextPage },
         })
+        loadStays().finally(() => {           
+          isLoadingRef.current = false
+        })                         
       }
     })
 
@@ -95,6 +94,7 @@ export function StayIndex() {
       showErrorMsg('Cannot update stay')
     }
   }
+  
 
   return (
     <>

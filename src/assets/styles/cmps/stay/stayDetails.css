@@ -107,6 +107,7 @@
     align-items: center;
     padding: 1rem 1.5rem;
     background-color: var(--white-bg-btn);
+    border-top:1px solid  #dddddd ;
   }
 }
 

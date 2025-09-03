@@ -40,7 +40,6 @@
     grid-auto-flow: column;
     overflow-x: scroll;
     scrollbar-width: none;
-    padding: 10px;
     gap: 1rem;
 
     >*:not(:last-child){

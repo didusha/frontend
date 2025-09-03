@@ -13,6 +13,7 @@
     .arrow{
       width: 1rem;
       border-radius: 50%;
+      cursor: pointer;
     }
 
     .btn img {
@@ -46,7 +47,6 @@
 
     img{
       object-fit: cover;
-      /* height: 218px; */
     }
 
 

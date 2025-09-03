@@ -26,6 +26,29 @@ export function Charts({ orders }) {
     BarElement
   )
 
+  const doughnutOptions= {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: 'Reservations per stay', 
+      font: {
+        size: 18,
+        weight: 'bold',
+      },
+      color: '#333', 
+      padding: {
+        top: 10,
+        bottom: 30,
+      },
+    },
+    legend: {
+      display:false,
+      position: 'bottom',
+    },
+  },
+}
+
   const data = {
     labels,
     datasets: [
@@ -73,25 +96,34 @@ export function Charts({ orders }) {
     ...new Set(
       orders.map((order) => {
         const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16) * 1000).getMonth()
-        return monthNames[monthIndex]
+        if (monthIndex >= new Date().getMonth())return monthNames[monthIndex]        
       })
     ),
   ]
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
+ const barOptions = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: 'Income per month',
+      font: {
+        size: 18,
+        weight: 'bold'
       },
+      color: '#333', 
     },
+    legend: {
+      display: false,
+    }
   }
+}
 
   const data2 = {
     labels: months,
     datasets: [
       {
-        label: 'Income per month',
+        label: '',
         data: totalPrices.filter((p) => p.price > 0).map((p) => p.price),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
@@ -107,10 +139,10 @@ export function Charts({ orders }) {
         <p>Pending <span>{orders.filter(o => o.status === 'Pending').length}</span></p>
       </div>
       <div className="stat-card doughnut">
-        <Doughnut data={data} options={{ plugins: { legend: { display: false } } }}/>
+        <Doughnut data={data} options={doughnutOptions}/>
       </div>
       <div className="stat-card bar">
-        <Bar options={options} data={data2} />
+        <Bar options={barOptions} data={data2} />
       </div>
     </section>
   )
