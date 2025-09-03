@@ -34,7 +34,7 @@ export function StayReservation({ stay, isDateModalOpen, onSetIsDateModalOpen })
     }
   })
   const nights = getDayDiff(order.checkIn, order.checkOut) || getDayDiff(params.checkIn, params.checkOut) || 1
-  const totalPrice = nights * stay.price + 5
+  const totalPrice = nights * stay.price
 
   function onResrve() {
     const orderParams = new URLSearchParams({
