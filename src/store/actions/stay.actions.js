@@ -3,10 +3,9 @@ import { store } from '../store'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, UPDATE_STAY, ADD_STAY_MSG, SET_FILTER_BY, ADD_STAYS } from '../reducers/stay.reducer'
 import { LOADING_START, LOADING_DONE } from '../reducers/system.reducer'
 
-export async function loadStays(sortBy={}, filterBy) {
+export async function loadStays(sortBy={}) {
 
-   filterBy = store.getState().stayModule.filterBy 
-
+const filterBy = store.getState().stayModule.filterBy 
       if (filterBy.guests) {
         const { adults = 1, children = 0, infants = 0 } = filterBy.guests
         filterBy = {

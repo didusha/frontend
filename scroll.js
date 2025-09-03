@@ -20,3 +20,5 @@
     observer.observe(loaderRef.current)
     return () => observer.disconnect()
   }, [filterBy])
+
+  return <div ref={loaderRef} style={{ height: '50px' }} > </div>
