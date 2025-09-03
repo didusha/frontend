@@ -21,9 +21,8 @@ export function SmallFooter() {
             await logout()
             navigate('/')
             setSelected('explore')
-            showSuccessMsg(`Bye now`)
         } catch (err) {
-            showErrorMsg('Cannot logout')
+            console.log('Cannot logout')
         }
     }
 

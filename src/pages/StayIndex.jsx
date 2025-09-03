@@ -47,8 +47,8 @@ export function StayIndex() {
         })                         
       }
     })
-
     observer.observe(loaderRef.current)
+    
     return () => observer.disconnect()
   }, [filterBy])
 
