@@ -6,7 +6,12 @@ import { login, signup } from '../store/actions/user.actions'
 import { ImgUploader } from '../cmps/ImgUploader'
 import { showErrorMsg } from '../services/event-bus.service'
 
-import { auth, googleProvider, facebookProvider, signInWithPopup } from '../services/firebase'
+import {
+  auth,
+  googleProvider,
+  facebookProvider,
+  signInWithPopup,
+} from '../services/firebase'
 import { uploadService } from '../services/upload.service'
 import { uploadGoogleService } from '../services/uploadGoogle.service'
 
@@ -66,13 +71,15 @@ export function Login() {
       const result = await signInWithPopup(auth, googleProvider)
       const firebaseUser = result.user
 
-      const imgUrl = await uploadGoogleService.uploadGoogleImg(firebaseUser.photoURL)
+      const imgUrl = await uploadGoogleService.uploadGoogleImg(
+        firebaseUser.photoURL
+      )
 
       const credentials = {
         username: firebaseUser.email,
         password: firebaseUser.uid,
         fullname: firebaseUser.displayName,
-        imgUrl
+        imgUrl,
       }
 
       let user
@@ -94,12 +101,14 @@ export function Login() {
       const result = await signInWithPopup(auth, facebookProvider)
       const firebaseUser = result.user
 
-      const imgUrl = await uploadGoogleService.uploadGoogleImg(firebaseUser.photoURL)
+      const imgUrl = await uploadGoogleService.uploadGoogleImg(
+        firebaseUser.photoURL
+      )
       const credentials = {
         username: firebaseUser.email,
         password: firebaseUser.uid,
         fullname: firebaseUser.displayName,
-        imgUrl
+        imgUrl,
       }
 
       let user
@@ -110,7 +119,6 @@ export function Login() {
       }
 
       if (user) {
-
         navigate('/')
       }
     } catch (err) {
@@ -148,6 +156,22 @@ export function Login() {
       <button className='log-btn bold'>Log in</button>
 
       <div className='or-container'>
+        <span> or login with </span>
+      </div>
+
+      <button type='button' onClick={loginWithGoogle} className='google-btn'>
+        <i className='fab fa-google'></i> Login with Google
+      </button>
+
+      <button
+        type='button'
+        onClick={loginWithFacebook}
+        className='facebook-btn'
+      >
+        <i className='fab fa-facebook-f'></i> Login with Facebook
+      </button>
+
+      <div className='or-container'>
         <span> or </span>
       </div>
 
@@ -155,20 +179,12 @@ export function Login() {
         Demo login
       </button>
 
-      <button type='button' onClick={() => navigate('/auth/signup')} className='btn'>
+      <button
+        type='button'
+        onClick={() => navigate('/auth/signup')}
+        className='btn'
+      >
         Signup
-      </button>
-
-      <div className='or-container'>
-        <span> or login with </span>
-      </div>
-
-      <button type="button" onClick={loginWithGoogle} className="google-btn">
-        <i className="fab fa-google"></i> Login with Google
-      </button>
-
-      <button type="button" onClick={loginWithFacebook} className="facebook-btn">
-        <i className="fab fa-facebook-f"></i> Login with Facebook
       </button>
     </form>
   )
@@ -192,7 +208,8 @@ export function Signup() {
 
   async function onSignup(ev) {
     ev.preventDefault()
-    if (!credentials.username || !credentials.password || !credentials.fullname) return
+    if (!credentials.username || !credentials.password || !credentials.fullname)
+      return
 
     try {
       await signup(credentials)
@@ -252,7 +269,11 @@ export function Signup() {
       <div className='or-container'>
         <span> or </span>
       </div>
-      <button type='button' onClick={() => navigate('/auth/login')} className='btn'>
+      <button
+        type='button'
+        onClick={() => navigate('/auth/login')}
+        className='btn'
+      >
         Login
       </button>
     </form>
