@@ -129,7 +129,7 @@ export function Charts({ orders }) {
 
   // DEMO  DATA:
   const months = monthNames.filter((m, idx) => {   
-     if (idx >= 6) return monthNames[idx]
+     if (idx >= 5 && idx <= 8) return monthNames[idx]
   })
 
 
@@ -140,7 +140,7 @@ export function Charts({ orders }) {
 
 
   // DEMO  DATA:
-  const priceToShow = [7800, 8000, 10000]
+  const priceToShow = [8500,7800, 8000, 10000]
 
 
 
