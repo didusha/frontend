@@ -21,13 +21,14 @@ export function StayPreview({ stay, params }) {
             <ImgCarousel imgUrls={stay.imgUrls} stayName={stay.name} stayId={stay._id} />
 
             <div className="preview-info">
-                <div className="preview-name">{stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
+                <div className="preview-name" title={`${stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}`}>
+                    {stay.name.charAt(0).toUpperCase() + stay.name.slice(1).toLowerCase()}</div>
                 {stay.reviews && <span className="preview-rate">
                     <span><FontAwesomeIcon icon={faStar} /></span>
                     {avgRate} ({stay.reviews?.length})
                 </span>}
 
-                <div className="preview-stay-with grey"> {stay.loc.city}, {stay.loc.country} • Stay with {stay.host.fullname}</div>  
+                <div className="preview-stay-with grey" title={`${stay.loc.city}, ${stay.loc.country} • Stay with ${stay.host.fullname}`}> {stay.loc.city}, {stay.loc.country} • Stay with {stay.host.fullname}</div>  
                 {/* Host for {getRandomIntInclusive(1, 10)} years */}
                 <div className="preview-dates grey">{formatDateRange(randStartDate, randEndDate)}</div>
                 <div className="preview-price">
