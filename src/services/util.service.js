@@ -195,7 +195,7 @@ export function getAverageRating(reviews) {
           orders.forEach((order) => {
             const month = new Date(parseInt((order._id).substring(0, 8), 16)*1000).getMonth()
             const year = new Date(parseInt((order._id).substring(0, 8), 16)*1000).getFullYear()
-
+                        
             if (month === idx && order.status === 'Approved'&& year === new Date().getFullYear()) {
               labelPriceAmount.price += (+order.totalPrice)
             }     

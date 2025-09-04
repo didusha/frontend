@@ -76,32 +76,8 @@ export function Charts({ orders }) {
     ],
   }
 
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
-  const totalPrices = dataBase(orders, { name: 'monthNames', data: monthNames })
 
-  const months = [
-    ...new Set(
-      orders.map((order) => {
-        const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16) * 1000).getMonth()
-        if (monthIndex >= new Date().getMonth())return monthNames[monthIndex]        
-      })
-    ),
-  ]
-
- const barOptions = {
+   const barOptions = {
   responsive: true,
   plugins: {
     title: {
@@ -118,13 +94,62 @@ export function Charts({ orders }) {
     }
   }
 }
+  
+
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+// REAL DATA:
+  // const months = [
+  //   ...new Set(
+  //     orders.map((order) => {
+  //       const monthIndex = new Date(parseInt((order._id).substring(0, 8), 16) * 1000).getMonth()
+  //       const year = new Date(parseInt((order._id).substring(0, 8), 16) * 1000).getFullYear()
+  //       if (monthIndex >= new Date().getMonth() -2 && year === new Date().getFullYear() && !undefined ){
+  //          return monthNames[monthIndex]
+  //          }       
+  //       return null
+  //     })
+  //     .filter(Boolean)
+  //   ),
+  // ]
+
+
+  // DEMO  DATA:
+  const months = monthNames.filter((m, idx) => {   
+     if (idx >= 6) return monthNames[idx]
+  })
+
+
+
+  // REAL DATA:
+  // const totalPrices = dataBase(orders, { name: 'monthNames', data: monthNames })
+  // const priceToShow = totalPrices.filter((p) => p.price > 0).map((p) => p.price) ;  
+
+
+  // DEMO  DATA:
+  const priceToShow = [7800, 8000, 10000]
+
+
 
   const data2 = {
     labels: months,
     datasets: [
       {
         label: '',
-        data: totalPrices.filter((p) => p.price > 0).map((p) => p.price),
+        data:priceToShow,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],
