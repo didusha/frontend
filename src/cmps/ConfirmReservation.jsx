@@ -70,7 +70,7 @@ export function ConfirmReservation() {
   const clearingFee = 5
   const priceBeforeClearing = nights * stay.price
   const totalPrice = priceBeforeClearing + clearingFee
-  const totalGuest = +params.adults + +params.children + +params.infants
+  const totalGuest = +params.adults + +params.children + +params.infants || 1
 
   return (
     <section className="confirm-details-container">
