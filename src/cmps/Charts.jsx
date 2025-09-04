@@ -159,9 +159,14 @@ export function Charts({ orders }) {
     <section className="statistic">
       <div className="stat-card orders-status">
         <h3 className='bold'>Reservations status</h3>
-        <p>Approved <span className="active">{orders.filter(o => o.status === 'Approved').length}</span></p>
-        <p>Rejected <span className="non-active">{orders.filter(o => o.status === 'Rejected').length}</span></p>
-        <p>Pending <span>{orders.filter(o => o.status === 'Pending').length}</span></p>
+        <div className="status-chart">
+          <span>Approved</span> 
+          <span className="active">{orders.filter(o => o.status === 'Approved').length}</span>
+          <span>Rejected</span>  
+          <span className="non-active">{orders.filter(o => o.status === 'Rejected').length}</span>
+          <span>Pending</span> 
+          <span>{orders.filter(o => o.status === 'Pending').length}</span>
+          </div>
       </div>
       <div className="stat-card doughnut">
         <Doughnut data={data} options={doughnutOptions}/>

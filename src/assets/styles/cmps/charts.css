@@ -19,6 +19,21 @@
   width: 100% !important;
 }
 
+.status-chart{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.status-chart span{
+  margin-bottom: 6px;
+}
+
+.status-chart span:nth-child(2n){
+  place-self: end;
+}
+
+
+
 .orders-status {
   align-items: flex-start;
   justify-content: flex-start;
@@ -33,10 +48,6 @@
   font-weight: 600;
 }
 
-.orders-status span {
-  margin-left: 8px;
-}
-
 .orders-status .active {
   color: var(--green-base-);
 }
@@ -45,21 +56,23 @@
   color: var(--red-base-);
 }
 
-.orders-status span:not(.active):not(.non-active) {
+/* .orders-status span:not(.active):not(.non-active) {
   color: rgb(245, 182, 66);
-}
+} */
 
 @media (max-width: 400px) {
-  .statistics {
-    display: block;
-  }
-
   .stat-card {
     margin-bottom: 10px;
   }
 }
 
 @media (min-width: 400px) {
+  .stat-card {
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 700px) {
   .statistic {
     display: flex;
     flex-wrap: wrap;
