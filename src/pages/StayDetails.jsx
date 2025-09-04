@@ -62,11 +62,11 @@ export function StayDetails() {
     const orderParams = new URLSearchParams({
       checkIn: params.checkIn,
       checkOut: params.checkOut,
-      adults: params.adults,
-      children: params.children,
-      infants: params.infants,
-      pets: params.pets,
-      totalPrice: getDayDiff(checkIn, checkOut) * stay.price + 5,
+      adults: +params.adults || 1,
+      children: +params.children || 1,
+      infants: +params.infants || 1,
+      pets: +params.pets || 1,
+      totalPrice: +getDayDiff(checkIn, checkOut) * stay.price,
 
     })
     navigate(`/stay/${stay._id}/order?${orderParams.toString()}`)
